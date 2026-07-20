@@ -18,7 +18,7 @@ export const site = {
 
   /* One plain-language framing paragraph so a visitor understands the work
      before the three panels. ~75 words. */
-  framing: `How does a brain — or any intelligent system — turn physical signals into computation, perception, and experience? I pursue that three ways: circuit and network theory for how populations of cortical neurons compute; the study of intelligence in artificial systems, treated as fully observable model organisms for the methods neuroscience will need; and tools that put AI inside the scientific workflow itself. Underneath sits an older question — where perception begins, and whether a machine could ever have it.`,
+  framing: `How does a brain — or any intelligent system — turn physical signals into computation, perception, and experience? I pursue that three ways: circuit and network theory for how populations of cortical neurons compute; the study of intelligence in artificial systems, treated as fully observable model organisms for the methods neuroscience will need; and tools that put AI inside the scientific workflow itself. Underneath sits an older question — where perception ends and cognition begins, and whether a machine could ever cross that line.`,
 
   /* The three approaches. Philosophy of perception is demoted to a note, below. */
   approaches: [
@@ -58,9 +58,9 @@ export const site = {
      Links added wherever one exists (from the CV / old site). */
   awardsSelected: [
     { when: '2025', what: 'NeuroData Discovery Award — $50,000', who: 'The Kavli Foundation', href: 'https://www.kavlifoundation.org/' },
-    { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
     { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs', href: 'https://www.adaptionlabs.ai/blog/adaption-research-grant-program' },
     { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
+    { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
     { when: '2023', what: 'Honorable Mention, Outstanding Undergraduate Researcher Award', who: 'Computing Research Association', href: 'https://cra.org/about/awards/outstanding-undergraduate-researcher-award/' },
   ],
 
@@ -77,7 +77,7 @@ export const site = {
     { name: 'Alison Peterman', where: 'University of Rochester' },
     { name: 'Feng Vankee Lin', where: 'Stanford University', href: 'https://profiles.stanford.edu/f-lin' },
     { name: 'Ehsan Adeli', where: 'Stanford University', href: 'https://stanford.edu/~eadeli/' },
-    { name: 'Ru-Yuan Zhang', where: 'Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/index.html' },
+    { name: 'Ruyuan Zhang', where: 'Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/index.html' },
   ],
 
   teaching: [
@@ -97,8 +97,7 @@ export const site = {
 
   reviewing: [
     'NeurIPS 2026', 'AISTATS 2026', 'NeurIPS 2025', 'CogSci 2025', 'AISTATS 2025',
-    'Frontiers in Neurology', 'ICLR 2024', 'CogSci 2024', 'ICML 2024 Workshop',
-    'NeurIPS 2024', 'NeurIPS 2023', 'ICML 2023 Workshop',
+    'Frontiers in Neurology', 'NeurIPS 2024', 'ICML 2024 Workshop', 'CogSci 2024', 'ICLR 2024', 'NeurIPS 2023', 'ICML 2023 Workshop',
   ],
 
   motto: 'In Art We Live.',

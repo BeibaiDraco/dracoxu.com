@@ -6,7 +6,7 @@ import { site } from '../data/site.js';
    headline and knows what the work is, not just where it happened. */
 const positions = [
   { when: '2023 —', theme: 'Inter-areal computation and cortical population dynamics', where: 'Doiron Lab · University of Chicago', href: 'https://brainmath.bsd.uchicago.edu/',
-    goal: `My active thrust is inter-areal computation, with David J. Freedman's lab: a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, together with a data-driven method to test its predictions in multi-area recordings. It is organized around three questions — what computations cannot be done by a single area but require a multi-area circuit, whether multi-area implementations carry efficiency advantages, and how to infer the local flow field and the inter-areal messages simultaneously from population activity; its data anchor is the FEF preprint on directed FEF–LIP–SC communication during rapid categorization. This builds on my established Doiron-lab line, which continues alongside it: extending balanced-network theory to nonlinear, population-wide correlated activity through short-term synaptic depression (co-first author, Nature Communications 2025); a spiking-network account of how attention rotates a population code to align stimulus responses with the axis of correlated variability, with Ramanujan Srinath and the Cohen lab; retinal noise resilience via disinhibition, begun in a rotation with the Wei lab; and a V1 study of whether face-motion encoding is cortical or thalamic in origin, with Peijia Yu and Na Ji.` },
+    goal: `My active thrust is inter-areal computation, with <a href="https://freedmanlab.uchicago.edu/">David J. Freedman's lab</a>: a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, tested against multi-area recordings, with the <a href="https://doi.org/10.64898/2026.06.30.735630">FEF preprint</a> as its data anchor. It builds on my established Doiron-lab line — balanced-network theory extended to nonlinear, population-wide correlated activity (Nature Communications 2025); a spiking-network account of how attention rotates a population code, with the Cohen lab; retinal noise resilience with the Wei lab; and the cortical-versus-thalamic origins of behavioral modulation in V1.` },
   { when: '2024', theme: 'Retinal disinhibition and noise resilience', where: 'Wei Lab · University of Chicago', href: 'https://weilab.uchicago.edu/',
     goal: 'Biologically plausible circuit models of retinal motifs, asking how distinct cell types collectively keep the retina’s output reliable across environments whose noise statistics differ by orders of magnitude.' },
   { when: '2021 — 2023', theme: 'Dynamic-network construction and sampling over joins', where: 'Nargesian group · University of Rochester', href: 'https://fnargesian.com/',
@@ -15,7 +15,7 @@ const positions = [
     goal: 'How perceptual decisions unfold over time and change with age under varying perceptual noise, and the social effects of crowd gaze on visual search.' },
   { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University', href: 'https://www.cogtlab.com/',
     goal: 'Graph neural networks, dimensionality reduction and representation learning applied to human fMRI and mesoscopic calcium imaging of stress neurobiology.' },
-  { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/',
+  { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/index.html',
     goal: 'Semi-supervised learning for Raven’s Progressive Matrices, and computational models of visual decision-making and confidence in OCD from behavioural and fMRI data.' },
   { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester', href: 'https://people.math.rochester.edu/faculty/iosevich/',
     goal: 'With Alex Iosevich — supervised methods for training spiking neural networks.' },
@@ -25,7 +25,7 @@ const positions = [
 ---
 
 <Base title="Research" current="Research"
-  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, approached through computational neuroscience, artificial intelligence, and AI for science.">
+  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, approached through computational neuroscience, the science of intelligence, and AI for science.">
 
   <section class="bay">
     <div class="main rhead">
@@ -46,7 +46,7 @@ const positions = [
 
   <!-- THE THREE APPROACHES -->
   <section class="bay">
-    <div class="main"><p class="lbl">Approaches</p></div>
+    <div class="main"><h2 class="lbl">Approaches</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -60,7 +60,7 @@ const positions = [
 
   <!-- FULL STATEMENT -->
   <section class="bay fade">
-    <div class="main"><p class="lbl">Statement</p></div>
+    <div class="main"><h2 class="lbl">Statement</h2></div>
   </section>
   <section class="bay fade">
     <div class="main">
@@ -72,7 +72,7 @@ const positions = [
 
   <!-- RESEARCH EXPERIENCE — theme-led -->
   <section class="bay fade">
-    <div class="main"><p class="lbl">Research experience</p></div>
+    <div class="main"><h2 class="lbl">Research experience</h2></div>
   </section>
   <section class="bay fade">
     <div class="wide">
@@ -81,7 +81,7 @@ const positions = [
           <div class="dated-when">{p.when}</div>
           <div>
             <p class="dated-what">{p.theme}</p>
-            <p class="dated-detail">{p.goal}</p>
+            <p class="dated-detail" set:html={p.goal}></p>
           </div>
           <div class="dated-where">{p.href ? <a href={p.href}>{p.where}</a> : p.where}</div>
         </div>
@@ -92,7 +92,7 @@ const positions = [
 
   <!-- TEACHING -->
   <section class="bay fade">
-    <div class="main"><p class="lbl">Teaching</p></div>
+    <div class="main"><h2 class="lbl">Teaching</h2></div>
   </section>
   <section class="bay fade">
     <div class="wide">
@@ -109,7 +109,7 @@ const positions = [
 
   <!-- SERVICE -->
   <section class="bay fade">
-    <div class="main"><p class="lbl">Service</p></div>
+    <div class="main"><h2 class="lbl">Service</h2></div>
   </section>
   <section class="bay fade">
     <div class="wide">
@@ -131,7 +131,7 @@ const positions = [
 
   <!-- COLLABORATORS -->
   <section class="bay fade">
-    <div class="main"><p class="lbl">Collaborators</p></div>
+    <div class="main"><h2 class="lbl">Collaborators</h2></div>
   </section>
   <section class="bay fade">
     <div class="wide">

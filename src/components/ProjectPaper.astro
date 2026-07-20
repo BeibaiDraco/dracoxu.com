@@ -16,7 +16,7 @@ function status(p) {
 ---
 {project.software ? (
   <div class="paper">
-    <span class="chip">Software · v0.1.0</span>
+    <span class="chip">Software · v{project.software.version}</span>
     <a class="ptitle" href={project.software.href}>{project.software.title}</a>
     <p class="pmeta">{project.software.cite}</p>
   </div>
@@ -41,7 +41,7 @@ function status(p) {
 
 <style>
   .paper {
-    border-left: 2px solid var(--berlin);
+    border-left: 1px solid var(--berlin);
     padding: var(--ma-2) 0 var(--ma-2) var(--ma-3);
     margin: var(--ma-3) 0;
     max-width: 62ch;

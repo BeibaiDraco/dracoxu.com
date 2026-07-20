@@ -22,6 +22,7 @@ export const projects = [
     install: 'pip install "maieusis[mcp,pdf,openai,anthropic]==0.1.0"',
     software: {
       title: 'Maieusis v0.1.0',
+      version: '0.1.0',
       href: 'https://doi.org/10.5281/zenodo.21388806',
       cite: 'Xu, Y. & Doiron, B. (2026). Maieusis v0.1.0. Zenodo.',
     },

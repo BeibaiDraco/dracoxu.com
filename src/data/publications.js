@@ -176,7 +176,7 @@ export const abstracts = [
   {
     id: 'urtc-join-2022', year: '2022',
     venueHref: 'https://urtc.mit.edu/',
-    authors: [{ n: 'Liu, Y.', star: true }, XU, { n: 'Nargesian, F.' }],
+    authors: [{ n: 'Liu, Y.' }, XU, { n: 'Nargesian, F.' }],
     title: 'Join size estimation over union of join paths',
     venue: 'IEEE MIT Undergraduate Research Technology Conference (URTC) 2022',
   },

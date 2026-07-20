@@ -17,12 +17,12 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 const fmt = (d) => { const [y, m] = d.split('-'); return `${MONTHS[+m - 1]} ${y}`; };
 const PANEL_SHORT = {
   'Computational Neuroscience': 'Comp. neuro',
-  'Science of Intelligence': 'Sci. of intelligence',
+  'Science of Intelligence': 'Intelligence',
   'AI for Science': 'AI for science',
 };
 ---
 
-<Base description={`Draco (Yunlong) Xu — PhD candidate in the Committee on Computational Neuroscience at the University of Chicago, working with Brent Doiron on the ${site.identity}.`}>
+<Base description="Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, working with Brent Doiron on the science of natural and artificial intelligence.">
 
   <!-- 1 · IDENTITY — portrait on the left, status on the right -->
   <section class="bay id-block">
@@ -39,10 +39,9 @@ const PANEL_SHORT = {
       </p>
       <p class="identity">I study the {site.identity}.</p>
       <p class="linkrow">
-        {site.links.map((l, i) => (<>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>))}
-        <span class="sl">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
+        {site.links.map((l, i) => (<>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>))}<span class="sl">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
       </p>
-      <p class="mail">{site.contact.email}</p>
+      <p class="mail"><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
       <div class="prose bio">
         {site.intro.map((para) => <p set:html={para}></p>)}
       </div>
@@ -55,7 +54,7 @@ const PANEL_SHORT = {
 
   <!-- 2 · RESEARCH — framing paragraph, then the three panels, then philosophy note -->
   <section class="bay">
-    <div class="main"><p class="lbl">Research</p></div>
+    <div class="main"><h2 class="lbl">Research</h2></div>
   </section>
   <section class="bay">
     <div class="main prose"><p>{site.framing}</p></div>
@@ -74,7 +73,7 @@ const PANEL_SHORT = {
   <!-- 3 · PROJECTS -->
   <section class="bay">
     <div class="main">
-      <p class="lbl">Ongoing and recent projects</p>
+      <h2 class="lbl">Ongoing and recent projects</h2>
       <p class="subhead">Six lines of work, running in parallel. The order is a reading order, not a ranking.</p>
     </div>
   </section>
@@ -87,7 +86,7 @@ const PANEL_SHORT = {
             <p class="row-t">{p.short}</p>
             <p class="row-a">{p.blurb}</p>
           </div>
-          <div class="row-m">{p.panels.map((t, i) => (<>{i > 0 && <br />}{PANEL_SHORT[t] || t}</>))}</div>
+          <div class="row-m">{p.panels.map((t, i) => (<>{i > 0 && <br />}<span class="tagnw">{PANEL_SHORT[t] || t}</span></>))}</div>
         </a>
       ))}
       <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/projects/">All six in detail →</a></p>
@@ -98,7 +97,7 @@ const PANEL_SHORT = {
   <!-- 4 · SELECTED PUBLICATIONS -->
   <section class="bay">
     <div class="main">
-      <p class="lbl">Selected publications</p>
+      <h2 class="lbl">Selected publications</h2>
       <p class="subhead">Journal, conference, and preprint work — a selection below.</p>
     </div>
   </section>
@@ -113,7 +112,7 @@ const PANEL_SHORT = {
   <!-- 5 · AWARDS & FUNDING — repositioned above Education, led by the void band -->
   <section class="bay">
     <div class="main">
-      <p class="lbl">Awards &amp; funding</p>
+      <h2 class="lbl">Awards &amp; funding</h2>
       <p class="subhead">Fellowships, research grants, and honors that fund the work. Selected —</p>
     </div>
   </section>
@@ -142,7 +141,7 @@ const PANEL_SHORT = {
 
   <!-- 6 · NEWS -->
   <section class="bay">
-    <div class="main"><p class="lbl">News</p></div>
+    <div class="main"><h2 class="lbl">News</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -166,7 +165,7 @@ const PANEL_SHORT = {
 
   <!-- 7 · EDUCATION -->
   <section class="bay">
-    <div class="main"><p class="lbl">Education</p></div>
+    <div class="main"><h2 class="lbl">Education</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -183,7 +182,7 @@ const PANEL_SHORT = {
 
   <!-- 8 · COLLABORATORS -->
   <section class="bay">
-    <div class="main"><p class="lbl">Collaborators</p></div>
+    <div class="main"><h2 class="lbl">Collaborators</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -202,7 +201,7 @@ const PANEL_SHORT = {
   <!-- 9 · BEYOND ACADEMIC -->
   <section class="bay">
     <div class="main">
-      <p class="lbl">Beyond academic</p>
+      <h2 class="lbl">Beyond academia</h2>
       <p class="dated-what" style="max-width:64ch">
         Trained as a stage actor with the Fudan Drama Troupe, and currently with the
         Windmill Chinese Drama Club in Chicago.
@@ -216,8 +215,8 @@ const PANEL_SHORT = {
   <!-- 10 · CONTACT -->
   <section class="bay">
     <div class="main">
-      <p class="lbl">Contact</p>
-      <p class="dated-what">{site.contact.email}</p>
+      <h2 class="lbl">Contact</h2>
+      <p class="dated-what"><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
       <p class="dated-what" style="color:var(--sea)">{site.closing}</p>
     </div>
     <div class="note">
@@ -241,6 +240,7 @@ const PANEL_SHORT = {
   .bio p:last-child { margin-bottom: 0; }
   .seal-inline { display: inline-block; width: 7px; height: 7px; background: var(--oxide); margin-right: 6px; vertical-align: 1px; }
 
+  .tagnw { white-space: nowrap; }
   .portrait { width: 100%; max-width: 9.5rem; height: auto; border: 1px solid var(--kei); filter: grayscale(.12); }
   @media (max-width: 1000px) { .portrait { max-width: 8rem; } }
 

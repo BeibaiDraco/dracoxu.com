@@ -65,6 +65,9 @@ const a = item.authors;
   a.ttl { color: var(--contour); background-image: linear-gradient(var(--berlin), var(--berlin)); }
   span.ttl { color: var(--contour); background-image: none; }
   .ven { font-style: italic; }
+  /* A venue link stays ink like the rest of the citation — colour never changes. */
+  a.ven { color: var(--contour); background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  a.ven em { font-style: italic; }
 
   .desig {
     font-family: var(--mono);
