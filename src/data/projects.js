@@ -61,7 +61,9 @@ export const projects = [
       `This project investigates how cortical populations alternate between asynchronous states and brief epochs of coordinated activity, a dynamic not well explained by existing models. By combining rate-based dynamical system analysis with biologically realistic spiking neuron models that incorporate short-term synaptic depression and balanced recurrent inhibition, the study captures the nonlinear population-wide activity observed in in vitro data, including low-frequency rhythmic dynamics. These findings provide a mechanistic theory that extends traditional balanced network models to better account for realistic cortical activity.`,
     ],
     presented: 'Talk at SfN 2024 · Rising Stars in Neuroscience 2025',
-    links: [],
+    links: [
+      { label: 'Code', href: 'https://github.com/brain-math/events_std' },
+    ],
   },
   {
     id: 'attention-representation',

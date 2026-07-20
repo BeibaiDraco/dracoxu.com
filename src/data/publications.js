@@ -26,6 +26,7 @@ export const published = [
     note: 'Selected as a talk · SfN 2024 Nanosymposium · Rising Stars in Neuroscience 2025',
     links: [
       { label: 'DOI', href: 'https://doi.org/10.1038/s41467-025-63818-z' },
+      { label: 'Code', href: 'https://github.com/brain-math/events_std' },
     ],
   },
   {

@@ -54,13 +54,14 @@ export const site = {
       detail: 'Transferred to Rochester; no degree awarded' },
   ],
 
-  /* Funding first — the awards section leads with money a lay reader grasps. */
+  /* Funding first — the awards section leads with money a lay reader grasps.
+     Links added wherever one exists (from the CV / old site). */
   awardsSelected: [
-    { when: '2025', what: 'NeuroData Discovery Award — $50,000', who: 'The Kavli Foundation' },
+    { when: '2025', what: 'NeuroData Discovery Award — $50,000', who: 'The Kavli Foundation', href: 'https://www.kavlifoundation.org/' },
     { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
-    { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs' },
+    { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs', href: 'https://www.adaptionlabs.ai/blog/adaption-research-grant-program' },
     { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
-    { when: '2023', what: 'Honorable Mention, Outstanding Undergraduate Researcher Award', who: 'Computing Research Association' },
+    { when: '2023', what: 'Honorable Mention, Outstanding Undergraduate Researcher Award', who: 'Computing Research Association', href: 'https://cra.org/about/awards/outstanding-undergraduate-researcher-award/' },
   ],
 
   collaborators: [
