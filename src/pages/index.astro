@@ -17,9 +17,8 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 const fmt = (d) => { const [y, m] = d.split('-'); return `${MONTHS[+m - 1]} ${y}`; };
 const PANEL_SHORT = {
   'Computational Neuroscience': 'Comp. neuro',
-  'Artificial Intelligence': 'AI',
+  'Science of Intelligence': 'Sci. of intelligence',
   'AI for Science': 'AI for science',
-  'Philosophy of Perception': 'Philosophy',
 };
 ---
 
@@ -88,7 +87,7 @@ const PANEL_SHORT = {
             <p class="row-t">{p.short}</p>
             <p class="row-a">{p.blurb}</p>
           </div>
-          <div class="row-m">{PANEL_SHORT[p.panels[0]] || p.panels[0]}</div>
+          <div class="row-m">{p.panels.map((t, i) => (<>{i > 0 && <br />}{PANEL_SHORT[t] || t}</>))}</div>
         </a>
       ))}
       <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/projects/">All six in detail →</a></p>

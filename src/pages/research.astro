@@ -5,19 +5,19 @@ import { site } from '../data/site.js';
 /* Research experience, written by theme and goal — an insider reads the
    headline and knows what the work is, not just where it happened. */
 const positions = [
-  { when: '2023 —', theme: 'Cortical population dynamics and inter-areal computation', where: 'Doiron Lab · University of Chicago',
-    goal: 'Extending balanced-network theory to nonlinear, population-wide correlated activity, and building a geometric and dynamical-systems account of how the activity of one cortical area shapes the computation performed in another — tested against simultaneous multi-area recordings.' },
-  { when: '2024', theme: 'Retinal disinhibition and noise resilience', where: 'Wei Lab · University of Chicago',
+  { when: '2023 —', theme: 'Inter-areal computation and cortical population dynamics', where: 'Doiron Lab · University of Chicago', href: 'https://brainmath.bsd.uchicago.edu/',
+    goal: `My active thrust is inter-areal computation, with David J. Freedman's lab: a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, together with a data-driven method to test its predictions in multi-area recordings. It is organized around three questions — what computations cannot be done by a single area but require a multi-area circuit, whether multi-area implementations carry efficiency advantages, and how to infer the local flow field and the inter-areal messages simultaneously from population activity; its data anchor is the FEF preprint on directed FEF–LIP–SC communication during rapid categorization. This builds on my established Doiron-lab line, which continues alongside it: extending balanced-network theory to nonlinear, population-wide correlated activity through short-term synaptic depression (co-first author, Nature Communications 2025); a spiking-network account of how attention rotates a population code to align stimulus responses with the axis of correlated variability, with Ramanujan Srinath and the Cohen lab; retinal noise resilience via disinhibition, begun in a rotation with the Wei lab; and a V1 study of whether face-motion encoding is cortical or thalamic in origin, with Peijia Yu and Na Ji.` },
+  { when: '2024', theme: 'Retinal disinhibition and noise resilience', where: 'Wei Lab · University of Chicago', href: 'https://weilab.uchicago.edu/',
     goal: 'Biologically plausible circuit models of retinal motifs, asking how distinct cell types collectively keep the retina’s output reliable across environments whose noise statistics differ by orders of magnitude.' },
-  { when: '2021 — 2023', theme: 'Dynamic-network construction and sampling over joins', where: 'Nargesian group · University of Rochester',
+  { when: '2021 — 2023', theme: 'Dynamic-network construction and sampling over joins', where: 'Nargesian group · University of Rochester', href: 'https://fnargesian.com/',
     goal: 'Algorithms and data platforms for the exact, fast construction of dynamic networks from large time series; i.i.d. sampling over unions of joins; fairness-aware data integration.' },
-  { when: '2021 — 2023', theme: 'Perceptual decision-making across the lifespan', where: 'Tadin Lab · University of Rochester',
+  { when: '2021 — 2023', theme: 'Perceptual decision-making across the lifespan', where: 'Tadin Lab · University of Rochester', href: 'https://www2.bcs.rochester.edu/sites/duje/',
     goal: 'How perceptual decisions unfold over time and change with age under varying perceptual noise, and the social effects of crowd gaze on visual search.' },
-  { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University',
+  { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University', href: 'https://www.cogtlab.com/',
     goal: 'Graph neural networks, dimensionality reduction and representation learning applied to human fMRI and mesoscopic calcium imaging of stress neurobiology.' },
-  { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University',
+  { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/',
     goal: 'Semi-supervised learning for Raven’s Progressive Matrices, and computational models of visual decision-making and confidence in OCD from behavioural and fMRI data.' },
-  { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester',
+  { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester', href: 'https://people.math.rochester.edu/faculty/iosevich/',
     goal: 'With Alex Iosevich — supervised methods for training spiking neural networks.' },
   { when: '2023', theme: 'Perception versus cognition, and machine experience', where: 'Philosophy · University of Rochester',
     goal: 'With Alison Peterman — the relationship between computational models of visual perception and visual phenomenal experience.' },
@@ -83,7 +83,7 @@ const positions = [
             <p class="dated-what">{p.theme}</p>
             <p class="dated-detail">{p.goal}</p>
           </div>
-          <div class="dated-where">{p.where}</div>
+          <div class="dated-where">{p.href ? <a href={p.href}>{p.where}</a> : p.where}</div>
         </div>
       ))}
     </div>
@@ -99,7 +99,7 @@ const positions = [
       {site.teaching.map((t) => (
         <div class="dated">
           <div class="dated-when">{t.when}</div>
-          <div><p class="dated-what">{t.what}</p></div>
+          <div><p class="dated-what">{t.href ? <a href={t.href}>{t.what}</a> : t.what}</p></div>
           <div class="dated-where">{t.where}</div>
         </div>
       ))}

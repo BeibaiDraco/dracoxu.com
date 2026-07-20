@@ -7,7 +7,7 @@ export const site = {
   advisor: { name: 'Brent Doiron', href: 'https://brainmath.bsd.uchicago.edu/' },
   cvUpdated: 'July 2026',
 
-  identity: 'mechanisms of perceptual and conscious experience in intelligent systems',
+  identity: 'mechanisms of computation and of perceptual, cognitive, and conscious experience in natural and artificial intelligent systems',
 
   /* Rail facts, self-explanatory to a general reader — each names its referent. */
   status: [
@@ -18,13 +18,13 @@ export const site = {
 
   /* One plain-language framing paragraph so a visitor understands the work
      before the three panels. ~75 words. */
-  framing: `How does a brain — or any intelligent system — turn physical signals into perception, decision, and experience? I pursue that question three ways: circuit and network theory for how populations of cortical neurons compute, machine learning for the structure that computation exploits, and tools that let both survive contact with data far larger and messier than the methods a field was built on. Underneath sits an older question — where perception begins, and whether a machine could ever have it.`,
+  framing: `How does a brain — or any intelligent system — turn physical signals into computation, perception, and experience? I pursue that three ways: circuit and network theory for how populations of cortical neurons compute; the study of intelligence in artificial systems, treated as fully observable model organisms for the methods neuroscience will need; and tools that put AI inside the scientific workflow itself. Underneath sits an older question — where perception begins, and whether a machine could ever have it.`,
 
-  /* The three approaches Draco named. Philosophy is demoted to a note, below. */
+  /* The three approaches. Philosophy of perception is demoted to a note, below. */
   approaches: [
-    { name: 'Computational Neuroscience', line: `I build mathematical theories of how populations of neurons compute — why cortical activity fluctuates the way it does, how attention reshapes a population code, and how signals pass between brain areas. The models are spiking circuits held to what electrophysiology and two-photon imaging actually record, so a proposed mechanism has to survive contact with data.` },
-    { name: 'Artificial Intelligence', line: `I develop machine-learning methods aimed at intelligence itself — learning the abstract rules behind human IQ-test problems, estimating engagement from video, decoding what a person sees from brain activity with foundation models. The guiding question is what it would take for an artificial system to genuinely perceive and reason, not merely pattern-match.` },
-    { name: 'AI for Science', line: `I build tools that let science scale — systems that turn a dataset into questions it can actually answer, and methods for constructing and querying networks from large, noisy time series. Maieusis, my open-source system for generating valuable, dataset-answerable scientific questions, anchors this line of work.` },
+    { name: 'Computational Neuroscience', line: `I build mechanistic theories of how populations of cortical neurons compute, and hold them to what electrophysiology and two-photon imaging actually record. The model is chosen per question rather than fixed in advance: rate-based dynamical-systems and geometric analysis, biologically realistic spiking networks, and statistical analysis of population activity, often within a single study. Current questions include why cortical variability is structured the way it is, how attention rotates a population code, and what computations require signals to pass between cortical areas rather than within one.` },
+    { name: 'Science of Intelligence', line: `I study the principles of intelligence itself, in natural and artificial systems alike, and treat modern AI models as the ideal preparation for it — a system where every unit of activity and every weight is known and any perturbation is possible. Understanding the brain will require complete data, and AI is where that data already exists; by studying these systems we can invent, ahead of time, the methodological paradigms neuroscience will need once it can measure enough. In that spirit I build methods aimed at cognition itself — learning the abstract rules behind human IQ-test problems, and training algorithms for spiking neural networks.` },
+    { name: 'AI for Science', line: `The AI for Science I care about lives inside the real scientific workflow — concretely, how AI can help us know and explain the world. Its anchor is Maieusis, my open-source system that turns an empirical dataset into families of questions that are both scientifically valuable and genuinely answerable, with claim ceilings, controls, and non-proceed decisions enforced through the architecture rather than through prompting. Alongside it I build direct AI-for-neuroscience tooling: methods to infer multi-area latent dynamics from population recordings, foundation-model decoding of brain activity, and scalable ways to construct and query networks from large, noisy time series.` },
   ],
   approachesNote: `A single philosophical question runs beneath all three: where perception ends and cognition begins, and whether an artificial system could ever genuinely have experience rather than only behave as if it does.`,
 
@@ -83,9 +83,9 @@ export const site = {
   teaching: [
     { when: '2025', what: 'NSCI 22950 — Computational Modeling of Biological Brain Circuits', where: 'University of Chicago' },
     { when: '2024', what: 'CPNS 30116 — Survey of Systems Neuroscience', where: 'University of Chicago' },
-    { when: '2022', what: 'CSC 2/444 — Knowledge Representation and Reasoning in AI', where: 'University of Rochester' },
+    { when: '2022', what: 'CSC 2/444 — Knowledge Representation and Reasoning in AI', where: 'University of Rochester', href: 'https://www.cs.rochester.edu/~schubert/444/' },
     { when: '2021', what: 'CSC 2/480 — Computer Models and Limitations', where: 'University of Rochester' },
-    { when: '2021', what: 'Deep Learning', where: 'Neuromatch Academy' },
+    { when: '2021', what: 'Deep Learning', where: 'Neuromatch Academy', href: 'https://neuromatch.io/' },
   ],
 
   service: [

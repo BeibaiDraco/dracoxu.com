@@ -125,6 +125,7 @@ export const preprints = [
 export const abstracts = [
   {
     id: 'sfn-2024', year: '2024',
+    venueHref: 'https://www.sfn.org/',
     authors: [{ n: 'Dunworth, J. B.', star: true }, { n: 'Xu, Y.', me: true, star: true }, { n: 'Graupner, M.' }, { n: 'Ermentrout, B.' }, { n: 'Reyes, A. D.' }, { n: 'Doiron, B.' }],
     title: 'Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression',
     venue: 'Society for Neuroscience (SfN) 2024, Nanosymposium',
@@ -132,42 +133,49 @@ export const abstracts = [
   },
   {
     id: 'cosyne-2025', year: '2025',
+    venueHref: 'https://www.cosyne.org/',
     authors: [{ n: 'Yu, P.' }, { n: 'Yoon, H. Y. A.' }, { n: 'Yang, Y.' }, XU, { n: 'Gozel, O.' }, { n: 'Ji, N.' }, { n: 'Doiron, B.' }],
     title: 'Quantification of nonsense-free correlation uncovers the interaction between top-down and bottom-up sources of behavioral correlation in mouse V1',
     venue: 'Computational and Systems Neuroscience (COSYNE) 2025',
   },
   {
     id: 'sfn-2023', year: '2023',
+    venueHref: 'https://www.sfn.org/',
     authors: [{ n: 'Wang, Y.', star: true }, { n: 'Turnbull, A.', star: true }, XU, { n: 'Adeli, E.' }, { n: 'Lin, F. V.' }],
     title: 'Automated estimation of participant engagement during computerized cognitive training from facial expressions in older adults at risk for dementia',
     venue: 'Society for Neuroscience (SfN) 2023',
   },
   {
     id: 'vss-2022', year: '2022',
+    venueHref: 'https://www.visionsciences.org',
     authors: [XU, { n: 'Tadin, D.' }, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.' }],
     title: 'Investigating temporal evolution of motion direction judgments within a biophysically realistic network',
     venue: 'Vision Sciences Society (V-VSS) 2022',
   },
   {
     id: 'optica-2022', year: '2022',
+    venueHref: 'https://www.osafallvisionmeeting.org/',
     authors: [XU, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.' }, { n: 'Tadin, D.' }],
     title: 'Investigating temporal evolutions of perceptual choice within biological and artificial neural networks',
     venue: 'Optica Fall Vision Meeting 2022',
   },
   {
     id: 'sfn-2022', year: '2022',
+    venueHref: 'https://www.sfn.org/',
     authors: [XU, { n: 'Turnbull, A.' }, { n: 'Lu, J.' }, { n: 'Zuo, Y.' }, { n: 'Lin, F. V.' }],
     title: 'Data-driven analysis in mice reveals whole-brain dynamics along a known anterior-posterior axis that inform the neural basis of behavior',
     venue: 'Society for Neuroscience (SfN) 2022',
   },
   {
     id: 'urtc-tsubasa-2022', year: '2022',
+    venueHref: 'https://urtc.mit.edu/',
     authors: [XU, { n: 'Liu, J.' }, { n: 'Yang, P.' }, { n: 'Viso, N.' }, { n: 'Nargesian, F.' }],
     title: 'TSUBASA-PLUS: correlation matrix computation on sliding windows',
     venue: 'IEEE MIT Undergraduate Research Technology Conference (URTC) 2022',
   },
   {
     id: 'urtc-join-2022', year: '2022',
+    venueHref: 'https://urtc.mit.edu/',
     authors: [{ n: 'Liu, Y.', star: true }, XU, { n: 'Nargesian, F.' }],
     title: 'Join size estimation over union of join paths',
     venue: 'IEEE MIT Undergraduate Research Technology Conference (URTC) 2022',

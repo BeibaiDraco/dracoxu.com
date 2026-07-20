@@ -18,7 +18,7 @@ const a = item.authors;
           <span class={au.me ? 'me' : undefined}>{au.n}</span>{au.star && <sup>*</sup>}{au.corresponding && <sup>†</sup>}
         </>
       ))}
-      <span class="yr"> ({item.year}). </span>{item.href ? <a class="ttl" href={item.href}>{item.title}</a> : <span class="ttl">{item.title}</span>}<span>. </span>{item.venue && <><em class="ven">{item.venue}</em>{item.volpages && <span class="vol">, {item.volpages}</span>}<span>.</span></>}
+      <span class="yr"> ({item.year}). </span>{item.href ? <a class="ttl" href={item.href}>{item.title}</a> : <span class="ttl">{item.title}</span>}<span>. </span>{item.venue && <>{item.venueHref ? <a class="ven" href={item.venueHref}><em>{item.venue}</em></a> : <em class="ven">{item.venue}</em>}{item.volpages && <span class="vol">, {item.volpages}</span>}<span>.</span></>}
     </p>
     {item.note && <p class="desig">{item.note}</p>}
     {item.links && item.links.length > 0 && (
