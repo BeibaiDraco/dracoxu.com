@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import PubRow from '../components/PubRow.astro';
+import { site } from '../data/site.js';
+import { projects } from '../data/projects.js';
+import { selected, counts } from '../data/publications.js';
+import { news } from '../data/news.js';
+
+const recentNews = news.slice(0, 5);
+const fmt = (d) => {
+  const [y, m] = d.split('-');
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m - 1] + ' ' + y;
+};
+---
+
+<Base description={`Draco (Yunlong) Xu — PhD candidate in the Committee on Computational Neuroscience at the University of Chicago, working with Brent Doiron on the ${site.identity}.`}>
+
+  <!-- 1 · IDENTITY — everything a committee routes on, above the fold.
+       Not gated on any script. -->
+  <section class="bay id-block">
+    <div class="rail">
+      <ul class="statuslist">
+        {site.status.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+    <div class="main">
+      <h1 class="wordmark">{site.name}</h1>
+      <p class="position">
+        PhD Candidate, {site.program}, {site.institution}.
+        Advised by <a href={site.advisor.href}>{site.advisor.name}</a>.
+      </p>
+      <p class="identity">I study the {site.identity}.</p>
+      <p class="linkrow">
+        {site.links.map((l, i) => (
+          <>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>
+        ))}
+        <span class="sl">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
+      </p>
+      <p class="mail">{site.contact.email}</p>
+      <div class="prose bio">
+        <p>{site.intro[0]}</p>
+      </div>
+    </div>
+    <div class="note">
+      <p class="lbl" style="margin-bottom:var(--ma-2)">Also affiliated</p>
+      <p class="notesm">CogT Lab, Stanford University<br />CCNN Lab, Shanghai Jiao Tong University</p>
+    </div>
+  </section>
+
+  <!-- 2 · THE RECORD, IN NUMBERS -->
+  <section class="bay">
+    <div class="wide">
+      <p class="strip">{site.record.map((r, i) => (<>{i > 0 && ' · '}<b>{r}</b></>))}</p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 3 · RESEARCH INTERESTS -->
+  <section class="bay">
+    <div class="main"><p class="lbl">Research interests</p></div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      <div class="triad">
+        {site.approaches.map((a) => (
+          <div><h3>{a.name}</h3><p>{a.line}</p></div>
+        ))}
+      </div>
+      <p class="linkrow" style="margin-top:var(--ma-4)"><a href="/research/">Full research statement →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 4 · ONGOING AND RECENT PROJECTS -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Ongoing and recent projects</p>
+      <p class="subhead">Six lines of work, running in parallel. The order is a reading order, not a ranking.</p>
+    </div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      {projects.map((p) => (
+        <a class="row prow" href={`/projects/#${p.id}`}>
+          <Plate kind={p.plate} seed={p.title} alt={`Figure plate — ${p.short}`} />
+          <div>
+            <p class="row-t">{p.short}</p>
+            <p class="row-a">{p.blurb}</p>
+          </div>
+          <div class="row-m">{p.tag[0] === 'Data Science for Neuroscience' ? 'Data science' : 'Comp. neuro'}</div>
+        </a>
+      ))}
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/projects/">All six in detail →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 5 · SELECTED PUBLICATIONS -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Selected publications</p>
+      <p class="subhead">{counts.published} published · {counts.preprints} preprints and under review · {counts.abstracts} conference abstracts</p>
+    </div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      {selected.map((p) => <PubRow item={p} />)}
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/publications/">All publications →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 6 · NEWS -->
+  <section class="bay">
+    <div class="main"><p class="lbl">News</p></div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      {recentNews.map((n) => (
+        <div class="dated newsrow">
+          <div class="dated-when">{fmt(n.date)}</div>
+          <div>
+            <p class="dated-what">{n.body}</p>
+            {n.links && (
+              <p class="linkrow">
+                {n.links.map((l, i) => (<>{i > 0 && <span class="sl">·</span>}<a href={l.href}>{l.label}</a></>))}
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/news/">All news →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 7 · EDUCATION -->
+  <section class="bay">
+    <div class="main"><p class="lbl">Education</p></div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      {site.education.map((e) => (
+        <div class="dated">
+          <div class="dated-when">{e.years}</div>
+          <div>
+            <p class="dated-what">{e.degree}</p>
+            <p class="dated-detail">{e.detail}</p>
+          </div>
+          <div class="dated-where">{e.where}</div>
+        </div>
+      ))}
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 8 · AWARDS -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Awards &amp; funding</p>
+      <p class="subhead">15 doctoral-relevant awards and grants. Selected:</p>
+    </div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      {site.awardsSelected.map((a) => (
+        <div class="dated">
+          <div class="dated-when">{a.when}</div>
+          <div><p class="dated-what">{a.what}</p></div>
+          <div class="dated-where">{a.who}</div>
+        </div>
+      ))}
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/cv.pdf">Full list in the CV →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 9 · COLLABORATORS -->
+  <section class="bay">
+    <div class="main"><p class="lbl">Collaborators</p></div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      <ul class="names">
+        {site.collaborators.map((c) => (
+          <li>
+            {c.href ? <a href={c.href}>{c.name}</a> : <span>{c.name}</span>}
+            {c.role && <span class="inst">{c.where} · {c.role}</span>}
+            {!c.role && <span class="inst">{c.where}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 10 · BEYOND ACADEMIC -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Beyond academic</p>
+      <p class="dated-what" style="max-width:64ch">
+        Trained as a stage actor with the Fudan Drama Troupe, and currently with the
+        Windmill Chinese Drama Club in Chicago.
+      </p>
+      <p class="motto">{site.motto}</p>
+      <p class="linkrow"><a href="/stage/">Stage →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 11 · CONTACT -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Contact</p>
+      <p class="dated-what">{site.contact.email}</p>
+      <p class="dated-what" style="color:var(--sea)">{site.closing}</p>
+    </div>
+    <div class="note">
+      <p class="notesm">{site.contact.address.map((l) => <>{l}<br /></>)}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .id-block { padding-top: var(--ma-4); }
+  .statuslist { display: flex; flex-direction: column; gap: var(--ma-1); }
+  .statuslist li {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--sea); line-height: 1.5;
+  }
+  .position { font-size: 17.5px; line-height: 1.5; margin: var(--ma-2) 0 var(--ma-2); max-width: 60ch; }
+  /* One of the two italics the site allows. */
+  .identity { font-style: italic; font-size: 19px; line-height: 1.45; color: var(--sea); margin: 0 0 var(--ma-3); max-width: 60ch; }
+  .mail { font-family: var(--mono); font-size: 12px; color: var(--contour); margin: var(--ma-1) 0 var(--ma-3); }
+  .bio { margin: 0; }
+  .bio p { margin: 0; }
+  .seal-inline {
+    display: inline-block; width: 7px; height: 7px;
+    background: var(--oxide); margin-right: 6px; vertical-align: 1px;
+  }
+  .notesm { font-size: 13px; line-height: 1.55; color: var(--sea); margin: 0; }
+  .subhead {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--sea); margin: calc(var(--ma-1) * -1) 0 0;
+  }
+  .prow { background-image: none; color: inherit; }
+  .prow:hover { background-size: 0 1px; }
+  .newsrow { grid-template-columns: 8.5rem minmax(0, 1fr); }
+  .motto { font-style: normal; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sea); margin: var(--ma-2) 0; }
+  @media (max-width: 760px) { .newsrow { grid-template-columns: 7rem minmax(0, 1fr); } }
+</style>

@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import { projects } from '../data/projects.js';
+---
+
+<Base title="Ongoing and Recent Projects" current="Projects"
+  description="Six lines of work: Maieusis, inter-areal computation, balanced cortical networks, attention and representation, retinal noise resilience, and V1 behavioral correlations.">
+
+  <section class="bay">
+    <div class="main projhead">
+      <h1 class="wordmark">Ongoing and Recent Projects</h1>
+      <p class="subhead">Six lines of work, running in parallel. The order is a reading order, not a ranking.</p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  {projects.map((p, i) => (
+    <>
+      <section class="bay" id={p.id}>
+        <div class="rail"><span class="num">{String(i + 1).padStart(2, '0')}</span></div>
+        <div class="main">
+          <h2 class="ptitle">{p.title}</h2>
+          {p.with && <p class="pwith">{p.with}</p>}
+          {p.body.map((para) => <p class="pbody">{para}</p>)}
+          {p.questions && (
+            <ol class="pq">
+              {p.questions.map((q) => <li>{q}</li>)}
+            </ol>
+          )}
+          {p.install && <p class="pcode">{p.install}</p>}
+          {p.citation && <p class="pcite">{p.citation}</p>}
+          {p.inprep && <p class="pnote">{p.inprep}</p>}
+          {p.presented && <p class="pnote">{p.presented}</p>}
+          {p.links.length > 0 && (
+            <p class="linkrow">
+              {p.links.map((l, j) => (<>{j > 0 && <span class="sl">/</span>}<a href={l.href}>{l.label}</a></>))}
+            </p>
+          )}
+        </div>
+        <div class="note">
+          <Plate kind={p.plate} seed={p.title} alt={`Figure plate — ${p.short}`} />
+          <ul class="tags">{p.tag.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </section>
+      <div class="bay"><div class="horizon"></div></div>
+    </>
+  ))}
+</Base>
+
+<style>
+  .projhead { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-2); }
+  .subhead {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--sea); margin: 0;
+  }
+  .ptitle { font-size: 20px; line-height: 1.3; color: var(--sumi); margin: 0 0 var(--ma-2); max-width: 54ch; }
+  .pwith {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+    color: var(--sea); margin: 0 0 var(--ma-3); line-height: 1.6;
+  }
+  .pbody { font-size: 16px; line-height: 1.65; max-width: 64ch; margin: 0 0 var(--ma-3); }
+  .pq { counter-reset: q; display: flex; flex-direction: column; gap: var(--ma-2); margin: 0 0 var(--ma-3); max-width: 64ch; }
+  .pq li {
+    counter-increment: q; font-size: 15.5px; line-height: 1.5;
+    padding-left: 2.2rem; position: relative;
+  }
+  .pq li::before {
+    content: counter(q) ")"; position: absolute; left: 0;
+    font-family: var(--mono); font-size: 11.5px; color: var(--sea); top: 3px;
+  }
+  .pcode {
+    font-family: var(--mono); font-size: 12px; color: var(--contour);
+    background: var(--shoal); padding: var(--ma-2) var(--ma-3);
+    overflow-x: auto; white-space: nowrap; margin: 0 0 var(--ma-2);
+  }
+  .pcite, .pnote { font-size: 13.5px; color: var(--sea); margin: 0 0 var(--ma-2); }
+  .tags { display: flex; flex-direction: column; gap: var(--ma-1); margin-top: var(--ma-2); }
+  .tags li {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--sea); line-height: 1.5;
+  }
+</style>

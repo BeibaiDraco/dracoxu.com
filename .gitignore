@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+.astro/
+
+# cloudflare / wrangler
+.wrangler/
+.dev.vars
+
+# os / editor
+.DS_Store
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.*
+!.env.example

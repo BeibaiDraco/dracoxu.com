@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not found" description="That page does not exist.">
+  <section class="bay nf">
+    <div class="main">
+      <p class="nf-line">Nothing here. <a href="/">Back to the beginning</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* The only centred element on the site, besides the colophon. */
+  .nf { min-height: 60svh; align-content: center; }
+  .nf .main { text-align: center; }
+  .nf-line { font-style: italic; font-size: 21px; color: var(--sea); }
+</style>

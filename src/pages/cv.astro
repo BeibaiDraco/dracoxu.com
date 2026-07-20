@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+
+const contains = [
+  'Education & training',
+  'Publications, preprints and abstracts',
+  'Awards & grants',
+  'Research experience',
+  'Professional service',
+  'Teaching',
+  'Reviewing',
+  'Invited talks, conferences and training',
+];
+---
+
+<Base title="CV" current="CV" description="Curriculum vitae (PDF), updated July 2026.">
+  <section class="bay">
+    <div class="main cvhead">
+      <h1 class="wordmark">Curriculum Vitae</h1>
+      <p class="cvlink">
+        <span class="seal-inline" aria-hidden="true"></span>
+        <a href="/cv.pdf">Download PDF — updated {site.cvUpdated}</a>
+      </p>
+      <p class="strip">{site.record.join(' · ')}</p>
+    </div>
+    <div class="note">
+      <p class="lbl" style="margin-bottom:var(--ma-2)">Contains</p>
+      <ul class="contains">{contains.map((c) => <li>{c}</li>)}</ul>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <section class="bay">
+    <div class="wide">
+      <object class="embed" data="/cv.pdf" type="application/pdf" aria-label="Curriculum vitae">
+        <p class="fallback">Your browser will not display the PDF inline. <a href="/cv.pdf">Download it instead</a>.</p>
+      </object>
+      <p class="linkrow" style="margin-top:var(--ma-3)">
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cvhead { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-3); }
+  .cvlink { font-size: 17.5px; margin: 0; }
+  .seal-inline {
+    display: inline-block; width: 7px; height: 7px;
+    background: var(--oxide); margin-right: 8px; vertical-align: 2px;
+  }
+  .contains { display: flex; flex-direction: column; gap: var(--ma-1); }
+  .contains li { font-size: 13px; line-height: 1.45; color: var(--sea); }
+  .embed { width: 100%; height: 78vh; border: 1px solid var(--kei); background: var(--shoal); }
+  .fallback { padding: var(--ma-4); font-size: 15px; }
+  @media (max-width: 900px) { .embed { display: none; } }
+</style>

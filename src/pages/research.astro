@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+
+const positions = [
+  { when: '2023 —', what: 'PhD Student, Doiron Lab', where: 'University of Chicago',
+    detail: 'Balanced networks with short-term depression; attention and representational geometry with the Cohen lab; retinal disinhibition with the Wei lab; feature-specific inter-areal communication with the Freedman lab.' },
+  { when: '2024', what: 'Rotation Student, Wei Lab', where: 'University of Chicago',
+    detail: 'Circuit models of retinal disinhibitory motifs and noise resilience.' },
+  { when: '2021 — 2023', what: 'Research Assistant, Computer Science', where: 'University of Rochester',
+    detail: 'With Fatemeh Nargesian — dynamic network construction over large time series; i.i.d. sampling over unions of joins; fairness-aware data integration.' },
+  { when: '2021 — 2023', what: 'Research Assistant, Brain & Cognitive Sciences', where: 'University of Rochester',
+    detail: 'With Duje Tadin — lifespan models of perceptual decision making; social effects of crowd gaze on visual search; temporal evolution of motion direction judgments.' },
+  { when: '2021 — 2023', what: 'Research Assistant, CogT Lab', where: 'Stanford University',
+    detail: 'With Vankee Lin and Ehsan Adeli — stress neurobiology in human fMRI and mesoscopic calcium imaging, using GNNs, dimensionality reduction and representation learning.' },
+  { when: '2020 — 2023', what: 'Research Assistant, CCNN Lab', where: 'Shanghai Jiao Tong University',
+    detail: 'With Ruyuan Zhang — visual decision making and confidence in OCD; semi-supervised learning for Raven\'s Progressive Matrices.' },
+  { when: '2023', what: 'Honors Thesis, Mathematics', where: 'University of Rochester',
+    detail: 'With Alex Iosevich — supervised training algorithms for spiking neural networks.' },
+  { when: '2023', what: 'Research Assistant, Philosophy', where: 'University of Rochester',
+    detail: 'With Alison Peterman — the relationship between computational models of visual perception and visual phenomenal experience.' },
+];
+---
+
+<Base title="Research" current="Research"
+  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, and the three approaches taken to them.">
+
+  <section class="bay">
+    <div class="main rhead">
+      <h1 class="wordmark">Research</h1>
+      <p class="identity">My research aims to decipher the {site.identity}.</p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- THE STATEMENT — his words, unabridged -->
+  <section class="bay">
+    <div class="rail"><span class="num">01</span></div>
+    <div class="main">
+      <p class="lbl">Statement</p>
+      <div class="prose">
+        {site.statement.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- THE THREE APPROACHES — no numerals; numerals imply rank -->
+  <section class="bay">
+    <div class="main"><p class="lbl">Approaches</p></div>
+  </section>
+  <section class="bay">
+    <div class="wide">
+      <div class="triad">
+        {site.approaches.map((a) => (<div><h3>{a.name}</h3><p>{a.line}</p></div>))}
+      </div>
+      <p class="linkrow" style="margin-top:var(--ma-4)"><a href="/projects/">The six projects in detail →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- RESEARCH EXPERIENCE -->
+  <section class="bay fade">
+    <div class="main"><p class="lbl">Research experience</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="wide">
+      {positions.map((p) => (
+        <div class="dated">
+          <div class="dated-when">{p.when}</div>
+          <div>
+            <p class="dated-what">{p.what}</p>
+            <p class="dated-detail">{p.detail}</p>
+          </div>
+          <div class="dated-where">{p.where}</div>
+        </div>
+      ))}
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- TEACHING -->
+  <section class="bay fade">
+    <div class="main"><p class="lbl">Teaching</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="wide">
+      {site.teaching.map((t) => (
+        <div class="dated">
+          <div class="dated-when">{t.when}</div>
+          <div><p class="dated-what">{t.what}</p></div>
+          <div class="dated-where">{t.where}</div>
+        </div>
+      ))}
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- SERVICE -->
+  <section class="bay fade">
+    <div class="main"><p class="lbl">Service</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="wide">
+      {site.service.map((s) => (
+        <div class="dated">
+          <div class="dated-when">{s.when}</div>
+          <div>
+            <p class="dated-what">{s.what}</p>
+            {s.detail && <p class="dated-detail">{s.detail}</p>}
+          </div>
+          <div class="dated-where">{s.where}</div>
+        </div>
+      ))}
+      <p class="lbl" style="margin:var(--ma-4) 0 var(--ma-2)">Reviewing</p>
+      <p class="strip">{site.reviewing.join(' · ')}</p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- COLLABORATORS -->
+  <section class="bay fade">
+    <div class="main"><p class="lbl">Collaborators</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="wide">
+      <ul class="names">
+        {site.collaborators.map((c) => (
+          <li>
+            {c.href ? <a href={c.href}>{c.name}</a> : <span>{c.name}</span>}
+            <span class="inst">{c.where}{c.role ? ' · ' + c.role : ''}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .rhead { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-3); }
+  .identity { font-style: italic; font-size: 19px; line-height: 1.45; color: var(--sea); margin: 0; max-width: 60ch; }
+</style>

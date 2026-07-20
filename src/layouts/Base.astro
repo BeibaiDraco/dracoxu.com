@@ -1,0 +1,101 @@
+---
+import '../styles/hakumei.css';
+import { site } from '../data/site.js';
+
+const { title, description = 'Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, studying the mechanisms of perceptual and conscious experience in intelligent systems.', current = '' } = Astro.props;
+const pageTitle = title ? `${title} — ${site.short}` : `${site.name}`;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="spine" id="spine" aria-hidden="true"></div>
+
+  <header class="bay">
+    <nav class="nav main" aria-label="Primary">
+      <a class="mark" href="/">{site.short}</a>
+      {site.nav.map((n) => (
+        <a href={n.href} aria-current={current === n.label ? 'page' : undefined}>{n.label}</a>
+      ))}
+    </nav>
+  </header>
+
+  <main id="content">
+    <slot />
+  </main>
+
+  <footer class="bay">
+    <div class="foot wide">
+      <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      {site.links.filter((l) => l.label !== 'Email').map((l) => <a href={l.href} rel="me noopener">{l.label}</a>)}
+      <a href="/cv.pdf">CV (PDF)</a>
+      <span class="colophon">Last updated {site.cvUpdated}</span>
+    </div>
+  </footer>
+
+  <script>
+    import { paintAllPlates } from '../scripts/plates.js';
+
+    /* The spine sits on the left edge of MAIN and is measured, not guessed. */
+    function placeSpine() {
+      var spine = document.getElementById('spine');
+      var main = document.querySelector('main .main, main .wide, header .main');
+      if (!spine || !main) return;
+      var x = main.getBoundingClientRect().left + window.scrollX;
+      spine.style.left = Math.round(x) + 'px';
+      spine.style.display = window.innerWidth <= 640 ? 'none' : 'block';
+    }
+
+    function repaint() { placeSpine(); paintAllPlates(); }
+
+    function onReady(fn) {
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+      else fn();
+    }
+
+    onReady(function () {
+      repaint();
+
+      var t;
+      window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(repaint, 160); });
+
+      /* Plates invert with the theme, so repaint when the hour changes. */
+      if (window.matchMedia) {
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mq.addEventListener) mq.addEventListener('change', function () { setTimeout(paintAllPlates, 60); });
+      }
+      if (window.MutationObserver) {
+        new MutationObserver(function () { setTimeout(paintAllPlates, 60); })
+          .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      }
+
+      /* Text fades only, and only where a page opts in with .fade.
+         A fast scroller must never meet a blank publication list, so no
+         section that carries the record is gated on a script. */
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('shown');
+            io.unobserve(e.target);
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -2% 0px' });
+        document.querySelectorAll('.fade').forEach(function (n) { io.observe(n); });
+      } else {
+        document.querySelectorAll('.fade').forEach(function (n) { n.classList.add('shown'); });
+      }
+    });
+  </script>
+</body>
+</html>

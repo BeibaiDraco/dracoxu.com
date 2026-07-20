@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { news } from '../data/news.js';
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fmt = (d) => {
+  const [y, m, day] = d.split('-');
+  return `${MONTHS[+m - 1]} ${+day}, ${y}`;
+};
+const years = [...new Set(news.map((n) => n.date.slice(0, 4)))];
+---
+
+<Base title="News" description="News and updates from Draco (Yunlong) Xu.">
+  <section class="bay">
+    <div class="main newshead">
+      <h1 class="wordmark">News</h1>
+      <p class="strip">{news.length} entries · {years[years.length - 1]}—{years[0]}</p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  {years.map((y) => (
+    <>
+      <section class="bay">
+        <div class="rail"><span class="num">{y}</span></div>
+        <div class="wide">
+          {news.filter((n) => n.date.startsWith(y)).map((n) => (
+            <div class="dated newsrow">
+              <div class="dated-when">{fmt(n.date)}</div>
+              <div>
+                <p class="dated-what">{n.body}</p>
+                {n.links && (
+                  <p class="linkrow">
+                    {n.links.map((l, i) => (<>{i > 0 && <span class="sl">·</span>}<a href={l.href}>{l.label}</a></>))}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <div class="bay"><div class="horizon"></div></div>
+    </>
+  ))}
+</Base>
+
+<style>
+  .newshead { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-3); }
+  .newsrow { grid-template-columns: 8.5rem minmax(0, 1fr); }
+  @media (max-width: 760px) { .newsrow { grid-template-columns: 7rem minmax(0, 1fr); } }
+</style>

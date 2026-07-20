@@ -1,0 +1,89 @@
+---
+import Plate from './Plate.astro';
+
+/* ONE citation, one column. Authors, year, title, venue and volume are a single
+   unit that survives select-and-copy and Ctrl-F. Nothing here goes to a rail. */
+const { item, plate = true, compact = false } = Astro.props;
+const a = item.authors;
+---
+<article class:list={['pub', compact && 'pub-compact']}>
+  {plate && item.plate && (
+    <Plate kind={item.plate} seed={item.title} alt={`Figure plate — ${item.title}`} />
+  )}
+  <div class="cite">
+    <p class="cite-line">
+      {a.map((au, i) => (
+        <>
+          {i > 0 && (i === a.length - 1 ? ' & ' : ', ')}
+          <span class={au.me ? 'me' : undefined}>{au.n}</span>{au.star && <sup>*</sup>}{au.corresponding && <sup>†</sup>}
+        </>
+      ))}
+      <span class="yr"> ({item.year}). </span>{item.href ? <a class="ttl" href={item.href}>{item.title}</a> : <span class="ttl">{item.title}</span>}<span>. </span>{item.venue && <><em class="ven">{item.venue}</em>{item.volpages && <span class="vol">, {item.volpages}</span>}<span>.</span></>}
+    </p>
+    {item.note && <p class="desig">{item.note}</p>}
+    {item.links && item.links.length > 0 && (
+      <p class="lnks">
+        {item.links.map((l, i) => (
+          <>{i > 0 && <span class="sep"> · </span>}<a href={l.href}>[{l.label}]</a></>
+        ))}
+      </p>
+    )}
+  </div>
+</article>
+
+<style>
+  .pub {
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    column-gap: var(--ma-4);
+    padding: var(--ma-3) 0;
+    border-bottom: 1px solid var(--kei);
+    align-items: start;
+  }
+  .pub-compact { grid-template-columns: minmax(0, 1fr); }
+  .pub:hover { background: var(--shoal); }
+
+  .cite-line {
+    font-size: 15.5px;
+    line-height: 1.42;
+    color: var(--contour);
+    margin: 0;
+    max-width: 68ch;
+  }
+  /* The most-scanned element on the most-read page. It gets weight. */
+  .me { font-weight: 600; color: var(--sumi); }
+  .cite-line sup { font-size: .68em; line-height: 0; vertical-align: super; }
+
+  .yr, .vol {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .vol { color: var(--sea); }
+  /* Only the linked title carries the growing underline. A bare span must not
+     inherit the gradient, or it paints the whole element. */
+  a.ttl { color: var(--contour); background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  span.ttl { color: var(--contour); background-image: none; }
+  .ven { font-style: italic; }
+
+  .desig {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--sea);
+    margin: var(--ma-1) 0 0;
+  }
+  .lnks {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin: var(--ma-1) 0 0;
+  }
+  .lnks .sep { color: var(--sea); }
+
+  @media (max-width: 480px) {
+    .pub { grid-template-columns: minmax(0, 1fr); row-gap: var(--ma-2); }
+  }
+</style>

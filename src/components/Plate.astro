@@ -1,0 +1,10 @@
+---
+const { kind, seed, large = false, alt = '' } = Astro.props;
+---
+<canvas
+  class={large ? 'plate plate-lg' : 'plate'}
+  data-plate={kind}
+  data-seed={seed}
+  role="img"
+  aria-label={alt}
+></canvas>

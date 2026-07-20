@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+
+const record = [
+  { when: '2023 –', what: 'Windmill Chinese Drama Club', where: 'Chicago' },
+  { when: '2018 – 2021', what: 'Professional actor training, Fudan Drama Troupe', where: 'Shanghai' },
+];
+---
+
+<Base title="Stage" current="Stage"
+  description="Acting work. The threshold studied in cortex, worked from the other side.">
+  <section class="bay">
+    <div class="main stage-head">
+      <span class="seal" aria-hidden="true"></span>
+      <h1 class="wordmark stage-title">Stage</h1>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- THE CLAIM — the through-line, not an apology for a hobby. -->
+  <section class="bay fade">
+    <div class="rail"><span class="num">01</span></div>
+    <div class="main prose">
+      <p>
+        The thing I study in cortex is a threshold: the instant a signal stops being a signal and
+        becomes something experienced. An actor works the same object from the other side — the
+        beat before a line lands, when the room has not yet decided what it heard.
+      </p>
+      <p>
+        I trained as an actor at the Fudan Drama Troupe and perform with the Windmill Chinese
+        Drama Club in Chicago. Three words on the wall of that work, and of this site:
+      </p>
+    </div>
+    <div class="note">
+      <p class="lbl">A word with three readings</p>
+      <ul class="readings">
+        <li>the stage one acts on</li>
+        <li>a stage of a process</li>
+        <li>the platform a thing is shown on</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="bay">
+    <div class="monolith">
+      <p class="inner">{site.motto}</p>
+    </div>
+  </div>
+
+  <!-- THE RECORD -->
+  <section class="bay fade">
+    <div class="rail"><span class="num">02</span></div>
+    <div class="main"><p class="lbl">Record</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="wide">
+      {record.map((r) => (
+        <div class="row stage-row">
+          <div class="row-when">{r.when}</div>
+          <div><p class="row-t">{r.what}</p></div>
+          <div class="row-m">{r.where}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bay fade">
+    <div class="rail"><span class="num">03</span></div>
+    <div class="main">
+      <p class="lbl">Stills</p>
+      <p class="prose" style="color:var(--sea)">Photographs to come. Better empty than padded.</p>
+    </div>
+    <div class="note">
+      <div class="slot" data-slot="Reserved"></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stage-head { display: flex; flex-direction: column; gap: var(--ma-4); padding-top: var(--ma-6); }
+  .stage-title { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+  .readings { display: flex; flex-direction: column; gap: var(--ma-2); }
+  .readings li { font-size: 14px; color: var(--sea); line-height: 1.5; }
+  .stage-row { grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 9rem); }
+  .row-when {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    color: var(--sea); font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 760px) { .stage-row { grid-template-columns: 7rem minmax(0, 1fr); } }
+</style>
