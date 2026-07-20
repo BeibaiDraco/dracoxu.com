@@ -355,21 +355,35 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 .linkrow a { color: var(--wave); }
 .linkrow .sl { color: var(--kei); margin: 0 var(--ma-1); }
 
-/* Three co-equal blocks. No numerals — numerals imply rank. */
-.triad {
+/* Three co-equal approaches, as full-width rows: the name sits in the left
+   space, the description reads at a comfortable measure. No numerals — the
+   three are co-equal. The wrapper spans from the rail so the left is used. */
+.approaches { grid-column: rail / -2; min-width: 0; }
+.triad { display: flex; flex-direction: column; }
+.triad > div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: var(--ma-4);
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  column-gap: var(--ma-5);
+  padding: var(--ma-4) 0;
+  border-top: 1px solid var(--kei);
+  align-items: start;
 }
+.triad > div:last-of-type { border-bottom: 1px solid var(--kei); }
 .triad h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--contour);
-  margin: 0 0 var(--ma-2);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -.005em;
+  color: var(--sumi);
+  margin: 0;
+  line-height: 1.2;
 }
-.triad p { font-size: 14px; line-height: 1.5; color: var(--sea); margin: 0; }
+.triad p { font-size: 15px; line-height: 1.62; color: var(--contour); margin: 0; max-width: 62ch; }
+@media (max-width: 1000px) { .approaches { grid-column: main; } }
+@media (max-width: 700px) {
+  .triad > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--ma-2); }
+  .triad h3 { font-size: 16px; }
+}
 
 /* Two-column plain name list. */
 .names {
