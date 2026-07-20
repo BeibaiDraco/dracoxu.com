@@ -3,6 +3,11 @@
 
 export const news = [
   {
+    date: '2026-07-02',
+    body: `Our paper "The structure of correlated variability reflects task-relevant information in sensory neurons" has been published in PNAS. It grew out of the preprint "Guided by Noise."`,
+    links: [{ label: 'PNAS', href: 'https://www.pnas.org/doi/10.1073/pnas.2523217123' }],
+  },
+  {
     date: '2026-07-16',
     body: `I officially released Maieusis v0.1.0, an open-source AI system that turns scientific datasets into families of questions that are both scientifically valuable and genuinely answerable with the available data. Maieusis grew out of our award-winning prototype, Quaero, and has since been developed into a full research system with dataset-grounded planning, deterministic verification, and independent review.`,
     links: [

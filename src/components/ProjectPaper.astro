@@ -1,0 +1,78 @@
+---
+/* The associated publication, made prominent: a bordered block whose largest
+   element is the paper's exact title, linked. Reads pubIndex so titles and
+   venues never drift from the publications list. */
+import { pubIndex } from '../data/publications.js';
+
+const { project } = Astro.props;
+const papers = (project.papers || []).map((id) => pubIndex[id]).filter(Boolean);
+
+function status(p) {
+  if (p.venue === null) return 'In preparation';
+  if (p.note === 'In review') return 'Preprint · In review';
+  if (/bioRxiv|arXiv/i.test(p.venue)) return 'Preprint';
+  return 'Published';
+}
+---
+{project.software ? (
+  <div class="paper">
+    <span class="chip">Software · v0.1.0</span>
+    <a class="ptitle" href={project.software.href}>{project.software.title}</a>
+    <p class="pmeta">{project.software.cite}</p>
+  </div>
+) : papers.length > 0 ? (
+  papers.map((p) => (
+    <div class="paper">
+      <span class="chip">{status(p)}</span>
+      {p.href
+        ? <a class="ptitle" href={p.href}>{p.title}</a>
+        : <span class="ptitle">{p.title}</span>}
+      <p class="pmeta">
+        {p.authors.map((au, i) => (
+          <>{i > 0 && (i === p.authors.length - 1 ? ' & ' : ', ')}<span class={au.me ? 'me' : undefined}>{au.n}</span>{au.star && <sup>*</sup>}</>
+        ))}
+        <span class="yr"> ({p.year})</span>{p.venue && <>. <em>{p.venue}</em></>}{p.volpages && <span class="vol">, {p.volpages}</span>}.
+      </p>
+    </div>
+  ))
+) : (
+  <p class="none">Associated publication — none yet; work in progress.</p>
+)}
+
+<style>
+  .paper {
+    border-left: 2px solid var(--berlin);
+    padding: var(--ma-2) 0 var(--ma-2) var(--ma-3);
+    margin: var(--ma-3) 0;
+    max-width: 62ch;
+  }
+  .chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--sea);
+    margin-bottom: var(--ma-1);
+  }
+  .ptitle {
+    display: block;
+    font-size: 16.5px;
+    line-height: 1.35;
+    color: var(--sumi);
+    margin-bottom: var(--ma-1);
+  }
+  a.ptitle { background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  .pmeta { font-size: 13px; line-height: 1.45; color: var(--sea); margin: 0; }
+  .pmeta .me { font-weight: 600; color: var(--contour); }
+  .pmeta sup { font-size: .7em; vertical-align: super; line-height: 0; }
+  .pmeta .yr, .pmeta .vol { font-family: var(--mono); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .pmeta em { font-style: italic; }
+  .none {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: var(--sea);
+    margin: var(--ma-3) 0;
+  }
+</style>

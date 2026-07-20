@@ -26,7 +26,6 @@ export const published = [
     note: 'Selected as a talk · SfN 2024 Nanosymposium · Rising Stars in Neuroscience 2025',
     links: [
       { label: 'DOI', href: 'https://doi.org/10.1038/s41467-025-63818-z' },
-      { label: 'Code', href: 'https://doi.org/10.5281/zenodo.21388806' },
     ],
   },
   {
@@ -182,6 +181,11 @@ export const groups = [
 
 /* Homepage "Selected" block reads this flag, so the two can never drift apart. */
 export const selected = [...preprints, ...published].filter((p) => p.selected);
+
+/* Projects reference their papers by id; this keeps titles/venues from drifting. */
+export const pubIndex = Object.fromEntries(
+  [...published, ...preprints, ...abstracts].map((p) => [p.id, p])
+);
 
 export const counts = {
   published: published.length,

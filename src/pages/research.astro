@@ -2,28 +2,30 @@
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site.js';
 
+/* Research experience, written by theme and goal — an insider reads the
+   headline and knows what the work is, not just where it happened. */
 const positions = [
-  { when: '2023 —', what: 'PhD Student, Doiron Lab', where: 'University of Chicago',
-    detail: 'Balanced networks with short-term depression; attention and representational geometry with the Cohen lab; retinal disinhibition with the Wei lab; feature-specific inter-areal communication with the Freedman lab.' },
-  { when: '2024', what: 'Rotation Student, Wei Lab', where: 'University of Chicago',
-    detail: 'Circuit models of retinal disinhibitory motifs and noise resilience.' },
-  { when: '2021 — 2023', what: 'Research Assistant, Computer Science', where: 'University of Rochester',
-    detail: 'With Fatemeh Nargesian — dynamic network construction over large time series; i.i.d. sampling over unions of joins; fairness-aware data integration.' },
-  { when: '2021 — 2023', what: 'Research Assistant, Brain & Cognitive Sciences', where: 'University of Rochester',
-    detail: 'With Duje Tadin — lifespan models of perceptual decision making; social effects of crowd gaze on visual search; temporal evolution of motion direction judgments.' },
-  { when: '2021 — 2023', what: 'Research Assistant, CogT Lab', where: 'Stanford University',
-    detail: 'With Vankee Lin and Ehsan Adeli — stress neurobiology in human fMRI and mesoscopic calcium imaging, using GNNs, dimensionality reduction and representation learning.' },
-  { when: '2020 — 2023', what: 'Research Assistant, CCNN Lab', where: 'Shanghai Jiao Tong University',
-    detail: 'With Ruyuan Zhang — visual decision making and confidence in OCD; semi-supervised learning for Raven\'s Progressive Matrices.' },
-  { when: '2023', what: 'Honors Thesis, Mathematics', where: 'University of Rochester',
-    detail: 'With Alex Iosevich — supervised training algorithms for spiking neural networks.' },
-  { when: '2023', what: 'Research Assistant, Philosophy', where: 'University of Rochester',
-    detail: 'With Alison Peterman — the relationship between computational models of visual perception and visual phenomenal experience.' },
+  { when: '2023 —', theme: 'Cortical population dynamics and inter-areal computation', where: 'Doiron Lab · University of Chicago',
+    goal: 'Extending balanced-network theory to nonlinear, population-wide correlated activity, and building a geometric and dynamical-systems account of how the activity of one cortical area shapes the computation performed in another — tested against simultaneous multi-area recordings.' },
+  { when: '2024', theme: 'Retinal disinhibition and noise resilience', where: 'Wei Lab · University of Chicago',
+    goal: 'Biologically plausible circuit models of retinal motifs, asking how distinct cell types collectively keep the retina’s output reliable across environments whose noise statistics differ by orders of magnitude.' },
+  { when: '2021 — 2023', theme: 'Dynamic-network construction and sampling over joins', where: 'Nargesian group · University of Rochester',
+    goal: 'Algorithms and data platforms for the exact, fast construction of dynamic networks from large time series; i.i.d. sampling over unions of joins; fairness-aware data integration.' },
+  { when: '2021 — 2023', theme: 'Perceptual decision-making across the lifespan', where: 'Tadin Lab · University of Rochester',
+    goal: 'How perceptual decisions unfold over time and change with age under varying perceptual noise, and the social effects of crowd gaze on visual search.' },
+  { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University',
+    goal: 'Graph neural networks, dimensionality reduction and representation learning applied to human fMRI and mesoscopic calcium imaging of stress neurobiology.' },
+  { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University',
+    goal: 'Semi-supervised learning for Raven’s Progressive Matrices, and computational models of visual decision-making and confidence in OCD from behavioural and fMRI data.' },
+  { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester',
+    goal: 'With Alex Iosevich — supervised methods for training spiking neural networks.' },
+  { when: '2023', theme: 'Perception versus cognition, and machine experience', where: 'Philosophy · University of Rochester',
+    goal: 'With Alison Peterman — the relationship between computational models of visual perception and visual phenomenal experience.' },
 ];
 ---
 
 <Base title="Research" current="Research"
-  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, and the three approaches taken to them.">
+  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, approached through computational neuroscience, artificial intelligence, and AI for science.">
 
   <section class="bay">
     <div class="main rhead">
@@ -33,19 +35,16 @@ const positions = [
     <div class="horizon"></div>
   </section>
 
-  <!-- THE STATEMENT — his words, unabridged -->
+  <!-- Plain-language framing so the page doesn't read philosophy-first -->
   <section class="bay">
     <div class="rail"><span class="num">01</span></div>
-    <div class="main">
-      <p class="lbl">Statement</p>
-      <div class="prose">
-        {site.statement.map((p) => <p>{p}</p>)}
-      </div>
+    <div class="main prose">
+      <p>{site.framing}</p>
     </div>
     <div class="horizon"></div>
   </section>
 
-  <!-- THE THREE APPROACHES — no numerals; numerals imply rank -->
+  <!-- THE THREE APPROACHES -->
   <section class="bay">
     <div class="main"><p class="lbl">Approaches</p></div>
   </section>
@@ -54,23 +53,35 @@ const positions = [
       <div class="triad">
         {site.approaches.map((a) => (<div><h3>{a.name}</h3><p>{a.line}</p></div>))}
       </div>
-      <p class="linkrow" style="margin-top:var(--ma-4)"><a href="/projects/">The six projects in detail →</a></p>
+      <p class="undernote">{site.approachesNote}</p>
     </div>
     <div class="horizon"></div>
   </section>
 
-  <!-- RESEARCH EXPERIENCE -->
+  <!-- FULL STATEMENT -->
+  <section class="bay fade">
+    <div class="main"><p class="lbl">Statement</p></div>
+  </section>
+  <section class="bay fade">
+    <div class="main">
+      <div class="prose">{site.statement.map((p) => <p>{p}</p>)}</div>
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/projects/">The six projects in detail →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- RESEARCH EXPERIENCE — theme-led -->
   <section class="bay fade">
     <div class="main"><p class="lbl">Research experience</p></div>
   </section>
   <section class="bay fade">
     <div class="wide">
       {positions.map((p) => (
-        <div class="dated">
+        <div class="dated exp">
           <div class="dated-when">{p.when}</div>
           <div>
-            <p class="dated-what">{p.what}</p>
-            <p class="dated-detail">{p.detail}</p>
+            <p class="dated-what">{p.theme}</p>
+            <p class="dated-detail">{p.goal}</p>
           </div>
           <div class="dated-where">{p.where}</div>
         </div>
@@ -139,4 +150,10 @@ const positions = [
 <style>
   .rhead { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-3); }
   .identity { font-style: italic; font-size: 19px; line-height: 1.45; color: var(--sea); margin: 0; max-width: 60ch; }
+  .undernote {
+    font-size: 14px; line-height: 1.55; color: var(--sea);
+    max-width: 64ch; margin: var(--ma-4) 0 0; padding-left: var(--ma-3);
+    border-left: 1px solid var(--kei);
+  }
+  .exp .dated-detail { max-width: 60ch; }
 </style>

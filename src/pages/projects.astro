@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Plate from '../components/Plate.astro';
+import ProjectPaper from '../components/ProjectPaper.astro';
 import { projects } from '../data/projects.js';
 ---
 
@@ -28,10 +29,12 @@ import { projects } from '../data/projects.js';
               {p.questions.map((q) => <li>{q}</li>)}
             </ol>
           )}
+
+          <ProjectPaper project={p} />
+
           {p.install && <p class="pcode">{p.install}</p>}
-          {p.citation && <p class="pcite">{p.citation}</p>}
-          {p.inprep && <p class="pnote">{p.inprep}</p>}
           {p.presented && <p class="pnote">{p.presented}</p>}
+          {p.inprep && <p class="pnote">{p.inprep}</p>}
           {p.links.length > 0 && (
             <p class="linkrow">
               {p.links.map((l, j) => (<>{j > 0 && <span class="sl">/</span>}<a href={l.href}>{l.label}</a></>))}
@@ -40,7 +43,7 @@ import { projects } from '../data/projects.js';
         </div>
         <div class="note">
           <Plate kind={p.plate} seed={p.title} alt={`Figure plate — ${p.short}`} />
-          <ul class="tags">{p.tag.map((t) => <li>{t}</li>)}</ul>
+          <ul class="tags">{p.panels.map((t) => <li>{t}</li>)}</ul>
         </div>
       </section>
       <div class="bay"><div class="horizon"></div></div>
@@ -74,7 +77,7 @@ import { projects } from '../data/projects.js';
     background: var(--shoal); padding: var(--ma-2) var(--ma-3);
     overflow-x: auto; white-space: nowrap; margin: 0 0 var(--ma-2);
   }
-  .pcite, .pnote { font-size: 13.5px; color: var(--sea); margin: 0 0 var(--ma-2); }
+  .pnote { font-size: 13.5px; color: var(--sea); margin: 0 0 var(--ma-2); }
   .tags { display: flex; flex-direction: column; gap: var(--ma-1); margin-top: var(--ma-2); }
   .tags li {
     font-family: var(--mono); font-size: 10px; letter-spacing: .1em;

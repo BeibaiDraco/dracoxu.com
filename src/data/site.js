@@ -9,35 +9,36 @@ export const site = {
 
   identity: 'mechanisms of perceptual and conscious experience in intelligent systems',
 
-  /* Rail facts. Deliberately only what the prose beside it does NOT say. */
-  status: ['2023 — 2028 (expected)', 'Candidacy Dec 2025', 'Kavli Foundation'],
-
-  /* The record, in numbers. Training attended is not an accomplishment and
-     stays in the PDF; these are outputs. */
-  record: [
-    '8 published',
-    '4 preprints & under review',
-    '8 conference abstracts',
-    '15 awards & grants',
-    '10 invited talks',
-    '5 courses taught',
+  /* Rail facts, self-explanatory to a general reader — each names its referent. */
+  status: [
+    'Doctorate · 2023 — 2028 (expected)',
+    'Advanced to candidacy · Dec 2025',
+    'Research funded by the Kavli Foundation',
   ],
 
+  /* One plain-language framing paragraph so a visitor understands the work
+     before the three panels. ~75 words. */
+  framing: `How does a brain — or any intelligent system — turn physical signals into perception, decision, and experience? I pursue that question three ways: circuit and network theory for how populations of cortical neurons compute, machine learning for the structure that computation exploits, and tools that let both survive contact with data far larger and messier than the methods a field was built on. Underneath sits an older question — where perception begins, and whether a machine could ever have it.`,
+
+  /* The three approaches Draco named. Philosophy is demoted to a note, below. */
   approaches: [
-    { name: 'Computational Neuroscience', line: 'Circuit and network theory for cortical population dynamics — balanced networks, correlated variability, inter-areal communication.' },
-    { name: 'Philosophy of Perception', line: 'What would count as an answer: the boundary between perception and cognition, and whether an artificial system could have experience at all.' },
-    { name: 'Data Science for Neuroscience', line: 'Methods that keep the theory honest against recordings larger and messier than either field was built for.' },
+    { name: 'Computational Neuroscience', line: `I build mathematical theories of how populations of neurons compute — why cortical activity fluctuates the way it does, how attention reshapes a population code, and how signals pass between brain areas. The models are spiking circuits held to what electrophysiology and two-photon imaging actually record, so a proposed mechanism has to survive contact with data.` },
+    { name: 'Artificial Intelligence', line: `I develop machine-learning methods aimed at intelligence itself — learning the abstract rules behind human IQ-test problems, estimating engagement from video, decoding what a person sees from brain activity with foundation models. The guiding question is what it would take for an artificial system to genuinely perceive and reason, not merely pattern-match.` },
+    { name: 'AI for Science', line: `I build tools that let science scale — systems that turn a dataset into questions it can actually answer, and methods for constructing and querying networks from large, noisy time series. Maieusis, my open-source system for generating valuable, dataset-answerable scientific questions, anchors this line of work.` },
   ],
+  approachesNote: `A single philosophical question runs beneath all three: where perception ends and cognition begins, and whether an artificial system could ever genuinely have experience rather than only behave as if it does.`,
 
-  /* His own words, from the old site. Only stale facts updated. */
+  /* His own words, from the old site, all three paragraphs, links restored.
+     Rendered with set:html. Wei Wei dropped from the main paragraph (she stays
+     a linked collaborator below). */
   intro: [
-    `I am Draco (Yunlong) Xu, a PhD candidate in the Computational Neuroscience (CNS) program at the University of Chicago, advised by Prof. Brent Doiron. I am also collaborating with Prof. Marlene Cohen's lab, Prof. David J. Freedman's lab, and Prof. Wei Wei's lab. My research is supported by the Kavli Foundation.`,
-    `Before moving to Chicago, I was an undergraduate at the University of Rochester, where I received two honors B.S. degrees in Computer Science and Mathematics, and a minor in Philosophy. I was advised by Prof. Fatemeh Nargesian (database and data management), Prof. Duje Tadin (Brain and Cognitive Sciences), Prof. Alex Iosevich (Applied Math), and Prof. Alison Peterman (Philosophy). I was affiliated with the CogT Lab at Stanford University, advised by Prof. Vankee Lin and Prof. Ehsan Adeli, and the CCNN Lab at SJTU, advised by Prof. Ruyuan Zhang. I was also founding chair of the University of Rochester ACM Student Chapter.`,
-    `I studied as an undergraduate at Fudan University, majoring in Mathematics and Applied Mathematics, before transferring to the University of Rochester.`,
+    `I am Draco (Yunlong) Xu, a PhD candidate in the Computational Neuroscience (CNS) program at the <a href="https://www.uchicago.edu/">University of Chicago</a>, advised by <a href="https://brainmath.bsd.uchicago.edu/">Prof. Brent Doiron</a>. I am also collaborating with <a href="http://www.cohenlab.com/">Prof. Marlene Cohen's lab</a> and <a href="https://freedmanlab.uchicago.edu/">Prof. David J. Freedman's lab</a>. My research is supported by the Kavli Foundation.`,
+    `Before moving to Chicago, I was an undergraduate at the University of Rochester, where I received two honors B.S. degrees in Computer Science and Mathematics, and a minor in Philosophy. I was advised by <a href="https://fnargesian.com/">Prof. Fatemeh Nargesian</a> (database and data management), <a href="https://www2.bcs.rochester.edu/sites/duje/">Prof. Duje Tadin</a> (Brain and Cognitive Sciences), <a href="https://people.math.rochester.edu/faculty/iosevich/">Prof. Alex Iosevich</a> (Applied Math), and Prof. Alison Peterman (Philosophy). I was affiliated with the <a href="https://www.cogtlab.com/">CogT Lab</a> at Stanford University, advised by <a href="https://profiles.stanford.edu/f-lin">Prof. Vankee Lin</a> and <a href="https://stanford.edu/~eadeli/">Prof. Ehsan Adeli</a>, and the CCNN Lab at SJTU, advised by <a href="https://ruyuanzhang.github.io/index.html">Prof. Ruyuan Zhang</a>. I was also founding chair of the University of Rochester ACM Student Chapter.`,
+    `I studied as an undergraduate at <a href="https://en.wikipedia.org/wiki/Fudan_University">Fudan University</a>, majoring in Mathematics and Applied Mathematics, before transferring to the University of Rochester.`,
   ],
   closing: 'Please drop me an email if you want to chat.',
 
-  /* The research statement, unabridged, in his voice. Lives on /research/. */
+  /* The research statement, unabridged, on /research/. */
   statement: [
     `My research aims to decipher the mechanisms of perceptual and conscious experience in intelligent systems. This quest begins with an exploration of how humans, as conscious and intelligent beings, process and form conscious experiences of perception, cognition and reasoning through our neural systems. This intricate process allows us not only to feel and think but also to be aware of our thoughts and feelings. I propose that the human brain is a prime example of such a system, yet it is not the sole example. If Artificial General Intelligence (AGI) is successfully developed, it would represent another potential form of an intelligent and possibly conscious system. A fundamental question in my research is whether these systems can genuinely experience perception or consciousness.`,
     `I am keen to explore whether, how, and why intelligent systems, including humans and AGI, can possess perceptual and phenomenological experiences. Is it possible to develop a scientific and computational model to explain these phenomena? The implications of such understanding are vast, extending even to concepts like mind uploading, often featured in science fiction.`,
@@ -46,18 +47,19 @@ export const site = {
 
   education: [
     { years: '2023 — 2028', degree: 'Ph.D., Computational Neuroscience', where: 'University of Chicago',
-      detail: 'Committee on Computational Neuroscience · Advisor Brent Doiron · Candidacy December 2025' },
+      detail: 'Committee on Computational Neuroscience · Advisor Brent Doiron · Advanced to candidacy December 2025' },
     { years: '2020 — 2023', degree: 'B.S. (Honors) Computer Science and B.S. (Honors) Mathematics', where: 'University of Rochester',
       detail: 'Minor in Philosophy' },
     { years: '2018 — 2021', degree: 'Mathematics and Applied Mathematics', where: 'Fudan University',
       detail: 'Transferred to Rochester; no degree awarded' },
   ],
 
+  /* Funding first — the awards section leads with money a lay reader grasps. */
   awardsSelected: [
-    { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
-    { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs' },
     { when: '2025', what: 'NeuroData Discovery Award — $50,000', who: 'The Kavli Foundation' },
     { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
+    { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs' },
+    { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
     { when: '2023', what: 'Honorable Mention, Outstanding Undergraduate Researcher Award', who: 'Computing Research Association' },
   ],
 

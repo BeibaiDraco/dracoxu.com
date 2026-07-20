@@ -1,4 +1,5 @@
 ---
+import { existsSync } from 'node:fs';
 import Base from '../layouts/Base.astro';
 import Plate from '../components/Plate.astro';
 import PubRow from '../components/PubRow.astro';
@@ -7,22 +8,27 @@ import { projects } from '../data/projects.js';
 import { selected, counts } from '../data/publications.js';
 import { news } from '../data/news.js';
 
+const hasPortrait = existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 const recentNews = news.slice(0, 5);
-const fmt = (d) => {
-  const [y, m] = d.split('-');
-  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m - 1] + ' ' + y;
+const awardsLead = site.awardsSelected[0];
+const awardsRest = site.awardsSelected.slice(1);
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fmt = (d) => { const [y, m] = d.split('-'); return `${MONTHS[+m - 1]} ${y}`; };
+const PANEL_SHORT = {
+  'Computational Neuroscience': 'Comp. neuro',
+  'Artificial Intelligence': 'AI',
+  'AI for Science': 'AI for science',
+  'Philosophy of Perception': 'Philosophy',
 };
 ---
 
 <Base description={`Draco (Yunlong) Xu — PhD candidate in the Committee on Computational Neuroscience at the University of Chicago, working with Brent Doiron on the ${site.identity}.`}>
 
-  <!-- 1 · IDENTITY — everything a committee routes on, above the fold.
-       Not gated on any script. -->
+  <!-- 1 · IDENTITY -->
   <section class="bay id-block">
     <div class="rail">
-      <ul class="statuslist">
-        {site.status.map((s) => <li>{s}</li>)}
-      </ul>
+      <ul class="statuslist">{site.status.map((s) => <li>{s}</li>)}</ul>
     </div>
     <div class="main">
       <h1 class="wordmark">{site.name}</h1>
@@ -32,47 +38,41 @@ const fmt = (d) => {
       </p>
       <p class="identity">I study the {site.identity}.</p>
       <p class="linkrow">
-        {site.links.map((l, i) => (
-          <>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>
-        ))}
+        {site.links.map((l, i) => (<>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>))}
         <span class="sl">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
       </p>
       <p class="mail">{site.contact.email}</p>
       <div class="prose bio">
-        <p>{site.intro[0]}</p>
+        {site.intro.map((para) => <p set:html={para}></p>)}
       </div>
     </div>
     <div class="note">
-      <p class="lbl" style="margin-bottom:var(--ma-2)">Also affiliated</p>
-      <p class="notesm">CogT Lab, Stanford University<br />CCNN Lab, Shanghai Jiao Tong University</p>
-    </div>
-  </section>
-
-  <!-- 2 · THE RECORD, IN NUMBERS -->
-  <section class="bay">
-    <div class="wide">
-      <p class="strip">{site.record.map((r, i) => (<>{i > 0 && ' · '}<b>{r}</b></>))}</p>
+      {hasPortrait && (
+        <img class="portrait" src="/portrait.jpg" alt="Draco (Yunlong) Xu" width="176" height="220" loading="eager" />
+      )}
     </div>
     <div class="horizon"></div>
   </section>
 
-  <!-- 3 · RESEARCH INTERESTS -->
+  <!-- 2 · RESEARCH — framing paragraph, then the three panels, then philosophy note -->
   <section class="bay">
-    <div class="main"><p class="lbl">Research interests</p></div>
+    <div class="main"><p class="lbl">Research</p></div>
+  </section>
+  <section class="bay">
+    <div class="main prose"><p>{site.framing}</p></div>
   </section>
   <section class="bay">
     <div class="wide">
       <div class="triad">
-        {site.approaches.map((a) => (
-          <div><h3>{a.name}</h3><p>{a.line}</p></div>
-        ))}
+        {site.approaches.map((a) => (<div><h3>{a.name}</h3><p>{a.line}</p></div>))}
       </div>
-      <p class="linkrow" style="margin-top:var(--ma-4)"><a href="/research/">Full research statement →</a></p>
+      <p class="undernote">{site.approachesNote}</p>
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/research/">Full research statement →</a></p>
     </div>
     <div class="horizon"></div>
   </section>
 
-  <!-- 4 · ONGOING AND RECENT PROJECTS -->
+  <!-- 3 · PROJECTS -->
   <section class="bay">
     <div class="main">
       <p class="lbl">Ongoing and recent projects</p>
@@ -88,7 +88,7 @@ const fmt = (d) => {
             <p class="row-t">{p.short}</p>
             <p class="row-a">{p.blurb}</p>
           </div>
-          <div class="row-m">{p.tag[0] === 'Data Science for Neuroscience' ? 'Data science' : 'Comp. neuro'}</div>
+          <div class="row-m">{PANEL_SHORT[p.panels[0]] || p.panels[0]}</div>
         </a>
       ))}
       <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/projects/">All six in detail →</a></p>
@@ -96,17 +96,46 @@ const fmt = (d) => {
     <div class="horizon"></div>
   </section>
 
-  <!-- 5 · SELECTED PUBLICATIONS -->
+  <!-- 4 · SELECTED PUBLICATIONS -->
   <section class="bay">
     <div class="main">
       <p class="lbl">Selected publications</p>
-      <p class="subhead">{counts.published} published · {counts.preprints} preprints and under review · {counts.abstracts} conference abstracts</p>
+      <p class="subhead">Journal, conference, and preprint work — a selection below.</p>
     </div>
   </section>
   <section class="bay">
     <div class="wide">
       {selected.map((p) => <PubRow item={p} />)}
       <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/publications/">All publications →</a></p>
+    </div>
+    <div class="horizon"></div>
+  </section>
+
+  <!-- 5 · AWARDS & FUNDING — repositioned above Education, led by the void band -->
+  <section class="bay">
+    <div class="main">
+      <p class="lbl">Awards &amp; funding</p>
+      <p class="subhead">Fellowships, research grants, and honors that fund the work. Selected —</p>
+    </div>
+  </section>
+  <div class="bay">
+    <div class="monolith">
+      <div class="inner award-lead">
+        <span class="award-headline">{awardsLead.what}</span>
+        <span class="award-org">{awardsLead.who} · {awardsLead.when}</span>
+      </div>
+    </div>
+  </div>
+  <section class="bay">
+    <div class="wide">
+      {awardsRest.map((a) => (
+        <div class="dated">
+          <div class="dated-when">{a.when}</div>
+          <div><p class="dated-what">{a.what}</p></div>
+          <div class="dated-where">{a.who}</div>
+        </div>
+      ))}
+      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/cv.pdf">Full list in the CV →</a></p>
     </div>
     <div class="horizon"></div>
   </section>
@@ -144,10 +173,7 @@ const fmt = (d) => {
       {site.education.map((e) => (
         <div class="dated">
           <div class="dated-when">{e.years}</div>
-          <div>
-            <p class="dated-what">{e.degree}</p>
-            <p class="dated-detail">{e.detail}</p>
-          </div>
+          <div><p class="dated-what">{e.degree}</p><p class="dated-detail">{e.detail}</p></div>
           <div class="dated-where">{e.where}</div>
         </div>
       ))}
@@ -155,28 +181,7 @@ const fmt = (d) => {
     <div class="horizon"></div>
   </section>
 
-  <!-- 8 · AWARDS -->
-  <section class="bay">
-    <div class="main">
-      <p class="lbl">Awards &amp; funding</p>
-      <p class="subhead">15 doctoral-relevant awards and grants. Selected:</p>
-    </div>
-  </section>
-  <section class="bay">
-    <div class="wide">
-      {site.awardsSelected.map((a) => (
-        <div class="dated">
-          <div class="dated-when">{a.when}</div>
-          <div><p class="dated-what">{a.what}</p></div>
-          <div class="dated-where">{a.who}</div>
-        </div>
-      ))}
-      <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/cv.pdf">Full list in the CV →</a></p>
-    </div>
-    <div class="horizon"></div>
-  </section>
-
-  <!-- 9 · COLLABORATORS -->
+  <!-- 8 · COLLABORATORS -->
   <section class="bay">
     <div class="main"><p class="lbl">Collaborators</p></div>
   </section>
@@ -186,8 +191,7 @@ const fmt = (d) => {
         {site.collaborators.map((c) => (
           <li>
             {c.href ? <a href={c.href}>{c.name}</a> : <span>{c.name}</span>}
-            {c.role && <span class="inst">{c.where} · {c.role}</span>}
-            {!c.role && <span class="inst">{c.where}</span>}
+            <span class="inst">{c.where}{c.role ? ' · ' + c.role : ''}</span>
           </li>
         ))}
       </ul>
@@ -195,7 +199,7 @@ const fmt = (d) => {
     <div class="horizon"></div>
   </section>
 
-  <!-- 10 · BEYOND ACADEMIC -->
+  <!-- 9 · BEYOND ACADEMIC -->
   <section class="bay">
     <div class="main">
       <p class="lbl">Beyond academic</p>
@@ -209,7 +213,7 @@ const fmt = (d) => {
     <div class="horizon"></div>
   </section>
 
-  <!-- 11 · CONTACT -->
+  <!-- 10 · CONTACT -->
   <section class="bay">
     <div class="main">
       <p class="lbl">Contact</p>
@@ -226,27 +230,37 @@ const fmt = (d) => {
   .id-block { padding-top: var(--ma-4); }
   .statuslist { display: flex; flex-direction: column; gap: var(--ma-1); }
   .statuslist li {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--sea); line-height: 1.5;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--sea); line-height: 1.55;
   }
-  .position { font-size: 17.5px; line-height: 1.5; margin: var(--ma-2) 0 var(--ma-2); max-width: 60ch; }
-  /* One of the two italics the site allows. */
+  .position { font-size: 17.5px; line-height: 1.5; margin: var(--ma-2) 0; max-width: 60ch; }
   .identity { font-style: italic; font-size: 19px; line-height: 1.45; color: var(--sea); margin: 0 0 var(--ma-3); max-width: 60ch; }
   .mail { font-family: var(--mono); font-size: 12px; color: var(--contour); margin: var(--ma-1) 0 var(--ma-3); }
   .bio { margin: 0; }
-  .bio p { margin: 0; }
-  .seal-inline {
-    display: inline-block; width: 7px; height: 7px;
-    background: var(--oxide); margin-right: 6px; vertical-align: 1px;
-  }
+  .bio p { margin: 0 0 var(--ma-2); }
+  .bio p:last-child { margin-bottom: 0; }
+  .seal-inline { display: inline-block; width: 7px; height: 7px; background: var(--oxide); margin-right: 6px; vertical-align: 1px; }
+
+  .portrait { width: 100%; max-width: 11rem; height: auto; border: 1px solid var(--kei); filter: grayscale(.12); }
+
   .notesm { font-size: 13px; line-height: 1.55; color: var(--sea); margin: 0; }
   .subhead {
     font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
     text-transform: uppercase; color: var(--sea); margin: calc(var(--ma-1) * -1) 0 0;
   }
+  .undernote {
+    font-size: 14px; line-height: 1.55; color: var(--sea);
+    max-width: 64ch; margin: var(--ma-4) 0 0; padding-left: var(--ma-3);
+    border-left: 1px solid var(--kei);
+  }
   .prow { background-image: none; color: inherit; }
   .prow:hover { background-size: 0 1px; }
   .newsrow { grid-template-columns: 8.5rem minmax(0, 1fr); }
   .motto { font-style: normal; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sea); margin: var(--ma-2) 0; }
+
+  .award-lead { font-style: normal; display: flex; flex-direction: column; gap: var(--ma-2); }
+  .award-headline { font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.2; }
+  .award-org { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+
   @media (max-width: 760px) { .newsrow { grid-template-columns: 7rem minmax(0, 1fr); } }
 </style>
