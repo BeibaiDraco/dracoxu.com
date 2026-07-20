@@ -54,10 +54,10 @@ const PANEL_SHORT = {
 
   <!-- 2 · RESEARCH — framing paragraph, then the three panels, then philosophy note -->
   <section class="bay">
-    <div class="main"><h2 class="lbl">Research</h2></div>
+    <div class="wide"><h2 class="lbl">Research</h2></div>
   </section>
   <section class="bay">
-    <div class="main prose"><p>{site.framing}</p></div>
+    <div class="wide prose"><p>{site.framing}</p></div>
   </section>
   <section class="bay">
     <div class="approaches">
@@ -72,7 +72,7 @@ const PANEL_SHORT = {
 
   <!-- 3 · PROJECTS -->
   <section class="bay">
-    <div class="main">
+    <div class="wide">
       <h2 class="lbl">Ongoing and recent projects</h2>
       <p class="subhead">Six lines of work, running in parallel. The order is a reading order, not a ranking.</p>
     </div>
@@ -96,7 +96,7 @@ const PANEL_SHORT = {
 
   <!-- 4 · SELECTED PUBLICATIONS -->
   <section class="bay">
-    <div class="main">
+    <div class="wide">
       <h2 class="lbl">Selected publications</h2>
       <p class="subhead">Journal, conference, and preprint work — a selection below.</p>
     </div>
@@ -111,7 +111,7 @@ const PANEL_SHORT = {
 
   <!-- 5 · AWARDS & FUNDING — repositioned above Education, led by the void band -->
   <section class="bay">
-    <div class="main">
+    <div class="wide">
       <h2 class="lbl">Awards &amp; funding</h2>
       <p class="subhead">Fellowships, research grants, and honors that fund the work. Selected —</p>
     </div>
@@ -141,7 +141,7 @@ const PANEL_SHORT = {
 
   <!-- 6 · NEWS -->
   <section class="bay">
-    <div class="main"><h2 class="lbl">News</h2></div>
+    <div class="wide"><h2 class="lbl">News</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -165,7 +165,7 @@ const PANEL_SHORT = {
 
   <!-- 7 · EDUCATION -->
   <section class="bay">
-    <div class="main"><h2 class="lbl">Education</h2></div>
+    <div class="wide"><h2 class="lbl">Education</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -182,7 +182,7 @@ const PANEL_SHORT = {
 
   <!-- 8 · COLLABORATORS -->
   <section class="bay">
-    <div class="main"><h2 class="lbl">Collaborators</h2></div>
+    <div class="wide"><h2 class="lbl">Collaborators</h2></div>
   </section>
   <section class="bay">
     <div class="wide">
@@ -200,7 +200,7 @@ const PANEL_SHORT = {
 
   <!-- 9 · BEYOND ACADEMIC -->
   <section class="bay">
-    <div class="main">
+    <div class="wide">
       <h2 class="lbl">Beyond academia</h2>
       <p class="dated-what" style="max-width:64ch">
         Trained as a stage actor with the Fudan Drama Troupe, and currently with the
@@ -214,7 +214,7 @@ const PANEL_SHORT = {
 
   <!-- 10 · CONTACT -->
   <section class="bay">
-    <div class="main">
+    <div class="wide">
       <h2 class="lbl">Contact</h2>
       <p class="dated-what"><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
       <p class="dated-what" style="color:var(--sea)">{site.closing}</p>
@@ -229,8 +229,8 @@ const PANEL_SHORT = {
   .id-block { padding-top: var(--ma-4); }
   .statuslist { display: flex; flex-direction: column; gap: var(--ma-1); }
   .statuslist li {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--sea); line-height: 1.55;
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--contour); line-height: 1.6;
   }
   .position { font-size: 17.5px; line-height: 1.5; margin: var(--ma-2) 0; max-width: 60ch; }
   .identity { font-style: italic; font-size: 19px; line-height: 1.45; color: var(--sea); margin: 0 0 var(--ma-3); max-width: 60ch; }
@@ -255,14 +255,15 @@ const PANEL_SHORT = {
     border-left: 1px solid var(--kei);
   }
   .prow { background-image: none; color: inherit; }
-  .prow:hover { background-size: 0 1px; }
+  .prow { text-decoration: none; }
+  .prow:hover { background: var(--shoal); }
   .newsrow { grid-template-columns: 8.5rem minmax(0, 1fr); }
   .motto { font-style: normal; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sea); margin: var(--ma-2) 0; }
 
   /* The lead award: emphasized but not a dark band. */
   .award-lead-row { padding-top: var(--ma-3); padding-bottom: var(--ma-3); align-items: baseline; }
   .award-headline { font-size: 20px; line-height: 1.3; color: var(--sumi); margin: 0; }
-  .award-headline a { background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  .award-headline a { color: var(--sumi); }
 
   @media (max-width: 760px) { .newsrow { grid-template-columns: 7rem minmax(0, 1fr); } }
 </style>

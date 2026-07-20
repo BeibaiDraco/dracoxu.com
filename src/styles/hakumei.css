@@ -148,28 +148,34 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .bay {
   display: grid;
   grid-template-columns:
-    minmax(1.5rem, 1fr)
+    minmax(1.25rem, 1fr)
     [rail] minmax(0, 9.5rem)
-    [main] minmax(0, 38rem)
-    [note] minmax(0, 11rem)
-    minmax(1.5rem, 1fr);
+    [main] minmax(0, 41rem)
+    [note] minmax(0, 12rem)
+    minmax(1.25rem, 1fr);
   column-gap: var(--ma-4);
 }
 .rail { grid-column: rail; }
 .main { grid-column: main; min-width: 0; }
 .note { grid-column: note; min-width: 0; }
-.wide { grid-column: main / -2; min-width: 0; }
+/* Wide content uses the LEFT space too (rail→note), so the page is not
+   weighted to the right with an empty left rail. */
+.wide { grid-column: rail / -2; min-width: 0; }
 
-@media (max-width: 1000px) {
+/* Tablet & phone: stop being a grid — stack into one centered column.
+   Robust and simple; the internal row grids keep their own breakpoints. */
+@media (max-width: 900px) {
   .bay {
-    grid-template-columns: minmax(1.25rem, 1fr) [rail] minmax(0, 5rem) [main] minmax(0, 40rem) minmax(1.25rem, 1fr);
+    display: block;
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
   }
-  .note { grid-column: main; margin-top: var(--ma-3); }
-  .wide { grid-column: main; }
-}
-@media (max-width: 640px) {
-  .bay { grid-template-columns: minmax(1.25rem, 1fr) [rail] [main] minmax(0, 40rem) minmax(1.25rem, 1fr); }
-  .rail { grid-column: main; margin-bottom: var(--ma-2); }
+  .id-block .rail { margin-bottom: var(--ma-3); }
+  .id-block .note { margin-top: var(--ma-3); }
+  .horizon { margin-inline: -1.25rem; }
+  .monolith { margin-inline: -1.25rem; }
+  .spine { display: none; }
 }
 
 /* THE HORIZON — full-bleed 1px. Content never bleeds.
@@ -205,12 +211,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ============================================================
    TYPE
    ============================================================ */
+/* Section labels — darker and a touch larger so they actually read as
+   section markers, not faint captions. */
 .lbl {
   font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: .14em;
+  font-size: 12px;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--sea);
+  color: var(--contour);
   margin: 0 0 var(--ma-3);
   font-variant-numeric: tabular-nums;
 }
@@ -252,19 +260,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .seal { width: 7px; height: 7px; background: var(--oxide); display: block; }
 
 /* ============================================================
-   LINKS — colour never changes; a 1px rule grows from the left
-   and takes almost a second to stop ringing.
+   LINKS — a link must LOOK like a link: distinct colour + a
+   persistent underline, at rest. Usability over minimalism.
    ============================================================ */
 a {
   color: var(--wave);
-  text-decoration: none;
-  background-image: linear-gradient(var(--wave), var(--wave));
-  background-size: 0 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size var(--dur-out) var(--settle);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in srgb, var(--wave) 55%, transparent);
+  transition: text-decoration-color .18s var(--settle), color .18s var(--settle);
 }
-a:hover, a:focus-visible { background-size: 100% 1px; transition-duration: 420ms; }
+a:hover { text-decoration-color: var(--wave); }
 a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 
 /* ============================================================
@@ -355,33 +362,34 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 .linkrow a { color: var(--wave); }
 .linkrow .sl { color: var(--kei); margin: 0 var(--ma-1); }
 
-/* Three co-equal approaches, as full-width rows: the name sits in the left
-   space, the description reads at a comfortable measure. No numerals — the
-   three are co-equal. The wrapper spans from the rail so the left is used. */
+/* Three co-equal approaches, as rows: name on the left, description on the
+   right at a comfortable measure. Stays right of the spine (no crossing), and
+   the wide description keeps each row only a few lines tall — compact and
+   glanceable. No numerals — the three are co-equal. */
 .approaches { grid-column: rail / -2; min-width: 0; }
 .triad { display: flex; flex-direction: column; }
 .triad > div {
   display: grid;
-  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
-  column-gap: var(--ma-5);
-  padding: var(--ma-4) 0;
+  grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr);
+  column-gap: var(--ma-4);
+  padding: var(--ma-3) 0;
   border-top: 1px solid var(--kei);
-  align-items: start;
+  align-items: baseline;
 }
-.triad > div:last-of-type { border-bottom: 1px solid var(--kei); }
 .triad h3 {
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   letter-spacing: -.005em;
   color: var(--sumi);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
+  text-wrap: balance;
 }
-.triad p { font-size: 15px; line-height: 1.62; color: var(--contour); margin: 0; max-width: 62ch; }
+.triad p { font-size: 14.5px; line-height: 1.58; color: var(--contour); margin: 0; max-width: 70ch; }
 @media (max-width: 1000px) { .approaches { grid-column: main; } }
 @media (max-width: 700px) {
-  .triad > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--ma-2); }
+  .triad > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--ma-1); padding: var(--ma-3) 0; }
   .triad h3 { font-size: 16px; }
 }
 
@@ -435,26 +443,30 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 .nav {
   display: flex;
   align-items: baseline;
-  gap: var(--ma-4);
+  gap: var(--ma-3) var(--ma-4);
   flex-wrap: wrap;
-  padding: var(--ma-5) 0 0;
+  padding: var(--ma-4) 0 0;
 }
 .nav a {
   font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: .14em;
+  font-size: 13px;
+  letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--sea);
-  background-image: linear-gradient(var(--berlin), var(--berlin));
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
 }
-.nav a[aria-current="page"] { color: var(--contour); background-size: 100% 1px; }
+.nav a:hover { color: var(--contour); }
+.nav a[aria-current="page"] { color: var(--contour); border-bottom-color: var(--berlin); }
 .nav .mark {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 22px;
   letter-spacing: -.01em;
   color: var(--sumi);
   margin-right: auto;
-  background: none;
+  text-decoration: none;
+  border-bottom: 0;
 }
 
 .foot {

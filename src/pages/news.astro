@@ -12,7 +12,7 @@ const years = [...new Set(news.map((n) => n.date.slice(0, 4)))];
 
 <Base title="News" description="News and updates from Draco (Yunlong) Xu.">
   <section class="bay">
-    <div class="main newshead">
+    <div class="wide newshead">
       <h1 class="wordmark">News</h1>
       <p class="strip">{news.length} entries · {years[years.length - 1]}—{years[0]}</p>
     </div>

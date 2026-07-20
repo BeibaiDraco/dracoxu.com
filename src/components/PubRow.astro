@@ -62,11 +62,12 @@ const a = item.authors;
   .vol { color: var(--sea); }
   /* Only the linked title carries the growing underline. A bare span must not
      inherit the gradient, or it paints the whole element. */
-  a.ttl { color: var(--contour); background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  a.ttl { color: var(--contour); }
   span.ttl { color: var(--contour); background-image: none; }
   .ven { font-style: italic; }
   /* A venue link stays ink like the rest of the citation — colour never changes. */
-  a.ven { color: var(--contour); background-image: linear-gradient(var(--berlin), var(--berlin)); }
+  a.ven { color: var(--contour); }
+  a.ven em { font-style: italic; }
   a.ven em { font-style: italic; }
 
   .desig {

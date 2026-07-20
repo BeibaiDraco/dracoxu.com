@@ -24,7 +24,7 @@ const pageTitle = title ? `${title} — ${site.short}` : `${site.name}`;
   <div class="spine" id="spine" aria-hidden="true"></div>
 
   <header class="bay">
-    <nav class="nav main" aria-label="Primary">
+    <nav class="nav wide" aria-label="Primary">
       <a class="mark" href="/">{site.short}</a>
       {site.nav.map((n) => (
         <a href={n.href} aria-current={current === n.label ? 'page' : undefined}>{n.label}</a>
@@ -51,7 +51,7 @@ const pageTitle = title ? `${title} — ${site.short}` : `${site.name}`;
     /* The spine sits on the left edge of MAIN and is measured, not guessed. */
     function placeSpine() {
       var spine = document.getElementById('spine');
-      var main = document.querySelector('main .main, main .wide, header .main');
+      var main = document.querySelector('header .wide, main .wide, main .rail');
       if (!spine || !main) return;
       var x = main.getBoundingClientRect().left + window.scrollX;
       spine.style.left = Math.round(x) + 'px';
