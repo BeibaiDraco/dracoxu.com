@@ -1,0 +1,425 @@
+\documentclass[10pt,letterpaper]{article}
+
+% ---------- Encoding & Fonts ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath} % high-quality Times-like text & math
+\usepackage{microtype}           % better kerning & protrusion
+
+% ---------- Page Layout ----------
+\usepackage[margin=0.7in]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\raggedbottom
+
+% ---------- Colors & Links ----------
+\usepackage{xcolor}
+\definecolor{mBlue}{RGB}{51,77,167}
+\usepackage[linktoc=page]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=mBlue,
+  citecolor=mBlue,
+  linkcolor=mBlue,
+}
+
+% ---------- Lists, Tables, Sections ----------
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=*,labelsep=0.5em}
+\setlist[enumerate]{nosep,leftmargin=*,labelsep=0.5em}
+\setlist[description]{nosep,leftmargin=*}
+
+\usepackage{array,tabularx,longtable,booktabs}
+\usepackage{xltabular}
+\usepackage{amsmath,amsfonts}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titlespacing*{\section}{0pt}{0.8em}{0.4em}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titlespacing*{\subsection}{0pt}{0.6em}{0.3em}
+\titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
+\titlespacing*{\subsubsection}{0pt}{0.4em}{0.2em}
+
+% Make subsections labeled (a), (b), ...
+\renewcommand\thesubsection{(\alph{subsection})}
+
+% ---------- Footer ----------
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{\small{Draco (Yunlong)\ Xu}}
+\cfoot{\small{\today}}
+\rfoot{\small{\thepage{} / \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% ---------- Bibliography (kept as in original; not used but harmless) ----------
+\usepackage{bibunits}
+\usepackage[sort&compress,super]{natbib}
+\defaultbibliographystyle{apsrev4-2}
+\setcitestyle{comma}
+\setlength{\bibsep}{0pt}
+\renewcommand{\bibnumfmt}[1]{\ \ \ #1.}
+\renewcommand\refname{\vspace{-7mm}}
+\usepackage{etoolbox}
+\makeatletter
+\newcommand*{\newbibstartnumber}[1]{%
+  \apptocmd{\thebibliography}{%
+    \global\c@NAT@ctr #1\relax
+    \addtocounter{NAT@ctr}{-1}%
+  }{}{}%
+}
+\makeatother
+
+\begin{document}
+
+{\large\bfseries \uppercase{Curriculum Vitae}}\par\vspace{0.6em}
+{\bfseries Draco (Yunlong) \ Xu}\par
+{\itshape Ph.D. Candidate, Computational Neuroscience, University of Chicago}\par\vspace{0.4em}
+% --------- Header / Contact block ----------
+\noindent
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+University of Chicago & Email: \href{mailto:dracoxu@uchicago.edu}{dracoxu@uchicago.edu} \\
+5812 South Ellis Ave. &  \href{mailto:xuyunlongbeibai@gmail.com}{xuyunlongbeibai@gmail.com} \\
+MC 0912, Suite P-400 & Web: \href{https://dracoxu.com}{dracoxu.com} \\
+Chicago, IL 60637 & Phone:+1-(585) 743-8238 \\
+\end{tabularx}
+
+\medskip\hrule\medskip
+
+\section{Research Interests}
+\textit{ Computational Neuroscience; Artificial Intelligence; AI for Science; Philosophy of Perception}
+\\
+\hrule
+
+\section{Education \& Training}
+
+\begin{tabular}{@{}l l l l@{}}
+University of Chicago &US & Computational Neuroscience & Ph.~D. 2023-2028~(Expected)\\
+& & Advisor: \textit{\href{https://brainmath.bsd.uchicago.edu/}{Prof. Brent Doiron}} &  Date of Candidacy: Dec-12-2025\\
+University of Rochester  &US & Honors Math \& Honors Computer Science & B.S. 2020-2023 \\
+& & \textit{minor in Philosophy} & \\
+Fudan University & CN & Mathematics \& Applied Mathematics  & B.S. 2018-2021, transferred (no degree awarded)\\
+\hline
+\end{tabular}
+
+\section{\href{https://scholar.google.com/citations?user=HHSvQskAAAAJ&hl=en}{Publications}}
+{\emph{\textbf{*} denotes equal contribution.}}
+
+
+\subsection{Published:}
+\begin{enumerate}
+
+\item \textbf{\href{https://www.pnas.org/doi/10.1073/pnas.2523217123}{The Structure of Correlated Variability Reflects Task-Relevant Information in Sensory Neurons.}}\\
+Ramanujan Srinath, \textbf{Yunlong Xu}, Douglas A. Ruff, Amy M. Ni, Brent Doiron, Marlene R. Cohen.\\
+\textit{Proceedings of the National Academy of Sciences (PNAS)} \href{https://www.pnas.org/doi/10.1073/pnas.2523217123}{link}\\
+
+\item \textbf{ \href{https://doi.org/10.1038/s41467-025-63818-z}{Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression}}\\
+Jeffrey B. Dunworth*, \textbf{Yunlong Xu*}, Michael Graupner, Bard Ermentrout, Alex D. Reyes, Brent Doiron. \\ Nature Communications (2025; \href{https://doi.org/10.1038/s41467-025-63818-z}{link}).\\
+
+\item \textbf{\href{https://doi.org/10.1016/j.artmed.2024.102923}{Vision-based Estimation of Fatigue and Engagement in Cognitive Training Sessions}}\\
+Yanchen Wang, Adam Turnbull, \textbf{Yunlong Xu}, Kathi Heffner, Feng Vankee Lin, Ehsan Adeli.  Artificial Intelligence In Medicine (2024).\\
+
+\item \textbf{\href{https://www.ijcai.org/proceedings/2023/179}{RuleMatch: matching abstract rules for semi-supervised learning of human standard intelligence tests}}\\
+\textbf{Yunlong Xu}, Lingxiao Yang, Hongzhi You, Zonglei Zhen, Da-Hui Wang, Xiaohong Wan, Xiaohua Xie, Ru-Yuan Zhang, In 32nd International Joint Conference on Artificial Intelligence (IJCAI 2023).\\
+
+\item \textbf{\href{https://dl.acm.org/doi/abs/10.1145/3514221.3526177}{TSUBASA: Climate Network Construction on Historical and Real-Time Data}} \\
+\textbf{Yunlong Xu}*, Jinshu Liu*, Fatemeh Nargesian, In Proceedings of the 2022 International Conference on Management of Data (SIGMOD '22).\\
+
+\item \textbf{\href{https://dl.acm.org/doi/abs/10.1145/3511808.3557166}{TSUPY: Dynamic Climate Network Analysis Library}}\\
+Jinshu Liu, \textbf{Yunlong Xu}, Fatemeh Nargesian, Gourab Ghoshal,  In Proceedings of the 31st ACM International Conference on Information \& Knowledge Management (CIKM '22). \\
+
+
+\item \textbf{ Sampling over Union of Joins}\\
+Yurong Liu, \textbf{Yunlong Xu},  2023 ACM Special Interest Group on Management of Data - Student Competition (SIGMOD-Companion ’23).\\
+
+
+\item \textbf{ Dangoron: Network Construction on Large-scale Time Series Data across Sliding Windows}\\
+\textbf{Yunlong Xu}, Peizhen Yang, Zhengbin Tao,  2023 ACM Special Interest Group on Management of Data - Student Competition (SIGMOD-Companion ’23).\\
+
+
+\vspace{2mm}
+\hrule
+
+\end{enumerate}
+
+
+\subsection{In Preprint/Revision/Press:}
+
+\begin{enumerate}
+
+\item \textbf{\href{https://doi.org/10.64898/2026.01.07.698022}{Convergence of Cortical and Thalamic Origins of Free Behavior Modulation of Mouse Primary Visual Cortex}}\\
+Peijia Yu*, Ha Yun Anna Yoon*, Yuhan Yang*, \textbf{Yunlong Xu}, Olivia Gozel, Gengshuo John Tian, Na Ji, Brent Doiron. (In Review; \href{https://www.biorxiv.org/content/10.64898/2026.01.07.698022v1}{ bioRxiv link})\\
+
+\item \textbf{\href{https://doi.org/10.64898/2026.06.30.735630}{Frontal Eye Field Leads a Distributed Oculomotor Circuit for Abstract Categorical Decisions}}\\
+Ou Zhu, Vinay Shirhatti, Maura Garza, \textbf{Yunlong Xu}, Samuel David, Christopher Hauser, Brent Doiron, David J. Freedman.\\ in Review. \href{https://doi.org/10.64898/2026.06.30.735630}{ bioRxiv link}\\
+
+\item \textbf{Coordinated Response Modulations Enable Flexible Use of Visual Information}\\
+Ramanujan Srinath, \textbf{Yunlong Xu}, Brent Doiron, Marlene R. Cohen. (In Preprint)\\
+
+\item \textbf{
+Decoding Visual Experience and Mapping Semantics through Whole-Brain Analysis Using fMRI Foundation Models}\\
+Yanchen Wang, Adam Turnbull, Tiange Xiang, \textbf{Yunlong Xu}, Sa Zhou, Adnan Masoud, Shekoofeh Azizi, Feng Vankee Lin, Ehsan Adeli. (In Review; \href{https://arxiv.org/abs/2411.07121}{ arXiv link})
+\\
+
+
+
+
+
+\item 
+\textbf{\href{https://arxiv.org/abs/2303.00940}{Sampling over Union of Joins}}\\
+Yurong Liu*, \textbf{Yunlong Xu*}, Fatemeh Nargesian.  (In Preprint)\\
+
+\vspace{2mm}
+\hrule
+
+\end{enumerate}
+
+\subsection{Abstracts:}
+
+\begin{enumerate}
+
+\item \textbf{ Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression}\\
+Jeffrey B. Dunworth*, \textbf{Yunlong Xu*}, Michael Graupner, Bard Ermentrout, Alex D. Reyes, Brent Doiron. \href{https://www.sfn.org/}{the 52nd Society for Neuroscience's Annual Meeting} (selected as a talk at Nanosymposium-Advances in Network Analysis: Theory and Modelling, SFN 24).\\
+
+
+\item \textbf{Quantification of nonsense-free correlation uncovers the interaction between top-down and bottom-up sources of behavioral correlation in mouse V1}\\
+Peijia Yu, Ha Yun Anna Yoon, Yuhan Yang, \textbf{Yunlong Xu}, Olivia Gozel , Na Ji, Brent Doiron. \href{https://www.cosyne.org/}{2025 Computational and Systems Neuroscience} (COSYNE 2025).\\
+
+\item \textbf{Automated estimation of participant engagement during computerized cognitive training from facial expressions in older adults at risk for dementia}\\
+Yanchen Wang*, Adam Turnbull*, \textbf{Yunlong Xu}, Ehsan Adeli, Feng Vankee Lin, \href{https://www.sfn.org/}{the 51st Society for Neuroscience's Annual Meeting} (SFN '23).\\
+
+
+\item \textbf{Investigating temporal evolution of motion direction judgments within a biophysically realistic network}\\
+\textbf{Yunlong Xu}, Duje Tadin, Oh-Sang Kwon, Ruyuan Zhang, \href{https://www.visionsciences.org}{the 2022 Annual Meeting of the Vision Sciences Society} (V-VSS '22).\\
+
+\item \textbf{Data-driven analysis in mice reveals whole-brain dynamics along a known anterior-posterior axis that inform the neural basis of behavior}\\
+\textbf{Yunlong Xu}, Adam Turnbull, Ju Lu, Yi Zuo, Feng Vankee Lin, \href{https://www.sfn.org/}{the 50th Society for Neuroscience's Annual Meeting} (SFN '22).\\
+
+\item \textbf{Investigating temporal evolutions of perceptual choice within biological and artificial neural networks}\\
+\textbf{Yunlong Xu}, Oh-Sang Kwon, Ruyuan Zhang, Duje Tadin, \href{https://www.osafallvisionmeeting.org/}{the 2022 Optica Fall Vision Meeting} (OPTICA FVM '22).\\
+
+\item \textbf{TSUBASA-PLUS: Correlation Matrix Computation on Sliding Windows}\\
+\textbf{Yunlong Xu}, Jinshu Liu, Peizhen Yang, Noah Viso, Fatemeh Nargesian, \href{https://urtc.mit.edu/}{the 2022 IEEE MIT Undergraduate Research Technology Conference} (MIT URTC '22).\\
+
+\item \textbf{Join Size Estimation Over Union of Join Paths}\\
+Yurong Liu*, \textbf{Yunlong Xu}, Fatemeh Nargesian, \href{https://urtc.mit.edu/}{the 2022 IEEE MIT Undergraduate Research Technology Conference} (MIT URTC '22).\\
+
+\vspace{2mm}
+\hrule
+
+\end{enumerate}
+
+\section{Awards \& Grants}
+\begin{itemize}
+
+\item  
+Second place prize at AI for Science Hackathon, Bloomberg and Columbia University, 2026
+
+\item  
+\href{https://www.adaptionlabs.ai/blog/adaption-research-grant-program}{Adaption Labs Research Grant Program}, Adaption Labs, 2026
+\item  
+\href{https://www.kavlifoundation.org/}{2025 NeuroData Discovery Award}, The Kavli Foundation (50,000 USD)
+
+
+\item  NIH R90 - Training Program in Theory and Computation for Next Generation Neuroscientists, 2024-2025
+
+\item  Honorable Mention for the \href{https://cra.org/about/awards/outstanding-undergraduate-researcher-award/}{CRA Outstanding Undergraduate Researcher Award}, Computing Research Association, 2023
+\item \href{https://www.rochester.edu/college/ugresearch/about/student-research-corner/xu-yunlong-draco.html}{Featured Researcher}, University of Rochester, 2023
+  \item  \href{https://www.cvs.rochester.edu/training/makous_prize.html}{Walt and Bobbi Makous Prize}, Center for Visual Science, University of Rochester, 2022
+ \item \href{https://www.rochester.edu/college/student-funding/summer-internship-funding.html}{Summer Internship Funding}, Xerox Foundation- David T. Kearns Fund, 2022
+ \item \href{https://2022.sigmod.org/grants.shtml}{SIGMOD Student Travel Award}, ACM SIGMOD, 2022
+ \item \href{https://www.rochester.edu/college/ugresearch/funding/discover-grant/index.html}{Schwartz Fellowship}, Discover Grant, University of Rochester, 2022
+ \item Alumni Spotlight, Computer Science Research Mentorship Program, Google Research, 2022
+  \item \href{https://www.rochester.edu/college/ugresearch/funding/rpa.html}{Research Presentation Award}*2, University of Rochester, 2022
+  \item \href{https://www.cikm2022.org/nsf-travel-grants}{CIKM 2022 NSF and SIGWeb Travel Grants}, ACM CIKM, 2022
+ \item  Dean’s List, University of Rochester, 2020-2022
+ \item  University scholarship, Fudan University, 2019
+ \item  First-Class Prize (National), Tsinghua Science and Technology Innovation Competition for Adolescents, 2017                                                                              
+ \item  First-Class Prize, Shanghai Science and Technology Innovation Competition for Adolescents, 2017         
+ \item  Second-Class Prize, National Mathematics and Physics Competition (Physics), 2017
+ 
+ 
+% \item  Honored Student, 2015-2019
+
+\end{itemize}
+
+\vspace{10mm}
+\hrule
+
+\section{Research Experience}
+\begin{xltabular}{\textwidth}{@{}l X@{}}
+
+\textbf{2023-Now} & \textbf{Ph.D. Student, Committee on Computational Neuroscience, University of Chicago} \\
+ \href{https://brainmath.bsd.uchicago.edu/}{Doiron Lab} & With Prof. Brent Doiron, I have worked on balanced cortical networks with short-term synaptic depression, extending balanced network models to account for nonlinear, population-wide correlated activity. Previously, I worked on network modeling investigating how attentional coordinated modulations enable flexible use of visual information through rotations in representational space within the visual cortex, in collaboration with Prof. Marlene Cohen's lab; I also built a mechanistic model for noise resilience in retina via disinhibition circuits and neural modulation with Prof. Wei Wei's Lab, and studied directed, feature-specific communication between FEF and LIP (with SC) during rapid categorization with Prof. David Freedman. I am now developing a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, and a data-driven method to test its predictions in multi-area neural recordings. %
+
+\\
+\\
+
+\textbf{2024} & \textbf{Rotation Student, Committee on Computational Neuroscience, University of Chicago} \\
+ \href{https://weilab.uchicago.edu/}{Wei Lab} & With Prof. Wei, I worked on modeling the disinhibitory microcircuit in the retina.   I developed biologically plausible circuit models of retinal motifs to explain how distinct  cell types collectively achieve noise resilience, enabling the retina to function robustly   across diverse noisy environments.
+
+\\
+\\
+
+\textbf{2021 -- 2023} & \textbf{Research Assistant, Dept of Computer Science, University of Rochester} \\
+ \href{https://fnargesian.com/}{Lab Page} & With Prof. Fatemeh Nargesian, I worked on (1) \textit{Complex Network Construction}   \textit{and Analysis }: building algorithms and data platforms for the efficient construction   and analysis of dynamic networks based on the exact and fast calculation of correlation of   large
+time-series; (2) \textit{Data Sampling}: we are building efficient algorithms for i.i.d.   sampling over union of joins. We are also working on tailoring data source distributions for fairness-aware data integration.
+\\
+\\
+\textbf{2021 -- 2023} & \textbf{Research Assistant, Dept of Brain \& Cognitive Sciences, University of Rochester} \\
+ \href{https://www2.bcs.rochester.edu/sites/duje/}{Tadin Lab} & Under the supervision of Prof. Duje Tadin, I worked on (1) \textit{Life-span Model for}   \textit{ Perceptual Decision Making}: It investigates perceptual decision making using different   methods (reaction time and duration thresholds)  under different levels of perceptual     noise to understand the development and decline of perceptual decision making across   the lifespan;  (2)\textit{ Social Effects of Crowd Gaze on Visual Search}: We are interested in  whether and when gaze facilitates visual search. We are also investigating whether   individuals with higher number of autistic traits are less efficient at using crowd gaze cues.   (3) \textit{\textbf{Temporal Evolution of Motion Direction Judgments}}: Perceptual decisions involve   a process that evolves over time until it reaches a decision boundary. It's important to   understand how this process unfolds. I am using deep neural networks and spiking  neural networks for understanding why the motion axis extraction is earlier than   the motion direction extraction in motion direction judgments. 
+ 
+ \\
+\\
+
+\textbf{2021 -- 2023} & \textbf{Research Assistant, Stanford University} \\
+
+ \href{https://www.cogtlab.com/}{CogT Lab} & With Prof. Vankee Lin and Prof. Ehsan Adeli, I worked on (1) investigating stress   neurobiology in both human (FMRI) and animal brains (mesoscopic fluorescent calcium   imaging) with computational approaches(GNN, Dimensionality Reduction, and Representation Learning), and (2) a systematic review of the brain imaging methods used in the   Emotional Well-Being researches.
+\\
+\\
+
+
+\textbf{2020 -- 2023} & \textbf{Research Assistant, Shanghai Jiao Tong University} \\
+ \href{https://ruyuanzhang.github.io/}{CCNN Lab} & Working with Prof. Ruyuan Zhang, I worked on (1) investigating  \textit{the} \textit{Obsessive-Compulsive Disorder Visual Decision-making and Confidence}. We are  building computational models based on the behavioral data and FMRI data. Besides,   we are also working on the (2) \textit{Temporal Evolution of Motion Direction Judgments}   mentioned above. (3) Raven's Progressive Matrices Learning: We are investigating   the semi-supervised learning for Raven's Progressive Matrices task. Our work highlights   the
+importance of task compatible augmentation in various settings, and making important   stride in aligning task settings between humans and machines in abstract inferences.
+ \\
+\\
+\textbf{2023 } & \textbf{Honors Thesis Researcher, Department of Mathematics, University of Rochester} \\
+
+ & With Prof. Alex Iosevich , I worked on supervised algorithms for training   spiking neural networks.
+\\
+\\
+\textbf{2023} & \textbf{Research Assistant, Department of Philosophy, University of Rochester} \\
+
+ & With Prof. Alison Peterman, I investigated the relationships between the   computational models of visual perception and visual phenomenal experience.
+ \\
+ \\
+\hline
+
+\end{xltabular}
+
+\section{Professional Service/Experience}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+
+ \textbf{2026 -- now} & \textbf{Community Leader (Volunteer), Claude Community, Anthropic} \\
+ & Selected to the founding cohort of the Claude Community Leader program (130 inaugural  leaders worldwide). I organize hands-on community events—meetups, workshops, and  build nights—for practitioners at the intersection of computational neuroscience  and AI, fostering durable connections and collaborative building within the vertical.\\
+\\
+
+\textbf{2022 -- 2023} & \textbf{Chair, University of Rochester ACM Student Chapter, Association for Computing Machinery} \\
+ & As the founding chair of the ACM student chapter, I am leading the team in organizing  research talks, workshops, field trips and programming contests. We highlight the  support for students from historically marginalized groups through career counseling,  research mentorship, networking, and building awareness about pathways within the field.\\
+ \\
+\textbf{2024 -- now} & \textbf{Founding Vice Chair, University of Chicago Student Chapter of the Biophysical Society} \\
+ & As a founding officer, I helped establish UChicago's chapter of the international  Biophysical Society—part of the Society's inaugural global student-chapter  program—building a cross-departmental community of undergraduate, graduate, and  postdoctoral researchers in biophysics. I help organize research talks, symposia,  and networking events that promote biophysics as a discipline across campus.\\
+\\
+
+\end{tabularx}
+
+
+\medskip\hrule\medskip
+
+\section{Teaching}
+\vspace{1mm}
+\begin{tabular}{@{}l l@{}}
+\textbf{2025 } & \textbf{Teaching Assistant, Dept of Neurobiology, University of Chicago} \\
+NSCI 22950 &  Computational Modeling of Biological Brain Circuits\\
+\textbf{2024 Fall} & \textbf{Teaching Assistant, Dept of Neurobiology, University of Chicago} \\
+CPNS 30116 & Survey of Systems Neuroscience\\
+\textbf{2022 Fall} & \textbf{Teaching Assistant, Dept of Computer Science, University of Rochester} \\
+ \href{https://www.cs.rochester.edu/~schubert/444/}{CSC-2/444} & Knowledge Representation and Reasoning in AI
+\\
+\textbf{2021 Fall} & \textbf{Teaching Assistant, Dept of Computer Science, University of Rochester} \\
+ CSC-2/480 & Computer Models and Limitations
+\\
+\textbf{2021 Summer} & \textbf{Teaching Assistant, Neuromatch Academy} \\
+ \href{https://portal.neuromatchacademy.org/certificate/1396ef2e-1050-4e45-82de-d95765114bc4}{NMA 2021 } & Deep Learning
+\end{tabular}
+
+\medskip\hrule\medskip
+
+\section{Service}
+\vspace{1mm}
+\begin{tabular}{@{}l l@{}}
+\textbf{NeurIPS 2026} & Reviewer\\
+\textbf{AISTATS 2026} & Reviewer\\
+\textbf{NeurIPS 2025} & Reviewer\\
+\textbf{CogSci 2025} & Reviewer\\
+\textbf{AISTATS 2025} & Reviewer\\
+\textbf{Frontiers in Neurology} & Reviewer\\
+\textbf{ICLR 2024} & Reviewer\\
+\textbf{CogSci 2024} & Reviewer\\
+\textbf{ICML 2024 workshop} & Reviewer \\
+\textbf{NeurIPS 2024} & Reviewer \\
+\textbf{NeurIPS 2023} & Reviewer \\
+\textbf{ICML 2023 workshop} & Reviewer \\
+\end{tabular}
+
+\medskip\hrule\medskip
+
+\section{Synergistic Activities}
+
+\begin{enumerate}
+\item Talks:
+\begin{itemize}
+\item Neuroscience and Machine Learning Workshop, Feb 2026, Chicago, US
+\item Rising Stars in Neuroscience: Bridging Systems, Computation, and Neural Engineering Symposium, May 2025, Chicago, US
+\item Neuroscience and AI Workshop, Jan 2025, Chicago, US
+\item SFN 2024, Oct 2024, Chicago, US
+\item IJCAI 2023, Aug 2023, Macao, CN
+\item Fudan University, Feb 2023, CN (Remote)
+\item Google Research, Oct 2022, US (Remote)
+\item ACM SIGMOD 2022, June 2022, Philadelphia, US
+\item Stanford University, Nov 2021, Stanford, US
+\item Tsinghua University, Aug 2017, Beijing, CN
+\end{itemize}
+\item Conferences:
+\begin{itemize}
+    \item SFN 2024, \textbf{Talk}, 2024
+    \item IJCAI 2023, \textbf{Talk and Poster}, 2023
+    \item NeurIPS 2022, 2022
+    \item Optica Fall Vision Meeting, \textbf{Poster Presenter}, 2022
+    \item SFN 2022, \textbf{Poster Presenter}, 2022
+    \item CIKM 2022, \textbf{Demo Presenter}, 2022
+    \item 2022 IEEE MIT URTC, \textbf{Poster Presenter}, 2022
+    \item Conference on Cognitive Computational Neuroscience 2022
+    \item Cognitive Science Society Conference, 2022
+    \item 32nd Center for Visual Science Symposium, 2022
+    \item VSS 2022, \textbf{Poster Presenter}, 2022
+    \item SIGMOD 2022 \textbf{(Talk and Poster)}, 2022\\
+    \textit{TSUBASA: Climate Network Construction on Historical and Real-Time Data}
+    \item Undergraduate Research Expo 2022, \textbf{Poster Presenter} , 2022\\
+    \textit{TSUBASA: Climate Network Construction on Historical and Real-Time Data}
+    \item International Conference on Very Large Data Bases, 2021
+    \item  Undergraduate Student Representative, 2nd World Laureates Forum, 2019
+    \item  Tsinghua Science and Technology Innovation Conference \textbf{(Oral)}, 2017
+    \item  Shanghai Science and Technology Innovation Conference \textbf{(Poster)}, 2017
+\end{itemize}
+
+\item Was student in:
+\begin{itemize}
+     \item  \href{https://research.google/outreach/csrmp/}{Google’s CS Research Mentorship Program      }, 2021 Fall
+     \item  \href{https://www.most.gov.tw/canada/en/detail/5ef790bc-c77c-44be-a9b1-0eaaa731502b}{Machine Learning Summer School TAIPEI}, 2021 Summer
+    \item \href{https://yunlongxucom.files.wordpress.com/2021/09/esslli21.pdf}{European Summer School in Logic, Language and Information}, 2021 Summer
+    \item \href{https://neuromatch.io/}{Neuromatch Academy  }, 2020 Summer
+    \item \href{https://thomisticinstitute.org/upcoming-events/12th-apw-evil}{12th Annual Aquinas Philosophy Workshop on Evil}, 2023 Summer, Newburgh, NY, US
+    
+    \item \href{https://www.compneuronrsn.org/}{Mathematical Methods in Computational Neuroscience}, 2023 Summer, Molde, Norway
+    \item \href{https://www.nengo.ai/summer-school/}{Nengo Neuromorphic Summer School}, 2023 Summer, Waterloo, Canada
+    \item \href{https://musicinthebrain.au.dk/display/artikel/european-summer-school-in-sensory-neuroscience}{European Summer School in Sensory Neuroscience}, 2023 Summer, Pisa, Italy
+    \item \href{https://summerschool.uva.nl/content/summer-courses/abc-summerschool/neuro-ai.html}{Neuro-AI: Harnessing AI to understand computation in mind and brain}, 2024 Summer, Amsterdam, Netherlands
+    \item \href{https://neurodatawithoutborders.github.io/nwb_hackathons/HCK21_2024_Janelia_NDRH/}{NeuroDataReHack 2024}, 2024 Summer, Janelia Campus, Ashburn, VA, US
+    \item \href{https://groups.oist.jp/ocnc/program-2025}{OIST Computational Neuroscience Course}, 2025 Summer, OIST, Onna, Okinawa, Japan
+\end{itemize}
+
+\item 
+\begin{itemize}
+     \item  \href{https://academy.climatematch.io/about}{Outreach Ambassadors}, Climatematch Academy, 2023 Summer
+     \item  Full Member, Sigma Xi, The Scientific Research Honor Society
+\end{itemize}
+
+\end{enumerate}
+
+\hrule
+
+\end{document}

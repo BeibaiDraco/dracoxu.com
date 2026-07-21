@@ -67,6 +67,29 @@ the page is wrong.
 Every citation is checked against Crossref, and every external URL is checked live, before
 it ships. `publications.js` is downstream of the CV, not the other way round.
 
+## Updating
+
+A push to `main` is a publication. Workers Builds rebuilds and the change is live
+in under a minute — there is no staging step and no confirmation.
+
+| What changed | Where | Then |
+| --- | --- | --- |
+| A news item, an award, a project blurb, a link | `src/data/*.js` | push |
+| A publication | `src/data/publications.js` **and** `assets/cv.tex` | `npm run cv`, push both |
+| The CV only | `assets/cv.tex` | `npm run cv`, push |
+| Layout, type, colour | `src/styles/hakumei.css` | `npm run build`, look at it, push |
+
+`npm run cv` compiles `assets/cv.tex` straight to `public/cv.pdf` with tectonic.
+The `.tex` is the source of record; `public/cv.pdf` is a build artefact that
+happens to be committed, because the site serves it and CI does not run LaTeX.
+**Never edit the PDF, and never let the two drift** — `publications.js` and
+`cv.tex` list the same papers and must agree.
+
+From another machine, or with no machine: any commit that lands on `main`
+deploys, so editing a data file through GitHub's web editor is a complete and
+legitimate workflow for text changes. Only the CV needs a local toolchain, and
+only because it needs LaTeX.
+
 ## Deploy
 
 Two Workers on one Cloudflare account.
