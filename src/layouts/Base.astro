@@ -2,7 +2,7 @@
 import '../styles/hakumei.css';
 import { site } from '../data/site.js';
 
-const { title, description = 'Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, studying computation, perception, and experience.', current = '' } = Astro.props;
+const { title, description = 'Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, studying computation, perception, and experience.', current = '', noindex = false } = Astro.props;
 const pageTitle = title
   ? `${title} — ${site.short}`
   : `${site.name} — Computational Neuroscience, University of Chicago`;
@@ -17,7 +17,14 @@ const ogImage = new URL('/og.png', Astro.site).href;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  {/* The 404 body is reachable at /404/ as an ordinary 200 page. Without this
+      a search engine indexes it as a real page — a classic soft 404. */}
+  {noindex && <meta name="robots" content="noindex, follow" />}
   <link rel="canonical" href={canonical} />
+  {/* Sections on /research/ and /stage/ start transparent and are revealed by
+      script. If that script never arrives, the class below is never set and
+      nothing is hidden in the first place. */}
+  <script is:inline>document.documentElement.classList.add('js');</script>
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
@@ -32,6 +39,7 @@ const ogImage = new URL('/og.png', Astro.site).href;
   <noscript><style>.fade{opacity:1 !important}</style></noscript>
 </head>
 <body>
+  <a class="skip" href="#content">Skip to content</a>
   <div class="spine" id="spine" aria-hidden="true"></div>
 
   <header class="bay">

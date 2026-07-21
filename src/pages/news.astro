@@ -31,7 +31,7 @@ const years = [...new Set(news.map((n) => n.date.slice(0, 4)))];
                 <p class="dated-what">{n.body}</p>
                 {n.links && (
                   <p class="linkrow">
-                    {n.links.map((l, i) => (<>{i > 0 && <span class="sl">·</span>}<a href={l.href}>{l.label}</a></>))}
+                    {n.links.map((l, i) => (<>{i > 0 && <span class="sl" aria-hidden="true">·</span>}<a href={l.href}>{l.label}</a></>))}
                   </p>
                 )}
               </div>

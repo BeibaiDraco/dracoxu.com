@@ -159,14 +159,14 @@ export const abstracts = [
   {
     id: 'vss-2022', year: '2022',
     venueHref: 'https://www.visionsciences.org',
-    authors: [XU, { n: 'Tadin, D.' }, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.' }],
+    authors: [XU, { n: 'Tadin, D.' }, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.-Y.' }],
     title: 'Investigating temporal evolution of motion direction judgments within a biophysically realistic network',
     venue: 'Vision Sciences Society (V-VSS) 2022',
   },
   {
     id: 'optica-2022', year: '2022',
     venueHref: 'https://www.osafallvisionmeeting.org/',
-    authors: [XU, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.' }, { n: 'Tadin, D.' }],
+    authors: [XU, { n: 'Kwon, O.-S.' }, { n: 'Zhang, R.-Y.' }, { n: 'Tadin, D.' }],
     title: 'Investigating temporal evolutions of perceptual choice within biological and artificial neural networks',
     venue: 'Optica Fall Vision Meeting 2022',
   },

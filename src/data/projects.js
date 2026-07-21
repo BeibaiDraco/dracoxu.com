@@ -101,10 +101,10 @@ export const projects = [
     plate: 'corr',
     panels: ['Computational Neuroscience'],
     papers: ['v1-biorxiv-2026'],
-    blurb: 'Whether face-motion encoding in V1 is driven bottom-up from LGN or top-down from cortex.',
+    blurb: 'Which pathways carry uninstructed facial movement into V1 — and why the answer turned out to be both of them.',
     with: 'In collaboration with Peijia Yu (UChicago) and Na Ji (UC Berkeley)',
     body: [
-      `This study investigates the relationship between face motion and neural activity in the primary visual cortex (V1) and its lateral geniculate nucleus (LGN) afferents using two-photon imaging in mice. Results show a robust correlation between face motion and V1 neuronal activity, particularly during visually evoked periods, while LGN boutons are mostly silent during non-evoked intervals but exhibit significant correlations with face motion during visual stimulation. These findings suggest that the encoding of face motion in V1 during visual stimulation is primarily driven by bottom-up LGN inputs rather than top-down cortical inputs, offering new insights into the circuit mechanisms linking non-visual behavioral variables to cortical activity.`,
+      `This study asks which circuit pathways merge sensory input and uninstructed free behavior, combining two-photon calcium imaging of primary visual cortex (V1) neurons and of thalamo-cortical LGN boutons with simultaneous measurement of facial movement in mice. Once spurious time-structured “nonsense” correlations are controlled for, both eye movements and non-ocular facial movements are represented in LGN boutons and in V1 neurons during grating stimulation, and the correlation between V1 activity and facial movement is larger under grating than under blank stimulation — consistent with LGN input and modulation from higher brain centers being integrated at the same time. The results indicate a convergence in V1 of a persistent top-down pathway and a stimulus-gated bottom-up pathway, rather than either one acting alone.`,
     ],
     links: [],
   },

@@ -37,7 +37,7 @@ import { projects } from '../data/projects.js';
           {p.inprep && <p class="pnote">{p.inprep}</p>}
           {p.links.length > 0 && (
             <p class="linkrow">
-              {p.links.map((l, j) => (<>{j > 0 && <span class="sl">/</span>}<a href={l.href}>{l.label}</a></>))}
+              {p.links.map((l, j) => (<>{j > 0 && <span class="sl" aria-hidden="true">/</span>}<a href={l.href}>{l.label}</a></>))}
             </p>
           )}
         </div>

@@ -296,15 +296,34 @@ a {
 a:hover { text-decoration-color: var(--wave); }
 a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 
+/* Keyboard users land on the nav on every page; this lets them jump the six
+   nav links and reach the page itself. Invisible until it has focus. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  color: var(--wave);
+  border: 1px solid var(--berlin);
+  padding: var(--ma-2) var(--ma-3);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  text-decoration: none;
+}
+.skip:focus { left: var(--ma-3); top: var(--ma-3); }
+
 /* ============================================================
    ENTRANCE — text fades only. No translate, no scale, no blur.
    ============================================================ */
-.fade { opacity: 0; transition: opacity 700ms var(--settle); }
-.fade.shown { opacity: 1; }
+/* Gated on .js, set by an inline script in <head>. Content is never hidden by
+   a stylesheet that outlives the script meant to reveal it. */
+.js .fade { opacity: 0; transition: opacity 700ms var(--settle); }
+.js .fade.shown { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-  .fade { opacity: 1 !important; }
+  .js .fade { opacity: 1 !important; }
   .horizon { transform: scaleX(1) !important; }
 }
 
@@ -382,7 +401,11 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
   line-height: 1.9;
 }
 .linkrow a { color: var(--wave); }
-.linkrow .sl { color: var(--kei); margin: 0 var(--ma-1); }
+/* A separator is punctuation between links, not a word. --kei is a hairline
+   colour and reads at about 1.4:1 against the page, so it is spoken by a
+   screen reader while being nearly invisible to everyone else. Hide it from
+   the accessibility tree and lift it to a colour that is actually legible. */
+.linkrow .sl { color: var(--sea); margin: 0 var(--ma-1); }
 
 /* Notation key. Wherever a page uses the * or a plate, it says what they mean
    on that same page — a reader who lands deep should never have to go looking. */

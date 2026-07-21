@@ -24,7 +24,7 @@ const a = item.authors;
     {item.links && item.links.length > 0 && (
       <p class="lnks">
         {item.links.map((l, i) => (
-          <>{i > 0 && <span class="sep"> · </span>}<a href={l.href}>[{l.label}]</a></>
+          <>{i > 0 && <span class="sep" aria-hidden="true"> · </span>}<a href={l.href}>[{l.label}]</a></>
         ))}
       </p>
     )}

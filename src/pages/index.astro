@@ -60,7 +60,7 @@ const personLd = {
       </p>
       <p class="identity">I study the {site.identity}.</p>
       <p class="linkrow">
-        {site.links.map((l, i) => (<>{i > 0 && <span class="sl">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>))}<span class="sl">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
+        {site.links.map((l, i) => (<>{i > 0 && <span class="sl" aria-hidden="true">/</span>}<a href={l.href} rel="me noopener">{l.label}</a></>))}<span class="sl" aria-hidden="true">/</span><span class="seal-inline" aria-hidden="true"></span><a href="/cv.pdf">CV (PDF, {site.cvUpdated})</a>
       </p>
       <p class="mail"><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
       <div class="prose bio">
@@ -174,7 +174,7 @@ const personLd = {
             <p class="dated-what">{n.body}</p>
             {n.links && (
               <p class="linkrow">
-                {n.links.map((l, i) => (<>{i > 0 && <span class="sl">·</span>}<a href={l.href}>{l.label}</a></>))}
+                {n.links.map((l, i) => (<>{i > 0 && <span class="sl" aria-hidden="true">·</span>}<a href={l.href}>{l.label}</a></>))}
               </p>
             )}
           </div>
