@@ -211,8 +211,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ============================================================
    TYPE
    ============================================================ */
-/* Section labels — darker and a touch larger so they actually read as
-   section markers, not faint captions. */
+/* Small mono eyebrow — for sub-labels and meta, never for a section title. */
 .lbl {
   font-family: var(--mono);
   font-size: 12px;
@@ -221,6 +220,29 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--contour);
   margin: 0 0 var(--ma-3);
   font-variant-numeric: tabular-nums;
+}
+
+/* SECTION TITLES — a heading must outrank the body it introduces.
+   Page title > section title > body: 44 / 22 / 17.5. */
+h2.lbl {
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -.005em;
+  text-transform: none;
+  color: var(--sumi);
+  line-height: 1.25;
+  margin: 0 0 var(--ma-3);
+}
+h2.lbl .cnt { font-size: 17px; color: var(--sea); }
+
+/* The lead paragraph that opens a section — larger than body, so the
+   opening carries weight instead of drifting. */
+.lead p {
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 64ch;
+  color: var(--contour);
 }
 .num {
   font-family: var(--mono);
@@ -335,8 +357,8 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
   color: var(--sea);
   font-variant-numeric: tabular-nums;
 }
-.dated-what { font-size: 15.5px; line-height: 1.42; color: var(--contour); }
-.dated-detail { font-size: 13px; line-height: 1.45; color: var(--sea); margin: 2px 0 0; }
+.dated-what { font-size: 16.5px; line-height: 1.45; color: var(--contour); }
+.dated-detail { font-size: 14.5px; line-height: 1.55; color: var(--sea); margin: 2px 0 0; }
 .dated-where {
   font-family: var(--mono);
   font-size: 11px;
@@ -378,7 +400,7 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
 }
 .triad h3 {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
   letter-spacing: -.005em;
   color: var(--sumi);
@@ -386,7 +408,7 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
   line-height: 1.25;
   text-wrap: balance;
 }
-.triad p { font-size: 14.5px; line-height: 1.58; color: var(--contour); margin: 0; max-width: 70ch; }
+.triad p { font-size: 16px; line-height: 1.62; color: var(--contour); margin: 0; max-width: 70ch; }
 @media (max-width: 1000px) { .approaches { grid-column: main; } }
 @media (max-width: 700px) {
   .triad > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--ma-1); padding: var(--ma-3) 0; }
@@ -399,7 +421,7 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: var(--ma-2) var(--ma-4);
 }
-.names li { font-size: 15px; line-height: 1.4; }
+.names li { font-size: 16px; line-height: 1.45; }
 .names .inst {
   font-family: var(--mono);
   font-size: 10.5px;
@@ -421,8 +443,8 @@ a:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
   transition: background var(--dur-out) var(--settle);
 }
 .row:hover { background: var(--shoal); transition-duration: var(--dur-in); }
-.row-t { font-size: 16px; line-height: 1.38; margin: 0 0 3px; color: var(--contour); }
-.row-a { font-size: 13px; line-height: 1.5; color: var(--sea); margin: 0; }
+.row-t { font-size: 17px; line-height: 1.4; margin: 0 0 3px; color: var(--contour); }
+.row-a { font-size: 14.5px; line-height: 1.55; color: var(--sea); margin: 0; }
 .row-a b { color: var(--contour); font-weight: 600; }
 .row-m {
   font-family: var(--mono);
