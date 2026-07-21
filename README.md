@@ -92,11 +92,16 @@ integration makes it an ordinary remote, so they can be reconciled rather than
 hand-copied. Overleaf is upstream: pull before editing, push corrections back.
 
 ```sh
-git clone https://git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv  # once
+git clone https://git@git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv  # once
 npm run cv:sync    # which side is ahead, and how
 npm run cv:pull    # take Overleaf's version and rebuild the PDF
 npm run cv:push    # send a correction made here up to Overleaf
 ```
+
+The username must be the literal `git` — an email address gets a 403 — and the
+password is a Git authentication token from `overleaf.com/user/settings`, not
+the account password. Tokens expire after a year, so when the sync one day
+fails with a 403, that is why.
 
 Overleaf's *GitHub synchronization* is a different feature and cannot be used:
 it requires a repository dedicated to the Overleaf project and refuses to link

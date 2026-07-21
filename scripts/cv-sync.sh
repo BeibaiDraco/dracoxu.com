@@ -12,11 +12,14 @@
 #
 # One-time setup, done by a human because it involves a password prompt:
 #
-#   git clone https://git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv
+#   git clone https://git@git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv
 #
-# Overleaf asks for a token, not the account password — generate one under
-# Account Settings > Git integration. macOS Keychain stores it after the first
-# clone, so nothing here ever handles the secret.
+# The username must be the literal string "git" — an email address is rejected
+# with a 403 — which is why it is baked into the URL above. The password is a
+# Git authentication token from overleaf.com/user/settings, NOT the account
+# password; Overleaf stopped accepting passwords for git. Tokens last a year.
+# macOS Keychain stores it after the first clone, so nothing here ever handles
+# the secret.
 
 set -euo pipefail
 
@@ -29,10 +32,12 @@ if [ ! -d "$CLONE/.git" ]; then
   cat >&2 <<EOF
 No Overleaf clone at $CLONE.
 
-Run this once, in your own terminal, and paste the token when git asks for a
-password (Overleaf > Account Settings > Git integration > generate token):
+Run this once, in your own terminal. The username is already in the URL and
+must be the literal "git"; when asked for a password paste a Git
+authentication token from overleaf.com/user/settings (NOT your Overleaf
+password — Overleaf stopped accepting those for git):
 
-  git clone https://git.overleaf.com/$PROJECT_ID $CLONE
+  git clone https://git@git.overleaf.com/$PROJECT_ID $CLONE
 
 Then run this script again.
 EOF
