@@ -80,10 +80,28 @@ in under a minute — there is no staging step and no confirmation.
 | Layout, type, colour | `src/styles/hakumei.css` | `npm run build`, look at it, push |
 
 `npm run cv` compiles `assets/cv.tex` straight to `public/cv.pdf` with tectonic.
-The `.tex` is the source of record; `public/cv.pdf` is a build artefact that
-happens to be committed, because the site serves it and CI does not run LaTeX.
-**Never edit the PDF, and never let the two drift** — `publications.js` and
-`cv.tex` list the same papers and must agree.
+`public/cv.pdf` is a build artefact that happens to be committed, because the
+site serves it and CI does not run LaTeX. **Never edit the PDF**, and never let
+`publications.js` and `cv.tex` drift — they list the same papers and must agree.
+
+### The CV also lives on Overleaf
+
+The CV is written on [Overleaf](https://www.overleaf.com/project/6239ef0843aa8ff57fbe9c64)
+and published from here, so two copies exist and can diverge. Overleaf's Git
+integration makes it an ordinary remote, so they can be reconciled rather than
+hand-copied. Overleaf is upstream: pull before editing, push corrections back.
+
+```sh
+git clone https://git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv  # once
+npm run cv:sync    # which side is ahead, and how
+npm run cv:pull    # take Overleaf's version and rebuild the PDF
+npm run cv:push    # send a correction made here up to Overleaf
+```
+
+Overleaf's *GitHub synchronization* is a different feature and cannot be used:
+it requires a repository dedicated to the Overleaf project and refuses to link
+one that already has other files in it. Git integration has no such limit.
+Both are premium; UChicago provides Overleaf Professional to all members.
 
 From another machine, or with no machine: any commit that lands on `main`
 deploys, so editing a data file through GitHub's web editor is a complete and

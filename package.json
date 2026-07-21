@@ -8,7 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "astro build && wrangler deploy",
-    "cv": "tectonic -X compile assets/cv.tex --outdir public"
+    "cv": "tectonic -X compile assets/cv.tex --outdir public",
+    "cv:sync": "./scripts/cv-sync.sh",
+    "cv:pull": "./scripts/cv-sync.sh pull",
+    "cv:push": "./scripts/cv-sync.sh push"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
