@@ -1,10 +1,22 @@
 ---
-const { kind, seed, large = false, alt = '' } = Astro.props;
+/* The plates are generated marks keyed to the KIND of work, not figures taken
+   from the papers — so by default they are decorative and hidden from screen
+   readers, which would otherwise hear every adjacent title twice. */
+const { kind, seed, large = false, alt = '', decorative = false } = Astro.props;
 ---
-<canvas
-  class={large ? 'plate plate-lg' : 'plate'}
-  data-plate={kind}
-  data-seed={seed}
-  role="img"
-  aria-label={alt}
-></canvas>
+{decorative ? (
+  <canvas
+    class={large ? 'plate plate-lg' : 'plate'}
+    data-plate={kind}
+    data-seed={seed}
+    aria-hidden="true"
+  ></canvas>
+) : (
+  <canvas
+    class={large ? 'plate plate-lg' : 'plate'}
+    data-plate={kind}
+    data-seed={seed}
+    role="img"
+    aria-label={alt}
+  ></canvas>
+)}

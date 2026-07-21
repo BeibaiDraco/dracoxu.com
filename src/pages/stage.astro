@@ -3,13 +3,22 @@ import Base from '../layouts/Base.astro';
 import { site } from '../data/site.js';
 
 const record = [
-  { when: '2023 —', what: 'Windmill Chinese Drama Club', where: 'Chicago' },
-  { when: '2018 — 2021', what: 'Professional actor training, Fudan Drama Troupe', where: 'Shanghai' },
+  { when: '2023 —', what: 'Windmill Chinese Drama Club', where: 'Chicago',
+    logo: '/logo-windmill.jpg', logoAlt: 'Windmill Chinese Drama Club emblem' },
+  { when: '2018 — 2021', what: 'Professional actor training, Fudan Drama Troupe', where: 'Shanghai',
+    logo: '/logo-fudan-drama.jpg', logoAlt: 'Fudan Drama Troupe emblem' },
+];
+
+const stills = [
+  { src: '/stage-ensemble.jpg', alt: 'A tight cluster of actors seen from behind, gathered centre stage against a dark wall.' },
+  { src: '/stage-duet.jpg', alt: 'Two actors in a scene — one seated, looking up at the other, who stands over him in red.' },
+  { src: '/stage-reading.jpg', alt: 'Six actors in a line mid-scene, two of them reading from papers.' },
+  { src: '/stage-cast.jpg', alt: 'The company gathered for a group photograph in the black-box theatre after a performance.' },
 ];
 ---
 
 <Base title="Stage" current="Stage"
-  description="Acting work. The threshold studied in cortex, worked from the other side.">
+  description="Stage acting — the Fudan Drama Troupe and the Windmill Chinese Drama Club in Chicago. The threshold studied in cortex, worked from the other side.">
   <section class="bay">
     <div class="wide stage-head">
       <span class="seal" aria-hidden="true"></span>
@@ -29,11 +38,11 @@ const record = [
       </p>
       <p>
         I trained as an actor at the Fudan Drama Troupe and perform with the Windmill Chinese
-        Drama Club in Chicago. Three words on the wall of that work, and of this site:
+        Drama Club in Chicago. Four words on the wall of that work, and of this site:
       </p>
     </div>
     <div class="note">
-      <p class="lbl">A word with three readings</p>
+      <p class="lbl" style="margin-bottom:var(--ma-2)">A word with three readings</p>
       <ul class="readings">
         <li>the stage one acts on</li>
         <li>a stage of a process</li>
@@ -56,36 +65,64 @@ const record = [
   <section class="bay fade">
     <div class="wide">
       {record.map((r) => (
-        <div class="row stage-row">
-          <div class="row-when">{r.when}</div>
-          <div><p class="row-t">{r.what}</p></div>
-          <div class="row-m">{r.where}</div>
+        <div class="troupe">
+          <img class="troupe-logo" src={r.logo} alt={r.logoAlt} width="64" height="64" loading="lazy" />
+          <div>
+            <p class="row-t">{r.what}</p>
+            <p class="troupe-meta">{r.when} · {r.where}</p>
+          </div>
         </div>
       ))}
     </div>
+    <div class="horizon"></div>
   </section>
 
+  <!-- STILLS -->
   <section class="bay fade">
     <div class="rail"><span class="num">03</span></div>
+    <div class="wide"><h2 class="lbl">Stills</h2></div>
+  </section>
+  <section class="bay fade">
     <div class="wide">
-      <h2 class="lbl">Stills</h2>
-      <p class="prose" style="color:var(--sea)">Photographs to come. Better empty than padded.</p>
-    </div>
-    <div class="note">
-      <div class="slot" data-slot="Reserved"></div>
+      <div class="stills">
+        {stills.map((s) => (
+          <figure class="still">
+            <img src={s.src} alt={s.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .stage-head { display: flex; flex-direction: column; gap: var(--ma-4); padding-top: var(--ma-6); }
-  .stage-title { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+  .stage-head { padding-top: var(--ma-4); display: flex; flex-direction: column; gap: var(--ma-4); }
+  .stage-title { margin: 0; }
   .readings { display: flex; flex-direction: column; gap: var(--ma-2); }
   .readings li { font-size: 14px; color: var(--sea); line-height: 1.5; }
-  .stage-row { grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 9rem); }
-  .row-when {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
-    color: var(--sea); font-variant-numeric: tabular-nums;
+
+  .troupe {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    column-gap: var(--ma-4);
+    align-items: center;
+    padding: var(--ma-3) 0;
+    border-bottom: 1px solid var(--kei);
   }
-  @media (max-width: 760px) { .stage-row { grid-template-columns: 7rem minmax(0, 1fr); } }
+  .troupe-logo { width: 64px; height: 64px; object-fit: contain; }
+  .troupe-meta {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--sea); margin: var(--ma-1) 0 0;
+  }
+
+  .stills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--ma-3);
+  }
+  .still { margin: 0; }
+  .still img {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border: 1px solid var(--kei);
+  }
 </style>
