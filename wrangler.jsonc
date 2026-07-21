@@ -5,5 +5,12 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
-  }
+  },
+  // Custom Domains: Cloudflare creates the DNS records and the certificate.
+  // A Custom Domain matches the hostname exactly, so www is listed separately
+  // or people who type it get nothing. Every page canonicalises to the apex.
+  "routes": [
+    { "pattern": "dracoxu.com", "custom_domain": true },
+    { "pattern": "www.dracoxu.com", "custom_domain": true }
+  ]
 }
