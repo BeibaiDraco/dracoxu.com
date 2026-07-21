@@ -62,6 +62,8 @@ export const site = {
     { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
     { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
     { when: '2023', what: 'Honorable Mention, Outstanding Undergraduate Researcher Award', who: 'Computing Research Association', href: 'https://cra.org/about/awards/outstanding-undergraduate-researcher-award/' },
+    { when: '2022', what: 'Walt and Bobbi Makous Prize', who: 'Center for Visual Science, University of Rochester', href: 'https://www.cvs.rochester.edu/training/makous_prize.html' },
+    { when: '2022', what: 'Schwartz Fellowship', who: 'Discover Grant, University of Rochester', href: 'https://www.rochester.edu/college/ugresearch/funding/discover-grant/index.html' },
   ],
 
   collaborators: [
