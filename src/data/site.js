@@ -32,8 +32,8 @@ export const site = {
      Rendered with set:html. Wei Wei dropped from the main paragraph (she stays
      a linked collaborator below). */
   intro: [
-    `I am Draco (Yunlong) Xu, a PhD candidate in the Computational Neuroscience (CNS) program at the <a href="https://www.uchicago.edu/">University of Chicago</a>, advised by <a href="https://brainmath.bsd.uchicago.edu/">Prof. Brent Doiron</a>. I am also collaborating with <a href="http://www.cohenlab.com/">Prof. Marlene Cohen's lab</a> and <a href="https://freedmanlab.uchicago.edu/">Prof. David J. Freedman's lab</a>. My research is supported by the Kavli Foundation.`,
-    `Before moving to Chicago, I was an undergraduate at the University of Rochester, where I received two honors B.S. degrees in Computer Science and Mathematics, and a minor in Philosophy. I was advised by <a href="https://fnargesian.com/">Prof. Fatemeh Nargesian</a> (database and data management), <a href="https://www2.bcs.rochester.edu/sites/duje/">Prof. Duje Tadin</a> (Brain and Cognitive Sciences), <a href="https://people.math.rochester.edu/faculty/iosevich/">Prof. Alex Iosevich</a> (Applied Math), and Prof. Alison Peterman (Philosophy). I was affiliated with the <a href="https://www.cogtlab.com/">CogT Lab</a> at Stanford University, advised by <a href="https://profiles.stanford.edu/f-lin">Prof. Vankee Lin</a> and <a href="https://stanford.edu/~eadeli/">Prof. Ehsan Adeli</a>, and the CCNN Lab at SJTU, advised by <a href="https://ruyuanzhang.github.io/index.html">Prof. Ruyuan Zhang</a>. I was also founding chair of the University of Rochester ACM Student Chapter.`,
+    `I am Draco (Yunlong) Xu, a PhD candidate in the Computational Neuroscience (CNS) program at the <a href="https://www.uchicago.edu/">University of Chicago</a>, advised by <a href="https://brainmath.bsd.uchicago.edu/">Prof. Brent Doiron</a>. I am also collaborating with <a href="http://www.cohenlab.com/">Prof. Marlene Cohen’s lab</a> and <a href="https://monkeylogic.uchicago.edu/">Prof. David J. Freedman’s lab</a>. My research is supported by the Kavli Foundation.`,
+    `Before moving to Chicago, I was an undergraduate at the University of Rochester, where I received two honors B.S. degrees in Computer Science and Mathematics, and a minor in Philosophy. I was advised by <a href="https://fnargesian.com/">Prof. Fatemeh Nargesian</a> (database and data management), <a href="https://www2.bcs.rochester.edu/sites/duje/">Prof. Duje Tadin</a> (Brain and Cognitive Sciences), <a href="https://alexiosevich.com/">Prof. Alex Iosevich</a> (Applied Math), and Prof. Alison Peterman (Philosophy). I was affiliated with the <a href="https://cogtlab.stanford.edu/">CogT Lab</a> at Stanford University, advised by <a href="https://profiles.stanford.edu/f-lin">Prof. Vankee Lin</a> and <a href="https://stanford.edu/~eadeli/">Prof. Ehsan Adeli</a>, and the CCNN Lab at SJTU, advised by <a href="https://ruyuanzhang.github.io/index.html">Prof. Ruyuan Zhang</a>. I was also founding chair of the University of Rochester ACM Student Chapter.`,
     `I studied as an undergraduate at <a href="https://en.wikipedia.org/wiki/Fudan_University">Fudan University</a>, majoring in Mathematics and Applied Mathematics, before transferring to the University of Rochester.`,
   ],
   closing: 'Please drop me an email if you want to chat.',
@@ -67,16 +67,21 @@ export const site = {
   collaborators: [
     { name: 'Brent Doiron', where: 'University of Chicago', role: 'advisor', href: 'https://brainmath.bsd.uchicago.edu/' },
     { name: 'Marlene R. Cohen', where: 'University of Chicago', href: 'http://www.cohenlab.com/' },
-    { name: 'David J. Freedman', where: 'University of Chicago', href: 'https://freedmanlab.uchicago.edu/' },
+    { name: 'David J. Freedman', where: 'University of Chicago', href: 'https://monkeylogic.uchicago.edu/' },
     { name: 'Wei Wei', where: 'University of Chicago', href: 'https://weilab.uchicago.edu/' },
-    { name: 'Ramanujan Srinath', where: 'University of Chicago' },
-    { name: 'Na Ji', where: 'UC Berkeley' },
+    { name: 'Ramanujan Srinath', where: 'University of Chicago', href: 'https://www.ramsrinath.com/' },
+    { name: 'Peijia Yu', where: 'University of Chicago', href: 'https://scholar.google.com/citations?user=-1hx3PoAAAAJ&hl=en' },
+    { name: 'Vincenzo Vitelli', where: 'University of Chicago', href: 'https://home.uchicago.edu/~vitelli/' },
+    { name: 'Sihan Chen', where: 'University of Chicago', href: 'https://sihanchenphysics.github.io/' },
+    { name: 'Na Ji', where: 'UC Berkeley', href: 'https://www.jilab.net/' },
     { name: 'Fatemeh Nargesian', where: 'University of Rochester', href: 'https://fnargesian.com/' },
     { name: 'Duje Tadin', where: 'University of Rochester', href: 'https://www2.bcs.rochester.edu/sites/duje/' },
-    { name: 'Alex Iosevich', where: 'University of Rochester', href: 'https://people.math.rochester.edu/faculty/iosevich/' },
-    { name: 'Alison Peterman', where: 'University of Rochester' },
+    { name: 'Alex Iosevich', where: 'University of Rochester', href: 'https://alexiosevich.com/' },
+    { name: 'Alison Peterman', where: 'University of Rochester', href: 'https://www.rochester.edu/college/faculty/alisonpeterman/' },
+    { name: 'Yurong Liu', where: 'New York University', href: 'https://lyrain2001.github.io/' },
     { name: 'Feng Vankee Lin', where: 'Stanford University', href: 'https://profiles.stanford.edu/f-lin' },
     { name: 'Ehsan Adeli', where: 'Stanford University', href: 'https://stanford.edu/~eadeli/' },
+    { name: 'Yanchen Wang', where: 'Stanford University', href: 'https://ppwangyc.github.io/' },
     { name: 'Ruyuan Zhang', where: 'Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/index.html' },
   ],
 
@@ -115,6 +120,9 @@ export const site = {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/draco-xu-6a293b1a4' },
     { label: 'X', href: 'https://x.com/DracoyunlongXu' },
   ],
+
+  /* News lives in the footer, not the primary nav — it is an archive. */
+  footerNav: [{ label: 'News', href: '/news/' }],
 
   nav: [
     { label: 'Research', href: '/research/' },

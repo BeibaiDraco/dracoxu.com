@@ -13,7 +13,7 @@ export const news = [
   },
   {
     date: '2026-07-02',
-    body: `Our paper "The structure of correlated variability reflects task-relevant information in sensory neurons" has been published in PNAS. It grew out of the preprint "Guided by Noise."`,
+    body: `Our paper “The structure of correlated variability reflects task-relevant information in sensory neurons” has been published in PNAS. It grew out of the preprint “Guided by Noise.”`,
     links: [{ label: 'PNAS', href: 'https://www.pnas.org/doi/10.1073/pnas.2523217123' }],
   },
   {
@@ -22,7 +22,7 @@ export const news = [
   },
   {
     date: '2026-01-20',
-    body: `Our preprint "Convergence of Cortical and Thalamic Origins of Free Behavior Modulation of Mouse Primary Visual Cortex" is online now.`,
+    body: `Our preprint “Convergence of Cortical and Thalamic Origins of Free Behavior Modulation of Mouse Primary Visual Cortex” is online now.`,
     links: [{ label: 'bioRxiv', href: 'https://doi.org/10.64898/2026.01.07.698022' }],
   },
   {
@@ -31,7 +31,7 @@ export const news = [
   },
   {
     date: '2025-09-30',
-    body: `My co-first author paper "Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression" has been published in Nature Communications.`,
+    body: `My co-first author paper “Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression” has been published in Nature Communications.`,
     links: [{ label: 'link', href: 'https://doi.org/10.1038/s41467-025-63818-z' }],
   },
   {
@@ -40,7 +40,7 @@ export const news = [
   },
   {
     date: '2025-08-13',
-    body: `Our preprint "Guided by Noise: Correlated Variability Channels Task-Relevant Information in Sensory Neurons" is online now.`,
+    body: `Our preprint “Guided by Noise: Correlated Variability Channels Task-Relevant Information in Sensory Neurons” is online now.`,
   },
   {
     date: '2025-03-21',
@@ -48,31 +48,31 @@ export const news = [
   },
   {
     date: '2025-01-01',
-    body: `I will be attending Cosyne 2025 in Montreal. Please check out my co-authored poster "Quantification of nonsense-free correlation uncovers the interaction between top-down and bottom-up sources of behavioral correlation in mouse V1".`,
+    body: `I will be attending Cosyne 2025 in Montreal. Please check out my co-authored poster “Quantification of nonsense-free correlation uncovers the interaction between top-down and bottom-up sources of behavioral correlation in mouse V1”.`,
   },
   {
     date: '2024-10-07',
-    body: `I will be attending SFN 2024, and will give a talk on our research "Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression". Please come and take a look! MCP Room N427 | NANO36 | 10/7/2024 1:15 PM – 1:30 PM.`,
+    body: `I will be attending SFN 2024, and will give a talk on our research “Interleaving asynchronous and synchronous activity in balanced cortical networks with short term synaptic depression”. Please come and take a look! MCP Room N427 | NANO36 | 10/7/2024 1:15 PM – 1:30 PM.`,
   },
   {
     date: '2024-05-21',
-    body: `I will be attending The 2024 ABC Summer School "Neuro-AI: Harnessing AI to understand computation in mind and brain". See you guys in Amsterdam, Netherlands.`,
+    body: `I will be attending The 2024 ABC Summer School “Neuro-AI: Harnessing AI to understand computation in mind and brain”. See you guys in Amsterdam, Netherlands.`,
   },
   {
     date: '2024-03-18',
-    body: `I officially joined Prof. Brent Doiron's Lab for my PhD!`,
+    body: `I officially joined Prof. Brent Doiron’s Lab for my PhD!`,
   },
   {
     date: '2024-01-04',
-    body: `I am starting my second rotation in Prof. Wei Wei's lab. Prepared to learn short term synaptic depression in retina!`,
+    body: `I am starting my second rotation in Prof. Wei Wei’s lab. Prepared to learn short term synaptic depression in retina!`,
   },
   {
     date: '2023-12-14',
-    body: `I have successfully finished my rotation presentation in Prof. Brent Doiron's Lab! Just received an offer which I have committed. Finally found a home for my PhD~`,
+    body: `I have successfully finished my rotation presentation in Prof. Brent Doiron’s Lab! Just received an offer which I have committed. Finally found a home for my PhD~`,
   },
   {
     date: '2023-09-28',
-    body: `I am starting my first rotation in Prof. Brent Doiron's Lab. Excited to work on balanced cortical networks.`,
+    body: `I am starting my first rotation in Prof. Brent Doiron’s Lab. Excited to work on balanced cortical networks.`,
   },
   {
     date: '2023-08-23',
@@ -108,7 +108,7 @@ export const news = [
   },
   {
     date: '2023-02-28',
-    body: `I gave a talk at the School of Mathematical Sciences (my home department before) at Fudan University. It's nice to be back home.`,
+    body: `I gave a talk at the School of Mathematical Sciences (my home department before) at Fudan University. It’s nice to be back home.`,
   },
   {
     date: '2022-12-15',

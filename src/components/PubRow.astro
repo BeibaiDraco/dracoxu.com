@@ -8,7 +8,7 @@ const a = item.authors;
 ---
 <article class:list={['pub', compact && 'pub-compact']}>
   {plate && item.plate && (
-    <Plate kind={item.plate} seed={item.title} alt={`Figure plate — ${item.title}`} />
+    <Plate kind={item.plate} seed={item.title} decorative={true} />
   )}
   <div class="cite">
     <p class="cite-line">
