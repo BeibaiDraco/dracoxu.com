@@ -5,12 +5,12 @@ import ProjectPaper from '../components/ProjectPaper.astro';
 import { projects } from '../data/projects.js';
 ---
 
-<Base title="Ongoing and Recent Projects" current="Projects"
-  description="Six lines of work: Maieusis, inter-areal computation, balanced cortical networks, attention and representation, retinal noise resilience, and V1 behavioral correlations.">
+<Base title="Ongoing and recent projects" current="Projects"
+  description="Six lines of work: Maieusis, inter-areal computation, balanced cortical networks, attention and representation, retinal noise, and V1 correlations.">
 
   <section class="bay">
     <div class="wide projhead">
-      <h1 class="wordmark">Ongoing and Recent Projects</h1>
+      <h1 class="wordmark">Ongoing and recent projects</h1>
       <p class="subhead">Six lines of work, running in parallel. The order is a reading order, not a ranking.</p>
     </div>
     <div class="horizon"></div>
@@ -42,13 +42,23 @@ import { projects } from '../data/projects.js';
           )}
         </div>
         <div class="note">
-          <Plate kind={p.plate} seed={p.title} alt={`Figure plate — ${p.short}`} />
+          <Plate kind={p.plate} seed={p.title} decorative={true} />
           <ul class="tags">{p.panels.map((t) => <li>{t}</li>)}</ul>
         </div>
       </section>
       <div class="bay"><div class="horizon"></div></div>
     </>
   ))}
+
+  <section class="bay">
+    <div class="wide">
+      <p class="legend">
+        * denotes equal contribution. Plates are generated visual indices keyed to the
+        kind of work — a correlation matrix, a raster, a network — not figures reproduced
+        from the papers.
+      </p>
+    </div>
+  </section>
 </Base>
 
 <style>

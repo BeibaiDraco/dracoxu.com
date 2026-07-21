@@ -2,9 +2,10 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Not found" description="That page does not exist.">
+<Base title="Not found" description="That page does not exist on dracoxu.com — the academic homepage of Draco (Yunlong) Xu.">
   <section class="bay nf">
     <div class="main">
+      <h1 class="nf-h">Page not found</h1>
       <p class="nf-line">Nothing here. <a href="/">Back to the beginning</a>.</p>
     </div>
   </section>
@@ -14,5 +15,10 @@ import Base from '../layouts/Base.astro';
   /* The only centred element on the site, besides the colophon. */
   .nf { min-height: 60svh; align-content: center; }
   .nf .main { text-align: center; }
+  .nf-h {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; font-weight: 400; color: var(--sea);
+    margin: 0 0 var(--ma-3);
+  }
   .nf-line { font-style: italic; font-size: 21px; color: var(--sea); }
 </style>

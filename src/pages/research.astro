@@ -6,18 +6,18 @@ import { site } from '../data/site.js';
    headline and knows what the work is, not just where it happened. */
 const positions = [
   { when: '2023 —', theme: 'Inter-areal computation and cortical population dynamics', where: 'Doiron Lab · University of Chicago', href: 'https://brainmath.bsd.uchicago.edu/',
-    goal: `My active thrust is inter-areal computation, with <a href="https://freedmanlab.uchicago.edu/">David J. Freedman's lab</a>: a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, tested against multi-area recordings, with the <a href="https://doi.org/10.64898/2026.06.30.735630">FEF preprint</a> as its data anchor. It builds on my established Doiron-lab line — balanced-network theory extended to nonlinear, population-wide correlated activity (Nature Communications 2025); a spiking-network account of how attention rotates a population code, with the Cohen lab; retinal noise resilience with the Wei lab; and the cortical-versus-thalamic origins of behavioral modulation in V1.` },
+    goal: `My active thrust is inter-areal computation, with <a href="https://monkeylogic.uchicago.edu/">David J. Freedman’s lab</a>: a geometric and dynamical-systems theory of how the activity of one brain area shapes the computation in another, tested against multi-area recordings, with the <a href="https://doi.org/10.64898/2026.06.30.735630">FEF preprint</a> as its data anchor. It builds on my established Doiron-lab line — balanced-network theory extended to nonlinear, population-wide correlated activity (Nature Communications 2025); a spiking-network account of how attention rotates a population code, with the Cohen lab; retinal noise resilience with the Wei lab; and the cortical-versus-thalamic origins of behavioral modulation in V1.` },
   { when: '2024', theme: 'Retinal disinhibition and noise resilience', where: 'Wei Lab · University of Chicago', href: 'https://weilab.uchicago.edu/',
     goal: 'Biologically plausible circuit models of retinal motifs, asking how distinct cell types collectively keep the retina’s output reliable across environments whose noise statistics differ by orders of magnitude.' },
   { when: '2021 — 2023', theme: 'Dynamic-network construction and sampling over joins', where: 'Nargesian group · University of Rochester', href: 'https://fnargesian.com/',
     goal: 'Algorithms and data platforms for the exact, fast construction of dynamic networks from large time series; i.i.d. sampling over unions of joins; fairness-aware data integration.' },
   { when: '2021 — 2023', theme: 'Perceptual decision-making across the lifespan', where: 'Tadin Lab · University of Rochester', href: 'https://www2.bcs.rochester.edu/sites/duje/',
     goal: 'How perceptual decisions unfold over time and change with age under varying perceptual noise, and the social effects of crowd gaze on visual search.' },
-  { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University', href: 'https://www.cogtlab.com/',
+  { when: '2021 — 2023', theme: 'Stress neurobiology from imaging, via representation learning', where: 'CogT Lab · Stanford University', href: 'https://cogtlab.stanford.edu/',
     goal: 'Graph neural networks, dimensionality reduction and representation learning applied to human fMRI and mesoscopic calcium imaging of stress neurobiology.' },
   { when: '2020 — 2023', theme: 'Abstract-rule learning and visual decision confidence', where: 'CCNN Lab · Shanghai Jiao Tong University', href: 'https://ruyuanzhang.github.io/index.html',
-    goal: 'Semi-supervised learning for Raven’s Progressive Matrices, and computational models of visual decision-making and confidence in OCD from behavioural and fMRI data.' },
-  { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester', href: 'https://people.math.rochester.edu/faculty/iosevich/',
+    goal: 'Semi-supervised learning for Raven’s Progressive Matrices, and computational models of visual decision-making and confidence in OCD from behavioral and fMRI data.' },
+  { when: '2023', theme: 'Supervised training algorithms for spiking networks', where: 'Mathematics honors thesis · University of Rochester', href: 'https://alexiosevich.com/',
     goal: 'With Alex Iosevich — supervised methods for training spiking neural networks.' },
   { when: '2023', theme: 'Perception versus cognition, and machine experience', where: 'Philosophy · University of Rochester',
     goal: 'With Alison Peterman — the relationship between computational models of visual perception and visual phenomenal experience.' },
@@ -25,35 +25,12 @@ const positions = [
 ---
 
 <Base title="Research" current="Research"
-  description="Research statement: the mechanisms of perceptual and conscious experience in intelligent systems, approached through computational neuroscience, the science of intelligence, and AI for science.">
+  description="Research statement — the mechanisms of perceptual and conscious experience, via computational neuroscience, the science of intelligence, and AI for Science.">
 
   <section class="bay">
     <div class="wide rhead">
       <h1 class="wordmark">Research</h1>
-      <p class="identity">My research aims to decipher the {site.identity}.</p>
-    </div>
-    <div class="horizon"></div>
-  </section>
-
-  <!-- Plain-language framing so the page doesn't read philosophy-first -->
-  <section class="bay">
-    <div class="rail"><span class="num">01</span></div>
-    <div class="wide prose lead">
-      <p>{site.framing}</p>
-    </div>
-    <div class="horizon"></div>
-  </section>
-
-  <!-- THE THREE APPROACHES -->
-  <section class="bay">
-    <div class="wide"><h2 class="lbl">Approaches</h2></div>
-  </section>
-  <section class="bay">
-    <div class="approaches">
-      <div class="triad">
-        {site.approaches.map((a) => (<div><h3>{a.name}</h3><p>{a.line}</p></div>))}
-      </div>
-      <p class="undernote">{site.approachesNote}</p>
+      <p class="identity">The {site.identity}.</p>
     </div>
     <div class="horizon"></div>
   </section>

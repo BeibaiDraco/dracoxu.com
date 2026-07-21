@@ -18,11 +18,32 @@ const fmt = (d) => { const [y, m] = d.split('-'); return `${MONTHS[+m - 1]} ${y}
 const PANEL_SHORT = {
   'Computational Neuroscience': 'Comp. neuro',
   'Science of Intelligence': 'Intelligence',
-  'AI for Science': 'AI for science',
+  'AI for Science': 'AI for Science',
+};
+
+/* Structured data, so a search engine can tie this page to the same person on
+   Scholar and GitHub rather than guessing from a common surname. */
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Draco (Yunlong) Xu',
+  alternateName: 'Yunlong Xu',
+  url: 'https://dracoxu.com/',
+  image: 'https://dracoxu.com/portrait.jpg',
+  email: `mailto:${site.contact.email}`,
+  jobTitle: 'PhD Candidate',
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'University of Chicago', url: 'https://www.uchicago.edu/' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Rochester' },
+    { '@type': 'CollegeOrUniversity', name: 'Fudan University' },
+  ],
+  knowsAbout: ['Computational Neuroscience', 'Theoretical Neuroscience', 'Science of Intelligence', 'AI for Science'],
+  sameAs: site.links.filter((l) => l.label !== 'Email').map((l) => l.href),
 };
 ---
 
-<Base description="Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, working with Brent Doiron on the science of natural and artificial intelligence.">
+<Base description="Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, in Brent Doiron’s lab. Computation, perception, experience.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(personLd)}></script>
 
   <!-- 1 · IDENTITY — portrait on the left, status on the right -->
   <section class="bay id-block">
@@ -81,7 +102,7 @@ const PANEL_SHORT = {
     <div class="wide">
       {projects.map((p) => (
         <a class="row prow" href={`/projects/#${p.id}`}>
-          <Plate kind={p.plate} seed={p.title} alt={`Figure plate — ${p.short}`} />
+          <Plate kind={p.plate} seed={p.title} decorative={true} />
           <div>
             <p class="row-t">{p.short}</p>
             <p class="row-a">{p.blurb}</p>
@@ -105,6 +126,7 @@ const PANEL_SHORT = {
     <div class="wide">
       {selected.map((p) => <PubRow item={p} />)}
       <p class="linkrow" style="margin-top:var(--ma-3)"><a href="/publications/">All publications →</a></p>
+      <p class="legend" style="margin-top:var(--ma-2)">* denotes equal contribution.</p>
     </div>
     <div class="horizon"></div>
   </section>
@@ -113,7 +135,7 @@ const PANEL_SHORT = {
   <section class="bay">
     <div class="wide">
       <h2 class="lbl">Awards &amp; funding</h2>
-      <p class="subhead">Fellowships, research grants, and honors that fund the work. Selected —</p>
+      <p class="subhead">Grants and honors. Selected.</p>
     </div>
   </section>
   <section class="bay">
@@ -180,23 +202,6 @@ const PANEL_SHORT = {
     <div class="horizon"></div>
   </section>
 
-  <!-- 8 · COLLABORATORS -->
-  <section class="bay">
-    <div class="wide"><h2 class="lbl">Collaborators</h2></div>
-  </section>
-  <section class="bay">
-    <div class="wide">
-      <ul class="names">
-        {site.collaborators.map((c) => (
-          <li>
-            {c.href ? <a href={c.href}>{c.name}</a> : <span>{c.name}</span>}
-            <span class="inst">{c.where}{c.role ? ' · ' + c.role : ''}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div class="horizon"></div>
-  </section>
 
   <!-- 9 · BEYOND ACADEMIC -->
   <section class="bay">
