@@ -59,13 +59,35 @@ measure the unmarked fraction rather than trusting the eye.
 
 ## Content
 
-All copy and data are in `src/data/`. The six research lines in `research.js` are in the
+All copy and data are in `src/data/`. The six lines of work in `projects.js` are in the
 author's own order and carry **identical** visual treatment — no line gets a larger plate,
 brighter ink, or a "current focus" badge. If a visitor can tell which project is the flagship,
 the page is wrong.
 
-## To do
+Every citation is checked against Crossref, and every external URL is checked live, before
+it ships. `publications.js` is downstream of the CV, not the other way round.
 
-- Self-host Newsreader Variable + IBM Plex Mono woff2 (currently falling back to system serif/mono)
-- Portrait and Stage stills — slots ship empty on purpose
-- Bind the domain in Cloudflare and point `dracooxu.github.io` here
+## Deploy
+
+Two Workers on one Cloudflare account.
+
+| Worker | Hostname | What it is |
+| --- | --- | --- |
+| `dracoxu-com` | `dracoxu.com` | the site — static assets, no script on the request path |
+| `dracoxu-www-redirect` | `www.dracoxu.com` | ten lines, 301s to the apex with path and query intact |
+
+`www` is a separate Worker on purpose: Cloudflare serves static assets without invoking
+JavaScript, so folding a hostname check into the site Worker would mean running a script on
+every real request to redirect the few that are not.
+
+```sh
+npm run deploy                      # site
+cd redirect-www && npx wrangler deploy   # only if the redirect itself changes
+```
+
+Both hostnames are Custom Domains declared in the Wrangler configs, so Cloudflare owns the
+DNS records and certificates and a fresh `wrangler deploy` reproduces the whole binding.
+
+**404s must stay 404s.** `not_found_handling: "404-page"` serves `404.html` with a 404 status.
+Never set `single-page-application` here — it would answer every dead URL with 200 and let
+search engines index a wall of soft 404s.

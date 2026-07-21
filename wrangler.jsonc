@@ -6,11 +6,10 @@
     "directory": "./dist",
     "not_found_handling": "404-page"
   },
-  // Custom Domains: Cloudflare creates the DNS records and the certificate.
-  // A Custom Domain matches the hostname exactly, so www is listed separately
-  // or people who type it get nothing. Every page canonicalises to the apex.
+  // Custom Domain: Cloudflare creates the DNS record and the certificate.
+  // The apex only — www is a Custom Domain on the redirect-www Worker, which
+  // 301s to here, so there is one canonical hostname and one copy of the site.
   "routes": [
-    { "pattern": "dracoxu.com", "custom_domain": true },
-    { "pattern": "www.dracoxu.com", "custom_domain": true }
+    { "pattern": "dracoxu.com", "custom_domain": true }
   ]
 }
