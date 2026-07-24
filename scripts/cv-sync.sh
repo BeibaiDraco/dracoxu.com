@@ -9,6 +9,13 @@
 #   ./scripts/cv-sync.sh          compare, and report which side is ahead
 #   ./scripts/cv-sync.sh pull     take Overleaf's version, rebuild the PDF
 #   ./scripts/cv-sync.sh push     send this repo's version up to Overleaf
+#   ./scripts/cv-sync.sh update   pull, rebuild, commit and push — CV goes live
+#
+# `update` is the one-command everyday flow: you edited the CV on Overleaf and
+# want dracoxu.com/cv.pdf to match. Do NOT use it in the one case where you
+# added or changed a PAPER — then publications.js has to change too, and the
+# two must be committed together. `update` refuses to run if publications.js
+# has uncommitted edits, to stop a half-done paper change from shipping.
 #
 # One-time setup, done by a human because it involves a password prompt:
 #
@@ -25,7 +32,8 @@ set -euo pipefail
 
 PROJECT_ID="6239ef0843aa8ff57fbe9c64"
 CLONE="${OVERLEAF_CV_CLONE:-$HOME/.overleaf-cv}"
-REPO_TEX="$(cd "$(dirname "$0")/.." && pwd)/assets/cv.tex"
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+REPO_TEX="$REPO_ROOT/assets/cv.tex"
 ACTION="${1:-status}"
 
 if [ ! -d "$CLONE/.git" ]; then
@@ -80,6 +88,30 @@ case "$ACTION" in
       echo "✓ pushed to Overleaf"
     fi
     ;;
+  update)
+    # Refuse if a paper edit is half-done: publications.js must ship with the CV.
+    if ! git -C "$REPO_ROOT" diff --quiet -- src/data/publications.js; then
+      echo "✗ src/data/publications.js has uncommitted changes." >&2
+      echo "  Looks like a paper edit. Commit the CV and publications.js together" >&2
+      echo "  by hand so the site and the CV agree — see UPDATING.md." >&2
+      exit 1
+    fi
+    cp "$OL_TEX" "$REPO_TEX"
+    # Key the decision on the SOURCE, not the PDF. Every rebuild stamps a new
+    # timestamp into public/cv.pdf, so the PDF always "changes" — checking it
+    # would republish an identical CV on every run. If cv.tex is unchanged
+    # there is nothing to publish and no reason to even recompile.
+    if git -C "$REPO_ROOT" diff --quiet -- assets/cv.tex; then
+      echo "✓ Overleaf matches what is already published — nothing to do"
+      exit 0
+    fi
+    echo "→ Overleaf has changes; rebuilding the PDF"
+    ( cd "$REPO_ROOT" && npm run --silent cv )
+    git -C "$REPO_ROOT" add assets/cv.tex public/cv.pdf
+    git -C "$REPO_ROOT" commit -qm "Update CV from Overleaf"
+    git -C "$REPO_ROOT" push --quiet
+    echo "✓ CV committed and pushed — live at dracoxu.com/cv.pdf in about a minute"
+    ;;
   *)
-    echo "usage: $0 [status|pull|push]" >&2; exit 2 ;;
+    echo "usage: $0 [status|pull|push|update]" >&2; exit 2 ;;
 esac

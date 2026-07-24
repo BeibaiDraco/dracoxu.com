@@ -11,7 +11,8 @@
     "cv": "tectonic -X compile assets/cv.tex --outdir public",
     "cv:sync": "./scripts/cv-sync.sh",
     "cv:pull": "./scripts/cv-sync.sh pull",
-    "cv:push": "./scripts/cv-sync.sh push"
+    "cv:push": "./scripts/cv-sync.sh push",
+    "cv:update": "./scripts/cv-sync.sh update"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

@@ -2,6 +2,9 @@
 
 Personal academic site. Astro, static output, deployed to Cloudflare Workers static assets.
 
+- **Updating the site or CV →** [UPDATING.md](UPDATING.md) (步骤和命令，中文)
+- **Working on it as an agent →** [CLAUDE.md](CLAUDE.md) (invariants and gotchas)
+
 ## Run
 
 ```sh
@@ -69,44 +72,44 @@ it ships. `publications.js` is downstream of the CV, not the other way round.
 
 ## Updating
 
-A push to `main` is a publication. Workers Builds rebuilds and the change is live
-in under a minute — there is no staging step and no confirmation.
+**A push to `main` is a publication** — Workers Builds rebuilds and the change is
+live in under a minute, with no staging step and no confirmation. Verify before
+you push, not after. Step-by-step instructions for every kind of change are in
+[UPDATING.md](UPDATING.md); the essentials:
 
 | What changed | Where | Then |
 | --- | --- | --- |
 | A news item, an award, a project blurb, a link | `src/data/*.js` | push |
-| A publication | `src/data/publications.js` **and** `assets/cv.tex` | `npm run cv`, push both |
-| The CV only | `assets/cv.tex` | `npm run cv`, push |
+| A publication | `src/data/publications.js` **and** `assets/cv.tex` | `npm run cv:pull`, then push both |
+| The CV only (edited on Overleaf) | — | `npm run cv:update` |
 | Layout, type, colour | `src/styles/hakumei.css` | `npm run build`, look at it, push |
 
-`npm run cv` compiles `assets/cv.tex` straight to `public/cv.pdf` with tectonic.
-`public/cv.pdf` is a build artefact that happens to be committed, because the
-site serves it and CI does not run LaTeX. **Never edit the PDF**, and never let
-`publications.js` and `cv.tex` drift — they list the same papers and must agree.
+`publications.js` and `cv.tex` list the same papers and must agree; a new paper
+changes both. `public/cv.pdf` is a committed build artefact (CI does not run
+LaTeX) — never edit it by hand; `npm run cv` regenerates it from `assets/cv.tex`.
 
 ### The CV also lives on Overleaf
 
 The CV is written on [Overleaf](https://www.overleaf.com/project/6239ef0843aa8ff57fbe9c64)
 and published from here, so two copies exist and can diverge. Overleaf's Git
 integration makes it an ordinary remote, so they can be reconciled rather than
-hand-copied. Overleaf is upstream: pull before editing, push corrections back.
+hand-copied.
 
 ```sh
 git clone https://git@git.overleaf.com/6239ef0843aa8ff57fbe9c64 ~/.overleaf-cv  # once
-npm run cv:sync    # which side is ahead, and how
-npm run cv:pull    # take Overleaf's version and rebuild the PDF
-npm run cv:push    # send a correction made here up to Overleaf
+npm run cv:update  # pull Overleaf, rebuild, commit, push — CV goes live
+npm run cv:sync    # or: just show which side is ahead, change nothing
+npm run cv:push    # or: send a correction made here up to Overleaf
 ```
 
-The username must be the literal `git` — an email address gets a 403 — and the
-password is a Git authentication token from `overleaf.com/user/settings`, not
-the account password. Tokens expire after a year, so when the sync one day
-fails with a 403, that is why.
+The clone username must be the literal `git` (an email gets a 403); the password
+is a Git authentication token from `overleaf.com/user/settings`, not the account
+password. Tokens expire after a year — that is the eventual cause of a sudden 403.
 
-Overleaf's *GitHub synchronization* is a different feature and cannot be used:
-it requires a repository dedicated to the Overleaf project and refuses to link
-one that already has other files in it. Git integration has no such limit.
-Both are premium; UChicago provides Overleaf Professional to all members.
+Overleaf's *GitHub synchronization* is a different feature and cannot be used: it
+requires a repository dedicated to the Overleaf project and refuses to link one
+that already has other files in it. Git integration has no such limit. Both are
+premium; UChicago provides Overleaf Professional to all members.
 
 From another machine, or with no machine: any commit that lands on `main`
 deploys, so editing a data file through GitHub's web editor is a complete and
