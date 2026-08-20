@@ -96,8 +96,6 @@ export const site = {
   ],
 
   service: [
-    { when: '2026 —', what: 'Community Leader, Claude Community', where: 'Anthropic',
-      detail: 'Founding cohort — 130 inaugural leaders worldwide' },
     { when: '2024 —', what: 'Founding Vice Chair, Student Chapter of the Biophysical Society', where: 'University of Chicago' },
     { when: '2022 — 2023', what: 'Founding Chair, ACM Student Chapter', where: 'University of Rochester' },
   ],
