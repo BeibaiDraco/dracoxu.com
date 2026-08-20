@@ -1,7 +1,13 @@
-/* Carried over from the old Google Sites home page, complete and unaltered.
-   26 entries, newest first. Wording is his, not rewritten. */
+/* Carried over from the old Google Sites home page, complete and unaltered,
+   plus entries added since. 27 entries, newest first. Wording is his, not
+   rewritten. */
 
 export const news = [
+  {
+    date: '2026-08-20',
+    body: `I have been awarded the Science and Society Sparks Program grant ($7,500 USD) from the Kavli Foundation, supporting my participation in the 2026 Sparks program this November and December.`,
+    links: [{ label: 'Kavli Foundation', href: 'https://www.kavlifoundation.org/science-and-society/special-projects/kavli-sparks-program' }],
+  },
   {
     date: '2026-07-16',
     body: `I officially released Maieusis v0.1.0, an open-source AI system that turns scientific datasets into families of questions that are both scientifically valuable and genuinely answerable with the available data. Maieusis grew out of our award-winning prototype, Quaero, and has since been developed into a full research system with dataset-grounded planning, deterministic verification, and independent review.`,
