@@ -58,6 +58,7 @@ export const site = {
      Links added wherever one exists (from the CV / old site). */
   awardsSelected: [
     { when: '2025', what: 'NeuroData Discovery Award — $50,000', who: 'The Kavli Foundation', href: 'https://www.kavlifoundation.org/news/neurodata-discovery-awards' },
+    { when: '2026', what: 'Science and Society Sparks Program — $7,500', who: 'The Kavli Foundation' },
     { when: '2026', what: 'Research Grant Program', who: 'Adaption Labs', href: 'https://www.adaptionlabs.ai/blog/adaption-research-grant-program' },
     { when: '2026', what: 'Second Place, AI for Science Hackathon', who: 'Bloomberg & Columbia University' },
     { when: '2024 — 2025', what: 'NIH R90, Training Program in Theory and Computation for Next Generation Neuroscientists', who: 'NIH' },
