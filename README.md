@@ -2,7 +2,7 @@
 
 Personal academic site. Astro, static output, deployed to Cloudflare Workers static assets.
 
-- **Updating the site or CV →** [UPDATING.md](UPDATING.md) (步骤和命令，中文)
+- **Updating the site or CV →** [UPDATING.md](UPDATING.md) (steps and commands)
 - **Working on it as an agent →** [CLAUDE.md](CLAUDE.md) (invariants and gotchas)
 
 ## Run
