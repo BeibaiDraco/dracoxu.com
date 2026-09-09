@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="690" viewBox="0 0 360 690" role="img" aria-labelledby="title desc">
+<title id="title">From current measurements to the nerve impulse</title><desc id="desc">Three steps in the Hodgkin–Huxley account: voltage-clamp measurements of membrane current support conductance relations; equations connect these relations to the nerve impulse and its propagation. The arrows distinguish experimental support from model derivation. This is a conceptual schematic, with no simulated or experimental trace.</desc>
+<rect width="360" height="690" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.mono{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:.3px}.muted{fill:#566A78}.white{fill:#EDF0F2}</style>
+<text x="18" y="36" font-size="13" class="mono muted" text-anchor="start" >01</text>
+<line x1="18" y1="49" x2="342" y2="49" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="18" y="81" font-size="23" class="" text-anchor="start" >Measure currents</text>
+<line x1="278" y1="90" x2="278" y2="132" stroke="#0B3A5D" stroke-width="2"/>
+<line x1="285" y1="90" x2="285" y2="132" stroke="#0B3A5D" stroke-width="2"/>
+<line x1="254" y1="111" x2="272" y2="111" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="291" y1="111" x2="313" y2="111" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="249" y="104" font-size="17" class="" text-anchor="end" >I</text>
+<text x="282" y="154" font-size="13" class="mono muted" text-anchor="middle" >hold V fixed</text>
+<text x="18" y="127" font-size="20" class="" text-anchor="start" >Voltage clamp</text>
+<text x="18" y="153" font-size="16" class="muted" text-anchor="start" >Fixed voltage;</text>
+<text x="18" y="175" font-size="16" class="muted" text-anchor="start" >measured current</text>
+<text x="18" y="275" font-size="13" class="mono muted" text-anchor="start" >02</text>
+<line x1="18" y1="288" x2="342" y2="288" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="18" y="320" font-size="23" class="" text-anchor="start" >Estimate relations</text>
+<text x="282" y="347" font-size="27" text-anchor="middle"><tspan font-style="italic">g</tspan><tspan font-size="17" baseline-shift="sub">Na</tspan></text>
+<text x="282" y="379" font-size="27" text-anchor="middle"><tspan font-style="italic">g</tspan><tspan font-size="17" baseline-shift="sub">K</tspan></text>
+<text x="282" y="402" font-size="13" class="mono muted" text-anchor="middle" >conductances</text>
+<text x="18" y="366" font-size="20" class="" text-anchor="start" >Membrane conductance</text>
+<text x="18" y="392" font-size="16" class="muted" text-anchor="start" >How readily ionic</text>
+<text x="18" y="414" font-size="16" class="muted" text-anchor="start" >current passes</text>
+<text x="18" y="512" font-size="13" class="mono muted" text-anchor="start" >03</text>
+<line x1="18" y1="525" x2="342" y2="525" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="18" y="557" font-size="23" class="" text-anchor="start" >Calculate behavior</text>
+<line x1="238" y1="592" x2="321" y2="592" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="249" y1="575" x2="249" y2="585" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="249" y1="600" x2="249" y2="610" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="274" y1="575" x2="274" y2="585" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="274" y1="600" x2="274" y2="610" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="299" y1="575" x2="299" y2="585" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="299" y1="600" x2="299" y2="610" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="282" y="630" font-size="13" class="mono muted" text-anchor="middle" >along the axon</text>
+<text x="18" y="603" font-size="20" class="" text-anchor="start" >Nerve impulse</text>
+<text x="18" y="629" font-size="16" class="muted" text-anchor="start" >Electrical pulse</text>
+<text x="18" y="651" font-size="16" class="muted" text-anchor="start" >and propagation</text>
+<line x1="33" y1="203" x2="33" y2="249" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="52" y="229" font-size="16" class="muted" text-anchor="start" >Experimental support</text>
+<line x1="33" y1="441" x2="33" y2="487" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="52" y="467" font-size="16" class="muted" text-anchor="start" >Model derivation</text>
+</svg>

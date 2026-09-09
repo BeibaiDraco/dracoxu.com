@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { writing } from '../../data/writing.js';
+
+const entries = [...writing].sort((a, b) => b.date.localeCompare(a.date));
+const years = [...new Set(entries.map((entry) => entry.date.slice(0, 4)))];
+const dateLabel = (date) => new Intl.DateTimeFormat('en-US', {
+  month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+}).format(new Date(`${date}T12:00:00Z`));
+const updated = entries.length ? new Intl.DateTimeFormat('en-US', {
+  month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(new Date(`${entries[0].date}T12:00:00Z`)) : undefined;
+---
+
+<Base title="Writing" current="Writing" updated={updated}
+  description="Essays on science and intelligence by Yunlong Xu.">
+  <header class="bay">
+    <div class="wide writing-head">
+      <span class="seal" aria-hidden="true"></span>
+      <h1 class="wordmark">Writing</h1>
+      <p class="writing-intro">Essays on science and intelligence.</p>
+    </div>
+    <div class="horizon"></div>
+  </header>
+
+  {years.map((year) => (
+    <section class="bay writing-year" aria-labelledby={`year-${year}`}>
+      <div class="rail"><h2 class="num year-label" id={`year-${year}`}>{year}</h2></div>
+      <div class="main entries">
+        {entries.filter((entry) => entry.date.startsWith(year)).map((entry) => (
+          <article class:list={['writing-entry', { 'with-cover': entry.image }]}>
+            <div class="entry-copy">
+              <p class="entry-meta"><time datetime={entry.date}>{dateLabel(entry.date)}</time><span aria-hidden="true">·</span>{entry.kind}</p>
+              <h3><a href={entry.href}>{entry.title}</a></h3>
+              <p class="entry-description">{entry.description}</p>
+              <p class="entry-bottom"><span>{entry.readingTime}</span><a href={entry.href} aria-label={`Read ${entry.title}`}>Read essay <span aria-hidden="true">↗</span></a></p>
+            </div>
+            {entry.image && <a class="entry-cover" href={entry.href} tabindex="-1" aria-hidden="true">
+              <img src={entry.image.src} width={entry.image.width} height={entry.image.height}
+                alt="" loading="lazy" decoding="async" />
+            </a>}
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .writing-head { padding-top: var(--ma-5); display: flex; flex-direction: column; gap: var(--ma-3); }
+  .writing-intro { font-size: 22px; line-height: 1.45; color: var(--sea); margin: 0; }
+  .writing-year { margin-top: var(--ma-5); }
+  .year-label { margin: 0; font-weight: 400; }
+  .entries { grid-column: main / -2; }
+  .writing-entry { min-width: 0; padding-bottom: var(--ma-5); }
+  .writing-entry + .writing-entry { border-top: 1px solid var(--kei); padding-top: var(--ma-5); }
+  .with-cover { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--ma-5); align-items: start; }
+  .entry-copy { min-width: 0; }
+  .entry-meta, .entry-bottom { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ma-2) var(--ma-3); font: 11px/1.65 var(--mono); color: var(--sea); }
+  .entry-meta { margin: 0 0 var(--ma-3); }
+  h3 { max-width: 24ch; font-size: clamp(27px, 2.65vw, 35px); line-height: 1.14; letter-spacing: -.015em; margin: 0 0 var(--ma-3); }
+  h3 a { color: var(--sumi); text-decoration-thickness: 1px; text-decoration-color: var(--kei); text-underline-offset: 5px; }
+  h3 a:hover { color: var(--wave); text-decoration-color: var(--wave); }
+  .entry-description { max-width: 42ch; font-size: 19px; line-height: 1.5; margin: 0 0 var(--ma-4); }
+  .entry-bottom { margin: 0; }
+  .entry-bottom a { margin-left: var(--ma-2); }
+  .entry-cover { display: block; margin-top: 3px; }
+  .entry-cover img { width: 100%; height: auto; border: 1px solid var(--kei); }
+  @media (max-width: 1100px) and (min-width: 901px) {
+    .with-cover { gap: var(--ma-4); }
+  }
+  @media (max-width: 900px) {
+    .year-label { margin-bottom: var(--ma-4); }
+    .with-cover { gap: var(--ma-4); }
+  }
+  @media (max-width: 600px) {
+    .with-cover { grid-template-columns: minmax(0, 1fr); }
+    .entry-cover { grid-row: 1; margin: 0; }
+    h3 { font-size: 30px; max-width: 26ch; }
+    .writing-intro { font-size: 20px; }
+  }
+</style>

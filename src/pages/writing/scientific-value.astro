@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Content, getHeadings } from '../../content/scientific-value.md';
+import '../../styles/research-essay.css';
+
+const title = 'What Are We Training AI Scientists to Pursue?';
+const description = 'Why AI scientists need a theory of scientific value: principles for recognizing contributions, justifying comparisons, and deciding what research to pursue.';
+const headings = getHeadings().filter((h) => h.depth === 2);
+const paper = '/papers/scientific-value-2026-09-08.pdf';
+---
+
+<Base title={title} description={description} current="Writing" article={true}
+  publishedTime="2026-09-08" author="Yunlong Xu" updated="September 8, 2026"
+  socialImage={{
+    src: '/images/writing/scientific-value/social-card-v3.png',
+    width: 1737,
+    height: 905,
+    type: 'image/png',
+    alt: 'AI Scientists Need a Theory of Scientific Value, in white text over an abstract field of blue and warm light.',
+  }}>
+  <header class="bay essay-heading">
+    <div class="wide">
+      <p class="essay-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/writing/">Writing</a> <span aria-hidden="true">/</span> Research essay</p>
+      <h1>{title}</h1>
+      <p class="essay-subtitle">Why AI scientists need a theory of scientific value.</p>
+      <p class="essay-author">Yunlong Xu <span aria-hidden="true">·</span> University of Chicago</p>
+      <p class="essay-meta"><time datetime="2026-09-08">September 8, 2026</time> <span aria-hidden="true">·</span> 15–20 min read</p>
+      <p class="essay-paper-link"><a href={paper}>Read the paper (PDF)</a></p>
+    </div>
+    <div class="horizon"></div>
+  </header>
+
+  <div class="bay">
+    <div class="wide essay-layout">
+      <article class="research-essay" aria-label={title}>
+        <Content />
+        <footer class="essay-paper">
+          <p><a href={paper}><cite>AI Scientists Need a Theory of Scientific Value</cite> (PDF)</a></p>
+          <p>Yunlong Xu · Preprint revised September 8, 2026.</p>
+        </footer>
+      </article>
+      {headings.length > 0 && <aside class="essay-contents">
+        <nav aria-label="On this page">
+          <p class="lbl">On this page</p>
+          <ol>{headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      </aside>}
+    </div>
+  </div>
+</Base>

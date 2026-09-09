@@ -2,12 +2,15 @@
 import '../styles/hakumei.css';
 import { site } from '../data/site.js';
 
-const { title, description = 'Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, studying computation, perception, and experience.', current = '', noindex = false } = Astro.props;
+const { title, description = 'Draco (Yunlong) Xu — PhD candidate in computational neuroscience at the University of Chicago, studying computation, perception, and experience.', current = '', noindex = false, article = false, publishedTime, author, updated, socialImage } = Astro.props;
 const pageTitle = title
   ? `${title} — ${site.short}`
   : `${site.name} — Computational Neuroscience, University of Chicago`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL('/og.png', Astro.site).href;
+const ogImage = new URL(socialImage?.src ?? '/og.png', Astro.site).href;
+const ogImageWidth = socialImage?.width ?? 1200;
+const ogImageHeight = socialImage?.height ?? 630;
+const ogImageAlt = socialImage?.alt ?? 'Draco (Yunlong) Xu — Computational Neuroscience, University of Chicago';
 ---
 
 <!doctype html>
@@ -27,14 +30,23 @@ const ogImage = new URL('/og.png', Astro.site).href;
   <script is:inline>document.documentElement.classList.add('js');</script>
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={article ? "article" : "website"} />
+  {article && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {article && author && <meta name="author" content={author} />}
   <meta property="og:url" content={canonical} />
   <meta property="og:site_name" content={site.name} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Draco (Yunlong) Xu — Computational Neuroscience, University of Chicago" />
+  <meta property="og:image:width" content={ogImageWidth} />
+  <meta property="og:image:height" content={ogImageHeight} />
+  <meta property="og:image:alt" content={ogImageAlt} />
+  {socialImage?.type && <meta property="og:image:type" content={socialImage.type} />}
   <meta name="twitter:card" content="summary_large_image" />
+  {socialImage && <>
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+  </>}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <noscript><style>.fade{opacity:1 !important}</style></noscript>
 </head>
@@ -61,7 +73,7 @@ const ogImage = new URL('/og.png', Astro.site).href;
       {site.links.filter((l) => l.label !== 'Email').map((l) => <a href={l.href} rel="me noopener">{l.label}</a>)}
       {site.footerNav.map((n) => <a href={n.href}>{n.label}</a>)}
       <a href="/cv.pdf">CV (PDF)</a>
-      <span class="colophon">Last updated {site.cvUpdated}</span>
+      <span class="colophon">Last updated {updated ?? site.cvUpdated}</span>
     </div>
   </footer>
 

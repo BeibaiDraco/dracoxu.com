@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="930" viewBox="0 0 360 930" role="img" aria-labelledby="title desc">
+<title id="title">A selected score and a broader guarantee</title><desc id="desc">Panel A is an exact local selection model. The four setting pairs 00, 01, 10, and 11 each retain the matching quarter of shared hidden labels. Their retained correlations are 0.6, 0.6, 0.6, and −0.6, giving S = 2.4. Panel B is a separate conditional comparison: a guarantee over the wider class of local mechanisms includes the restricted class and an additional relevant selection mechanism. Diagram areas have no quantitative meaning. Neither panel is a reconstruction of Hensen’s experimental data.</desc>
+<rect width="360" height="930" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.mono{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:.3px}.muted{fill:#566A78}.white{fill:#EDF0F2}</style>
+<text x="18" y="29" font-size="12" class="mono muted" text-anchor="start" >A  /  LOCAL SELECTION MODEL</text>
+<line x1="18" y1="42" x2="342" y2="42" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="18" y="74" font-size="23" class="" text-anchor="start" >Which trials reach the score?</text>
+<text x="18" y="104" font-size="16" class="muted" text-anchor="start" >Each lab detects only when its setting</text>
+<text x="18" y="125" font-size="16" class="muted" text-anchor="start" >matches its part of the shared label.</text>
+<text x="43" y="162" font-size="11" class="mono muted" text-anchor="middle" >settings</text>
+<text x="196" y="162" font-size="11" class="mono muted" text-anchor="middle" >shared labels</text>
+<text x="318" y="162" font-size="13" class="mono muted" text-anchor="middle" >Cxy</text>
+<text x="125.0" y="183" font-size="12" class="mono muted" text-anchor="middle" >00</text>
+<text x="171.0" y="183" font-size="12" class="mono muted" text-anchor="middle" >01</text>
+<text x="217.0" y="183" font-size="12" class="mono muted" text-anchor="middle" >10</text>
+<text x="263.0" y="183" font-size="12" class="mono muted" text-anchor="middle" >11</text>
+<text x="43" y="219" font-size="18" class="mono" text-anchor="middle" >00</text>
+<rect x="103" y="194" width="44" height="32" fill="#0B3A5D" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="149" y="194" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="195" y="194" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="241" y="194" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<text x="125.0" y="216" font-size="18" class="white" text-anchor="middle" >¼</text>
+<text x="318" y="219" font-size="18" class="mono" text-anchor="middle" >0.6</text>
+<text x="43" y="261" font-size="18" class="mono" text-anchor="middle" >01</text>
+<rect x="103" y="236" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="149" y="236" width="44" height="32" fill="#0B3A5D" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="195" y="236" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="241" y="236" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<text x="171.0" y="258" font-size="18" class="white" text-anchor="middle" >¼</text>
+<text x="318" y="261" font-size="18" class="mono" text-anchor="middle" >0.6</text>
+<text x="43" y="303" font-size="18" class="mono" text-anchor="middle" >10</text>
+<rect x="103" y="278" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="149" y="278" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="195" y="278" width="44" height="32" fill="#0B3A5D" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="241" y="278" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<text x="217.0" y="300" font-size="18" class="white" text-anchor="middle" >¼</text>
+<text x="318" y="303" font-size="18" class="mono" text-anchor="middle" >0.6</text>
+<text x="43" y="345" font-size="18" class="mono" text-anchor="middle" >11</text>
+<rect x="103" y="320" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="149" y="320" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="195" y="320" width="44" height="32" fill="#E3E8EB" stroke="#C7D0D6" stroke-width="0.7"/>
+<rect x="241" y="320" width="44" height="32" fill="#0B3A5D" stroke="#C7D0D6" stroke-width="0.7"/>
+<text x="263.0" y="342" font-size="18" class="white" text-anchor="middle" >¼</text>
+<text x="318" y="345" font-size="18" class="mono" text-anchor="middle" >−0.6</text>
+<text x="18" y="386" font-size="16" class="muted" text-anchor="start" >Same retained fraction; different groups.</text>
+<line x1="18" y1="406" x2="342" y2="406" stroke="#C7D0D6" stroke-width="1.5"/>
+<text x="18" y="438" font-size="15" class="mono" text-anchor="start" >S = 0.6 + 0.6 + 0.6 − (−0.6)</text>
+<text x="18" y="476" font-size="29" class="" text-anchor="start" >= 2.4</text>
+<text x="122" y="476" font-size="17" class="" text-anchor="start" >with a local explanation</text>
+<text x="18" y="505" font-size="15" class="muted" text-anchor="start" >Exact model values, after selection.</text>
+<text x="18" y="546" font-size="12" class="mono muted" text-anchor="start" >B  /  A SEPARATE COMPARISON</text>
+<line x1="18" y1="559" x2="342" y2="559" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="18" y="593" font-size="22" class="" text-anchor="start" >What does a guarantee cover?</text>
+<rect x="18" y="613" width="324" height="223" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="34" y="642" font-size="21" class="" text-anchor="start" >Wider class</text>
+<rect x="34" y="662" width="170" height="72" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="49" y="690" font-size="18" class="" text-anchor="start" >Restricted</text>
+<text x="49" y="715" font-size="18" class="" text-anchor="start" >class</text>
+<circle cx="228" cy="697" r="5" fill="#0B3A5D" stroke="none"/>
+<text x="34" y="767" font-size="16" class="" text-anchor="start" >A relevant selection mechanism</text>
+<text x="34" y="789" font-size="16" class="" text-anchor="start" >lies outside the restricted class.</text>
+<line x1="228" y1="704" x2="228" y2="744" stroke="#0B3A5D" stroke-width="1"/>
+<text x="18" y="870" font-size="16" class="muted" text-anchor="start" >Same target and error tolerance.</text>
+<text x="18" y="892" font-size="16" class="muted" text-anchor="start" >Both studies: valid, informative evidence.</text>
+</svg>

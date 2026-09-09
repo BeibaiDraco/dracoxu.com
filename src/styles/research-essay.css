@@ -1,0 +1,83 @@
+/* Research essays inherit the site's type, pigment, and spacing. */
+.essay-heading { padding-top: var(--ma-5); }
+.essay-eyebrow { display: flex; gap: var(--ma-3); align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--ma-5); }
+.essay-heading h1 { font-size: clamp(2rem, 3.6vw, 2.75rem); line-height: 1.13; letter-spacing: -.018em; font-weight: 350; max-width: 28ch; color: var(--sumi); }
+.essay-subtitle { font-size: 23px; line-height: 1.4; margin: var(--ma-4) 0; max-width: 46ch; color: var(--sea); }
+.essay-author { font-size: 17px; margin-bottom: var(--ma-2); }
+.essay-author span, .essay-meta span { margin-inline: var(--ma-2); }
+.essay-meta { font-family: var(--mono); font-size: 11.5px; letter-spacing: .025em; line-height: 1.7; color: var(--sea); }
+.essay-paper-link { font-family: var(--mono); font-size: 12px; margin: var(--ma-4) 0 0; }
+.essay-layout { display: grid; grid-template-columns: minmax(0, 47rem) minmax(0, 12rem); gap: var(--ma-6); align-items: start; }
+.research-essay { font-size: 20px; line-height: 1.65; min-width: 0; }
+.research-essay > p { margin-bottom: 1.15em; }
+.research-essay h2 { font-size: 30px; line-height: 1.2; color: var(--sumi); margin: var(--ma-6) 0 var(--ma-4); scroll-margin-top: var(--ma-4); }
+.research-essay h2:first-child { margin-top: 0; }
+.research-essay h3 { font-size: 24px; line-height: 1.3; margin: var(--ma-5) 0 var(--ma-3); scroll-margin-top: var(--ma-4); }
+.research-essay strong { font-weight: 600; color: var(--sumi); }
+.research-essay ul, .research-essay ol { padding-left: 1.25em; margin: 0 0 1.15em; }
+.research-essay ul { list-style: disc; }
+.research-essay ol { list-style: decimal; }
+.research-essay li { padding-left: .15em; margin: .5em 0; }
+.research-essay blockquote { margin: var(--ma-4) 0; padding: 0 0 0 var(--ma-4); border-left: 1px solid var(--berlin); }
+.research-essay blockquote p:last-child { margin-bottom: 0; }
+.research-essay a { overflow-wrap: anywhere; }
+.research-essay code { font-family: var(--mono); font-size: .78em; }
+.research-essay pre { font-size: 15px; overflow-x: auto; padding: var(--ma-3); background: var(--shoal); }
+.hh-model { margin: var(--ma-4) 0 var(--ma-5); padding: var(--ma-4) 0; border-block: 1px solid var(--kei); }
+.hh-model math { font-size: 1.05em; margin: 0; }
+.hh-currents { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ma-3) var(--ma-4); margin-block: var(--ma-4); }
+.hh-model .hh-convention { font-size: 14px; line-height: 1.5; color: var(--sea); margin: var(--ma-3) 0 0; }
+.hh-model .hh-symbols { font-size: 17px; line-height: 1.5; color: var(--sea); margin: var(--ma-4) 0 0; }
+.value-judgment { margin: var(--ma-4) 0 var(--ma-5); padding: var(--ma-4) 0; border-block: 1px solid var(--kei); }
+.value-judgment math { font-size: 1.2em; margin: 0 0 var(--ma-3); }
+.value-judgment .judgment-reading { margin-bottom: var(--ma-4); }
+.judgment-key { margin: 0; font-size: 17px; line-height: 1.5; }
+.judgment-key > div { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: var(--ma-3); margin-top: var(--ma-3); }
+.judgment-key dt { font-weight: 500; color: var(--sumi); }
+.judgment-key dd { margin: 0; color: var(--sea); }
+.research-essay figure { margin: var(--ma-5) 0; }
+.research-essay figure picture, .research-essay figure img { display: block; width: 100%; height: auto; }
+.research-essay #figure-theory picture { aspect-ratio: 880 / 612; }
+.research-essay #figure-hh picture { aspect-ratio: 880 / 295; }
+.research-essay #figure-bell picture { aspect-ratio: 880 / 724; }
+.research-essay #figure-information picture { aspect-ratio: 880 / 637; }
+.research-essay figcaption { font-size: 16px; line-height: 1.55; color: var(--sea); margin-top: var(--ma-3); }
+.research-essay figcaption p:last-child { margin-bottom: 0; }
+.research-essay figure + p { margin-top: var(--ma-5); }
+.research-essay table { width: 100%; border-collapse: collapse; font-size: 17px; line-height: 1.45; margin: var(--ma-4) 0; }
+.research-essay th, .research-essay td { padding: var(--ma-2) var(--ma-3); border-bottom: 1px solid var(--kei); text-align: left; vertical-align: top; }
+.research-essay th { font-weight: 600; }
+.essay-contents { position: sticky; top: var(--ma-5); padding-top: var(--ma-2); }
+.essay-contents .lbl { font-size: 10px; color: var(--sea); }
+.essay-contents ol { list-style: none; margin: 0; }
+.essay-contents li { font-size: 15px; line-height: 1.4; margin-bottom: var(--ma-3); }
+.essay-contents a { color: var(--sea); text-decoration-color: var(--kei); }
+.essay-paper { border-top: 1px solid var(--berlin); padding-top: var(--ma-4); margin-top: var(--ma-6); }
+.essay-paper p { font-size: 17px; line-height: 1.5; }
+.essay-paper p:last-child { font-size: 14px; color: var(--sea); }
+@media (max-width: 1100px) { .essay-layout { grid-template-columns: minmax(0, 47rem); } .essay-contents { display: none; } }
+@media (max-width: 760px) {
+  .research-essay #figure-theory picture { aspect-ratio: 360 / 827; }
+  .research-essay #figure-hh picture { aspect-ratio: 360 / 690; }
+  .research-essay #figure-bell picture { aspect-ratio: 360 / 930; }
+  .research-essay #figure-information picture { aspect-ratio: 360 / 635; }
+}
+@media (max-width: 600px) {
+  .judgment-key > div { grid-template-columns: minmax(0, 1fr); gap: var(--ma-1); }
+  .value-judgment math { font-size: 1.08em; }
+  .essay-heading { padding-top: var(--ma-4); }
+  .essay-eyebrow { margin-bottom: var(--ma-4); font-size: 10px; }
+  .essay-subtitle { font-size: 21px; }
+  .essay-author { font-size: 16px; }
+  .research-essay { font-size: 19px; line-height: 1.65; }
+  .research-essay h2 { font-size: 27px; margin-top: var(--ma-5); }
+  .research-essay figcaption { font-size: 15px; }
+  .research-essay th, .research-essay td { padding: var(--ma-2); }
+}
+@media print {
+  .essay-contents, .nav, .foot, .spine { display: none; }
+  .essay-layout { display: block; }
+  .research-essay { font-size: 12pt; }
+  .research-essay figure, .research-essay blockquote { break-inside: avoid; }
+  .research-essay h2 { break-after: avoid; }
+}

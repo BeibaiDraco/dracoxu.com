@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="635" viewBox="0 0 360 635" role="img" aria-labelledby="title desc">
+<title id="title">Information can be rigorously incomparable</title><desc id="desc">There are four equally likely states of two independent binary quantities, x and y: 00, 01, 10, 11. Experiment C reveals both quantities and distinguishes all four states. A reveals x, grouping 00 with 01 and 10 with 11. B reveals y, grouping 00 with 10 and 01 with 11. C can simulate A by discarding y and can simulate B by discarding x. A and B cannot simulate one another. The comparison sets aside acquisition and processing costs.</desc>
+<rect width="360" height="635" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.mono{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:.3px}.muted{fill:#566A78}.white{fill:#EDF0F2}</style>
+<text x="18" y="28" font-size="12" class="mono muted" text-anchor="start" >FOUR EQUALLY LIKELY STATES</text>
+<text x="18" y="56" font-size="19" class="" text-anchor="start" >The two digits are x and y.</text>
+<line x1="18" y1="73" x2="342" y2="73" stroke="#0B3A5D" stroke-width="1.5"/>
+<text x="180" y="108" font-size="23" class="" text-anchor="middle" >C sees both</text>
+<rect x="119" y="128" width="56" height="56" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="184" y="128" width="56" height="56" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="119" y="193" width="56" height="56" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="184" y="193" width="56" height="56" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="147.0" y="163.0" font-size="22" class="mono" text-anchor="middle" >00</text>
+<text x="212.0" y="163.0" font-size="22" class="mono" text-anchor="middle" >01</text>
+<text x="147.0" y="228.0" font-size="22" class="mono" text-anchor="middle" >10</text>
+<text x="212.0" y="228.0" font-size="22" class="mono" text-anchor="middle" >11</text>
+<line x1="149" y1="266" x2="94" y2="329" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="211" y1="266" x2="267" y2="329" stroke="#0B3A5D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="70" y="281" font-size="13" class="mono muted" text-anchor="middle" >discard y</text>
+<text x="290" y="281" font-size="13" class="mono muted" text-anchor="middle" >discard x</text>
+<text x="79" y="362" font-size="22" class="" text-anchor="middle" >A sees x</text>
+<text x="279" y="362" font-size="22" class="" text-anchor="middle" >B sees y</text>
+<rect x="18" y="384" width="121" height="56" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="18" y="449" width="121" height="56" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="46.0" y="419.0" font-size="22" class="mono" text-anchor="middle" >00</text>
+<text x="111.0" y="419.0" font-size="22" class="mono" text-anchor="middle" >01</text>
+<text x="46.0" y="484.0" font-size="22" class="mono" text-anchor="middle" >10</text>
+<text x="111.0" y="484.0" font-size="22" class="mono" text-anchor="middle" >11</text>
+<rect x="218" y="384" width="56" height="121" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="283" y="384" width="56" height="121" fill="#E3E8EB" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="246.0" y="419.0" font-size="22" class="mono" text-anchor="middle" >00</text>
+<text x="311.0" y="419.0" font-size="22" class="mono" text-anchor="middle" >01</text>
+<text x="246.0" y="484.0" font-size="22" class="mono" text-anchor="middle" >10</text>
+<text x="311.0" y="484.0" font-size="22" class="mono" text-anchor="middle" >11</text>
+<line x1="155" y1="444" x2="203" y2="444" stroke="#C7D0D6" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line x1="173" y1="433" x2="185" y2="455" stroke="#0B3A5D" stroke-width="1.6"/>
+<text x="18" y="548" font-size="20" class="" text-anchor="start" >A cannot simulate B.</text>
+<text x="18" y="577" font-size="20" class="" text-anchor="start" >B cannot simulate A.</text>
+<text x="18" y="612" font-size="14" class="muted" text-anchor="start" >Comparison sets aside information costs.</text>
+</svg>

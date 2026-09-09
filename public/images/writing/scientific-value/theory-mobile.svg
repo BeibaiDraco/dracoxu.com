@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="827" viewBox="0 0 360 827" role="img" aria-labelledby="title desc">
+<title id="title">A theory of scientific value: a research aim</title>
+<desc id="desc">A research aim, not a completed theory. Scientific contributions are described relative to the scientific background, including content, support, and available methods. These descriptions and justified principles of value jointly support judgments across studies. Shared reasons constrain cases; comparisons may remain unresolved. Dashed feedback arrows show how unfamiliar achievements and counterexamples can challenge both the descriptions and the principles. The examples are not an exhaustive definition of scientific value.</desc>
+<rect width="360" height="827" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.italic{font-style:italic}</style>
+<text x="18" y="29" font-size="12" class="eyebrow muted" text-anchor="start">A RESEARCH AIM</text>
+<text x="18" y="65" font-size="28" class="" text-anchor="start">A theory of</text>
+<text x="18" y="96" font-size="28" class="" text-anchor="start">scientific value</text>
+<rect x="26" y="131" width="308" height="138" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="42" y="163" font-size="23" class="" text-anchor="start">Scientific contributions</text>
+<text x="42" y="193" font-size="17" class="muted" text-anchor="start">Changes relative to the</text>
+<text x="42" y="217" font-size="17" class="muted" text-anchor="start">scientific background:</text>
+<text x="42" y="247" font-size="16" class="" text-anchor="start">e.g. content, support, usable methods</text>
+<rect x="26" y="301" width="308" height="138" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="42" y="333" font-size="23" class="" text-anchor="start">Principles of value</text>
+<text x="42" y="364" font-size="17" class="" text-anchor="start">Why do these differences merit</text>
+<text x="42" y="389" font-size="17" class="" text-anchor="start">recognition or greater weight?</text>
+<text x="42" y="420" font-size="16" class="muted italic" text-anchor="start">Principles need justification</text>
+<path d="M 334 202 H 350 V 475 H 180 V 519" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 334 370 H 350" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="330" y="502" font-size="16" class="muted" text-anchor="end">together support</text>
+<rect x="26" y="519" width="308" height="133" fill="#D2E0E9" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="42" y="552" font-size="23" class="" text-anchor="start">Judgments across studies</text>
+<text x="42" y="583" font-size="17" class="" text-anchor="start">Shared reasons constrain cases.</text>
+<text x="42" y="613" font-size="17" class="muted" text-anchor="start">Comparisons may remain</text>
+<text x="42" y="636" font-size="17" class="muted" text-anchor="start">unresolved.</text>
+<path d="M 26 755 H 9 V 202 H 26" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+<path d="M 9 370 H 26" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+<rect x="26" y="697" width="308" height="111" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="180" y="726" font-size="21" class="" text-anchor="middle">Unfamiliar achievements</text>
+<text x="180" y="752" font-size="21" class="" text-anchor="middle">and counterexamples</text>
+<text x="180" y="778" font-size="17" class="muted" text-anchor="middle">can challenge descriptions</text>
+<text x="180" y="800" font-size="17" class="muted" text-anchor="middle">and principles</text>
+</svg>

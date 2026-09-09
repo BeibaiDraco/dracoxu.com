@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="612" viewBox="0 0 880 612" role="img" aria-labelledby="title desc">
+<title id="title">A theory of scientific value: a research aim</title>
+<desc id="desc">A research aim, not a completed theory. Scientific contributions are described relative to the scientific background, including content, support, and available methods. These descriptions and justified principles of value jointly support judgments across studies. Shared reasons constrain cases; comparisons may remain unresolved. Dashed feedback arrows show how unfamiliar achievements and counterexamples can challenge both the descriptions and the principles. The examples are not an exhaustive definition of scientific value.</desc>
+<rect width="880" height="612" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.italic{font-style:italic}</style>
+<text x="32" y="33" font-size="13" class="eyebrow muted" text-anchor="start">A RESEARCH AIM</text>
+<text x="32" y="76" font-size="32" class="" text-anchor="start">A theory of scientific value</text>
+<rect x="42" y="126" width="364" height="142" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="60" y="162" font-size="25" class="" text-anchor="start">Scientific contributions</text>
+<text x="60" y="198" font-size="18" class="muted" text-anchor="start">Changes relative to the background:</text>
+<text x="60" y="233" font-size="17" class="" text-anchor="start">e.g. content · support · available methods</text>
+<rect x="474" y="126" width="364" height="142" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="492" y="162" font-size="25" class="" text-anchor="start">Principles of value</text>
+<text x="492" y="195" font-size="18" class="" text-anchor="start">Why do these differences merit</text>
+<text x="492" y="219" font-size="18" class="" text-anchor="start">recognition or greater weight?</text>
+<text x="492" y="249" font-size="16" class="muted italic" text-anchor="start">Principles need justification</text>
+<path d="M 224 268 V 308 H 346 V 344" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 656 268 V 308 H 534 V 344" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="440" y="313" font-size="17" class="muted" text-anchor="middle">together support</text>
+<rect x="247" y="344" width="386" height="131" fill="#D2E0E9" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="440" y="381" font-size="25" class="" text-anchor="middle">Judgments across studies</text>
+<text x="440" y="416" font-size="18" class="" text-anchor="middle">Shared reasons constrain different cases.</text>
+<text x="440" y="449" font-size="18" class="muted" text-anchor="middle">Comparisons may remain unresolved.</text>
+<path d="M 204 551 H 17 V 203 H 42" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+<path d="M 676 551 H 863 V 203 H 838" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+<rect x="204" y="514" width="472" height="79" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="440" y="545" font-size="21" class="" text-anchor="middle">Unfamiliar achievements and counterexamples</text>
+<text x="440" y="574" font-size="18" class="muted" text-anchor="middle">can challenge descriptions and principles</text>
+</svg>
