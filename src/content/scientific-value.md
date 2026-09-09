@@ -1,3 +1,8 @@
+<section class="essay-summary" aria-labelledby="essay-summary-label">
+<p class="essay-summary-label" id="essay-summary-label">In brief</p>
+<p>Training AI scientists forces us to confront a question our own expertise has not settled: what makes science good? We need a general theory of scientific value that explains why contributions matter and how different kinds of advance can be compared. Its judgments should carry arguments we can check, even when the research itself exceeds what any one person can understand.</p>
+</section>
+
 On September 8, 2026, [OpenAI announced a proposed proof](https://openai.com/index/navier-stokes-solution/) addressing the Navier–Stokes Millennium Prize Problem, accompanied by a Lean formalization. The claimed result concerns a smooth, externally driven fluid flow whose velocity becomes unbounded in finite time. It addresses the forced breakdown alternatives in the [official problem](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
 
 Imagine following this trajectory much further. AI helps resolve every Millennium Prize Problem. Which mathematical question should come next?
