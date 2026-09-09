@@ -11,6 +11,8 @@ const ogImage = new URL(socialImage?.src ?? '/og.png', Astro.site).href;
 const ogImageWidth = socialImage?.width ?? 1200;
 const ogImageHeight = socialImage?.height ?? 630;
 const ogImageAlt = socialImage?.alt ?? 'Draco (Yunlong) Xu — Computational Neuroscience, University of Chicago';
+const xProfile = site.links.find((link) => link.label === 'X');
+const twitterHandle = xProfile ? `@${new URL(xProfile.href).pathname.split('/').filter(Boolean)[0]}` : undefined;
 ---
 
 <!doctype html>
@@ -41,6 +43,8 @@ const ogImageAlt = socialImage?.alt ?? 'Draco (Yunlong) Xu — Computational Neu
   <meta property="og:image:alt" content={ogImageAlt} />
   {socialImage?.type && <meta property="og:image:type" content={socialImage.type} />}
   <meta name="twitter:card" content="summary_large_image" />
+  {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
+  {article && twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}
   {socialImage && <>
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
