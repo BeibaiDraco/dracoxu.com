@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { writing } from '../../data/writing.js';
 
-const entries = [...writing].sort((a, b) => b.date.localeCompare(a.date));
+const entries = writing.filter((entry) => !entry.hidden).sort((a, b) => b.date.localeCompare(a.date));
 const years = [...new Set(entries.map((entry) => entry.date.slice(0, 4)))];
 const dateLabel = (date) => new Intl.DateTimeFormat('en-US', {
   month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',

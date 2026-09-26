@@ -2,11 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import { Content, getHeadings } from '../../content/mine-or-yours.md';
 import '../../styles/research-essay.css';
+import { writing } from '../../data/writing.js';
 
-const title = 'Mine or Yours? When One Language Model Reads Another’s Memory';
-const subtitle = 'Linked at the level of memory, a language model takes its partner’s assignment as its own, and reports that nothing feels unusual.';
+const title = 'Mine or Yours?';
+const subtitle = 'Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const pageTitle = `${title} ${subtitle}`;
 const description = 'Two copies of one language model, one reading the other’s memory: the reader takes its partner’s assignment as its own, and its reports mark nothing as foreign. In this model, what decided ownership was how the content arrived.';
 const published = '2026-09-26';
+const hidden = Boolean(writing.find((entry) => entry.href === '/writing/mine-or-yours/')?.hidden);
 const headings = getHeadings().filter((h) => h.depth === 2);
 const paper = '/papers/mine-or-yours.pdf';
 const paperTitle = 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
@@ -22,14 +25,14 @@ const bibtex = `@misc{xu2026mine,
 }`;
 ---
 
-<Base title={title} description={description} current="Writing" article={true}
+<Base title={pageTitle} description={description} current="Writing" article={true} noindex={hidden}
   publishedTime={published} author="Yunlong Xu" updated="September 26, 2026"
   socialImage={{
     src: '/images/writing/mine-or-yours/social-card.png',
     width: 1200,
     height: 630,
     type: 'image/png',
-    alt: 'Mine or Yours? When one language model reads another’s memory, it takes the other’s assignment as its own. Light text on a dark ground beside two rows of memory cells, A plain and B hatched.',
+    alt: 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own. Light text on a dark ground beside two rows of memory cells, A plain and B hatched.',
   }}>
   <header class="bay essay-heading">
     <div class="wide">
@@ -38,24 +41,22 @@ const bibtex = `@misc{xu2026mine,
       <p class="essay-subtitle">{subtitle}</p>
       <p class="essay-author">Yunlong Xu <span aria-hidden="true">·</span> University of Chicago</p>
       <p class="essay-meta"><time datetime={published}>September 26, 2026</time> <span aria-hidden="true">·</span> 15–20 min read</p>
-      <p class="essay-paper-link"><a href={paper}>Read the paper (PDF)</a> <span aria-hidden="true">·</span> <a href={code}>Code and protocols</a></p>
+      <p class="essay-paper-link"><a href={paper}>Read the paper (PDF draft)</a> <span aria-hidden="true">·</span> <a href={code}>Code and protocols</a></p>
     </div>
     <div class="horizon"></div>
   </header>
 
   <div class="bay">
     <div class="wide essay-layout">
-      <article class="research-essay" aria-label={title}>
+      <article class="research-essay" aria-label={pageTitle}>
         <Content />
         <footer class="essay-paper">
           <p><a href={paper}><cite>{paperTitle}</cite> (PDF)</a></p>
-          <p>Yunlong Xu · Preprint, September 2026. Code, frozen protocols and a map from every figure and table to the runs it was computed from: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
+          <p>Yunlong Xu · Preprint draft, September 2026. Code, frozen protocols and a map from every figure and table to the runs it was computed from: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
         </footer>
         <section class="essay-endmatter" aria-labelledby="endmatter-citation">
           <h2 class="endmatter-label" id="endmatter-citation">Citation</h2>
           <pre><code>{bibtex}</code></pre>
-          <h2 class="endmatter-label">How this work was done</h2>
-          <p>I conceived the study and made every research decision. Under my direction, the AI coding agents Claude Code (Anthropic) and Codex (OpenAI) wrote the study’s code, ran the analyses, drew the figures, and drafted the paper and this post; Codex also coded the open self-reports, and Claude Code wrote the keyword rules they were checked against. I take full responsibility for the content; the paper’s AI use statement gives the details.</p>
           <p class="endmatter-log">First published September 26, 2026.</p>
         </section>
       </article>
