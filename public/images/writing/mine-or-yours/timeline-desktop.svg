@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="330" viewBox="0 0 880 330" role="img" aria-labelledby="title desc">
+<title id="title">One episode, and where the questions branch</title>
+<desc id="desc">Each copy reads its card and writes a note. Both then write a 48-token reflection, during which A also reads B's memory. The state is saved. From it, A answers each question either with the link still open, reading B, or with the link cut, answering from its own memory, which now includes the reflection it wrote while connected.</desc>
+<rect width="880" height="330" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="32.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">ONE EPISODE</text>
+<text x="32.0" y="72.0" font-size="30" text-anchor="start">Where the questions branch</text>
+<rect x="32.0" y="159.0" width="170.0" height="52.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.2"/>
+<text x="117.0" y="183.0" font-size="16" text-anchor="middle">card and note</text>
+<text x="117.0" y="202.0" font-size="12" class="mono muted" text-anchor="middle">link closed</text>
+<path d="M 206 185 H 240" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="244.0" y="159.0" width="250.0" height="52.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="262.0" y="170.0" width="214.0" height="30.0" fill="#EDF0F2"/>
+<text x="369.0" y="190.0" font-size="16" text-anchor="middle">reflection, link open</text>
+<path d="M 498 185 H 530" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="540" cy="185" r="7" fill="#0B3A5D"/>
+<text x="524.0" y="221.0" font-size="12" class="mono muted" text-anchor="middle">state saved</text>
+<path d="M 548 185 C 580 185, 580 127, 612 127" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 548 185 C 580 185, 580 243, 612 243" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="616.0" y="101.0" width="232.0" height="52.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="630.0" y="112.0" width="204.0" height="30.0" fill="#EDF0F2"/>
+<text x="732.0" y="132.0" font-size="15" text-anchor="middle">questions, link kept</text>
+<rect x="616.0" y="217.0" width="232.0" height="52.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="732.0" y="239.0" font-size="15" text-anchor="middle">questions, link cut</text>
+<text x="732.0" y="257.0" font-size="12" class="mono muted" text-anchor="middle">A's own memory only</text>
+<text x="32.0" y="306.0" font-size="13" class="muted" text-anchor="start">Hatched: A is reading B's memory. After a cut, A's own memory still holds the reflection it wrote while connected.</text>
+</svg>

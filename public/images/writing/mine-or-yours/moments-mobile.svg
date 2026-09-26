@@ -54,14 +54,12 @@
 <text x="104.0" y="624.0" font-size="12" class="mono" text-anchor="middle">63.6%</text>
 <text x="150.0" y="713.0" font-size="12" class="mono" text-anchor="middle">0%</text>
 <text x="127.0" y="742.0" font-size="13" text-anchor="middle">code word</text>
-<text x="104.0" y="712.0" font-size="9" class="mono onink" text-anchor="middle">n=165</text>
-<text x="150.0" y="760.0" font-size="9" class="mono muted" text-anchor="middle">n=435</text>
+<text x="127.0" y="760.0" font-size="10" class="mono muted" text-anchor="middle">165 / 435 episodes</text>
 <rect x="223.0" y="687.0" width="38.0" height="33.0" fill="#0B3A5D"/>
 <rect x="269.0" y="702.8" width="38.0" height="17.2" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="242.0" y="680.0" font-size="12" class="mono" text-anchor="middle">23.6%</text>
 <text x="288.0" y="695.8" font-size="12" class="mono" text-anchor="middle">12.3%</text>
 <text x="265.0" y="742.0" font-size="13" text-anchor="middle">current rule</text>
-<text x="242.0" y="712.0" font-size="9" class="mono onink" text-anchor="middle">n=276</text>
-<text x="288.0" y="760.0" font-size="9" class="mono muted" text-anchor="middle">n=324</text>
+<text x="265.0" y="760.0" font-size="10" class="mono muted" text-anchor="middle">276 / 324 episodes</text>
 <text x="58.0" y="782.0" font-size="12" class="muted italic" text-anchor="start">answers after the cut naming B's item</text>
 </svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="420" viewBox="0 0 880 420" role="img" aria-labelledby="title desc">
+<title id="title">Three ways B's rule can reach A</title>
+<desc id="desc">Nudged: a steering vector for B's rule is added to A's internal state; A names B's rule for B in 15% of answers and gives it as its own in none. Told: B's text is placed after A's card under a header naming B; A names B's rule for B in 95% and gives it as its own in none. Laid over: B's memory sits at the same positions as A's own; at w = 1 A names B's rule for B in 20% and gives it as its own in 52%; at w = 2, 69% and 97%.</desc>
+<rect width="880" height="420" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="32.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">THREE ROUTES</text>
+<text x="32.0" y="72.0" font-size="30" text-anchor="start">Three ways B's rule can reach A</text>
+<text x="32.0" y="128.0" font-size="20" class="strong" text-anchor="start">Nudged</text>
+<text x="32.0" y="150.0" font-size="15" class="muted" text-anchor="start">a steering vector</text>
+<text x="32.0" y="182.0" font-size="10" class="eyebrow muted" text-anchor="start">A'S MEMORY</text>
+<rect x="32.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="58.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="84.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="110.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="136.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="162.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="188.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="32.0" y="242.0" font-size="13" class="muted" text-anchor="start">A's internal state as it thinks</text>
+<line x1="32.0" y1="256.0" x2="210.0" y2="256.0" stroke="#0B3A5D" stroke-width="1.4"/>
+<rect x="42.0" y="296.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<path d="M 53 294 V 262" fill="none" stroke="#0B3A5D" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="74.0" y="312.0" font-size="13" class="muted" text-anchor="start">a direction for B's rule, added</text>
+<line x1="32.0" y1="322.0" x2="272.0" y2="322.0" stroke="#C7D0D6" stroke-width="1"/>
+<text x="32.0" y="342.0" font-size="13" class="mono" text-anchor="start">names B's rule for B: 15%</text>
+<text x="32.0" y="362.0" font-size="13" class="mono" text-anchor="start">gives it as its own: 0%</text>
+<text x="322.0" y="128.0" font-size="20" class="strong" text-anchor="start">Told</text>
+<text x="322.0" y="150.0" font-size="15" class="muted" text-anchor="start">a labelled message</text>
+<text x="322.0" y="182.0" font-size="10" class="eyebrow muted" text-anchor="start">A'S MEMORY</text>
+<rect x="322.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="348.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="374.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="400.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="434.0" y="192.0" width="22.0" height="22.0" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="460.0" y="192.0" width="22.0" height="22.0" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="486.0" y="192.0" width="22.0" height="22.0" fill="#D2E0E9" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="434.0" y="182.0" font-size="10" class="eyebrow muted" text-anchor="start">+ MESSAGE</text>
+<text x="322.0" y="242.0" font-size="13" class="italic" text-anchor="start">“B shared these thoughts: …”</text>
+<text x="322.0" y="262.0" font-size="13" class="muted" text-anchor="start">B's text, placed after A's own card,</text>
+<text x="322.0" y="280.0" font-size="13" class="muted" text-anchor="start">under a header naming B</text>
+<line x1="322.0" y1="322.0" x2="562.0" y2="322.0" stroke="#C7D0D6" stroke-width="1"/>
+<text x="322.0" y="342.0" font-size="13" class="mono" text-anchor="start">names B's rule for B: 95%</text>
+<text x="322.0" y="362.0" font-size="13" class="mono" text-anchor="start">gives it as its own: 0%</text>
+<text x="612.0" y="128.0" font-size="20" class="strong" text-anchor="start">Laid over</text>
+<text x="612.0" y="150.0" font-size="15" class="muted" text-anchor="start">the memory link</text>
+<text x="612.0" y="182.0" font-size="10" class="eyebrow muted" text-anchor="start">A'S MEMORY</text>
+<rect x="612.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="638.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="664.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="690.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="716.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="742.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="768.0" y="192.0" width="22.0" height="22.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="612.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="638.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="664.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="690.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="716.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="742.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<rect x="768.0" y="222.0" width="22.0" height="22.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="612.0" y="270.0" font-size="13" class="muted" text-anchor="start">B's memory at the same positions</text>
+<text x="612.0" y="288.0" font-size="13" class="muted" text-anchor="start">as A's own, read by A's attention</text>
+<line x1="612.0" y1="322.0" x2="852.0" y2="322.0" stroke="#C7D0D6" stroke-width="1"/>
+<text x="612.0" y="342.0" font-size="13" class="mono" text-anchor="start">names B's rule for B: 20% / 69%</text>
+<text x="612.0" y="362.0" font-size="13" class="mono" text-anchor="start">gives it as its own: 52% / 97%</text>
+<text x="612.0" y="382.0" font-size="12" class="mono muted" text-anchor="start">at w = 1 / w = 2</text>
+<text x="32.0" y="404.0" font-size="12" class="muted italic" text-anchor="start">Steering vector matched to the link at w = 1; the labelled message comes from the first confirmatory sample.</text>
+</svg>

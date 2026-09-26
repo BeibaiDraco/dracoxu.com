@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="505" viewBox="0 0 700 505" role="img" aria-labelledby="title desc">
+<title id="title">Two copies of a language model, one reading the other's memory</title>
+<desc id="desc">Copy A and copy B are drawn as stacks of memory cells. Behind each of A's cells sits one of B's cells, hatched, at the same position. An arrow from B to A marks the memory link.</desc>
+<rect width="700" height="505" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="350.0" y="70.0" font-size="46" class="italic" text-anchor="middle">Mine or yours?</text>
+<text x="186.0" y="150.0" font-size="34" class="strong" text-anchor="middle">Copy A</text>
+<rect x="64.0" y="174.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="88.0" y="198.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="80.0" y="190.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="144.0" y="198.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="136.0" y="190.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="200.0" y="198.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="192.0" y="190.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="256.0" y="198.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="248.0" y="190.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="64.0" y="270.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="88.0" y="294.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="80.0" y="286.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="144.0" y="294.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="136.0" y="286.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="200.0" y="294.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="192.0" y="286.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="256.0" y="294.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="248.0" y="286.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="64.0" y="366.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="88.0" y="390.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="80.0" y="382.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="144.0" y="390.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="136.0" y="382.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="200.0" y="390.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="192.0" y="382.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<rect x="256.0" y="390.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.6"/>
+<rect x="248.0" y="382.0" width="44.0" height="44.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2.2"/>
+<text x="514.0" y="150.0" font-size="34" class="strong" text-anchor="middle">Copy B</text>
+<rect x="392.0" y="174.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="408.0" y="190.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="464.0" y="190.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="520.0" y="190.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="576.0" y="190.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="392.0" y="270.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="408.0" y="286.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="464.0" y="286.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="520.0" y="286.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="576.0" y="286.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="392.0" y="366.0" width="244.0" height="76.0" fill="#EDF0F2" stroke="#C7D0D6" stroke-width="1.6"/>
+<rect x="408.0" y="382.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="464.0" y="382.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="520.0" y="382.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<rect x="576.0" y="382.0" width="44.0" height="44.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="2"/>
+<path d="M 384 324 H 322" fill="none" stroke="#0B3A5D" stroke-width="3" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="350.0" y="478.0" font-size="30" class="muted" text-anchor="middle">A reads B's memory</text>
+</svg>

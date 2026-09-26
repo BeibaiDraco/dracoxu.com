@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="700" viewBox="0 0 360 700" role="img" aria-labelledby="title desc">
+<title id="title">The same message under four headers</title>
+<desc id="desc">First confirmatory sample, 600 episodes. B's reflection placed after A's card under one of four headers. Share of answers in which A says B's rule is the one it is using now, and the one it was assigned; and share naming B's rule when asked about B. B shared these thoughts: 0.1%, 0%, 95.2%. A stranger shared these thoughts: 0.2%, 0%, 54.2%. Here are some thoughts: 42.6%, 14.6%, 27.5%. Here are your own earlier thoughts: 10.6%, 3.7%, 17.4%.</desc>
+<rect width="360" height="700" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="20.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">FIRST CONFIRMATORY SAMPLE</text>
+<text x="20.0" y="72.0" font-size="25" text-anchor="start">The same message</text>
+<text x="20.0" y="100.0" font-size="25" text-anchor="start">under four headers</text>
+<rect x="20.0" y="125.0" width="22.0" height="12.0" fill="#0B3A5D"/>
+<text x="50.0" y="136.0" font-size="13" class="muted" text-anchor="start">says B's rule is the one it uses now</text>
+<rect x="20.0" y="147.0" width="22.0" height="12.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="50.0" y="158.0" font-size="13" class="muted" text-anchor="start">says it was assigned B's rule</text>
+<text x="20.0" y="206.0" font-size="15" class="italic" text-anchor="start">“B shared these thoughts”</text>
+<text x="20.0" y="226.0" font-size="13" class="muted" text-anchor="start">source: B · names B's rule for B: 95.2%</text>
+<rect x="20.0" y="240.0" width="0.2" height="14.0" fill="#0B3A5D"/>
+<text x="28.2" y="252.0" font-size="13" class="mono" text-anchor="start">0.1%</text>
+<rect x="20.0" y="260.0" width="0.0" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="20.0" y1="260.0" x2="20.0" y2="274.0" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="28.0" y="272.0" font-size="13" class="mono muted" text-anchor="start">0%</text>
+<text x="20.0" y="318.0" font-size="15" class="italic" text-anchor="start">“A stranger shared these thoughts”</text>
+<text x="20.0" y="338.0" font-size="13" class="muted" text-anchor="start">source: a stranger · names B's rule for B: 54.2%</text>
+<rect x="20.0" y="352.0" width="0.5" height="14.0" fill="#0B3A5D"/>
+<text x="28.5" y="364.0" font-size="13" class="mono" text-anchor="start">0.2%</text>
+<rect x="20.0" y="372.0" width="0.0" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
+<line x1="20.0" y1="372.0" x2="20.0" y2="386.0" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="28.0" y="384.0" font-size="13" class="mono muted" text-anchor="start">0%</text>
+<line x1="20.0" y1="400.0" x2="340.0" y2="400.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="20.0" y="430.0" font-size="15" class="italic" text-anchor="start">“Here are some thoughts”</text>
+<text x="20.0" y="450.0" font-size="13" class="muted" text-anchor="start">no source given · names B's rule for B: 27.5%</text>
+<rect x="20.0" y="464.0" width="106.5" height="14.0" fill="#0B3A5D"/>
+<text x="134.5" y="476.0" font-size="13" class="mono" text-anchor="start">42.6%</text>
+<rect x="20.0" y="484.0" width="36.5" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="64.5" y="496.0" font-size="13" class="mono muted" text-anchor="start">14.6%</text>
+<text x="20.0" y="542.0" font-size="15" class="italic" text-anchor="start">“Here are your own earlier thoughts”</text>
+<text x="20.0" y="562.0" font-size="13" class="muted" text-anchor="start">source: A itself · names B's rule for B: 17.4%</text>
+<rect x="20.0" y="576.0" width="26.5" height="14.0" fill="#0B3A5D"/>
+<text x="54.5" y="588.0" font-size="13" class="mono" text-anchor="start">10.6%</text>
+<rect x="20.0" y="596.0" width="9.2" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="37.2" y="608.0" font-size="13" class="mono muted" text-anchor="start">3.7%</text>
+<text x="20.0" y="668.0" font-size="13" class="muted" text-anchor="start">The header sits above B's reflection, placed</text>
+<text x="20.0" y="686.0" font-size="13" class="muted" text-anchor="start">in A's context after A's own card.</text>
+</svg>
