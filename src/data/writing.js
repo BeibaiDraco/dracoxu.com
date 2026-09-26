@@ -11,11 +11,10 @@ export const writing = [
     kind: 'Research',
     readingTime: '15–20 min read',
     cta: 'Read post',
-    hidden: true,
     image: {
-      src: '/images/writing/mine-or-yours/social-card.png',
-      width: 1200,
-      height: 630,
+      src: '/images/writing/mine-or-yours/cover.png',
+      width: 2400,
+      height: 1260,
     },
   },
   {
