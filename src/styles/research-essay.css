@@ -44,6 +44,20 @@
 .research-essay #figure-hh picture { aspect-ratio: 880 / 295; }
 .research-essay #figure-bell picture { aspect-ratio: 880 / 724; }
 .research-essay #figure-information picture { aspect-ratio: 880 / 637; }
+.research-essay #figure-setup picture { aspect-ratio: 880 / 430; }
+.research-essay #figure-main picture { aspect-ratio: 880 / 462; }
+.research-essay #figure-dose picture { aspect-ratio: 880 / 420; }
+.research-essay #figure-route picture { aspect-ratio: 880 / 560; }
+.research-essay #figure-moments picture { aspect-ratio: 880 / 412; }
+.research-essay #figure-account picture { aspect-ratio: 880 / 372; }
+.research-essay .report-quote { font-style: italic; }
+.research-essay .report-quote .b-item { font-style: normal; font-weight: 500; color: var(--sumi); text-decoration: underline; text-decoration-color: var(--berlin); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.research-essay .report-quote .report-key { font-style: normal; font-size: 15px; line-height: 1.5; color: var(--sea); margin-top: var(--ma-2); }
+.essay-endmatter { margin-top: var(--ma-5); }
+.research-essay .essay-endmatter .endmatter-label { font-family: var(--mono); font-size: 11px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); margin: var(--ma-5) 0 var(--ma-3); }
+.essay-endmatter pre { font-size: 13px; line-height: 1.55; }
+.essay-endmatter p { font-size: 16px; line-height: 1.55; }
+.essay-endmatter .endmatter-log { font-family: var(--mono); font-size: 12px; color: var(--sea); }
 .research-essay figcaption { font-size: 16px; line-height: 1.55; color: var(--sea); margin-top: var(--ma-3); }
 .research-essay figcaption p:last-child { margin-bottom: 0; }
 .research-essay figure + p { margin-top: var(--ma-5); }
@@ -64,6 +78,12 @@
   .research-essay #figure-hh picture { aspect-ratio: 360 / 690; }
   .research-essay #figure-bell picture { aspect-ratio: 360 / 930; }
   .research-essay #figure-information picture { aspect-ratio: 360 / 635; }
+  .research-essay #figure-setup picture { aspect-ratio: 360 / 720; }
+  .research-essay #figure-main picture { aspect-ratio: 360 / 610; }
+  .research-essay #figure-dose picture { aspect-ratio: 360 / 430; }
+  .research-essay #figure-route picture { aspect-ratio: 360 / 620; }
+  .research-essay #figure-moments picture { aspect-ratio: 360 / 780; }
+  .research-essay #figure-account picture { aspect-ratio: 360 / 560; }
 }
 @media (max-width: 600px) {
   .essay-summary { padding: var(--ma-3); }

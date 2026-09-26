@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="620" viewBox="0 0 360 620" role="img" aria-labelledby="title desc">
+<title id="title">Ownership follows the route, not access</title>
+<desc id="desc">Access (answers naming B's priority when A is asked about B) against claiming (answers naming B's priority as A's own). Memory link: w = 1, 19.8% access and 52.3% claiming; w = 2, 69.2% and 97.1%. Third-person record: w = 1, 53.2% and 47.8%; w = 2, 97.2% and 97.2%. Steering vector matched to the link at w = 1: 15.3% and 0%; a stronger vector: 51.2% and 4.3%. Text tagged as B's: 95.2% and 0%; untagged text: 27.5% and 14.6%. No link: 3.9% and 0%.</desc>
+<rect width="360" height="620" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="20.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">TWO CONFIRMATORY SAMPLES</text>
+<text x="20.0" y="72.0" font-size="25" text-anchor="start">Ownership follows</text>
+<text x="20.0" y="100.0" font-size="25" text-anchor="start">the route, not access</text>
+<path d="M 58.0 430.0 L 340.0 148.0 L 58.0 148.0 Z" fill="#E3E8EB" stroke="none" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="66.5" y="204.4" font-size="13" class="muted italic" text-anchor="start">claims more than it</text>
+<text x="66.5" y="221.4" font-size="13" class="muted italic" text-anchor="start">can report as B's</text>
+<line x1="58.0" y1="430.0" x2="58.0" y2="435.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="58.0" y="450.0" font-size="11" class="mono muted" text-anchor="middle">0%</text>
+<line x1="53.0" y1="430.0" x2="58.0" y2="430.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="49.0" y="434.0" font-size="11" class="mono muted" text-anchor="end">0%</text>
+<line x1="199.0" y1="430.0" x2="199.0" y2="435.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="199.0" y="450.0" font-size="11" class="mono muted" text-anchor="middle">50%</text>
+<line x1="53.0" y1="289.0" x2="58.0" y2="289.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="49.0" y="293.0" font-size="11" class="mono muted" text-anchor="end">50%</text>
+<line x1="340.0" y1="430.0" x2="340.0" y2="435.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="340.0" y="450.0" font-size="11" class="mono muted" text-anchor="middle">100%</text>
+<line x1="53.0" y1="148.0" x2="58.0" y2="148.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="49.0" y="152.0" font-size="11" class="mono muted" text-anchor="end">100%</text>
+<line x1="58.0" y1="430.0" x2="340.0" y2="430.0" stroke="#0B3A5D" stroke-width="1"/>
+<line x1="58.0" y1="430.0" x2="58.0" y2="148.0" stroke="#0B3A5D" stroke-width="1"/>
+<text x="199.0" y="472.0" font-size="13" class="muted" text-anchor="middle">access: names B's priority when asked about B</text>
+<text x="18.0" y="289.0" font-size="13" class="muted" text-anchor="middle" transform="rotate(-90 18.0 289.0)">claiming: gives B's priority as its own</text>
+<path d="M 121.83600000000001 284.514 L 198.024 294.204" fill="none" stroke="#0B3A5D" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<path d="M 261.144 156.17800000000005 L 322.10400000000004 155.89599999999996" fill="none" stroke="#0B3A5D" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<circle cx="69.0" cy="430.0" r="4" fill="#C7D0D6"/>
+<text x="75.0" y="448.0" font-size="13" text-anchor="start">no link</text>
+<circle cx="113.8" cy="282.5" r="5" fill="#0B3A5D"/>
+<text x="113.8" y="270.5" font-size="13" text-anchor="middle">link, w = 1</text>
+<circle cx="253.1" cy="156.2" r="5" fill="#0B3A5D"/>
+<text x="245.1" y="174.2" font-size="13" text-anchor="end">link, w = 2</text>
+<circle cx="208.0" cy="295.2" r="5" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="212.0" y="315.2" font-size="13" text-anchor="start">third person, w = 1</text>
+<circle cx="332.1" cy="155.9" r="5" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="328.1" y="143.9" font-size="13" text-anchor="end">third person, w = 2</text>
+<path d="M 101.1 424.0 L 107.1 430.0 L 101.1 436.0 L 95.1 430.0 Z" fill="#0B3A5D"/>
+<text x="97.1" y="418.0" font-size="13" text-anchor="start">matched vector</text>
+<rect x="322.0" y="425.5" width="9.0" height="9.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="322.5" y="418.0" font-size="13" text-anchor="end">tagged text</text>
+<rect x="131.1" y="384.3" width="9.0" height="9.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="143.6" y="384.8" font-size="13" text-anchor="start">untagged text</text>
+<circle cx="26.0" cy="515.0" r="5" fill="#0B3A5D"/>
+<text x="38.0" y="520.0" font-size="13" class="muted" text-anchor="start">memory link</text>
+<circle cx="196.0" cy="515.0" r="5" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="208.0" y="520.0" font-size="13" class="muted" text-anchor="start">third-person record</text>
+<path d="M 26.0 533.0 L 32.0 539.0 L 26.0 545.0 L 20.0 539.0 Z" fill="#0B3A5D"/>
+<text x="38.0" y="544.0" font-size="13" class="muted" text-anchor="start">steering vector</text>
+<rect x="191.5" y="534.5" width="9.0" height="9.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
+<text x="208.0" y="544.0" font-size="13" class="muted" text-anchor="start">text message</text>
+<text x="20.0" y="590.0" font-size="12" class="muted italic" text-anchor="start">Text messages: first confirmatory sample;</text>
+<text x="20.0" y="606.0" font-size="12" class="muted italic" text-anchor="start">the rest: main sample.</text>
+</svg>

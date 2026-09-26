@@ -33,7 +33,7 @@ const updated = entries.length ? new Intl.DateTimeFormat('en-US', {
               <p class="entry-meta"><time datetime={entry.date}>{dateLabel(entry.date)}</time><span aria-hidden="true">·</span>{entry.kind}</p>
               <h3><a href={entry.href}>{entry.title}</a></h3>
               <p class="entry-description">{entry.description}</p>
-              <p class="entry-bottom"><span>{entry.readingTime}</span><a href={entry.href} aria-label={`Read ${entry.title}`}>Read essay <span aria-hidden="true">↗</span></a></p>
+              <p class="entry-bottom"><span>{entry.readingTime}</span><a href={entry.href} aria-label={`Read ${entry.title}`}>{entry.cta ?? 'Read essay'} <span aria-hidden="true">↗</span></a></p>
             </div>
             {entry.image && <a class="entry-cover" href={entry.href} tabindex="-1" aria-hidden="true">
               <img src={entry.image.src} width={entry.image.width} height={entry.image.height}

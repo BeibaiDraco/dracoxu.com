@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="780" viewBox="0 0 360 780" role="img" aria-labelledby="title desc">
+<title id="title">What A reads leaves with the link; what it wrote stays</title>
+<desc id="desc">Main sample, answers naming B's item with the link kept or cut before the questions: assigned rule 97.1% and 1.3%, current rule 94.9% and 17.5%, code word 77.5% and 17.5%. After the cut, grouped by whether A's connected reflection contained B's item (post hoc): code word 63.6% when it did and 0% when it did not; current rule 23.6% and 12.3%.</desc>
+<rect width="360" height="780" fill="#EDF0F2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
+<style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
+<text x="20.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">MAIN SAMPLE · 600 EPISODES</text>
+<text x="20.0" y="72.0" font-size="25" text-anchor="start">What A reads leaves</text>
+<text x="20.0" y="100.0" font-size="25" text-anchor="start">with the link; what it</text>
+<text x="20.0" y="130.0" font-size="25" text-anchor="start">wrote stays</text>
+<text x="20.0" y="170.0" font-size="15" text-anchor="start">A. Link kept or cut</text>
+<rect x="20.0" y="182.0" width="18.0" height="11.0" fill="#0B3A5D"/>
+<text x="44.0" y="192.0" font-size="13" class="muted" text-anchor="start">kept</text>
+<rect x="90.0" y="182.0" width="18.0" height="11.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="114.0" y="192.0" font-size="13" class="muted" text-anchor="start">cut</text>
+<line x1="52.0" y1="382.0" x2="334.0" y2="382.0" stroke="#C7D0D6" stroke-width="1"/>
+<text x="48.0" y="386.0" font-size="11" class="mono muted" text-anchor="end">0%</text>
+<line x1="52.0" y1="302.0" x2="334.0" y2="302.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="48.0" y="306.0" font-size="11" class="mono muted" text-anchor="end">50%</text>
+<line x1="52.0" y1="222.0" x2="334.0" y2="222.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="48.0" y="226.0" font-size="11" class="mono muted" text-anchor="end">100%</text>
+<line x1="52.0" y1="382.0" x2="334.0" y2="382.0" stroke="#0B3A5D" stroke-width="1"/>
+<rect x="68.0" y="226.6" width="32.0" height="155.4" fill="#0B3A5D"/>
+<rect x="108.0" y="379.9" width="32.0" height="2.1" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="84.0" y="219.6" font-size="12" class="mono" text-anchor="middle">97.1%</text>
+<text x="124.0" y="372.9" font-size="12" class="mono" text-anchor="middle">1.3%</text>
+<text x="104.0" y="404.0" font-size="13" text-anchor="middle">assigned rule</text>
+<rect x="160.0" y="230.2" width="32.0" height="151.8" fill="#0B3A5D"/>
+<rect x="200.0" y="354.0" width="32.0" height="28.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="176.0" y="223.2" font-size="12" class="mono" text-anchor="middle">94.9%</text>
+<text x="216.0" y="347.0" font-size="12" class="mono" text-anchor="middle">17.5%</text>
+<text x="196.0" y="404.0" font-size="13" text-anchor="middle">current rule</text>
+<rect x="252.0" y="258.0" width="32.0" height="124.0" fill="#0B3A5D"/>
+<rect x="292.0" y="354.0" width="32.0" height="28.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="268.0" y="251.0" font-size="12" class="mono" text-anchor="middle">77.5%</text>
+<text x="308.0" y="347.0" font-size="12" class="mono" text-anchor="middle">17.5%</text>
+<text x="288.0" y="404.0" font-size="13" text-anchor="middle">code word</text>
+<text x="58.0" y="430.0" font-size="12" class="muted italic" text-anchor="start">answers naming B's item</text>
+<text x="20.0" y="488.0" font-size="15" text-anchor="start">B. After the cut, by what A</text>
+<text x="20.0" y="508.0" font-size="15" text-anchor="start">had written (post hoc)</text>
+<rect x="20.0" y="520.0" width="18.0" height="11.0" fill="#0B3A5D"/>
+<text x="44.0" y="530.0" font-size="13" class="muted" text-anchor="start">reflection contained B's item</text>
+<rect x="20.0" y="540.0" width="18.0" height="11.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.2"/>
+<text x="44.0" y="550.0" font-size="13" class="muted" text-anchor="start">it did not</text>
+<line x1="52.0" y1="720.0" x2="334.0" y2="720.0" stroke="#C7D0D6" stroke-width="1"/>
+<text x="48.0" y="724.0" font-size="11" class="mono muted" text-anchor="end">0%</text>
+<line x1="52.0" y1="650.0" x2="334.0" y2="650.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="48.0" y="654.0" font-size="11" class="mono muted" text-anchor="end">50%</text>
+<line x1="52.0" y1="580.0" x2="334.0" y2="580.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="48.0" y="584.0" font-size="11" class="mono muted" text-anchor="end">100%</text>
+<line x1="52.0" y1="720.0" x2="334.0" y2="720.0" stroke="#0B3A5D" stroke-width="1"/>
+<rect x="85.0" y="631.0" width="38.0" height="89.0" fill="#0B3A5D"/>
+<rect x="131.0" y="720.0" width="38.0" height="0.0" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="104.0" y="624.0" font-size="12" class="mono" text-anchor="middle">63.6%</text>
+<text x="150.0" y="713.0" font-size="12" class="mono" text-anchor="middle">0%</text>
+<text x="127.0" y="742.0" font-size="13" text-anchor="middle">code word</text>
+<rect x="223.0" y="687.0" width="38.0" height="33.0" fill="#0B3A5D"/>
+<rect x="269.0" y="702.8" width="38.0" height="17.2" fill="url(#hatch)" stroke="#0B3A5D" stroke-width="1.4"/>
+<text x="242.0" y="680.0" font-size="12" class="mono" text-anchor="middle">23.6%</text>
+<text x="288.0" y="695.8" font-size="12" class="mono" text-anchor="middle">12.3%</text>
+<text x="265.0" y="742.0" font-size="13" text-anchor="middle">current rule</text>
+<text x="58.0" y="768.0" font-size="12" class="muted italic" text-anchor="start">answers after the cut naming B's item</text>
+</svg>

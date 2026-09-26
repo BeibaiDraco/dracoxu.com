@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Content, getHeadings } from '../../content/mine-or-yours.md';
+import '../../styles/research-essay.css';
+
+const title = 'Mine or Yours? When One Language Model Reads Another’s Memory';
+const subtitle = 'Linked at the level of memory, a language model takes its partner’s assignment as its own, and reports that nothing feels unusual.';
+const description = 'Two copies of one language model, one reading the other’s memory: the reader takes its partner’s assignment as its own and reports nothing unusual. What decides ownership is how the content arrives.';
+const published = '2026-09-26';
+const headings = getHeadings().filter((h) => h.depth === 2);
+const paper = '/papers/mine-or-yours.pdf';
+const paperTitle = 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const code = 'https://github.com/BeibaiDraco/mind-connecting';
+const bibtex = `@misc{xu2026mine,
+  title  = {Mine or Yours? Mind-Bridged Language Models Take
+            Each Other's Memories as Their Own},
+  author = {Xu, Yunlong},
+  year   = {2026},
+  note   = {Preprint},
+  url    = {https://github.com/BeibaiDraco/mind-connecting}
+}`;
+---
+
+<Base title={title} description={description} current="Writing" article={true}
+  publishedTime={published} author="Yunlong Xu" updated="September 26, 2026"
+  socialImage={{
+    src: '/images/writing/mine-or-yours/social-card.png',
+    width: 1200,
+    height: 630,
+    type: 'image/png',
+    alt: 'Mine or Yours? When one language model reads another’s memory, it takes the other’s assignment as its own. Light text on a dark ground beside two rows of memory cells, A plain and B hatched.',
+  }}>
+  <header class="bay essay-heading">
+    <div class="wide">
+      <p class="essay-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/writing/">Writing</a> <span aria-hidden="true">/</span> Research</p>
+      <h1>{title}</h1>
+      <p class="essay-subtitle">{subtitle}</p>
+      <p class="essay-author">Yunlong Xu <span aria-hidden="true">·</span> University of Chicago</p>
+      <p class="essay-meta"><time datetime={published}>September 26, 2026</time> <span aria-hidden="true">·</span> 15–20 min read</p>
+      <p class="essay-paper-link"><a href={paper}>Read the paper (PDF)</a> <span aria-hidden="true">·</span> <a href={code}>Code and protocols</a></p>
+    </div>
+    <div class="horizon"></div>
+  </header>
+
+  <div class="bay">
+    <div class="wide essay-layout">
+      <article class="research-essay" aria-label={title}>
+        <Content />
+        <footer class="essay-paper">
+          <p><a href={paper}><cite>{paperTitle}</cite> (PDF)</a></p>
+          <p>Yunlong Xu · Preprint, September 2026. Code, frozen protocols and a map from every figure and table to its data: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
+        </footer>
+        <section class="essay-endmatter" aria-labelledby="endmatter-citation">
+          <h2 class="endmatter-label" id="endmatter-citation">Citation</h2>
+          <pre><code>{bibtex}</code></pre>
+          <h2 class="endmatter-label">How this work was done</h2>
+          <p>The study’s code, analyses and figures, and drafts of the paper and of this post, were produced by the AI coding agents Claude Code (Anthropic) and Codex (OpenAI) under my direction. I made the research decisions and take responsibility for the content; the paper’s AI use statement gives the details.</p>
+          <p class="endmatter-log">First published September 26, 2026.</p>
+        </section>
+      </article>
+      {headings.length > 0 && <aside class="essay-contents">
+        <nav aria-label="On this page">
+          <p class="lbl">On this page</p>
+          <ol>{headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      </aside>}
+    </div>
+  </div>
+</Base>
