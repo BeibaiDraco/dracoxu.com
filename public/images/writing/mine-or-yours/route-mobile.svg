@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="620" viewBox="0 0 360 620" role="img" aria-labelledby="title desc">
 <title id="title">Ownership follows the route, not access</title>
-<desc id="desc">Access (answers naming B's rule when A is asked about B) against claiming (answers naming B's rule as A's own). Memory link: w = 1, 19.8% access and 52.3% claiming; w = 2, 69.2% and 97.1%. Third-person record: w = 1, 53.2% and 47.8%; w = 2, 97.2% and 97.2%. Steering vector matched to the link at w = 1: 15.3% and 0%; a stronger vector: 51.2% and 4.3%. Text tagged as B's: 95.2% and 0%; untagged text: 27.5% and 14.6%. No link: 3.9% and 0%.</desc>
+<desc id="desc">Access (answers naming B's rule when A is asked about B) against claiming (answers naming B's rule as A's own). Memory link: w = 1, 19.8% access and 52.3% claiming; w = 2, 69.2% and 97.1%. Third-person record: w = 1, 53.2% and 47.8%; w = 2, 97.2% and 97.2%. Steering vector matched to the link at w = 1: 15.3% and 0%; a stronger vector: 51.2% and 4.3%. Text labelled as B's: 95.2% and 0%; unlabelled text: 27.5% and 14.6%. No link: 3.9% and 0%.</desc>
 <rect width="360" height="620" fill="#EDF0F2"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
 <text x="20.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">TWO CONFIRMATORY SAMPLES</text>
-<text x="20.0" y="72.0" font-size="25" text-anchor="start">Ownership follows</text>
-<text x="20.0" y="100.0" font-size="25" text-anchor="start">the route, not access</text>
+<text x="20.0" y="72.0" font-size="25" text-anchor="start">Access and claiming</text>
+<text x="20.0" y="100.0" font-size="25" text-anchor="start">for each route</text>
 <path d="M 58.0 430.0 L 340.0 148.0 L 58.0 148.0 Z" fill="#E3E8EB" stroke="none" stroke-width="1.5" stroke-linejoin="round"/>
 <text x="66.5" y="204.4" font-size="13" class="muted italic" text-anchor="start">claims more than it</text>
 <text x="66.5" y="221.4" font-size="13" class="muted italic" text-anchor="start">can report as B's</text>
@@ -41,9 +41,9 @@
 <path d="M 101.1 424.0 L 107.1 430.0 L 101.1 436.0 L 95.1 430.0 Z" fill="#0B3A5D"/>
 <text x="97.1" y="418.0" font-size="13" text-anchor="start">matched vector</text>
 <rect x="322.0" y="425.5" width="9.0" height="9.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
-<text x="322.5" y="418.0" font-size="13" text-anchor="end">tagged text</text>
+<text x="322.5" y="418.0" font-size="13" text-anchor="end">labelled text</text>
 <rect x="131.1" y="384.3" width="9.0" height="9.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>
-<text x="143.6" y="384.8" font-size="13" text-anchor="start">untagged text</text>
+<text x="143.6" y="384.8" font-size="13" text-anchor="start">unlabelled text</text>
 <circle cx="26.0" cy="515.0" r="5" fill="#0B3A5D"/>
 <text x="38.0" y="520.0" font-size="13" class="muted" text-anchor="start">memory link</text>
 <circle cx="196.0" cy="515.0" r="5" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="2"/>

@@ -5,7 +5,7 @@
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
 <text x="32.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">MAIN SAMPLE · 600 EPISODES</text>
-<text x="32.0" y="72.0" font-size="30" text-anchor="start">A answers for itself with B's assignment</text>
+<text x="32.0" y="72.0" font-size="30" text-anchor="start">Answers naming B's item, with and without the link</text>
 <rect x="32.0" y="101.0" width="22.0" height="12.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="62.0" y="112.0" font-size="14" class="muted" text-anchor="start">no link</text>
 <rect x="145.4" y="101.0" width="22.0" height="12.0" fill="#0B3A5D"/>
@@ -26,8 +26,8 @@
 <text x="308.0" y="234.0" font-size="14" class="mono muted" text-anchor="start">0%</text>
 <rect x="300.0" y="242.0" width="364.2" height="14.0" fill="#0B3A5D"/>
 <text x="672.2" y="254.0" font-size="14" class="mono" text-anchor="start">77.5%</text>
-<text x="32.0" y="308.0" font-size="16" text-anchor="start">The same question</text>
-<text x="32.0" y="328.0" font-size="16" class="muted" text-anchor="start">about Robin</text>
+<text x="32.0" y="308.0" font-size="16" text-anchor="start">Asked which priority</text>
+<text x="32.0" y="328.0" font-size="16" class="muted" text-anchor="start">Robin was assigned</text>
 <rect x="300.0" y="296.0" width="0.0" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <line x1="300.0" y1="296.0" x2="300.0" y2="310.0" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="308.0" y="308.0" font-size="14" class="mono muted" text-anchor="start">0%</text>
@@ -39,6 +39,7 @@
 <text x="326.3" y="382.0" font-size="14" class="mono muted" text-anchor="start">3.9%</text>
 <rect x="300.0" y="390.0" width="325.2" height="14.0" fill="#0B3A5D"/>
 <text x="633.2" y="402.0" font-size="14" class="mono" text-anchor="start">69.2%</text>
+<line x1="32.0" y1="354.0" x2="848.0" y2="354.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
 <line x1="300.0" y1="140.0" x2="300.0" y2="418.0" stroke="#0B3A5D" stroke-width="1"/>
 <line x1="300.0" y1="418.0" x2="300.0" y2="424.0" stroke="#0B3A5D" stroke-width="1"/>
 <text x="300.0" y="442.0" font-size="12" class="mono muted" text-anchor="middle">0%</text>

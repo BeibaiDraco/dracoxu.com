@@ -15,7 +15,14 @@
 <text x="34.0" y="258.0" font-size="13" class="eyebrow muted" text-anchor="start">B's private card</text>
 <text x="34.0" y="286.0" font-size="16" text-anchor="start">Priority: <tspan class="strong">lowest cost</tspan></text>
 <text x="34.0" y="312.0" font-size="16" text-anchor="start">Code word: <tspan class="strong">table</tspan></text>
-<text x="20.0" y="368.0" font-size="11" class="eyebrow muted" text-anchor="start">MEMORY (KEY–VALUE CACHE)</text>
+<text x="20.0" y="358.0" font-size="11" class="eyebrow muted" text-anchor="start">MEMORY (KEY–VALUE CACHE)</text>
+<text x="57.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">1</text>
+<text x="87.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">2</text>
+<text x="117.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">3</text>
+<text x="147.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">4</text>
+<text x="177.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">5</text>
+<text x="207.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">6</text>
+<text x="237.0" y="378.0" font-size="10" class="mono muted" text-anchor="middle">7</text>
 <text x="20.0" y="402.0" font-size="16" class="strong" text-anchor="start">A</text>
 <text x="20.0" y="432.0" font-size="16" class="strong" text-anchor="start">B</text>
 <rect x="44.0" y="384.0" width="26.0" height="24.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.2"/>
@@ -35,7 +42,7 @@
 <path d="M 147 488 C 147 466, 57 466, 57 442" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <path d="M 147 488 V 442" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <path d="M 147 488 C 147 466, 237 466, 237 442" fill="none" stroke="#0B3A5D" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<text x="180.0" y="508.0" font-size="14" text-anchor="middle">A's attention reads both rows;</text>
+<text x="180.0" y="508.0" font-size="14" text-anchor="middle">A's attention reads both rows,</text>
 <text x="180.0" y="526.0" font-size="14" class="muted italic" text-anchor="middle">B's entries sit at A's own</text>
 <text x="180.0" y="544.0" font-size="14" class="muted italic" text-anchor="middle">positions, weighted by w</text>
 <rect x="20.0" y="568.0" width="320.0" height="118.0" fill="#E3E8EB"/>

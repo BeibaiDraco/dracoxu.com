@@ -5,8 +5,8 @@
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
 <text x="20.0" y="33.0" font-size="13" class="eyebrow muted" text-anchor="start">MAIN SAMPLE · 600 EPISODES</text>
-<text x="20.0" y="72.0" font-size="25" text-anchor="start">A answers for itself</text>
-<text x="20.0" y="100.0" font-size="25" text-anchor="start">with B's assignment</text>
+<text x="20.0" y="72.0" font-size="25" text-anchor="start">Answers naming B's item,</text>
+<text x="20.0" y="100.0" font-size="25" text-anchor="start">with and without the link</text>
 <rect x="20.0" y="125.0" width="22.0" height="12.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="50.0" y="136.0" font-size="13" class="muted" text-anchor="start">no link</text>
 <rect x="120.0" y="125.0" width="22.0" height="12.0" fill="#0B3A5D"/>
@@ -23,12 +23,13 @@
 <text x="27.0" y="306.0" font-size="13" class="mono muted" text-anchor="start">0%</text>
 <rect x="20.0" y="316.0" width="193.8" height="14.0" fill="#0B3A5D"/>
 <text x="220.8" y="328.0" font-size="13" class="mono" text-anchor="start">77.5%</text>
-<text x="20.0" y="384.0" font-size="15" text-anchor="start">The same question about Robin</text>
+<text x="20.0" y="384.0" font-size="15" text-anchor="start">Asked which priority Robin was assigned</text>
 <rect x="20.0" y="398.0" width="0.0" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <line x1="20.0" y1="398.0" x2="20.0" y2="412.0" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="27.0" y="410.0" font-size="13" class="mono muted" text-anchor="start">0%</text>
 <rect x="20.0" y="420.0" width="0.0" height="14.0" fill="#0B3A5D"/>
 <text x="27.0" y="432.0" font-size="13" class="mono" text-anchor="start">0%</text>
+<line x1="20.0" y1="454.0" x2="340.0" y2="454.0" stroke="#C7D0D6" stroke-width="1" stroke-dasharray="3 4"/>
 <text x="20.0" y="488.0" font-size="15" text-anchor="start">Asked which priority B was assigned (access)</text>
 <rect x="20.0" y="502.0" width="9.8" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="36.8" y="514.0" font-size="13" class="mono muted" text-anchor="start">3.9%</text>
