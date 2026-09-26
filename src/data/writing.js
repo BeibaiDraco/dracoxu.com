@@ -12,7 +12,7 @@ export const writing = [
     readingTime: '15–20 min read',
     cta: 'Read post',
     image: {
-      src: '/images/writing/mine-or-yours/cover.png',
+      src: '/images/writing/mine-or-yours/cover-v2.png',
       width: 2400,
       height: 1260,
     },
