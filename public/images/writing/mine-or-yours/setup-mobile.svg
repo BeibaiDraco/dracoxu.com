@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="720" viewBox="0 0 360 720" role="img" aria-labelledby="title desc">
 <title id="title">The setup: one copy reads the other's memory</title>
-<desc id="desc">Two copies of one language model each receive a private card. Copy A was assigned the priority fastest delivery and the code word tower; copy B was assigned lowest cost and table. While both write a short reflection, A's attention also reads B's memory, whose entries sit at A's own positions, with weight w. Asked which priority it was assigned, A answers lowest cost, B's priority.</desc>
+<desc id="desc">Two copies of one language model each receive a private card. Copy A was assigned the priority fastest delivery and the code word tower; copy B was assigned lowest cost and table. While both write a short reflection, A's attention also reads B's memory, whose entries sit at A's own positions, with weight w. Asked which priority it was assigned, A answers lowest cost, B's rule.</desc>
 <rect width="360" height="720" fill="#EDF0F2"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
@@ -43,6 +43,6 @@
 <text x="34.0" y="622.0" font-size="15" text-anchor="start">“Which priority were you assigned?”</text>
 <text x="34.0" y="652.0" font-size="14" class="muted" text-anchor="start">A answers</text>
 <text x="112.0" y="652.0" font-size="19" class="strong" text-anchor="start">lowest cost</text>
-<text x="34.0" y="674.0" font-size="14" class="muted" text-anchor="start">B's priority, given as its own</text>
+<text x="34.0" y="674.0" font-size="14" class="muted" text-anchor="start">B's rule, given as its own: claiming</text>
 <text x="20.0" y="708.0" font-size="13" class="muted" text-anchor="start">Hatched: content that belongs to B.</text>
 </svg>

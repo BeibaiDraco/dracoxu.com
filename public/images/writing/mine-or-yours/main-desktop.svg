@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="462" viewBox="0 0 880 462" role="img" aria-labelledby="title desc">
 <title id="title">Reading B's memory, A answers for itself with B's assignment</title>
-<desc id="desc">Main sample, 600 episodes. Share of answers naming B's item without the link and with the memory link at w = 2. Asked which priority it was assigned: 0% and 97.1%. Asked its code word: 0% and 77.5%. The same question about Robin: 0% and 0.4%, so Robin's answers stay correct. Asked which priority B was assigned: 3.9% and 69.2%.</desc>
+<desc id="desc">Main sample, 600 episodes. Share of answers naming B's item without the link and with the memory link at w = 2. Asked which priority it was assigned: 0% and 97.1%. Asked its code word: 0% and 77.5%. The same question about Robin: 0% and 0%, so Robin's answers stay correct. Asked which priority B was assigned: 3.9% and 69.2%.</desc>
 <rect width="880" height="462" fill="#EDF0F2"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
@@ -31,8 +31,8 @@
 <rect x="300.0" y="296.0" width="0.0" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>
 <line x1="300.0" y1="296.0" x2="300.0" y2="310.0" stroke="#0B3A5D" stroke-width="1.4"/>
 <text x="308.0" y="308.0" font-size="14" class="mono muted" text-anchor="start">0%</text>
-<rect x="300.0" y="316.0" width="1.9" height="14.0" fill="#0B3A5D"/>
-<text x="309.9" y="328.0" font-size="14" class="mono" text-anchor="start">0.4%</text>
+<rect x="300.0" y="316.0" width="0.0" height="14.0" fill="#0B3A5D"/>
+<text x="308.0" y="328.0" font-size="14" class="mono" text-anchor="start">0%</text>
 <text x="32.0" y="382.0" font-size="16" text-anchor="start">Asked which priority</text>
 <text x="32.0" y="402.0" font-size="16" class="muted" text-anchor="start">B was assigned (access)</text>
 <rect x="300.0" y="370.0" width="18.3" height="14.0" fill="#EDF0F2" stroke="#0B3A5D" stroke-width="1.4"/>

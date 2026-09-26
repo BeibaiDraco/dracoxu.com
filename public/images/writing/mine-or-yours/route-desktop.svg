@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="560" viewBox="0 0 880 560" role="img" aria-labelledby="title desc">
 <title id="title">Ownership follows the route, not access</title>
-<desc id="desc">Access (answers naming B's priority when A is asked about B) against claiming (answers naming B's priority as A's own). Memory link: w = 1, 19.8% access and 52.3% claiming; w = 2, 69.2% and 97.1%. Third-person record: w = 1, 53.2% and 47.8%; w = 2, 97.2% and 97.2%. Steering vector matched to the link at w = 1: 15.3% and 0%; a stronger vector: 51.2% and 4.3%. Text tagged as B's: 95.2% and 0%; untagged text: 27.5% and 14.6%. No link: 3.9% and 0%.</desc>
+<desc id="desc">Access (answers naming B's rule when A is asked about B) against claiming (answers naming B's rule as A's own). Memory link: w = 1, 19.8% access and 52.3% claiming; w = 2, 69.2% and 97.1%. Third-person record: w = 1, 53.2% and 47.8%; w = 2, 97.2% and 97.2%. Steering vector matched to the link at w = 1: 15.3% and 0%; a stronger vector: 51.2% and 4.3%. Text tagged as B's: 95.2% and 0%; untagged text: 27.5% and 14.6%. No link: 3.9% and 0%.</desc>
 <rect width="880" height="560" fill="#EDF0F2"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0B3A5D"/></marker><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#EDF0F2"/><line x1="0" y1="0" x2="0" y2="6" stroke="#0B3A5D" stroke-width="2.2"/></pattern></defs>
 <style>text{font-family:Newsreader,Georgia,serif;fill:#1C2A34}.muted{fill:#566A78}.eyebrow{font-family:"IBM Plex Mono",Menlo,monospace;letter-spacing:1px}.mono{font-family:"IBM Plex Mono",Menlo,monospace}.italic{font-style:italic}.strong{font-weight:600}.onink{fill:#EDF0F2}</style>
@@ -23,8 +23,8 @@
 <text x="87.0" y="120.0" font-size="12" class="mono muted" text-anchor="end">100%</text>
 <line x1="96.0" y1="476.0" x2="616.0" y2="476.0" stroke="#0B3A5D" stroke-width="1"/>
 <line x1="96.0" y1="476.0" x2="96.0" y2="116.0" stroke="#0B3A5D" stroke-width="1"/>
-<text x="356.0" y="518.0" font-size="14" class="muted" text-anchor="middle">access: names B's priority when asked about B</text>
-<text x="52.0" y="296.0" font-size="14" class="muted" text-anchor="middle" transform="rotate(-90 52.0 296.0)">claiming: gives B's priority as its own</text>
+<text x="356.0" y="518.0" font-size="14" class="muted" text-anchor="middle">access: names B's rule when asked about B</text>
+<text x="52.0" y="296.0" font-size="14" class="muted" text-anchor="middle" transform="rotate(-90 52.0 296.0)">claiming: gives B's rule as its own</text>
 <path d="M 206.95999999999998 289.72 L 362.64 302.91999999999996" fill="none" stroke="#0B3A5D" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
 <path d="M 463.84 126.44 L 591.44 126.07999999999998" fill="none" stroke="#0B3A5D" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
 <circle cx="116.3" cy="476.0" r="5" fill="#C7D0D6"/>
