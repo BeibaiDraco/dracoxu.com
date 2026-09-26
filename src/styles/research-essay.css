@@ -120,7 +120,12 @@
   .research-essay th, .research-essay td { padding: var(--ma-2); }
 }
 @media print {
-  .essay-contents, .nav, .foot, .spine { display: none; }
+  .essay-contents, .nav, .foot { display: none; }
+  /* The spine's display is set inline by script, so only !important hides it. */
+  .spine { display: none !important; }
+  /* Width queries match the paper while <picture> keeps the source chosen on screen,
+     so the reserved box can be the wrong shape; let each figure take its image's height. */
+  .research-essay figure picture { aspect-ratio: auto !important; }
   .essay-layout { display: block; }
   .research-essay { font-size: 12pt; }
   .research-essay figure, .research-essay blockquote { break-inside: avoid; }
