@@ -1,6 +1,6 @@
 /* ============================================================
    PLATES — small dense figures, one per paper and per research line.
-   Ten types, assigned by what the work is actually about.
+   Eleven types, assigned by what the work is actually about.
    Seeded from the title, so two papers of the same type differ,
    and any one paper looks the same on every visit.
    ============================================================ */
@@ -183,6 +183,24 @@ export function drawPlate(cv, kind, seed) {
             ax + base[g1][0] * Math.sin(gh) + base[g1][1] * Math.cos(gh), FM, 0.24, 1.1 * U);
       for (var g2 = 0; g2 < base.length; g2++)
         dot(rcx + base[g2][0], ax + base[g2][1] - 3.4 * U, FM, 0.95, 1.3 * U);
+      break;
+    }
+    /* scientific value — a lattice of related judgments, not a single score */
+    case 'comparison': {
+      var nodes = [[.5, .06], [.28, .28], [.72, .28], [.06, .5], [.5, .5], [.94, .5], [.28, .72], [.72, .72], [.5, .94]];
+      var edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 4], [2, 5], [3, 6], [4, 6], [4, 7], [5, 7], [6, 8], [7, 8]];
+      for (var e = 0; e < edges.length; e++) {
+        var from = nodes[edges[e][0]], to = nodes[edges[e][1]];
+        seg(p + iw * from[0], p + ih * from[1], p + iw * to[0], p + ih * to[1], FM, .58, Math.max(1, .85 * U));
+      }
+      for (var v = 0; v < nodes.length; v++) {
+        var nx = p + iw * nodes[v][0], ny = p + ih * nodes[v][1];
+        dot(nx, ny, BG, 1, 2.5 * U);
+        c.strokeStyle = rgba(v === 4 ? IC : FM, .95);
+        c.lineWidth = Math.max(1, U);
+        c.beginPath(); c.arc(nx, ny, 2.1 * U, 0, Math.PI * 2); c.stroke();
+        if (v === 4) dot(nx, ny, IC, 1, 2.1 * U);
+      }
       break;
     }
     /* Maieusis — questions branching; the ice tips are the answerable ones */

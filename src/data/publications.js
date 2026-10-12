@@ -88,7 +88,7 @@ export const published = [
 
 export const preprints = [
   {
-    id: 'scientific-value-2026', year: '2026', plate: 'tree',
+    id: 'scientific-value-2026', year: '2026', plate: 'comparison',
     authors: [XU],
     title: scientificValue.title,
     venue: 'UChicago Knowledge',

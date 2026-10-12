@@ -39,7 +39,7 @@ Horizons are full-bleed; content never is.
 
 ## Plates
 
-`src/scripts/plates.js` — ten generative figure types, one per research line and per paper,
+`src/scripts/plates.js` — eleven generative figure types, one per research line and per paper,
 assigned by what each work is about and seeded from its title, so a paper looks the same on
 every visit and two papers of a type differ.
 
@@ -54,6 +54,7 @@ every visit and two papers of a type differ.
 | `psycho` | perceptual decision, threshold |
 | `field` | whole-brain gradients, spatial maps, embeddings |
 | `rotation` | attention, representational rotation onto a fixed readout |
+| `comparison` | scientific value — a lattice of related judgments |
 | `tree` | Maieusis — ice tips are the answerable questions |
 
 **Scale rule.** Large motifs are airy (97%+ of the frame unmarked); small plates are dense.
