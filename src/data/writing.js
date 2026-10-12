@@ -4,6 +4,19 @@
 // sitemap, and marks the page noindex; delete the line to publish it.
 export const writing = [
   {
+    href: '/writing/scientific-understanding/',
+    title: 'I Don’t Know What Scientific Understanding Means',
+    description: 'Complete access to a system’s inner workings still leaves a question: what would count as understanding it?',
+    date: '2026-10-11',
+    kind: 'Essay',
+    readingTime: '12 min read',
+    image: {
+      src: '/images/writing/scientific-understanding/cover-v1.png',
+      width: 1731,
+      height: 909,
+    },
+  },
+  {
     href: '/writing/mine-or-yours/',
     title: 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own',
     description: 'Linked at the level of memory, a language model takes its partner’s assignment as its own, and reports that nothing feels unusual.',

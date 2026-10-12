@@ -1,0 +1,14 @@
+Generated with the built-in image_gen tool on October 11, 2026 (America/Chicago).
+Final asset: public/images/writing/scientific-understanding/cover-v1.png
+Dimensions: 1731 × 909 pixels.
+
+Use case: stylized-concept.
+Asset type: final editorial cover / social sharing image for a personal academic essay. Create a wide landscape image, approximately 1.91:1 aspect ratio (ideally 2400 by 1260 pixels).
+Primary request: a contemplative abstract luminous background with the essay title printed prominently into the image, in the visual family of a previous essay cover consisting of soft deep-blue and warm-light color fields with large white typography.
+Backdrop: a rich painterly, gently blurred field of Prussian blue, ink navy and luminous muted cornflower blue, with a restrained warm ivory / pale amber glow near the upper right and softly interleaving translucent planes of color that never resolve into a recognizable object. Fine subtle grain. Quiet, serious, spacious, appropriate to a philosophical essay about how complete knowledge of a system's details may still not amount to understanding. It should feel like elusive structure just outside focus. An original composition.
+Typography: render EXACTLY the following title, including the apostrophe, in large, elegant, clean white sans-serif type, medium weight. Left aligned, centered vertically with generous safe margins of at least 9%. Use three intentional lines:
+I Don’t Know What
+Scientific Understanding
+Means
+The text must be exceptionally crisp, visually balanced, easy to read at thumbnail size, with ample dark blue contrast behind ALL lettering. Keep the full title comfortably away from every edge. Title occupies most of the middle width, similar to an editorial essay cover.
+Constraints: only that title; no subtitle, no author, no logos, no watermark, no border, no frame, no mockup. No literal brains, computers, robots, faces, gears, diagrams or neural-network nodes. Final ready-to-use opaque raster image.

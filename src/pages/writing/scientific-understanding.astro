@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Content } from '../../content/scientific-understanding.md';
+import { writing } from '../../data/writing.js';
+import '../../styles/research-essay.css';
+
+const essay = writing.find((entry) => entry.href === '/writing/scientific-understanding/');
+const { title, description, date, kind, readingTime, image } = essay;
+const dateLabel = new Intl.DateTimeFormat('en-US', {
+  month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+}).format(new Date(`${date}T12:00:00Z`));
+---
+
+<Base title={title} description={description} current="Writing" article={true}
+  noindex={Boolean(essay.hidden)} publishedTime={date} author="Draco (Yunlong) Xu" updated={dateLabel}
+  socialImage={{
+    ...image,
+    type: 'image/png',
+    alt: 'I Don’t Know What Scientific Understanding Means, in white text over overlapping abstract blue fields and a soft glow of warm light.',
+  }}>
+  <header class="bay essay-heading">
+    <div class="wide">
+      <p class="essay-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/writing/">Writing</a> <span aria-hidden="true">/</span> {kind}</p>
+      <h1>{title}</h1>
+      <p class="essay-author">Draco (Yunlong) Xu <span aria-hidden="true">·</span> University of Chicago</p>
+      <p class="essay-meta"><time datetime={date}>{dateLabel}</time> <span aria-hidden="true">·</span> {readingTime}</p>
+    </div>
+    <div class="horizon"></div>
+  </header>
+
+  <div class="bay">
+    <div class="wide essay-layout">
+      <article class="research-essay" aria-label={title}>
+        <Content />
+      </article>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .essay-author { margin-top: var(--ma-4); }
+</style>
