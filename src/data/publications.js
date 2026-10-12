@@ -4,6 +4,8 @@
    Track) rather than letting a short paper sit unlabelled beside a journal.
    Year, venue and volume all live INSIDE the citation line — never in a rail. */
 
+import { scientificValue } from './papers.js';
+
 const XU = { n: 'Xu, Y.', me: true };
 
 export const published = [
@@ -85,6 +87,19 @@ export const published = [
 ];
 
 export const preprints = [
+  {
+    id: 'scientific-value-2026', year: '2026', plate: 'tree',
+    authors: [XU],
+    title: scientificValue.title,
+    venue: 'UChicago Knowledge',
+    href: scientificValue.href,
+    note: 'Preprint',
+    links: [
+      { label: 'PDF', href: scientificValue.pdf },
+      { label: 'DOI', href: `https://doi.org/${scientificValue.doi}` },
+      { label: 'Essay', href: scientificValue.essay },
+    ],
+  },
   {
     id: 'v1-biorxiv-2026', year: '2026', plate: 'raster', selected: true,
     authors: [{ n: 'Yu, P.', star: true }, { n: 'Yoon, H. Y. A.', star: true }, { n: 'Yang, Y.', star: true }, XU, { n: 'Gozel, O.' }, { n: 'Tian, G. J.' }, { n: 'Ji, N.' }, { n: 'Doiron, B.' }],

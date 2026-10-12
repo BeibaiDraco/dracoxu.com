@@ -52,6 +52,7 @@ const twitterHandle = xProfile ? `@${new URL(xProfile.href).pathname.split('/').
     <meta name="twitter:image:alt" content={ogImageAlt} />
   </>}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <slot name="head" />
   <noscript><style>.fade{opacity:1 !important}</style></noscript>
 </head>
 <body>

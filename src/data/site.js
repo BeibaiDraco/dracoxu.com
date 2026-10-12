@@ -5,7 +5,7 @@ export const site = {
   institution: 'University of Chicago',
   program: 'Committee on Computational Neuroscience',
   advisor: { name: 'Brent Doiron', href: 'https://brainmath.bsd.uchicago.edu/' },
-  cvUpdated: 'August 2026',
+  cvUpdated: 'October 2026',
 
   identity: 'mechanisms of computation and of perceptual, cognitive, and conscious experience in natural and artificial intelligent systems',
 

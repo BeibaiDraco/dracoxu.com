@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import { scientificValue as paper } from '../../data/papers.js';
+
+const pageUrl = new URL(paper.href, Astro.site).href;
+const pdfUrl = new URL(paper.pdf, Astro.site).href;
+---
+
+<Base title={paper.title} description={paper.abstract} current="Publications"
+  article={true} publishedTime={paper.date} author={paper.author} updated="October 11, 2026"
+  socialImage={{
+    src: '/images/writing/scientific-value/social-card-v3.png',
+    width: 1737, height: 905, type: 'image/png',
+    alt: 'AI Scientists Need a Theory of Scientific Value',
+  }}>
+  <Fragment slot="head">
+    <meta name="citation_title" content={paper.title} />
+    <meta name="citation_author" content={paper.author} />
+    <meta name="citation_author_institution" content={paper.affiliation} />
+    <meta name="citation_publication_date" content={paper.date.replaceAll('-', '/')} />
+    <meta name="citation_online_date" content="2026/10/11" />
+    <meta name="citation_language" content="en" />
+    <meta name="citation_doi" content={paper.doi} />
+    <meta name="citation_abstract_html_url" content={pageUrl} />
+    <meta name="citation_pdf_url" content={pdfUrl} />
+  </Fragment>
+
+  <article aria-labelledby="paper-title">
+    <header class="bay">
+      <div class="wide paper-heading">
+        <p class="paper-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/publications/">Publications</a><span aria-hidden="true">/</span> Preprint</p>
+        <h1 id="paper-title">{paper.title}</h1>
+        <p class="paper-author">{paper.author} <span aria-hidden="true">·</span> {paper.affiliation}</p>
+        <p class="paper-date"><time datetime={paper.date}>{paper.displayDate}</time></p>
+        <p class="paper-links"><a href={paper.pdf}>Read the paper (PDF)</a><span aria-hidden="true">/</span><a href={paper.repository}>UChicago Knowledge</a></p>
+      </div>
+      <div class="horizon"></div>
+    </header>
+
+    <section class="bay" aria-labelledby="abstract-heading">
+      <div class="wide paper-body">
+        <h2 class="lbl" id="abstract-heading">Abstract</h2>
+        <p class="abstract">{paper.abstract}</p>
+        <p class="paper-note">Author's revised preprint, September 8, 2026. The <a href={paper.repository}>repository record</a> preserves the original deposited version.</p>
+      </div>
+      <div class="horizon"></div>
+    </section>
+
+    <section class="bay" aria-labelledby="citation-heading">
+      <div class="wide paper-body paper-related">
+        <div>
+          <h2 class="lbl" id="citation-heading">Citation</h2>
+          <p>Xu, Y. (2026). <cite>{paper.title}</cite>. Preprint. <a href={`https://doi.org/${paper.doi}`}>doi:{paper.doi}</a>.</p>
+        </div>
+        <div>
+          <h2 class="lbl">Related essay</h2>
+          <p><a href={paper.essay}>What Are We Training AI Scientists to Pursue?</a></p>
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .paper-heading { padding-top: var(--ma-5); padding-bottom: var(--ma-4); }
+  .paper-eyebrow { display: flex; align-items: center; gap: var(--ma-3); font: 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--sea); margin-bottom: var(--ma-4); }
+  h1 { max-width: 24ch; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.1; color: var(--sumi); margin-bottom: var(--ma-4); }
+  .paper-author { font-size: 19px; margin-bottom: var(--ma-2); }
+  .paper-author span { color: var(--sea); padding-inline: var(--ma-1); }
+  .paper-date { font: 12px/1.6 var(--mono); color: var(--sea); }
+  .paper-links { display: flex; flex-wrap: wrap; gap: var(--ma-3); margin: var(--ma-4) 0 0; font-size: 17px; }
+  .paper-links span { color: var(--sea); }
+  .paper-body { padding-block: var(--ma-4); }
+  .abstract { max-width: 70ch; font-size: 20px; line-height: 1.65; }
+  .paper-note { max-width: 80ch; margin-top: var(--ma-4); color: var(--sea); font-size: 15px; }
+  .paper-related { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--ma-5); }
+  .paper-related p { max-width: 62ch; }
+  @media (max-width: 640px) {
+    .paper-heading { padding-top: var(--ma-4); }
+    .paper-author { font-size: 17px; }
+    .abstract { font-size: 18px; }
+    .paper-related { grid-template-columns: minmax(0, 1fr); gap: var(--ma-4); }
+  }
+</style>
