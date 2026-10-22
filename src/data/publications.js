@@ -121,10 +121,20 @@ export const preprints = [
     links: [{ label: 'bioRxiv', href: 'https://doi.org/10.64898/2026.06.30.735630' }],
   },
   {
-    id: 'coordinated-inprep', year: 'in preparation', plate: 'rotation', selected: true,
+    id: 'rca-biorxiv-2026', year: '2026', plate: 'traces',
+    authors: [{ n: 'Chen, S.' }, XU, { n: 'Gökmen, D. E.' }, { n: 'Fruchart, M.' }, { n: 'Doiron, B.', corresponding: true }, { n: 'Vitelli, V.', corresponding: true }],
+    title: 'Spontaneous brain-wide rotational dynamics constrain cue-evoked behavior',
+    venue: 'bioRxiv',
+    volpages: '2026.10.17.759884',
+    href: 'https://doi.org/10.64898/2026.10.17.759884',
+    links: [{ label: 'bioRxiv', href: 'https://doi.org/10.64898/2026.10.17.759884' }],
+  },
+  {
+    id: 'coordinated-2026', year: '2026', plate: 'rotation', selected: true,
     authors: [{ n: 'Srinath, R.' }, XU, { n: 'Doiron, B.' }, { n: 'Cohen, M. R.' }],
     title: 'Coordinated response modulations enable flexible use of visual information',
     venue: null,
+    note: 'In review',
     links: [],
   },
   {

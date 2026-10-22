@@ -8,8 +8,8 @@ const { project } = Astro.props;
 const papers = (project.papers || []).map((id) => pubIndex[id]).filter(Boolean);
 
 function status(p) {
+  if (p.note === 'In review') return p.venue ? 'Preprint · In review' : 'In review';
   if (p.venue === null) return 'In preparation';
-  if (p.note === 'In review') return 'Preprint · In review';
   if (/bioRxiv|arXiv/i.test(p.venue)) return 'Preprint';
   return 'Published';
 }

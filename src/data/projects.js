@@ -72,7 +72,7 @@ export const projects = [
     title: 'How Attentional Coordinated Modulations Enable Flexible Use of Visual Information via Rotation in Representation Space',
     plate: 'rotation',
     panels: ['Computational Neuroscience', 'Science of Intelligence'],
-    papers: ['pnas-2026', 'coordinated-inprep'],
+    papers: ['pnas-2026', 'coordinated-2026'],
     blurb: 'How correlated variability relates to flexible behavior, and what a top-down control signal actually does to a population code.',
     with: 'In collaboration with Ramanujan Srinath (UChicago) and Marlene R. Cohen (UChicago)',
     body: [
