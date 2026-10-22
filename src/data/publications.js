@@ -138,15 +138,6 @@ export const preprints = [
     links: [],
   },
   {
-    id: 'sampling-arxiv-2023', year: '2023', plate: 'sampling',
-    authors: [{ n: 'Liu, Y.', star: true }, { n: 'Xu, Y.', me: true, star: true }, { n: 'Nargesian, F.' }],
-    title: 'Sampling over union of joins',
-    venue: 'arXiv',
-    volpages: '2303.00940',
-    href: 'https://arxiv.org/abs/2303.00940',
-    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2303.00940' }],
-  },
-  {
     id: 'fmri-arxiv-2024', year: '2024', plate: 'field',
     authors: [{ n: 'Wang, Y.' }, { n: 'Turnbull, A.' }, { n: 'Xiang, T.' }, XU, { n: 'Zhou, S.' }, { n: 'Masoud, A.' }, { n: 'Azizi, S.' }, { n: 'Lin, F. V.' }, { n: 'Adeli, E.' }],
     title: 'Decoding visual experience and mapping semantics through whole-brain analysis using fMRI foundation models',
@@ -155,6 +146,15 @@ export const preprints = [
     href: 'https://arxiv.org/abs/2411.07121',
     note: 'In review',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2411.07121' }],
+  },
+  {
+    id: 'sampling-arxiv-2023', year: '2023', plate: 'sampling',
+    authors: [{ n: 'Liu, Y.', star: true }, { n: 'Xu, Y.', me: true, star: true }, { n: 'Nargesian, F.' }],
+    title: 'Sampling over union of joins',
+    venue: 'arXiv',
+    volpages: '2303.00940',
+    href: 'https://arxiv.org/abs/2303.00940',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2303.00940' }],
   },
 ];
 
