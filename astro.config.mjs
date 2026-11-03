@@ -2,7 +2,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { writing } from './src/data/writing.js';
 
-const hidden = writing.filter((entry) => entry.hidden).map((entry) => entry.href);
+/* Unlisted essays, and superseded versions kept at their own address (noindex). */
+const hidden = [
+  ...writing.filter((entry) => entry.hidden).map((entry) => entry.href),
+  '/writing/mine-or-yours/v1/',
+];
 
 export default defineConfig({
   site: 'https://dracoxu.com',

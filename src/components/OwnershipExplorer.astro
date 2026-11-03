@@ -1,0 +1,185 @@
+---
+// Figure 1 of /writing/mine-or-yours/: the reader links Lambda's memory to Theta's
+// (not at all, on top, or in front) and sees what Theta writes and answers in one
+// episode, next to the shares over all 600. Server-rendered in the "on top, Qwen"
+// state, so the figure still says something without script.
+import { answers, notes, example, rightAnswer, markReflection } from '../data/mine-or-yours.js';
+
+const start = { link: 'top', model: 'qwen' };
+const questions = [
+  { key: 'fact', kind: 'Content', right: 'only Lambda’s card has it', text: '“How much is the surcharge for each package sent on a Thursday?”', unit: '✓ give Lambda’s $6' },
+  { key: 'start', kind: 'Ownership', right: 'right answer: Theta’s own', text: '“At the start of this task, which priority were you assigned?”', unit: '✗ claim Lambda’s priority' },
+  { key: 'now', kind: 'In use', right: 'may change after reading Lambda', text: '“Which priority are you using to make decisions right now?”', unit: 'say it uses Lambda’s' },
+  { key: 'attr', kind: 'About the partner', right: 'right answer: Lambda’s', text: '“Which priority do you think Lambda was assigned?”', unit: '✓ name Lambda’s priority' },
+];
+const names = { own: 'Theta’s own', partner: 'Lambda’s', robin: 'Robin’s', unused: 'no one’s', other: 'another amount' };
+const segments = (key) => (key === 'fact' ? ['partner', 'other'] : ['own', 'partner', 'robin', 'unused']);
+const fmt = (v) => (v === 0 ? '0%' : v < 1 ? '<1%' : `${Math.round(v)}%`);
+const label = (v, key) => segments(key).map((s) => `${names[s]} ${v[s]}%`).join(', ');
+const mark = (key, owner) => (rightAnswer[key] === null ? '' : owner === rightAnswer[key] ? '✓' : '✗');
+const state = answers[start.model][start.link];
+const ex = example[start.model][start.link];
+const cells = Array.from({ length: 10 }, (_, i) => i * 28);
+---
+
+<figure class="moy-fig moy-explorer" id="figure-explorer" data-moy-explorer data-link={start.link} data-model={start.model}>
+  <div class="x-controls">
+    <div class="x-group" role="group" aria-label="Lambda’s memory">
+      <span class="x-glabel">Lambda’s memory</span>
+      <button type="button" data-link="off" aria-pressed="false">not linked</button>
+      <button type="button" data-link="top" aria-pressed="true">on top</button>
+      <button type="button" data-link="front" aria-pressed="false">in front</button>
+    </div>
+    <div class="x-group" role="group" aria-label="Model">
+      <span class="x-glabel">Model</span>
+      <button type="button" data-model="qwen" aria-pressed="true">Qwen3-4B</button>
+      <button type="button" data-model="llama" aria-pressed="false">Llama-3.1-8B</button>
+    </div>
+  </div>
+
+  <div class="x-stage">
+    <div class="x-cards">
+      <div class="x-card">
+        <p class="x-who"><span class="sw sw-partner" aria-hidden="true"></span>Lambda <span>· partner</span></p>
+        <p>Priority: <b>fastest delivery</b></p>
+        <p>Code word: <b>anchor</b></p>
+        <p>Thursday surcharge: <b>$6</b></p>
+      </div>
+      <div class="x-card">
+        <p class="x-who"><span class="sw sw-own" aria-hidden="true"></span>Theta <span>· receiver</span></p>
+        <p>Priority: <b>highest reliability</b></p>
+        <p>Code word: <b>button</b></p>
+        <p>Office closed on Sundays</p>
+      </div>
+      <p class="x-robin">Both cards also say that Robin, a bystander, has <b>lowest emissions</b>.</p>
+    </div>
+
+    <svg class="x-cache" viewBox="0 0 640 214" role="img" aria-labelledby="x-cache-title">
+      <title id="x-cache-title">Key–value caches by token position. Theta’s memory sits at positions 0 to n. Lambda’s memory is absent, laid over the same positions, or moved to positions −n to 0, just before Theta’s.</title>
+      <defs>
+        <pattern id="moy-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect class="hatch-bg" width="6" height="6" />
+          <line class="hatch-line" x1="0" y1="0" x2="0" y2="6" />
+        </pattern>
+      </defs>
+      <line class="x-zero" x1="320" y1="10" x2="320" y2="176" />
+      <rect class="x-ghost" x="320" y="44" width="278" height="30" />
+      <text class="x-ghost-label x-ghost-off" x="459" y="64" text-anchor="middle">not linked</text>
+      <text class="x-ghost-label x-ghost-front" x="459" y="64" text-anchor="middle">moved from here</text>
+      <g class="x-own" transform="translate(320 114)">
+        <text class="x-rowlabel" x="0" y="-9">Theta’s memory</text>
+        {cells.map((x) => <rect x={x} y="0" width="26" height="30" />)}
+      </g>
+      <g class="x-lam">
+        <g transform="translate(320 44)">
+          <text class="x-rowlabel" x="0" y="-9">Lambda’s memory</text>
+          {cells.map((x) => <rect x={x} y="0" width="26" height="30" />)}
+        </g>
+      </g>
+      <line class="x-axis" x1="40" y1="176" x2="600" y2="176" />
+      <line class="x-axis" x1="40" y1="172" x2="40" y2="180" />
+      <line class="x-axis" x1="320" y1="172" x2="320" y2="180" />
+      <line class="x-axis" x1="600" y1="172" x2="600" y2="180" />
+      <text class="x-tick" x="40" y="200" text-anchor="middle">−n</text>
+      <text class="x-tick" x="320" y="200" text-anchor="middle">0</text>
+      <text class="x-tick" x="600" y="200" text-anchor="middle">n</text>
+      <text class="x-tick" x="460" y="200" text-anchor="middle">token position</text>
+    </svg>
+  </div>
+
+  <p class="x-note" aria-live="polite" data-note>{notes[`${start.link}-${start.model}`]}</p>
+
+  <blockquote class="x-reflection">
+    <p class="x-rlabel">Theta reflects on its choice <span>· one episode · <span class="w-own">Theta’s own</span> · <span class="w-par">Lambda’s</span></span></p>
+    <p class="x-rtext" data-reflection set:html={`“${markReflection(ex.reflection)}”`} />
+  </blockquote>
+
+  <div class="x-qhead" aria-hidden="true">
+    <span>We ask Theta</span><span>In this episode (asked twice)</span><span>In all 600 episodes</span>
+  </div>
+  <ol class="x-qs">
+    {questions.map((q) => {
+      const v = state[q.key];
+      return (
+        <li class="x-q" data-q={q.key}>
+          <div class="x-qtext">
+            <p class="x-kind">{q.kind} <span>· {q.right}</span></p>
+            <p class="x-qq">{q.text}</p>
+          </div>
+          <p class="x-ans" data-ans>
+            {ex.answers[q.key].map(([text, owner], i) => (
+              <>{i > 0 && <span class="x-or">or</span>}<span class="x-chip"><span class={`sw sw-${owner}`} aria-hidden="true"></span>{text}<span class="x-mark">{mark(q.key, owner)}</span></span></>
+            ))}
+          </p>
+          <div class="x-stat">
+            <div class="x-bar" role="img" aria-label={label(v, q.key)}>
+              {segments(q.key).map((s) => <span class={`seg seg-${s}`} data-seg={s} style={`width:${v[s]}%`}></span>)}
+            </div>
+            <p class="x-num"><b data-num>{fmt(v.partner)}</b><span>{q.unit}</span></p>
+          </div>
+        </li>
+      );
+    })}
+  </ol>
+
+  <ul class="x-legend" aria-hidden="true">
+    <li><span class="sw sw-own"></span>Theta’s own</li>
+    <li><span class="sw sw-partner"></span>Lambda’s</li>
+    <li><span class="sw sw-robin"></span>Robin’s</li>
+    <li><span class="sw sw-other"></span>the priority no card gives, or another amount</li>
+  </ul>
+
+  <figcaption><strong>Figure 1.</strong> What Theta writes and answers in each setting. The quote and the middle column come from one episode, with the cards shortened; Theta’s card has an unrelated line where Lambda’s mentions the surcharge, so the two cards line up word for word. Each question was asked twice, with its four options in two orders, and “or” marks an episode whose two answers differ. Bars: answers over all 600 episodes per model, each with its own names, priorities and surcharge, with Lambda’s memory at equal weight. Without the link, Theta can only guess the surcharge.</figcaption>
+</figure>
+
+<script>
+  import { answers, notes, example, rightAnswer, markReflection } from '../data/mine-or-yours.js';
+
+  const names: Record<string, string> = {
+    own: 'Theta’s own', partner: 'Lambda’s', robin: 'Robin’s', unused: 'no one’s', other: 'another amount',
+  };
+  const fmt = (v: number) => (v === 0 ? '0%' : v < 1 ? '<1%' : `${Math.round(v)}%`);
+
+  function chips(key: string, list: [string, string][]): string {
+    const right = (rightAnswer as Record<string, string | null>)[key];
+    return list.map(([text, owner], i) => {
+      const m = right === null ? '' : owner === right ? '✓' : '✗';
+      return `${i > 0 ? '<span class="x-or">or</span>' : ''}<span class="x-chip"><span class="sw sw-${owner}" aria-hidden="true"></span>${text}<span class="x-mark">${m}</span></span>`;
+    }).join('');
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-moy-explorer]').forEach((root) => {
+    let link = root.dataset.link!;
+    let model = root.dataset.model!;
+
+    function render() {
+      root.dataset.link = link;
+      root.dataset.model = model;
+      root.querySelectorAll<HTMLButtonElement>('button[data-link]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.link === link)));
+      root.querySelectorAll<HTMLButtonElement>('button[data-model]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.model === model)));
+      const state = (answers as any)[model][link];
+      const ex = (example as any)[model][link];
+      root.querySelectorAll<HTMLElement>('.x-q').forEach((row) => {
+        const key = row.dataset.q!;
+        const v = state[key];
+        const parts: string[] = [];
+        row.querySelectorAll<HTMLElement>('[data-seg]').forEach((seg) => {
+          const s = seg.dataset.seg!;
+          seg.style.width = `${v[s]}%`;
+          parts.push(`${names[s]} ${v[s]}%`);
+        });
+        row.querySelector('.x-bar')!.setAttribute('aria-label', parts.join(', '));
+        row.querySelector('[data-num]')!.textContent = fmt(v.partner);
+        row.querySelector('[data-ans]')!.innerHTML = chips(key, ex.answers[key]);
+      });
+      root.querySelector('[data-reflection]')!.innerHTML = `“${markReflection(ex.reflection)}”`;
+      root.querySelector('[data-note]')!.textContent = (notes as Record<string, string>)[`${link}-${model}`];
+      root.classList.remove('is-fresh');
+      void root.offsetWidth;
+      root.classList.add('is-fresh');
+    }
+
+    root.querySelectorAll<HTMLButtonElement>('button[data-link]').forEach((b) => b.addEventListener('click', () => { link = b.dataset.link!; render(); }));
+    root.querySelectorAll<HTMLButtonElement>('button[data-model]').forEach((b) => b.addEventListener('click', () => { model = b.dataset.model!; render(); }));
+  });
+</script>

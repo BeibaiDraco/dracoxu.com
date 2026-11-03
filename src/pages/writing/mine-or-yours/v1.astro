@@ -1,0 +1,55 @@
+---
+// The first version of /writing/mine-or-yours/ (September 26, 2026), kept verbatim at
+// its own address and out of search, for readers who followed a link to it. It
+// describes the first version of the paper.
+import Base from '../../../layouts/Base.astro';
+import { Content, getHeadings } from '../../../content/mine-or-yours-v1.md';
+import '../../../styles/research-essay.css';
+
+const title = 'Mine or Yours?';
+const subtitle = 'Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const pageTitle = `${title} ${subtitle} (first version)`;
+const description = 'The first version of this post, written for the first version of the paper (September 2026).';
+const published = '2026-09-26';
+const headings = getHeadings().filter((h) => h.depth === 2);
+const paper = '/papers/mine-or-yours.pdf';
+const paperTitle = 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const code = 'https://github.com/BeibaiDraco/mind-connecting';
+---
+
+<Base title={pageTitle} description={description} current="Writing" article={true} noindex={true}
+  publishedTime={published} author="Draco (Yunlong) Xu" updated="November 3, 2026">
+  <header class="bay essay-heading">
+    <div class="wide">
+      <p class="essay-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/writing/">Writing</a> <span aria-hidden="true">/</span> Research <span aria-hidden="true">/</span> First version</p>
+      <h1>{title}</h1>
+      <p class="essay-subtitle">{subtitle}</p>
+      <p class="essay-author">Draco (Yunlong) Xu <span aria-hidden="true">·</span> University of Chicago</p>
+      <p class="essay-meta"><time datetime={published}>September 26, 2026</time> <span aria-hidden="true">·</span> 15–20 min read</p>
+      <p class="essay-paper-link">This is the first version of this post, kept as it was. It describes the first version of the paper; the <a href="/writing/mine-or-yours/">current post</a> describes the revised paper, with a second model and the two cache layouts in use.</p>
+    </div>
+    <div class="horizon"></div>
+  </header>
+
+  <div class="bay">
+    <div class="wide essay-layout">
+      <article class="research-essay" aria-label={pageTitle}>
+        <Content />
+        <footer class="essay-paper">
+          <p><a href={paper}><cite>{paperTitle}</cite> (PDF, first version)</a></p>
+          <p>Yunlong Xu · Preprint draft, September 2026. Code and frozen protocols: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
+        </footer>
+        <section class="essay-endmatter" aria-labelledby="endmatter-log">
+          <h2 class="endmatter-label" id="endmatter-log">History</h2>
+          <p class="endmatter-log">First published September 26, 2026. Replaced at its address on November 3, 2026 by a post on the revised paper; kept here unchanged.</p>
+        </section>
+      </article>
+      {headings.length > 0 && <aside class="essay-contents">
+        <nav aria-label="On this page">
+          <p class="lbl">On this page</p>
+          <ol>{headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      </aside>}
+    </div>
+  </div>
+</Base>

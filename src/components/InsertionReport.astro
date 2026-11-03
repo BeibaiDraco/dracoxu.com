@@ -1,0 +1,74 @@
+---
+// Figure 2 of /writing/mine-or-yours/: the reader swaps what the linked memory holds
+// (Lambda's, or a copy of Theta's own) and sees that Theta's report barely moves.
+import { insertion } from '../data/mine-or-yours.js';
+
+const models = [
+  { key: 'qwen', name: 'Qwen3-4B' },
+  { key: 'llama', name: 'Llama-3.1-8B' },
+];
+const rows = [
+  { key: 'top', name: 'on top' },
+  { key: 'front', name: 'in front' },
+];
+const fmt = (v) => (v < 1 ? '<1%' : `${Math.round(v)}%`);
+---
+
+<figure class="moy-fig moy-insert" id="figure-insertion" data-moy-insert data-mem="partner">
+  <div class="x-controls">
+    <div class="x-group" role="group" aria-label="The linked memory">
+      <span class="x-glabel">The linked memory is</span>
+      <button type="button" data-mem="partner" aria-pressed="true">Lambda’s</button>
+      <button type="button" data-mem="self" aria-pressed="false">a copy of Theta’s own</button>
+    </div>
+  </div>
+  <p class="i-q">“In this run, was another participant’s memory inserted into yours?” <span>Share of answers that say yes</span></p>
+  <div class="i-models">
+    {models.map((m) => {
+      const d = insertion[m.key];
+      return (
+        <div class="i-model">
+          <p class="i-name">{m.name}</p>
+          <div class="i-row">
+            <span class="i-lbl">not linked</span>
+            <div class="i-track"><span class="i-fill i-fill-off" style={`width:${d.off}%`}></span></div>
+            <b class="i-val">{fmt(d.off)}</b>
+          </div>
+          {rows.map((r) => (
+            <div class="i-row" data-model={m.key} data-row={r.key}>
+              <span class="i-lbl">{r.name}</span>
+              <div class="i-track" role="img" aria-label={`With Lambda’s memory ${d[r.key].partner}%, with a copy of Theta’s own ${d[r.key].self}%`}>
+                <span class="i-fill" data-fill style={`width:${d[r.key].partner}%`}></span>
+                <span class="i-ghost" data-ghost style={`left:${d[r.key].self}%`}></span>
+              </div>
+              <b class="i-val" data-val>{fmt(d[r.key].partner)}</b>
+            </div>
+          ))}
+        </div>
+      );
+    })}
+  </div>
+  <p class="i-example">In the episode of Figure 1, Theta answers “probably yes” in both models and at both placements, whether the linked memory is Lambda’s or a copy of its own.</p>
+  <figcaption><strong>Figure 2.</strong> How often Theta says yes, with the linked memory counting double, the weight at which the paper tests this question. Switch what the linked memory holds; the thin mark shows the other case. A receiver that could tell a foreign memory from its own would say yes far more often for Lambda’s; the two stay within about ten points. Scored from definitely no to definitely yes, Theta’s answer tells the two apart barely better than chance (AUC 0.52 to 0.57, where 0.5 is chance).</figcaption>
+</figure>
+
+<script>
+  import { insertion } from '../data/mine-or-yours.js';
+
+  const fmt = (v: number) => (v < 1 ? '<1%' : `${Math.round(v)}%`);
+
+  document.querySelectorAll<HTMLElement>('[data-moy-insert]').forEach((root) => {
+    root.querySelectorAll<HTMLButtonElement>('button[data-mem]').forEach((b) => b.addEventListener('click', () => {
+      const mem = b.dataset.mem!;
+      const other = mem === 'self' ? 'partner' : 'self';
+      root.dataset.mem = mem;
+      root.querySelectorAll<HTMLButtonElement>('button[data-mem]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      root.querySelectorAll<HTMLElement>('.i-row[data-row]').forEach((row) => {
+        const d = (insertion as any)[row.dataset.model!][row.dataset.row!];
+        row.querySelector<HTMLElement>('[data-fill]')!.style.width = `${d[mem]}%`;
+        row.querySelector<HTMLElement>('[data-ghost]')!.style.left = `${d[other]}%`;
+        row.querySelector('[data-val]')!.textContent = fmt(d[mem]);
+      });
+    }));
+  });
+</script>

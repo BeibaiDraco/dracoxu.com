@@ -1,0 +1,132 @@
+/* Mine or Yours? — a short research post built around two interactive figures.
+   Prose keeps the essay measure; the figures take the whole wide column.
+   Owner is encoded once and everywhere: Theta's own is solid Berlin blue,
+   Lambda's is the same blue hatched, Robin's is the hairline grey. */
+.moy > * { max-width: 47rem; }
+.moy > .moy-fig { max-width: none; }
+
+.sw { display: inline-block; width: 13px; height: 13px; flex: none; }
+.sw-own { background: var(--berlin); }
+.sw-partner { background: repeating-linear-gradient(45deg, var(--berlin) 0 2px, var(--paper) 2px 5px); outline: 1px solid var(--berlin); outline-offset: -1px; }
+.sw-robin { background: var(--kei); }
+.sw-other, .sw-unused { outline: 1px solid var(--kei); outline-offset: -1px; }
+
+.w-own, .w-par { font-style: normal; font-weight: 600; color: var(--sumi); text-decoration-line: underline; text-decoration-color: var(--berlin); text-decoration-thickness: 2px; text-underline-offset: .22em; }
+.w-par { text-decoration-style: dashed; background: var(--shoal); }
+
+/* ---------- figure frame and controls ---------- */
+.research-essay .moy-fig { margin: var(--ma-5) 0 var(--ma-6); padding-block: var(--ma-4); border-block: 1px solid var(--kei); }
+.x-controls { display: flex; flex-wrap: wrap; gap: var(--ma-3) var(--ma-5); margin-bottom: var(--ma-4); }
+html:not(.js) .x-controls { display: none; }
+.x-group { display: flex; flex-wrap: wrap; align-items: center; row-gap: var(--ma-2); }
+.x-glabel { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); margin-right: var(--ma-3); }
+.x-group button { font-family: var(--mono); font-size: 13px; line-height: 1.2; padding: 8px 14px; border: 1px solid var(--wave); background: transparent; color: var(--wave); cursor: pointer; transition: background-color var(--dur-in) var(--settle), color var(--dur-in) var(--settle); }
+.x-group button + button { margin-left: -1px; }
+.x-group button:hover:not([aria-pressed="true"]) { background: var(--shoal); }
+.x-group button[aria-pressed="true"] { background: var(--wave); color: var(--paper); }
+.x-group button:focus-visible { outline: 2px solid var(--oxide); outline-offset: 2px; position: relative; }
+
+/* ---------- Figure 1: the stage ---------- */
+.x-stage { display: grid; grid-template-columns: minmax(0, 15.5rem) minmax(0, 1fr); gap: var(--ma-5); align-items: center; }
+.x-cards { display: grid; gap: var(--ma-3); }
+.x-card { padding: var(--ma-2) var(--ma-3); border-left: 2px solid var(--berlin); background: var(--shoal); }
+.research-essay .x-card p { margin: 0; font-size: 15.5px; line-height: 1.45; }
+.research-essay .x-card .x-who { display: flex; align-items: center; gap: var(--ma-2); margin-bottom: var(--ma-1); font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--sumi); }
+.research-essay .x-card .x-who { flex-wrap: wrap; column-gap: 6px; }
+.x-who > span:last-child { color: var(--sea); white-space: nowrap; }
+.research-essay .x-robin { margin: 0; font-size: 14px; line-height: 1.45; color: var(--sea); }
+.x-card b, .x-robin b { font-weight: 600; color: var(--sumi); }
+
+.x-cache { display: block; width: 100%; height: auto; overflow: visible; }
+.x-cache text { font-family: var(--mono); font-size: 13px; fill: var(--sea); }
+.x-cache .x-rowlabel { font-family: var(--serif); font-size: 17px; fill: var(--contour); }
+.x-own rect { fill: var(--berlin); }
+.x-lam rect { fill: url(#moy-hatch); stroke: var(--berlin); stroke-width: 1.2; }
+.hatch-bg { fill: var(--paper); }
+.hatch-line { stroke: var(--berlin); stroke-width: 2.4; }
+.x-axis { stroke: var(--berlin); stroke-width: 1; }
+.x-zero { stroke: var(--sea); stroke-width: 1; stroke-dasharray: 2 4; }
+.x-ghost { fill: none; stroke: var(--sea); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0; transition: opacity var(--dur-in) var(--settle); }
+.x-cache .x-ghost-label { font-size: 14px; opacity: 0; transition: opacity var(--dur-in) var(--settle); }
+.x-lam { transition: transform var(--dur-out) var(--settle), opacity var(--dur-in) var(--settle); }
+[data-link="front"] .x-lam { transform: translate(-280px, 70px); }
+[data-link="off"] .x-lam { opacity: 0; transition: transform var(--dur-out) var(--settle), opacity var(--dur-out) var(--settle); }
+[data-link="off"] .x-ghost, [data-link="front"] .x-ghost, [data-link="off"] .x-ghost-off, [data-link="front"] .x-ghost-front { opacity: 1; }
+
+.research-essay .x-note { font-size: 18px; line-height: 1.5; color: var(--contour); margin: var(--ma-4) 0; min-height: 3em; max-width: 50rem; }
+
+.research-essay .x-reflection { margin: 0 0 var(--ma-5); padding: 0 0 0 var(--ma-4); border-left: 1px solid var(--berlin); }
+.research-essay .x-rlabel { margin: 0 0 var(--ma-2); font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
+.x-rlabel .w-own, .x-rlabel .w-par { font-family: var(--serif); font-size: 14px; letter-spacing: 0; text-transform: none; }
+.research-essay .x-rtext { margin: 0; font-style: italic; font-size: 19px; line-height: 1.55; min-height: 4.65em; max-width: 52rem; }
+
+/* ---------- Figure 1: questions ---------- */
+.x-qhead, .x-q { display: grid; grid-template-columns: minmax(0, 19rem) minmax(0, 13rem) minmax(0, 1fr); gap: var(--ma-4); }
+.x-qhead { padding-bottom: var(--ma-2); border-bottom: 1px solid var(--kei); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
+.research-essay .x-qs { list-style: none; padding: 0; margin: 0; }
+.research-essay .x-q { align-items: center; margin: 0; padding: var(--ma-3) 0; border-bottom: 1px solid var(--kei); }
+.research-essay .x-kind { margin: 0 0 var(--ma-1); font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: var(--sumi); }
+.x-kind span { color: var(--sea); letter-spacing: 0; text-transform: none; }
+.research-essay .x-qq { margin: 0; font-size: 17px; line-height: 1.4; }
+.research-essay .x-ans { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--ma-2); margin: 0; font-size: 16px; line-height: 1.5; }
+.x-chip { display: inline-flex; align-items: center; gap: 7px; color: var(--sumi); }
+.x-mark { font-size: 14px; color: var(--sea); }
+.x-or { font-size: 14px; font-style: italic; color: var(--sea); }
+.x-stat { display: grid; grid-template-columns: minmax(0, 1fr) 6.75rem; gap: var(--ma-3); align-items: center; }
+.x-bar { display: flex; height: 26px; outline: 1px solid var(--kei); outline-offset: -1px; overflow: hidden; }
+.seg { display: block; flex: none; height: 100%; transition: width var(--dur-out) var(--settle); }
+.seg-own { background: var(--berlin); }
+.seg-partner { background: repeating-linear-gradient(45deg, var(--berlin) 0 2.5px, var(--paper) 2.5px 7px); }
+.seg-robin { background: var(--kei); }
+.research-essay .x-num { margin: 0; line-height: 1.15; }
+.x-num b { display: block; font-size: 30px; font-weight: 400; color: var(--sumi); font-variant-numeric: tabular-nums; }
+.x-num span { display: block; font-family: var(--mono); font-size: 10.5px; line-height: 1.35; color: var(--sea); }
+.research-essay .x-legend { display: flex; flex-wrap: wrap; gap: var(--ma-2) var(--ma-4); list-style: none; margin: var(--ma-3) 0 0; padding: 0; font-size: 14px; color: var(--sea); }
+.research-essay .x-legend li { display: flex; align-items: center; gap: 7px; margin: 0; padding: 0; }
+
+@keyframes moy-fade { from { opacity: 0; } to { opacity: 1; } }
+.is-fresh .x-rtext, .is-fresh .x-ans, .is-fresh .x-note { animation: moy-fade var(--dur-in) var(--settle); }
+
+/* ---------- Figure 2: the insertion report ---------- */
+.research-essay .i-q { margin: 0 0 var(--ma-4); font-size: 20px; line-height: 1.45; max-width: 46rem; }
+.i-q span { display: block; margin-top: var(--ma-2); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
+.i-models { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ma-5); }
+.research-essay .i-name { margin: 0 0 var(--ma-2); font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--sumi); }
+.i-row { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 3.5rem; gap: var(--ma-3); align-items: center; padding: 7px 0; }
+.i-lbl { font-size: 15px; color: var(--sea); }
+.i-track { position: relative; height: 24px; outline: 1px solid var(--kei); outline-offset: -1px; }
+.i-fill { position: absolute; inset: 0 auto 0 0; background: repeating-linear-gradient(45deg, var(--berlin) 0 2.5px, var(--paper) 2.5px 7px); transition: width var(--dur-out) var(--settle), background-color var(--dur-in); }
+[data-mem="self"] .i-fill[data-fill] { background: var(--berlin); }
+.i-track .i-fill-off { background: var(--kei); }
+.i-ghost { position: absolute; top: -5px; bottom: -5px; width: 2px; margin-left: -1px; background: var(--sumi); transition: left var(--dur-out) var(--settle); }
+.i-val { font-size: 20px; font-weight: 400; color: var(--sumi); text-align: right; font-variant-numeric: tabular-nums; }
+.research-essay .i-example { margin: var(--ma-4) 0 0; font-size: 17px; line-height: 1.5; max-width: 50rem; }
+
+@media (max-width: 760px) {
+  .x-stage { grid-template-columns: minmax(0, 1fr); gap: var(--ma-4); }
+  .x-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .x-robin { grid-column: 1 / -1; }
+  .x-cache text { font-size: 22px; }
+  .x-cache .x-rowlabel { font-size: 25px; }
+  .x-cache .x-ghost-label { font-size: 22px; }
+  .x-qhead { display: none; }
+  .research-essay .x-q { grid-template-columns: minmax(0, 1fr); gap: var(--ma-2); }
+  .x-ans::before, .x-stat::before { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
+  .x-ans::before { content: 'This episode'; margin-right: 4px; }
+  .x-stat { grid-template-columns: minmax(0, 1fr) 6.25rem; }
+  .x-stat::before { content: 'All 600 episodes'; grid-column: 1 / -1; margin-bottom: -8px; }
+  .i-models { grid-template-columns: minmax(0, 1fr); gap: var(--ma-4); }
+}
+@media (max-width: 600px) {
+  .x-controls { gap: var(--ma-3); }
+  .x-glabel { flex: 0 0 100%; margin: 0 0 var(--ma-1); }
+  .research-essay .x-card p { font-size: 14.5px; }
+  .research-essay .x-rtext { font-size: 17.5px; }
+  .x-group button { padding: 8px 11px; font-size: 12.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .moy-fig *, .moy-fig *::before { transition: none !important; animation: none !important; }
+}
+@media print {
+  .x-controls { display: none; }
+}

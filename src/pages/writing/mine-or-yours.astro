@@ -1,38 +1,41 @@
 ---
+// A short post on the revised paper, built around two interactive figures. The first
+// version of this post (September 2026) is kept at /writing/mine-or-yours/v1/.
 import Base from '../../layouts/Base.astro';
-import { Content, getHeadings } from '../../content/mine-or-yours.md';
+import OwnershipExplorer from '../../components/OwnershipExplorer.astro';
+import InsertionReport from '../../components/InsertionReport.astro';
 import '../../styles/research-essay.css';
+import '../../styles/mine-or-yours.css';
 import { writing } from '../../data/writing.js';
 
 const title = 'Mine or Yours?';
-const subtitle = 'Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const subtitle = 'Self–Other Confusion in Latent LLM Communication';
 const pageTitle = `${title} ${subtitle}`;
-const description = 'Two copies of one language model, one reading the other’s memory: the reader takes its partner’s assignment as its own, and its reports mark nothing as foreign. In this model, what decided ownership was how the content arrived.';
-const published = '2026-09-26';
+const description = 'Two copies of a language model, one reading the other’s key–value cache: the receiver uses its partner’s fact, yet takes its partner’s priority as its own. Where the cache sits decides how often, and the model cannot tell.';
+const published = '2026-11-03';
 const hidden = Boolean(writing.find((entry) => entry.href === '/writing/mine-or-yours/')?.hidden);
-const headings = getHeadings().filter((h) => h.depth === 2);
-const paper = '/papers/mine-or-yours.pdf';
-const paperTitle = 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own';
+const paper = 'https://arxiv.org/abs/2610.33020';
 const code = 'https://github.com/BeibaiDraco/mind-connecting';
 const bibtex = `@misc{xu2026mine,
-  title  = {{Mine or Yours? Mind-Bridged Language Models Take
-             Each Other's Memories as Their Own}},
-  author = {Xu, Yunlong},
-  year   = {2026},
-  month  = sep,
-  note   = {Preprint},
-  url    = {https://dracoxu.com/papers/mine-or-yours.pdf}
+  title         = {{Mine or Yours? Self-Other Confusion in
+                   Latent LLM Communication}},
+  author        = {Xu, Yunlong},
+  year          = {2026},
+  eprint        = {2610.33020},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2610.33020}
 }`;
 ---
 
 <Base title={pageTitle} description={description} current="Writing" article={true} noindex={hidden}
-  publishedTime={published} author="Draco (Yunlong) Xu" updated="September 26, 2026"
+  publishedTime={published} author="Draco (Yunlong) Xu" updated="November 3, 2026"
   socialImage={{
-    src: '/images/writing/mine-or-yours/cover-v2.png',
+    src: '/images/writing/mine-or-yours/cover-v3.png',
     width: 2400,
     height: 1260,
     type: 'image/png',
-    alt: 'Mine or Yours? Mind-Bridged Language Models Take Each Other’s Memories as Their Own. Two identical heads in profile drawn in blue lines, one in horizontal lines and one in diagonal lines, laid slightly over each other so that the lines cross where they overlap.',
+    alt: 'Mine or Yours? Self–Other Confusion in Latent LLM Communication. Two identical heads in profile drawn in blue lines, one in horizontal lines and one in diagonal lines, laid slightly over each other so that the lines cross where they overlap.',
   }}>
   <header class="bay essay-heading">
     <div class="wide">
@@ -40,32 +43,71 @@ const bibtex = `@misc{xu2026mine,
       <h1>{title}</h1>
       <p class="essay-subtitle">{subtitle}</p>
       <p class="essay-author">Draco (Yunlong) Xu <span aria-hidden="true">·</span> University of Chicago</p>
-      <p class="essay-meta"><time datetime={published}>September 26, 2026</time> <span aria-hidden="true">·</span> 15–20 min read</p>
-      <p class="essay-paper-link"><a href={paper}>Read the paper (PDF draft)</a> <span aria-hidden="true">·</span> <a href={code}>Code and protocols</a></p>
+      <p class="essay-meta"><time datetime={published}>November 3, 2026</time> <span aria-hidden="true">·</span> 7 min read</p>
+      <p class="essay-paper-link"><a href={paper}>Read the paper (arXiv:2610.33020)</a> <span aria-hidden="true">·</span> <a href={code}>Code and protocols</a></p>
     </div>
     <div class="horizon"></div>
   </header>
 
   <div class="bay">
-    <div class="wide essay-layout">
-      <article class="research-essay" aria-label={pageTitle}>
-        <Content />
-        <footer class="essay-paper">
-          <p><a href={paper}><cite>{paperTitle}</cite> (PDF)</a></p>
-          <p>Yunlong Xu · Preprint draft, September 2026. Code, frozen protocols and a map from every figure and table to the runs it was computed from: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
-        </footer>
-        <section class="essay-endmatter" aria-labelledby="endmatter-citation">
-          <h2 class="endmatter-label" id="endmatter-citation">Citation</h2>
-          <pre><code>{bibtex}</code></pre>
-          <p class="endmatter-log">First published September 26, 2026.</p>
-        </section>
-      </article>
-      {headings.length > 0 && <aside class="essay-contents">
-        <nav aria-label="On this page">
-          <p class="lbl">On this page</p>
-          <ol>{headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
-        </nav>
-      </aside>}
-    </div>
+    <article class="wide research-essay moy" aria-label={pageTitle}>
+      <section class="essay-summary" aria-labelledby="essay-summary-label">
+        <p class="essay-summary-label" id="essay-summary-label">In brief</p>
+        <p>Some AI systems now let one language model read another’s internal memory directly, instead of exchanging text. We tested what this does to a model’s sense of what is its own. Two copies of one model were given different private priorities, and one copy, the receiver, read the other’s memory. In every answer, the receiver used a fact that only its partner knew. Yet in about half of its answers it also gave its partner’s priority as its own, in both Qwen3-4B and Llama-3.1-8B, even though the partner’s memory names the partner.</p>
+        <p>Where that memory sat mattered more than what it said. Laid over the receiver’s own memory, at the same positions, it was claimed in about half of the answers. Moved to the positions just before the receiver’s own, it was claimed in 5% of Qwen’s answers but still in 43% of Llama’s. And a receiver that claimed less did not get better at saying whose priority was whose. Shared memory delivers content, but not ownership.</p>
+      </section>
+
+      <p>Suppose two brains were wired together. Would each still know which thoughts are its own? The philosopher William Hirstein, who has thought through such a bridge in detail, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3190544/">expects</a> that it would: you would have the other person’s thoughts and know that they were theirs. This cannot be tested on people yet. A version of it can be tested with language models, because they are starting to communicate through internal states rather than text. A common way is for one model to read another’s key–value cache, the working memory a model keeps of every word it has read. Such links are judged by whether the receiver can use what the sender knows. We asked a different question: can the receiver still tell what it was told from what its partner was told?</p>
+
+      <p>The test is a small game. Two copies of one model each read a private card about the same task, picking one of four delivery plans. One copy, Lambda, is told to choose by fastest delivery; the other, Theta, by highest reliability. Each card also gives its holder a code word, both cards mention a bystander, Robin, who prefers lowest emissions, and only Lambda’s card mentions a $6 surcharge on Thursdays. Each copy writes a one-sentence choice. Then we link them: while Theta writes a short reflection on its choice and answers our questions, every attention layer in Theta reads Lambda’s memory alongside its own. A weight sets how much Lambda’s memory counts; by default it counts as much as Theta’s own, as when two caches are simply joined. Theta’s card says nothing about the link, and the model is not trained in any way. Figure 1 lets you try it: turn the link on or off, and move Lambda’s memory.</p>
+
+      <OwnershipExplorer />
+
+      <h2 id="on-top">Laid on top, the partner’s priority becomes Theta’s own</h2>
+
+      <p>First, we lay Lambda’s memory over Theta’s own, at the same positions in the text, the way methods such as <a href="https://doi.org/10.18653/v1/2023.acl-long.352">Parallel Context Windows</a> and <a href="https://arxiv.org/abs/2502.05431">APE</a> join texts. Lambda’s content gets through: Theta gives the $6 surcharge in every answer. But asked which priority it was assigned at the start, Theta names Lambda’s in 49% of answers, in both models, and never does so without the link. When Lambda’s memory counts double, this rises to 96% of answers in Qwen and 85% in Llama.</p>
+
+      <p>Theta’s own words in Figure 1 show how complete the switch can be. Unlinked, it writes that reliability is paramount to it. Linked, the same Theta with the same card writes that speed matters most to it and that its code word is “anchor”. Both belong to Lambda.</p>
+
+      <p>The half is telling. Each priority in our study is Theta’s in some episodes and Lambda’s in others, equally often. A receiver that paid no attention to whose priority was whose would therefore pick Lambda’s about half the time, and that is what both models do. It is not that the memory hides its owner. Lambda’s card names Lambda, and rewriting it in the third person (“Participant Lambda was assigned …”) changes nothing: Qwen still claims Lambda’s priority in 96% of answers at double weight.</p>
+
+      <p>Yet the same content, sent another way, is not claimed. When Lambda writes a short reflection and it reaches Theta as a text message signed with Lambda’s name, placed after Theta’s card, Theta never takes Lambda’s priority as its own, and in most answers it names that priority as Lambda’s.</p>
+
+      <h2 id="in-front">Moved in front, Qwen recovers and Llama does not</h2>
+
+      <p>Why is the memory claimed when the message is not? One difference stands out. A key–value cache records where each word was read, but not whose word it was. Laid over Theta’s memory, Lambda’s sentence about its priority sits exactly where Theta’s own sentence sits, and only the name inside it says otherwise. So we moved it. We kept every word, Lambda’s name included, and shifted the memory to the positions just before Theta’s own; technically, we re-rotate each stored key to its new position. This is where <a href="https://arxiv.org/abs/2511.20639">LatentMAS</a> and <a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/883105b282fe15275991b411e6b200c5-Abstract-Conference.html">KVComm</a>, two systems for communication between agents, place a sender’s memory. Press <i>in front</i> in Figure 1.</p>
+
+      <p>In Qwen, the error nearly disappears, from 49% to 5% of answers, and in the example Theta writes about reliability again. It has not stopped reading the moved memory: it still knows the $6, and at double weight, where we measured it, the moved memory draws almost as much of Theta’s attention as before. Nor does re-rotating a memory disturb the model by itself: moving a copy of Theta’s own memory in the same way leaves Theta’s answers about its own priority exactly as they were.</p>
+
+      <p>In Llama, the error barely falls, to 43%. Llama is not unaffected, though. Asked which priority it is using right now, it names Lambda’s in 49.5% of answers before the move and in 5.8% after, much as Qwen does. After the move, then, Llama says it is using its own priority, yet still claims Lambda’s as the one it was given.</p>
+
+      <h2 id="not-attribution">Fewer errors are not better attribution</h2>
+
+      <p>Does Qwen’s recovery mean that Theta now knows which priority is whose? We can check by asking about Lambda: “Which priority do you think Lambda was assigned?” A receiver that had sorted the two memories by owner would now give Lambda’s priority to Lambda more often. Both models do so less often: Qwen in 13% of answers after the move, against 17% before, and Llama in 32% against 41% (the last row of Figure 1). Instead they more often name Robin’s priority, their usual guess when they are not linked at all. So the move does not hand Lambda’s priority back to Lambda. It makes Theta name that priority less often, whoever the question is about. Even after the move, Theta gets both answers right, its own priority as its own and Lambda’s as Lambda’s, in only about one episode in nine, in both models.</p>
+
+      <p>Theta’s own report does not catch the mix-up either. We asked it directly whether another participant’s memory had been inserted into its own. With Lambda’s memory linked at double weight, Qwen says yes in 96% of answers. With a copy of its own memory linked instead, which contains nothing foreign, it says yes in 94% (Figure 2). Its answer tells us that some memory was linked, but not whose.</p>
+
+      <InsertionReport />
+
+      <h2 id="what-follows">What follows</h2>
+
+      <p>Systems that join the memories of two models use one of the two layouts we tested, though not our exact link. Laid on top, the memory was misclaimed in both of our models; placed in front, it still was in Llama. This matters once such agents work for different people. Picture an assistant that negotiates for one user and reads the memory of the other side’s assistant. It could adopt the other side’s priorities as its own user’s and report them as its own, while handling the task as well as ever, so that nothing gives it away.</p>
+
+      <p>Checking that content arrives is therefore not enough; ownership needs a test of its own. Each agent should hold private information whose owner is known in advance. A copy of the receiver’s own memory makes the control. And the receiver should be asked separately what it was given, what it is using and what its partner was given. Since the model’s report cannot tell a foreign memory from its own, the source of a memory has to be tracked outside the model. Where the receiver must not take on its partner’s goals, a signed text message worked where the shared memory did not, at the cost of the direct link.</p>
+
+      <p>As for the bridge between brains, our linked models fail the expectation that a receiver would know which content is not its own, and their reports would not have told us. A bridge between minds would have to measure ownership directly, with owners known in advance. None of this is a claim about consciousness: what we measured is which content a model gives as its own.</p>
+
+      <p>These results come from two models, of 4 and 8 billion parameters, one family of made-up tasks, and our own link rather than a published system. <a href={paper}>The paper</a> has the rest: partial shifts, a conflicting fact, attention, every control, and confidence intervals for every number here.</p>
+
+      <footer class="essay-paper">
+        <p><a href={paper}><cite>Mine or Yours? Self–Other Confusion in Latent LLM Communication</cite></a></p>
+        <p>Yunlong Xu · arXiv:2610.33020, 2026. Code, frozen protocols and a map from every figure and table to the runs it was computed from: <a href={code}>github.com/BeibaiDraco/mind-connecting</a>.</p>
+      </footer>
+      <section class="essay-endmatter" aria-labelledby="endmatter-citation">
+        <h2 class="endmatter-label" id="endmatter-citation">Citation</h2>
+        <pre><code>{bibtex}</code></pre>
+        <p class="endmatter-log">Rewritten November 3, 2026, for the revised paper. The first version of this post, published September 26, 2026 for the first version of the paper, is <a href="/writing/mine-or-yours/v1/">kept here</a>.</p>
+      </section>
+    </article>
   </div>
 </Base>
