@@ -1,0 +1,72 @@
+---
+import frames from '../data/scientific-worlds/teaching-figure.json';
+const first = frames[0];
+const count = first.before.filter((value, index) => value === first.target[index]).length;
+function pixels(values: string) {
+  return Array.from(values, (v,i) => v === '1' ? `M${(i%60)*5} ${Math.floor(i/60)*5}h3.5v3.5h-3.5z` : '').join(' ');
+}
+---
+<figure id="experiment" class="experiment" data-frames={JSON.stringify(frames)}>
+  <div class="schematic">
+    <div class="field"><div class="label">720 shared inputs</div>
+      <svg viewBox="0 0 300 60" role="img" aria-label="Binary states of 720 numbered inputs"><defs><pattern id="sw-pixels" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="3.5" height="3.5" class="off"/></pattern></defs><rect width="300" height="60" fill="url(#sw-pixels)"/><path class="on" data-inputs d={pixels(first.input)}/></svg>
+      <div class="sub">+ 20 auxiliary controls</div>
+    </div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="readouts">
+      <div class="label">20 readouts</div>
+      <div class="bitrow"><span>Target</span><div class="bits" data-target aria-label={first.target.join('')}>{first.target.map(bit=><i class:list={[bit === 1 && 'lit']}></i>)}</div></div>
+      <div class="bitrow"><span>Actual</span><div class="bits" data-actual aria-label={first.before.join('')}>{first.before.map((bit,i)=><i class:list={[bit===1 && 'lit',bit!==first.target[i] && 'miss']}></i>)}</div></div>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="switches"><button type="button" data-next>Change inputs <span aria-hidden="true">↻</span></button><button type="button" data-switch aria-pressed="false">Connect controller</button></div>
+    <output aria-live="polite" data-status>{count}/20 outputs match</output>
+  </div>
+  <figcaption>One of eight devices, on a public teaching copy. Change the environment, then connect the recovered circuit. An underlined bit misses its target.</figcaption>
+</figure>
+<script>
+  const figure = document.querySelector<HTMLElement>('#experiment');
+  if (figure) {
+    const samples = JSON.parse(figure.dataset.frames!) as {input:string; target:number[]; before:number[]; after:number[]}[];
+    let index = 0;
+    let connected = false;
+    const toggle = figure.querySelector<HTMLButtonElement>('[data-switch]')!;
+    function draw() {
+      const frame = samples[index];
+      const actual = connected ? frame.after : frame.before;
+      const path = Array.from(frame.input, (bit,i) => bit === '1' ? `M${i%60*5} ${Math.floor(i/60)*5}h3.5v3.5h-3.5z` : '').join(' ');
+      figure!.querySelector('[data-inputs]')!.setAttribute('d', path);
+      for (const [key,bits] of [['target', frame.target], ['actual', actual]] as const) {
+        const strip = figure!.querySelector(`[data-${key}]`)!;
+        strip.setAttribute('aria-label', bits.join(''));
+        Array.from(strip.children).forEach((cell,i) => {
+          cell.classList.toggle('lit', bits[i]===1);
+          cell.classList.toggle('miss', key==='actual' && bits[i]!==frame.target[i]);
+        });
+      }
+      toggle.setAttribute('aria-pressed',String(connected));
+      toggle.textContent = connected ? 'Disconnect controller' : 'Connect controller';
+      figure!.querySelector('[data-status]')!.textContent = `${actual.filter((b,i)=>b===frame.target[i]).length}/20 outputs match`;
+    }
+    figure.querySelector('[data-next]')!.addEventListener('click',()=>{index=(index+1)%samples.length;draw()});
+    toggle.addEventListener('click',()=>{connected=!connected;draw()});
+  }
+</script>
+<style>
+  .experiment {margin:0;scroll-margin-top:2rem}
+  .schematic {display:grid;grid-template-columns:1fr 48px 1fr;align-items:center;padding:1.3rem 0 1rem;border-top:1px solid var(--berlin);gap:12px}
+  .label,.controls,output,.sub,.bitrow span {font-family:var(--mono)}
+  .label {font-size:11px;color:var(--sea);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
+  .field svg {width:100%;height:auto;display:block}.off {fill:var(--kei)}.on{fill:var(--wave)}
+  .sub {font-size:10px;color:var(--sea);margin-top:6px}.arrow{font-size:30px;text-align:center;color:var(--wave)}
+  .bitrow {display:flex;align-items:center;gap:10px;margin:9px 0}.bitrow span {width:41px;flex-shrink:0;font-size:11px}
+  .bits {display:grid;grid-template-columns:repeat(20,1fr);gap:3px;flex:1}
+  .bits i {aspect-ratio:1;background:var(--kei);position:relative}.bits i.lit {background:var(--wave)}
+  .bits i.miss::after {content:'';position:absolute;left:0;right:0;bottom:-3px;border-bottom:1px solid var(--sumi)}
+  .controls {display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-block:1px solid var(--kei)}
+  .switches {display:flex;gap:8px;flex-wrap:wrap}button {background:transparent;color:var(--contour);border:1px solid var(--sea);border-radius:0;font:12px var(--mono);padding:9px 12px;cursor:pointer}
+  button:hover,button:focus-visible,button[aria-pressed=true]{background:var(--shoal);color:var(--sumi);border-color:var(--sumi)}
+  output {font-size:12px;color:var(--contour)}figcaption{font-size:15px;line-height:1.45;color:var(--sea);padding-top:10px;max-width:74ch}
+  @media(max-width:620px){.schematic{grid-template-columns:1fr;gap:12px}.arrow{display:none}.field svg{max-width:350px}.controls{align-items:flex-start;flex-direction:column}.bits i{max-height:15px}.label{margin-bottom:7px}}
+</style>

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "model": "gpt-6-astra",
+  "effort": "max",
+  "unit": "scored session",
+  "budget_hours": [
+    10,
+    12
+  ],
+  "conditions": {
+    "M": {
+      "successes": 2,
+      "sessions": 25,
+      "percent": 8.0
+    },
+    "N0": {
+      "successes": 0,
+      "sessions": 11,
+      "percent": 0.0
+    },
+    "F": {
+      "successes": 11,
+      "sessions": 11,
+      "percent": 100.0
+    }
+  },
+  "distinct_M_success_worlds": 1
+}
