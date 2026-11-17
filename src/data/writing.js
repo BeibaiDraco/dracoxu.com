@@ -6,7 +6,7 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'How does an AI scientist decide what to study?',
-    description: 'Given the microscopic law and 720 anonymous inputs, Astra 6.0 Max built eight working controllers in 2 of 25 sessions. Both successes came on the same synthetic world.',
+    description: 'Astra can flip switches on a box and watch which lights come on. Can it learn enough to keep the lights on target when the world moves the switches?',
     date: '2026-11-17',
     kind: 'Research',
     readingTime: '4 min read',

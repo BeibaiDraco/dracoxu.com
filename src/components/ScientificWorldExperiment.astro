@@ -12,16 +12,16 @@ function inputPixels(bits: string) {
 }
 ---
 <figure class="bench" id="experiment" data-bench data-frames={JSON.stringify(frames)}>
-  <div class="bench-head"><h3>Try one device</h3><span data-sample>Input sample 1 of {frames.length}</span></div>
+  <div class="bench-head"><h3>One of Astra’s finished devices</h3><span data-sample>Input sample 1 of {frames.length}</span></div>
   <div class="instrument">
     <div class="field">
-      <p>720 environmental inputs</p>
-      <svg viewBox="0 0 240 48" role="img" aria-label="Binary state of the current 720 environmental inputs">
+      <p>Switch settings chosen by the environment</p>
+      <svg viewBox="0 0 240 48" role="img" aria-label="Binary state of the current Switch settings chosen by the environment">
         <defs><pattern id="bit-base" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="var(--kei)"/></pattern></defs>
         <rect width="240" height="48" fill="url(#bit-base)"/><path data-inputs d={inputPixels(first.input)} fill="var(--wave)"/>
       </svg>
     </div>
-    <div class="readout"><p>20 output bits</p>
+    <div class="readout"><p>Lights on this box</p>
       {rows.map(({key,label,bits}) => <div class="bitrow" data-row={key}>
         <span class="row-label">{label}</span>
         <span class="cells" role="img" aria-label={bits.join('')}>
@@ -31,7 +31,7 @@ function inputPixels(bits: string) {
       </div>)}
     </div>
   </div>
-  <div class="bench-bottom"><figcaption>Each column is one bit. A mark beneath it shows a mismatch with the target. These six inputs come from the public teaching replay.</figcaption>
+  <div class="bench-bottom"><figcaption>Each square in a row is one light. A filled square means on. Compare each row with the target above it. Change the switches and the circuit keeps all 20 lights on target. These six settings come from the public replay.</figcaption>
     <button type="button" data-next-input hidden>Change inputs <span aria-hidden="true">→</span></button></div>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>

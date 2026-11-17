@@ -1,0 +1,83 @@
+<figure class="switch-box" data-switch-box aria-labelledby="box-title">
+  <figcaption>
+    <span class="eyebrow">Teaching example</span>
+    <h2 id="box-title">Two switches, one lamp</h2>
+    <p>Flip either switch. Watch when the lamp lights up.</p>
+  </figcaption>
+  <div class="panel">
+    <div class="switches" role="group" aria-label="Switch positions">
+      <button type="button" class="toggle" data-toggle="a" aria-label="Switch A up" aria-pressed="false" disabled>
+        <span>Switch A</span><i aria-hidden="true"></i><b data-position>Down</b>
+      </button>
+      <button type="button" class="toggle" data-toggle="b" aria-label="Switch B up" aria-pressed="true" disabled>
+        <span>Switch B</span><i aria-hidden="true"></i><b data-position>Up</b>
+      </button>
+    </div>
+    <div class="lamp" data-lamp data-lit="false">
+      <span>Lamp</span><i aria-hidden="true"></i><b data-light>Off</b>
+    </div>
+  </div>
+  <div class="link-area">
+    <button type="button" class="link-control" data-link aria-pressed="false" hidden>Link B to A</button>
+    <p data-link-note>When linked, B follows A.</p>
+  </div>
+  <p class="feedback" aria-live="polite" data-box-status>A is down and B is up. The lamp is off.</p>
+  <noscript><p class="fallback">With both switches down or both up, the lamp is on. With one up and one down, it is off. Linking B to A keeps the switches together.</p></noscript>
+</figure>
+<script>
+  const box = document.querySelector<HTMLElement>('[data-switch-box]');
+  if (box) {
+    const a = box.querySelector<HTMLButtonElement>('[data-toggle="a"]')!;
+    const b = box.querySelector<HTMLButtonElement>('[data-toggle="b"]')!;
+    const link = box.querySelector<HTMLButtonElement>('[data-link]')!;
+    const lamp = box.querySelector<HTMLElement>('[data-lamp]')!;
+    let aUp = false;
+    let bUp = true;
+    let linked = false;
+    function showSwitch(button: HTMLButtonElement, up: boolean) {
+      button.setAttribute('aria-pressed', String(up));
+      button.querySelector('[data-position]')!.textContent = up ? 'Up' : 'Down';
+    }
+    function render() {
+      if (linked) bUp = aUp;
+      const lit = aUp === bUp;
+      showSwitch(a, aUp);
+      showSwitch(b, bUp);
+      b.disabled = linked;
+      link.setAttribute('aria-pressed', String(linked));
+      link.textContent = linked ? 'Unlink B from A' : 'Link B to A';
+      box!.querySelector('[data-link-note]')!.textContent = linked ? 'B now follows A. Try flipping A.' : 'When linked, B follows A.';
+      lamp.dataset.lit = String(lit);
+      lamp.querySelector('[data-light]')!.textContent = lit ? 'On' : 'Off';
+      box!.querySelector('[data-box-status]')!.textContent =
+        'A is ' + (aUp ? 'up' : 'down') + ' and B is ' + (bUp ? 'up' : 'down') + '. The lamp is ' + (lit ? 'on.' : 'off.');
+    }
+    a.disabled = false;
+    b.disabled = false;
+    link.hidden = false;
+    a.addEventListener('click', () => { aUp = !aUp; render(); });
+    b.addEventListener('click', () => { bUp = !bUp; render(); });
+    link.addEventListener('click', () => { linked = !linked; render(); });
+  }
+</script>
+<style>
+  .switch-box {margin:0;min-width:0;padding:clamp(17px,2.3vw,29px);background:#132a34;color:#f3f7f5;border:1px solid #314952}
+  .eyebrow {font:10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:#b4cbd2}
+  figcaption h2 {margin:5px 0;color:#faf7ef;font:440 clamp(26px,2.5vw,35px)/1.1 var(--serif);letter-spacing:-.025em}
+  figcaption p,.link-area p,.feedback,.fallback {margin:0;font:16px/1.4 var(--serif);color:#cbdadf}
+  .panel {display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px;margin:20px 0 14px;padding:18px 2px;border-block:1px solid #46606a}
+  .switches {display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .toggle,.lamp {display:grid;justify-items:center;align-content:center;gap:10px;color:#edf4f4;font:12px/1.2 var(--mono)}
+  .toggle {border:1px solid #58727b;background:#1c3540;padding:11px 4px;cursor:pointer}
+  .toggle:hover:enabled,.toggle:focus-visible,.link-control:focus-visible {outline:2px solid #bcdcd6;outline-offset:2px}
+  .toggle:disabled {cursor:default}.toggle i {position:relative;width:24px;height:43px;border:1px solid #9db2b9;background:#10222c;border-radius:14px}
+  .toggle i::before {content:'';position:absolute;top:22px;left:3px;width:16px;height:16px;border-radius:50%;background:#d2e6e1}
+  .toggle[aria-pressed=true] i::before {top:3px}
+  .toggle b,.lamp b {font-weight:400}.lamp {border-left:1px solid #46606a}
+  .lamp i {width:42px;height:42px;border-radius:50%;border:2px solid #91a7af;background:#344b55}
+  .lamp[data-lit=true] i {background:#ffdb86;border-color:#fff0b9;box-shadow:0 0 14px #e4ad4c70}
+  .link-area {min-height:44px;display:flex;align-items:center;gap:10px}
+  .link-control {background:#dceae5;color:#10282f;border:1px solid #dceae5;padding:8px 10px;min-height:42px;font:11px var(--mono);cursor:pointer;white-space:nowrap}
+  .link-area p {font-size:14px}.feedback{color:#faf7ef;margin-top:10px}.fallback{margin-top:8px}
+  @media(max-width:410px){.switch-box{padding:15px}.panel{gap:8px}.link-area{gap:7px}.link-area p{font-size:13px}}
+</style>

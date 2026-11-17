@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import RecoveredWiring from '../../components/RecoveredWiring.astro';
 import Experiment from '../../components/ScientificWorldExperiment.astro';
+import SwitchBox from '../../components/SwitchBox.astro';
 import score from '../../data/scientific-worlds/scorecard.json';
 import discovery from '../../data/scientific-worlds/discovery.json';
 import { writing } from '../../data/writing.js';
@@ -12,7 +13,7 @@ const repo = 'https://github.com/BeibaiDraco/scientific-worlds-benchmark';
 const doc = `${repo}/blob/fa0c8028b2b4fe718acba6bd956c9059415fd59e`;
 const main = score.conditions.M;
 const rows = [
-  {arm:'M',label:'Microscopic law',detail:'Shared inputs interact in groups of four. The groups and weights are hidden.',data:main},
+  {arm:'M',label:'Microscopic law',detail:'Sets of four switches can act together. Which sets matter is hidden.',data:main},
   {arm:'N0',label:'Operating rules',detail:'How to act and what a measurement costs.',data:score.conditions.N0},
   {arm:'F',label:'Law and structural hints',detail:'How inputs are organized and that affordable circuits exist.',data:score.conditions.F}
 ];
@@ -31,39 +32,51 @@ const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
       <div class="opening-copy">
         <p class="context"><a href="/writing/">Writing</a><span aria-hidden="true">/</span> Scientific Worlds · B720</p>
         <h1>How does an AI scientist decide <em>what to study?</em></h1>
-        <p class="intro">We gave Astra the microscopic law of a world with 720 anonymous inputs. It had to buy measurements, find which inputs act together, and build eight devices that hold their targets as the environment changes.</p>
+        <p class="intro">Picture a box with switches and lights. The wiring is hidden. You can try different settings and watch what lights up. Can you build a device that keeps the lights in a chosen pattern when someone else moves the switches?</p>
+        <p class="purpose">We give Astra eight copies of this box in a simulation. It chooses its own experiments. Watching what its device can do gives us a way to test whether it chose something worth studying.</p>
         <div class="finding"><strong>{main.successes}<span> / </span>{main.sessions}</strong>
-          <p><b>Astra 6.0 Max · microscopic law (M)</b><br/>With 10–12 active hours budgeted, {main.percent}% of sessions delivered all eight devices. Both wins came from the same world.</p>
+          <p><b>Astra 6.0 Max · M condition</b><br/>Given a clue about how the switches interact, Astra built all eight working devices in {main.percent}% of sessions. Both wins came on the same simulated world.</p>
         </div>
         <p class="byline">Draco (Yunlong) Xu <span>·</span> <time datetime={entry.date}>November 17, 2026</time></p>
       </div>
-      <RecoveredWiring/>
+      <SwitchBox/>
     </header>
     <nav class="section-nav" aria-label="In this article">
-      <a href="#task">The task</a><a href="#discovery">The discovery</a><a href="#results">Results</a>
+      <a href="#idea">The little box</a><a href="#task">The task</a><a href="#discovery">The discovery</a><a href="#results">Results</a>
       <a class="repo-link" href={doc+'/docs/run.md'}>Run the benchmark <span aria-hidden="true">↗</span></a>
     </nav>
+    <section class="chapter" id="idea" aria-labelledby="idea-title">
+      <div class="chapter-head"><h2 id="idea-title">From two switches to a rule</h2></div>
+      <div class="body-copy">
+        <p>A starts down and B up. Raise A. The lamp lights. Is A the master switch? Leave it up and lower B. The lamp goes dark.</p>
+        <p>A <strong>variable</strong> is something whose value you can record across experiments. A’s position is one. You can invent another by asking <em>do A and B agree?</em> Record yes or no. Suppose the lamp lights whenever they agree. That predicts a result you haven’t seen yet. With both switches down, it should light. Lower A and see.</p>
+        <p>Starting with both down, raise A alone. The lamp goes dark. Put A back down, link B to A, and repeat. Now B follows and the lamp stays on. That link is an <strong>intervention</strong>. You changed what the box does under the same disturbance.</p>
+      </div>
+    </section>
     <section class="chapter" id="task" aria-labelledby="task-title">
-      <div class="chapter-head"><h2 id="task-title">What would you measure first?</h2></div>
-      <div class="body-copy"><p>The M instructions give Astra a clue. The 720 inputs affect the readouts through interactions among groups of four. Which four? The addresses are shuffled. For one unit of capital in the lab, Astra can set all the inputs and 20 auxiliary controls, then read 20 output bits. It chooses the next experiment.</p>
-        <p>At deployment, eight copies of the system each get a 20-bit target to hold as the environment changes. Clamping every input would cost 731 per copy. Eight copies would cost 5,848. The entire budget for experiments and hardware is 5,200. Finding a few inputs worth controlling can make the difference.</p></div>
+      <div class="chapter-head"><h2 id="task-title">The job we gave Astra</h2></div>
+      <div class="body-copy">
+        <p>Picture the simulator’s 720 on/off inputs as switches and its 20 readings as lights. Astra sets the switches and 20 extra controls, then pays to see what lights up. The <strong>M condition</strong> tells it that sets of four switches can act together. The labels on the switches give no clue about which four.</p>
+        <p>When experiments end, each box gets its own target pattern. The environment moves the switches. Astra’s circuit can sense their positions and move selected switches in response. Measurements and parts share a budget. Astra decides when to stop studying and start building.</p>
+      </div>
       <div class="full"><Experiment/></div>
     </section>
-    <section class="chapter" id="discovery" aria-labelledby="discovery-title">
-      <div class="chapter-head"><h2 id="discovery-title">The discovery that made it into hardware</h2></div>
-      <div class="body-copy"><p>After 2,854 measurements in one M session, Astra had saved a model that arranged 32 scattered input addresses into a four-by-eight grid. It had found eight connections that together canceled this component’s contribution. One drove input 201 with the opposite of input 677. We checked the final hardware. Every device used all eight connections.</p>
-        <div class="ledger"><h3>Capital at the end of {hours} h {minutes} min</h3><dl>
+    <section class="chapter discovery" id="discovery" aria-labelledby="discovery-title">
+      <div class="chapter-head"><h2 id="discovery-title">What did Astra actually discover?</h2></div>
+      <div class="body-copy">
+        <p>After 2,854 measurements in one M session, Astra’s saved model arranged 32 scattered switches into a four-by-eight grid. It found eight links that together canceled the group’s effect on the lights. One made switch 201 take the opposite position to switch 677. We found all eight links in each finished device.</p>
+        <div class="ledger"><h3>How Astra spent its 5,200 units in {hours} h {minutes} min</h3><dl>
           <div><dt>Measurements</dt><dd>{discovery.observations.toLocaleString('en-US')}</dd></div>
-          <div><dt>Manufacturing</dt><dd>{discovery.manufacturing_spend.toLocaleString('en-US')}</dd></div>
+          <div><dt>Construction</dt><dd>{discovery.manufacturing_spend.toLocaleString('en-US')}</dd></div>
           <div><dt>Left at startup</dt><dd>{discovery.minimum_capital}</dd></div>
         </dl></div>
-        <p>Another session on the same world correctly reconstructed two components. It took 3,560 measurements and installed zero devices. In both sessions the model found something real. Only one turned the finding into working hardware. <a href="/writing/scientific-worlds/case-records.json">Inspect the two case records.</a></p>
-
+        <p>In another session on the same world, Astra correctly reconstructed two groups and took 3,560 measurements. It installed zero devices. The research record shows what it learned even when it earned no point. <a href="/writing/scientific-worlds/case-records.json">Inspect both cases.</a></p>
       </div>
+      <div class="case-figure"><RecoveredWiring/></div>
     </section>
     <section class="chapter results" id="results" aria-labelledby="results-title">
       <div class="chapter-head"><h2 id="results-title">How much did the starting information matter?</h2>
-        <p>A session scored only if all eight devices held all 20 outputs on target through 100,000 test frames each, with capital left at startup.</p></div>
+        <p>Each session had a budget of 10–12 active hours. To score, every device had to keep all 20 lights in its assigned pattern through 100,000 changes of switch settings, with money left when the devices started.</p></div>
       <div class="results-body">
         <table><caption class="visually-hidden">Astra 6.0 Max, successful deliveries by starting information</caption>
           <thead><tr><th scope="col">Starting information</th><th scope="col">Delivery rate</th><th scope="col">Sessions won</th></tr></thead>
@@ -73,7 +86,7 @@ const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
             <td>{data.successes} / {data.sessions}</td></tr>)}
           </tbody>
         </table>
-        <p class="interpretation">On the seven registered worlds with both controls, Astra went from 0/7 under N0 to 7/7 under F. That establishes a feasible route when several structural hints are supplied together. M leaves the organization to the agent. Both M wins came on the same historical world. On the separate registered panel, M scored <strong>0/15</strong>.</p>
+        <p class="interpretation">On seven registered worlds tested under both controls, Astra scored 0/7 with N0 and 7/7 with F. The structural hints gave this model a feasible route. M left the groups to discover. Its two wins came on one historical world. The registered M panel scored <strong>0/15</strong>.</p>
         <details><summary>Where the 25 M sessions came from</summary>
           <dl class="cohorts">{cohorts.map(([label,value])=><div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
           <p>We pooled development, registered evaluation and replication. The historical success prompted six fresh sessions on that world. One succeeded. Three early M and three early N0 sessions had a code-extraction fault and remain in the counts. N0 was the registered primary endpoint. We feature M here to study discovery given the microscopic law.</p>
@@ -83,9 +96,9 @@ const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
       </div>
     </section>
     <section class="chapter meaning" aria-labelledby="meaning-title">
-      <div class="chapter-head"><h2 id="meaning-title">Why ask a model to choose what to study?</h2></div>
-      <div class="body-copy"><p>A ball at the top of its flight and a ball resting on a table both have zero velocity. Acceleration reveals a difference. Part of doing science is choosing a quantity in which a useful regularity becomes visible.</p>
-        <p>In B720, the goal is given. The research object is up to the agent. A group of 32 inputs became useful because acting on them together kept a device on target. Any legal circuit earns the same credit, including one found by direct search. The saved intermediate model is what lets us trace discovery in this particular run.</p>
+      <div class="chapter-head"><h2 id="meaning-title">Why call this a test of science?</h2></div>
+      <div class="body-copy"><p>Hand someone a table with a column called “do the switches agree?” and you have already done part of the science. Someone had to think of that quantity. A tossed ball at the top of its flight and a ball resting on a table both have zero velocity. Measure how velocity changes and you can tell them apart. That quantity is acceleration.</p>
+        <p>In a real lab, it can take years to see where a good question leads. Here we can disturb a device and see whether it works. Any working circuit earns the point. The record of experiments lets us ask how the model got there.</p>
         <p class="related">Further reading <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering state variables</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a> · <a href="/writing/scientific-understanding/">Scientific understanding</a> · <a href="/writing/scientific-value/">Scientific value</a></p>
       </div>
     </section>
@@ -105,6 +118,10 @@ const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
   h1,h2,h3,p,figure,dl,dd{margin:0}
   h1{color:var(--sumi);font:390 clamp(46px,4.9vw,71px)/.99 var(--serif);letter-spacing:-.046em;text-wrap:balance;max-width:16ch}
   h1 em{font-weight:390;color:var(--wave)}.intro{font:21px/1.4 var(--serif);margin:17px 0 20px;max-width:44ch}
+  .purpose{font:18px/1.4 var(--serif);margin:-5px 0 18px;max-width:48ch}
+  .chapter.discovery{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);align-items:start;row-gap:16px}
+  .discovery .body-copy{grid-column:2;grid-row:1 / span 2}
+  .case-figure{grid-column:1;grid-row:2;max-width:430px}
   .finding{display:flex;align-items:center;gap:16px;padding:13px 0;border-block:1px solid var(--kei);max-width:500px}
   .finding strong{color:var(--sumi);white-space:nowrap;font:430 clamp(42px,3.7vw,55px)/1 var(--serif);letter-spacing:-.05em}
   .finding strong span{font-size:.62em;color:var(--sea);vertical-align:12%}
@@ -141,5 +158,6 @@ const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
   @media(max-width:900px){.sheet{padding:0}.opening{gap:22px;padding-top:36px}.intro{font-size:19px}.finding{gap:12px}.chapter{grid-template-columns:minmax(0,.78fr) minmax(0,1.7fr);gap:0 18px}.condition small{margin-left:0}}
   @media(max-width:740px){.opening{grid-template-columns:1fr;padding:29px 0 22px;gap:20px}.opening-copy{max-width:570px}.opening h1{max-width:18ch}.chapter{grid-template-columns:1fr;padding:27px 0;gap:14px}.chapter-head>p{max-width:50ch;margin-top:8px}.body-copy>p{font-size:18px}.full{grid-column:auto}.release{display:grid}.repo-link{margin-left:0}.byline{margin-top:10px}.context{margin-bottom:13px}}
   @media(max-width:480px){h1{font-size:clamp(38px,10.6vw,49px);letter-spacing:-.04em}.intro{font-size:19px;margin:11px 0 13px}.section-nav{column-gap:14px}.section-nav a{font-size:11px;min-height:40px}.section-nav .repo-link{margin-left:0}.finding strong{font-size:39px}.finding p{font-size:15px}.finding b{font-size:10px}.results th,.results td{padding:8px 4px}.condition b{font-size:16px}.condition small{font-size:13px}.arm{min-width:24px;font-size:11px}.results td:last-child{white-space:nowrap}.rate{grid-template-columns:minmax(17px,1fr) 30px;gap:4px}.rate b,.results td:last-child{font-size:11px}thead th{font-size:10px}.ledger dt{font-size:10px}.release-links{min-width:0}}
+  @media(max-width:740px){.chapter.discovery{grid-template-columns:1fr}.discovery .body-copy,.case-figure{grid-column:auto;grid-row:auto}.case-figure{width:100%;max-width:460px}.purpose{font-size:17px;margin:0 0 15px}}
   @media print{.section-nav,.release-links{display:none}.opening,.chapter{break-inside:avoid}}
 </style>

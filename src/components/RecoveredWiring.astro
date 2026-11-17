@@ -22,7 +22,7 @@ const first = wires[selected];
 const activePorts = new Set(wires.flatMap(w => [w.to,w.from]));
 ---
 <figure class="wiring-figure" data-wiring>
-  <div class="plate-head"><span>Recovered wiring</span><span>32 input addresses</span></div>
+  <div class="plate-head"><span>Recovered wiring</span><span>32 numbered switches</span></div>
   <svg viewBox="0 0 400 315" role="img" aria-labelledby="wire-title wire-desc">
     <title id="wire-title">Eight connections found in one running device</title>
     <desc id="wire-desc">Thirty-two numbered inputs are arranged around a circle. Solid lines copy a source bit and dashed lines invert it. All eight controllers used these same eight connections.</desc>
@@ -49,7 +49,7 @@ const activePorts = new Set(wires.flatMap(w => [w.to,w.from]));
     <p aria-live="polite" data-relation>Port <b>{first.to}</b> takes the opposite of <b>{first.from}</b>.</p>
     <button type="button" hidden data-next-wire>Next wire <span aria-hidden="true">→</span></button>
   </div>
-  <figcaption>Connections found by Astra and reused in all eight devices. The circle orders ports by address.</figcaption>
+  <figcaption>Connections found by Astra and reused in all eight devices. Each number is a switch. The circle lists them in numerical order.</figcaption>
   <script type="application/json" is:inline data-wire-records set:html={JSON.stringify({wires: discovery.wires, selected})} />
 </figure>
 <script>
