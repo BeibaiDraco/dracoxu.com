@@ -6,11 +6,11 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'How does an AI scientist decide what to study?',
-    description: 'We gave Astra 6.0 Max the microscopic law of a synthetic world. Could it discover which inputs belonged together and build eight working controllers?',
+    description: 'Given the microscopic law and 720 anonymous inputs, Astra 6.0 Max built eight working controllers in 2 of 25 sessions. Both successes came on the same synthetic world.',
     date: '2026-11-17',
     kind: 'Research',
-    readingTime: '5 min read',
-    image: { src: '/images/writing/scientific-worlds/cover-v1.png', width: 1200, height: 630 },
+    readingTime: '4 min read',
+    image: { src: '/images/writing/scientific-worlds/cover-v2.png', width: 1200, height: 630 },
   },
   {
     href: '/writing/mine-or-yours/',

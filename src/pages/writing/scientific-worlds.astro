@@ -1,90 +1,145 @@
 ---
 import Base from '../../layouts/Base.astro';
+import RecoveredWiring from '../../components/RecoveredWiring.astro';
 import Experiment from '../../components/ScientificWorldExperiment.astro';
 import score from '../../data/scientific-worlds/scorecard.json';
 import discovery from '../../data/scientific-worlds/discovery.json';
 import { writing } from '../../data/writing.js';
-import '../../styles/research-essay.css';
 
 const entry = writing.find(item => item.href === '/writing/scientific-worlds/')!;
 const repo = 'https://github.com/BeibaiDraco/scientific-worlds-benchmark';
-const tag = `${repo}/tree/v${score.version}`;
-const doc = `${repo}/blob/v${score.version}`;
-const primary = score.conditions.M;
-const conditions = [
-  ['N0', 'Operating rules alone', score.conditions.N0],
-  ['M', 'Microscopic response law supplied', primary],
-  ['F', 'Structural family also described', score.conditions.F]
-] as const;
+// Immutable commit for the v1.0.0 evidence and protocol.
+const doc = `${repo}/blob/fa0c8028b2b4fe718acba6bd956c9059415fd59e`;
+const main = score.conditions.M;
+const rows = [
+  {arm:'M',label:'Microscopic law',detail:'Shared inputs interact in groups of four. The groups and weights are hidden.',data:main},
+  {arm:'N0',label:'Operating rules',detail:'How to act and what a measurement costs.',data:score.conditions.N0},
+  {arm:'F',label:'Law and structural hints',detail:'How inputs are organized and that affordable circuits exist.',data:score.conditions.F}
+];
+const cohorts = [
+  ['Historical development','1 / 1'], ['Early pilot','0 / 3'],
+  ['Registered evaluation','0 / 15'], ['Same-world replication','1 / 6']
+];
+const hours = Math.floor(discovery.active_seconds / 3600);
+const minutes = Math.floor(discovery.active_seconds % 3600 / 60);
 ---
 <Base title={entry.title} description={entry.description} current="Writing" article={true} author="Draco (Yunlong) Xu"
   publishedTime={entry.date} updated="November 17, 2026"
-  socialImage={{...entry.image,type:'image/png',alt:'Scientific Worlds. Astra 6.0 Max delivered eight devices in 2 of 25 M sessions. The recovered 32-input component is shown at right.'}}>
-  <header class="bay essay-heading">
-    <div class="wide">
-      <p class="essay-eyebrow"><span class="seal" aria-hidden="true"></span><a href="/writing/">Writing</a> / Scientific Worlds</p>
-      <div class="opening">
-        <div><h1>{entry.title}</h1>
-        <p class="lead">We gave an AI the microscopic law of a world with 720 inputs. It had to decide which inputs were worth studying and build eight circuits that could control the system.</p></div>
-        <div class="score"><span class="mono">Astra 6.0 Max · M</span><strong>{primary.percent}%</strong><a href={doc+'/docs/method.md'}>{primary.successes} deliveries / {primary.sessions} sessions</a><small>10–12 active hours per session</small></div>
+  socialImage={{...entry.image,type:'image/png',alt:'Astra 6.0 Max delivered all eight devices in 2 of 25 M sessions. A recovered component contains eight wiring relations.'}}>
+  <article class="bay report"><div class="wide sheet">
+    <header class="opening">
+      <div class="opening-copy">
+        <p class="context"><a href="/writing/">Writing</a><span aria-hidden="true">/</span> Scientific Worlds · B720</p>
+        <h1>How does an AI scientist decide <em>what to study?</em></h1>
+        <p class="intro">We gave Astra the microscopic law of a world with 720 anonymous inputs. It had to buy measurements, find which inputs act together, and build eight devices that hold their targets as the environment changes.</p>
+        <div class="finding"><strong>{main.successes}<span> / </span>{main.sessions}</strong>
+          <p><b>Astra 6.0 Max · microscopic law (M)</b><br/>With 10–12 active hours budgeted, {main.percent}% of sessions delivered all eight devices. Both wins came from the same world.</p>
+        </div>
+        <p class="byline">Draco (Yunlong) Xu <span>·</span> <time datetime={entry.date}>November 17, 2026</time></p>
       </div>
-      <p class="byline">Draco (Yunlong) Xu <span>·</span> November 17, 2026</p>
-      <p class="scope">Development, registered evaluation and replication. Both M deliveries occurred on the same physical world.</p>
-      <p class="links"><a href="#experiment">Try the experiment ↓</a><a href={tag}>Run the benchmark ↗</a></p>
-      <Experiment />
-    </div>
-  </header>
-  <section class="bay section"><div class="wide story">
-    <article class="research-essay">
-      <h2>Which variables belong in the law?</h2>
-      <p>At the top of its flight, a ball thrown upward has the same instantaneous speed as a ball resting on a table. Their motions diverge. Ask how quickly each velocity is changing and the difference comes into view. Acceleration gives us a quantity in which we can state a law.</p>
-      <p>Scientific work often begins with this choice. Which observations belong together? What quantity would make a regularity visible? In the real world, we may wait years to learn whether a choice helped. A synthetic world lets us test one consequence now. Give an agent a goal, let it choose its experiments, and see whether it can change the system as intended.</p>
-      <h2>One budget for finding out and building</h2>
-      <p>In B720, an anonymous input number is an address. Nearby numbers need not be physically related. The agent sets 720 binary inputs and 20 auxiliary controls, buys a measurement, and sees 20 output bits. It can write Python, save data, and choose its next experiment. Each measurement comes out of the same 5,200 units of capital it will spend on hardware.</p>
-      <p>To succeed, the agent installs eight controllers. Each must keep every output on its assigned target through 100,000 changing environmental inputs, with money left at startup. Any legal circuit can win. The simulator grades the intervention.</p>
-      <h2>A discovery you can trace into hardware</h2>
-      <p>In one successful M session, Astra picked out 32 inputs whose effects it could cancel together. It found eight wiring rules. Two required flipping the source bit. Later we compared the rules it had saved during research with its final circuits. Every one of the eight devices contained all eight rules.</p>
-      <figure class="component"><div class="mono">Recovered input addresses</div><div class="wires">
-        {discovery.grid[0].map((source,col) => <div class="column">
-          <svg viewBox="0 0 32 120" preserveAspectRatio="none" aria-hidden="true"><path class:list={[Boolean(discovery.wires[col][2])&&'inverse']} d="M3 15 C28 15 28 75 3 75"/><path d="m8 72 -5 3 5 3"/></svg>
-          {discovery.grid.map((row,i)=><span class:list={[(i===0||i===2)&&'wired']}>{row[col]}</span>)}
-        </div>)}
-      </div><figcaption>Each column shows four input addresses in the recovered arrangement. A wire copies the top bit into the third row. Dashed wires invert it.</figcaption></figure>
-      <p>After nine hours and 47 minutes, Astra had spent {discovery.observations.toLocaleString('en-US')} on observations and {discovery.manufacturing_spend.toLocaleString('en-US')} on hardware. It had <strong>{discovery.minimum_capital} units left</strong> when the devices went into service. <a href={doc+'/evidence/replay.py'}>Replay the working design.</a></p>
-      <h2>What the controls tell us</h2>
-      <p>M gives the form of the microscopic response. The agent still has to discover which combinations matter. Under N0 it starts with the operating rules alone. F supplies the general organization and tells it affordable controllers exist, while leaving the particular wiring hidden.</p>
-      <table><caption>Astra 6.0 Max · scored long-budget sessions</caption><thead><tr><th scope="col">Condition</th><th scope="col">Delivered</th><th scope="col">Rate</th></tr></thead><tbody>
-        {conditions.map(([arm,label,v])=><tr class:list={[arm==='M'&&'primary']}><th scope="row">{arm} <span>{label}</span></th><td>{v.successes}/{v.sessions}</td><td>{v.percent}%</td></tr>)}
-      </tbody></table>
-      <p>The F result shows that this model can build working devices when equipped with structural knowledge. M asks whether it can discover a useful organization for itself. Its two successes show that it sometimes can. How often it can do so in a fresh world remains open. <a href={doc+'/docs/method.md'}>How the sessions were counted.</a></p>
-      <p>Earlier work has inferred <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">state variables from video</a> and asked agents to <a href="https://allenai.github.io/discoveryworld/">design experiments in virtual laboratories</a>. Here a choice of variables has a price and a physical consequence. A useful idea can pay for itself in the hardware it makes possible.</p>
-      <p class="closing"><a href={doc+'/docs/run.md'}>Test your model ↗</a><a href={doc+'/evidence/sessions.json'}>Inspect the 47 session records ↗</a></p>
-      <p class="related">Related essays · <a href="/writing/scientific-understanding/">Scientific understanding</a> · <a href="/writing/scientific-value/">What are we training AI scientists to pursue?</a></p>
-    </article>
-  </div></section>
+      <RecoveredWiring/>
+    </header>
+    <nav class="section-nav" aria-label="In this article">
+      <a href="#task">The task</a><a href="#discovery">The discovery</a><a href="#results">Results</a>
+      <a class="repo-link" href={doc+'/docs/run.md'}>Run the benchmark <span aria-hidden="true">↗</span></a>
+    </nav>
+    <section class="chapter" id="task" aria-labelledby="task-title">
+      <div class="chapter-head"><h2 id="task-title">What would you measure first?</h2></div>
+      <div class="body-copy"><p>The M instructions give Astra a clue. The 720 inputs affect the readouts through interactions among groups of four. Which four? The addresses are shuffled. For one unit of capital in the lab, Astra can set all the inputs and 20 auxiliary controls, then read 20 output bits. It chooses the next experiment.</p>
+        <p>At deployment, eight copies of the system each get a 20-bit target to hold as the environment changes. Clamping every input would cost 731 per copy. Eight copies would cost 5,848. The entire budget for experiments and hardware is 5,200. Finding a few inputs worth controlling can make the difference.</p></div>
+      <div class="full"><Experiment/></div>
+    </section>
+    <section class="chapter" id="discovery" aria-labelledby="discovery-title">
+      <div class="chapter-head"><h2 id="discovery-title">The discovery that made it into hardware</h2></div>
+      <div class="body-copy"><p>After 2,854 measurements in one M session, Astra had saved a model that arranged 32 scattered input addresses into a four-by-eight grid. It had found eight connections that together canceled this component’s contribution. One drove input 201 with the opposite of input 677. We checked the final hardware. Every device used all eight connections.</p>
+        <div class="ledger"><h3>Capital at the end of {hours} h {minutes} min</h3><dl>
+          <div><dt>Measurements</dt><dd>{discovery.observations.toLocaleString('en-US')}</dd></div>
+          <div><dt>Manufacturing</dt><dd>{discovery.manufacturing_spend.toLocaleString('en-US')}</dd></div>
+          <div><dt>Left at startup</dt><dd>{discovery.minimum_capital}</dd></div>
+        </dl></div>
+        <p>Another session on the same world correctly reconstructed two components. It took 3,560 measurements and installed zero devices. In both sessions the model found something real. Only one turned the finding into working hardware. <a href="/writing/scientific-worlds/case-records.json">Inspect the two case records.</a></p>
+
+      </div>
+    </section>
+    <section class="chapter results" id="results" aria-labelledby="results-title">
+      <div class="chapter-head"><h2 id="results-title">How much did the starting information matter?</h2>
+        <p>A session scored only if all eight devices held all 20 outputs on target through 100,000 test frames each, with capital left at startup.</p></div>
+      <div class="results-body">
+        <table><caption class="visually-hidden">Astra 6.0 Max, successful deliveries by starting information</caption>
+          <thead><tr><th scope="col">Starting information</th><th scope="col">Delivery rate</th><th scope="col">Sessions won</th></tr></thead>
+          <tbody>{rows.map(({arm,label,detail,data})=><tr class:list={[arm==='M' && 'primary']}>
+            <th scope="row"><span class="arm">{arm}</span><span class="condition"><b>{label}</b><small>{detail}</small></span></th>
+            <td><div class="rate"><span class="track" aria-hidden="true"><i style={`width:${data.percent}%`}></i></span><b>{data.percent}%</b></div></td>
+            <td>{data.successes} / {data.sessions}</td></tr>)}
+          </tbody>
+        </table>
+        <p class="interpretation">On the seven registered worlds with both controls, Astra went from 0/7 under N0 to 7/7 under F. That establishes a feasible route when several structural hints are supplied together. M leaves the organization to the agent. Both M wins came on the same historical world. On the separate registered panel, M scored <strong>0/15</strong>.</p>
+        <details><summary>Where the 25 M sessions came from</summary>
+          <dl class="cohorts">{cohorts.map(([label,value])=><div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+          <p>We pooled development, registered evaluation and replication. The historical success prompted six fresh sessions on that world. One succeeded. Three early M and three early N0 sessions had a code-extraction fault and remain in the counts. N0 was the registered primary endpoint. We feature M here to study discovery given the microscopic law.</p>
+          <p>Eight further slots per control were deferred.</p>
+          <p><a href={doc+'/docs/method.md'}>Full protocol and cohort definitions ↗</a> · <a href={doc+'/benchmark/prompts/neural-B-M.txt'}>Actual M instructions ↗</a> · <a href={doc+'/evidence/sessions.json'}>47 session records ↗</a></p>
+        </details>
+      </div>
+    </section>
+    <section class="chapter meaning" aria-labelledby="meaning-title">
+      <div class="chapter-head"><h2 id="meaning-title">Why ask a model to choose what to study?</h2></div>
+      <div class="body-copy"><p>A ball at the top of its flight and a ball resting on a table both have zero velocity. Acceleration reveals a difference. Part of doing science is choosing a quantity in which a useful regularity becomes visible.</p>
+        <p>In B720, the goal is given. The research object is up to the agent. A group of 32 inputs became useful because acting on them together kept a device on target. Any legal circuit earns the same credit, including one found by direct search. The saved intermediate model is what lets us trace discovery in this particular run.</p>
+        <p class="related">Further reading <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering state variables</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a> · <a href="/writing/scientific-understanding/">Scientific understanding</a> · <a href="/writing/scientific-value/">Scientific value</a></p>
+      </div>
+    </section>
+    <footer class="release"><div><h2>Run Scientific Worlds</h2><p>Recompute the scores from 47 recorded sessions, replay the recovered design on a public specimen, or test your own model on a fresh world.</p></div>
+      <div class="release-links"><a href={doc+'/docs/run.md'}>Test your model <span aria-hidden="true">↗</span></a>
+      <a href={repo+'/tree/v'+score.version}>Code and offline replay · v{score.version} <span aria-hidden="true">↗</span></a></div>
+    </footer>
+  </div></article>
 </Base>
 <style>
-  .opening {display:grid;grid-template-columns:minmax(0,1.8fr) minmax(195px,.8fr);gap:clamp(25px,5vw,75px);align-items:center}
-  .essay-heading h1 {font-size:clamp(2.65rem,5vw,4.5rem);line-height:1.02;letter-spacing:-.037em;max-width:18ch;margin:0}
-  .lead {font-size:clamp(19px,2vw,24px);line-height:1.4;margin:18px 0 0;max-width:50ch}
-  .mono,.links,.byline,.score small,.score a,.related,.closing,caption {font-family:var(--mono)}
-  .mono {font-size:11px;letter-spacing:.055em;text-transform:uppercase;color:var(--sea)}
-  .score {border-left:1px solid var(--kei);padding-left:clamp(16px,3vw,42px);display:flex;flex-direction:column;align-items:flex-start}
-  .score strong {font:400 clamp(62px,7vw,103px)/1.1 var(--serif);color:var(--sumi);margin:8px 0 0}
-  .score a {font-size:13px}.score small,.byline {font-size:11px;color:var(--sea)}.score small {margin-top:8px}
-  .byline {margin:18px 0 6px}.byline span {padding:0 5px}.scope {font-size:15px;color:var(--sea);line-height:1.35;margin:0}
-  .links,.closing {display:flex;gap:20px;flex-wrap:wrap;font-size:12px}.links{margin:15px 0 22px}
-  .section{margin:38px 0 16px}.story article{max-width:43rem}.research-essay h2{margin-top:38px}
-  .component {padding:17px 0;margin:22px 0;border-block:1px solid var(--kei)}
-  .wires {display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:10px 0}
-  .column {position:relative;display:flex;flex-direction:column;padding-right:16px;align-items:center}
-  .column span {font:13px/30px var(--mono);height:30px;color:var(--sea)}
-  .column .wired {color:var(--sumi);font-weight:bolder}.column svg {position:absolute;left:calc(50% + 6px);width:24px;height:120px;overflow:visible}
-  .column path{fill:none;stroke:var(--wave);stroke-width:1.8}.column path.inverse{stroke-dasharray:4 3}
-  figcaption,.related {font-size:15px;line-height:1.45;color:var(--sea)}
-  table {border-collapse:collapse;width:100%;font-size:16px;margin:20px 0}caption {text-align:left;font-size:11px;color:var(--sea);margin-bottom:7px}
-  th,td{text-align:right;padding:10px 5px;border-block-start:1px solid var(--kei)}th:first-child{text-align:left}
-  th span{font-weight:400;color:var(--sea)}.primary{background:var(--shoal)}.closing {border-top:1px solid var(--kei);padding-top:18px}
-  .related {font-size:11px}.research-essay a {text-decoration:underline;text-underline-offset:3px}
-  @media(max-width:650px){.opening{display:block}.score{border:0;padding:0;margin-top:18px;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:16px}.score strong{grid-column:1;grid-row:1 / 4;font-size:55px;margin:0}.score .mono,.score a,.score small{grid-column:2;margin:0}.score a{font-size:12px}.essay-heading h1{font-size:2.9rem}.column span{font-size:10px}.column svg{left:calc(50% + 1px);width:17px}.column{padding-right:9px}th span{display:block;font-size:13px}}
+  .report{color:var(--contour)}
+  .sheet{padding-inline:clamp(8px,1.5vw,24px) 0}
+  .opening{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,.94fr);gap:clamp(25px,4vw,66px);align-items:center;padding:clamp(38px,5vw,70px) 0 36px}
+  .context,.byline,.section-nav,.arm,.rate b,.results td:last-child,.release-links,.ledger dt{font-family:var(--mono)}
+  .context{display:flex;gap:9px;align-items:center;margin:0 0 19px;font-size:11px;line-height:1.45;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
+  .context a,.section-nav a{color:inherit;text-decoration:none}.context a:hover,.section-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+  h1,h2,h3,p,figure,dl,dd{margin:0}
+  h1{color:var(--sumi);font:390 clamp(46px,4.9vw,71px)/.99 var(--serif);letter-spacing:-.046em;text-wrap:balance;max-width:16ch}
+  h1 em{font-weight:390;color:var(--wave)}.intro{font:21px/1.4 var(--serif);margin:17px 0 20px;max-width:44ch}
+  .finding{display:flex;align-items:center;gap:16px;padding:13px 0;border-block:1px solid var(--kei);max-width:500px}
+  .finding strong{color:var(--sumi);white-space:nowrap;font:430 clamp(42px,3.7vw,55px)/1 var(--serif);letter-spacing:-.05em}
+  .finding strong span{font-size:.62em;color:var(--sea);vertical-align:12%}
+  .finding p{margin:0;max-width:33ch;font:16px/1.3 var(--serif)}
+  .finding b{font:12px/1.7 var(--mono);color:var(--wave)}
+  .byline{font-size:11px;line-height:1.5;color:var(--sea);margin-top:14px}.byline span{padding-inline:4px}
+  .section-nav{display:flex;align-items:center;flex-wrap:wrap;gap:5px clamp(16px,3.2vw,43px);border-block:1px solid var(--kei);font-size:12px}
+  .section-nav a{display:inline-flex;align-items:center;min-height:45px}.section-nav .repo-link{margin-left:auto;color:var(--wave);gap:7px}
+  .chapter{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.8fr);gap:0 clamp(22px,4.4vw,70px);padding:39px 0;border-bottom:1px solid var(--kei);scroll-margin-top:18px}
+  h2{font:430 clamp(30px,3vw,40px)/1.03 var(--serif);letter-spacing:-.03em;color:var(--sumi);text-wrap:balance}
+  .chapter-head>p{font-size:17px;line-height:1.43;margin-top:14px;color:var(--sea)}
+  .body-copy>p,.interpretation,.release p{font:19px/1.48 var(--serif);margin:0 0 12px;max-width:68ch}
+  .body-copy>p:last-child{margin-bottom:0}.full{grid-column:1/-1;min-width:0}
+  .results table{width:100%;border-collapse:collapse;font-size:16px}.results th,.results td{padding:10px 8px;vertical-align:middle}
+  thead th{font:11px/1.3 var(--mono);color:var(--sea);text-align:left;border-bottom:1px solid var(--sea)}
+  thead th:last-child,.results td:last-child{text-align:right}tbody tr{border-bottom:1px solid var(--kei)}
+  tbody th{text-align:left;font-weight:400;width:51%}.condition{display:inline}.condition b{font:500 18px/1.2 var(--serif)}
+  .condition small{display:block;font:14px/1.35 var(--serif);color:var(--sea);margin:4px 0 0 33px}
+  .arm{font-size:12px;display:inline-block;min-width:33px;color:var(--sea)}
+  .rate{display:grid;grid-template-columns:minmax(24px,1fr) 38px;gap:7px;align-items:center}.track{height:4px;background:var(--kei)}.track i{display:block;height:100%;background:var(--sea)}
+  .rate b,.results td:last-child{font-size:12px;font-weight:400;font-variant-numeric:tabular-nums}.rate b{text-align:right}
+  .primary{background:var(--shoal)}.primary .track i{background:var(--wave)}.primary .arm,.primary .condition b,.primary .rate b{color:var(--sumi);font-weight:600}
+  .interpretation{font-size:17px;margin:14px 0 6px}
+  details{font-size:16px;line-height:1.45}summary{cursor:pointer;color:var(--wave);padding:9px 0;text-decoration:underline;text-underline-offset:3px}
+  details p{font-size:16px;margin:7px 0}.cohorts div{display:flex;justify-content:space-between;border-bottom:1px solid var(--kei);padding:4px 0}.cohorts dd{font:12px/1.6 var(--mono)}
+  .ledger{margin:17px 0 20px;padding:12px 0 13px;border-block:1px solid var(--kei)}.ledger h3{font:13px/1.5 var(--mono);color:var(--sea);margin-bottom:10px}
+  .ledger dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.ledger dt{font-size:11px;color:var(--sea)}.ledger dd{font:400 34px/1.15 var(--serif);color:var(--sumi)}.ledger dl>div:last-child dd{color:var(--wave)}
+  .body-copy .related{font-size:15px;line-height:1.5;color:var(--sea);margin:16px 0 0}
+  .related a:first-child{margin-left:5px}
+  .release{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:35px 0 15px}.release h2{font-size:32px}.release p{font-size:17px;max-width:57ch;margin:8px 0 0}
+  .release-links{display:grid;gap:9px;min-width:max-content;font-size:12px}
+  .sheet a:focus-visible,.sheet summary:focus-visible{outline:2px solid var(--wave);outline-offset:3px}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  @media(max-width:900px){.sheet{padding:0}.opening{gap:22px;padding-top:36px}.intro{font-size:19px}.finding{gap:12px}.chapter{grid-template-columns:minmax(0,.78fr) minmax(0,1.7fr);gap:0 18px}.condition small{margin-left:0}}
+  @media(max-width:740px){.opening{grid-template-columns:1fr;padding:29px 0 22px;gap:20px}.opening-copy{max-width:570px}.opening h1{max-width:18ch}.chapter{grid-template-columns:1fr;padding:27px 0;gap:14px}.chapter-head>p{max-width:50ch;margin-top:8px}.body-copy>p{font-size:18px}.full{grid-column:auto}.release{display:grid}.repo-link{margin-left:0}.byline{margin-top:10px}.context{margin-bottom:13px}}
+  @media(max-width:480px){h1{font-size:clamp(38px,10.6vw,49px);letter-spacing:-.04em}.intro{font-size:19px;margin:11px 0 13px}.section-nav{column-gap:14px}.section-nav a{font-size:11px;min-height:40px}.section-nav .repo-link{margin-left:0}.finding strong{font-size:39px}.finding p{font-size:15px}.finding b{font-size:10px}.results th,.results td{padding:8px 4px}.condition b{font-size:16px}.condition small{font-size:13px}.arm{min-width:24px;font-size:11px}.results td:last-child{white-space:nowrap}.rate{grid-template-columns:minmax(17px,1fr) 30px;gap:4px}.rate b,.results td:last-child{font-size:11px}thead th{font-size:10px}.ledger dt{font-size:10px}.release-links{min-width:0}}
+  @media print{.section-nav,.release-links{display:none}.opening,.chapter{break-inside:avoid}}
 </style>

@@ -1,0 +1,102 @@
+---
+import discovery from '../data/scientific-worlds/discovery.json';
+
+// The circular ordering is by public port address. Chords are exactly the
+// destination/source pairs audited in the model's intermediate checkpoint.
+const ports = discovery.grid.flat().slice().sort((a,b) => a-b);
+const selected = 3;
+const center = {x: 200, y: 158};
+function point(index: number, radius: number) {
+  const angle = 2 * Math.PI * index / ports.length - Math.PI / 2;
+  return {x: center.x + radius * Math.cos(angle), y: center.y + radius * Math.sin(angle)};
+}
+const addresses = ports.map((id,index) => ({id, node: point(index,115), label: point(index,137)}));
+const position = new Map(addresses.map(address => [address.id, address.node]));
+const wires = discovery.wires.map(([to,from,invert]) => {
+  const source = position.get(from)!;
+  const dest = position.get(to)!;
+  return {from,to,invert,source,dest,
+    path: `M${source.x} ${source.y} Q${center.x} ${center.y} ${dest.x} ${dest.y}`};
+});
+const first = wires[selected];
+const activePorts = new Set(wires.flatMap(w => [w.to,w.from]));
+---
+<figure class="wiring-figure" data-wiring>
+  <div class="plate-head"><span>Recovered wiring</span><span>32 input addresses</span></div>
+  <svg viewBox="0 0 400 315" role="img" aria-labelledby="wire-title wire-desc">
+    <title id="wire-title">Eight connections found in one running device</title>
+    <desc id="wire-desc">Thirty-two numbered inputs are arranged around a circle. Solid lines copy a source bit and dashed lines invert it. All eight controllers used these same eight connections.</desc>
+    <defs>
+      <pattern id="coordinate-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#72909b" opacity=".5"/></pattern>
+    </defs>
+    <rect x="0" y="0" width="400" height="315" fill="url(#coordinate-grid)"/>
+    <g class="guides" fill="none" aria-hidden="true">
+      <circle cx={center.x} cy={center.y} r="115"/><circle cx={center.x} cy={center.y} r="82" stroke-dasharray="1 6"/>
+      <path d="M18 158H57m286 0h39M200 8v12m0 277v12"/>
+    </g>
+    {wires.map((wire,i) =>
+      <path d={wire.path} class:list={['wire',wire.invert && 'invert',i===selected && 'selected']} data-wire={i}/>
+    )}
+    {addresses.map(({id,node,label}) =>
+      <g class:list={['port',activePorts.has(id) && 'used',(first.from===id || first.to===id) && 'selected']} data-port={id}>
+        <circle cx={node.x} cy={node.y} r={activePorts.has(id) ? 3.6 : 2.4}/>
+        <text x={label.x} y={label.y} text-anchor="middle" dominant-baseline="central">{id}</text>
+      </g>
+    )}
+  </svg>
+  <div class="wire-key"><span><i></i>Copy</span><span><i></i>Invert</span></div>
+  <div class="reader">
+    <p aria-live="polite" data-relation>Port <b>{first.to}</b> takes the opposite of <b>{first.from}</b>.</p>
+    <button type="button" hidden data-next-wire>Next wire <span aria-hidden="true">→</span></button>
+  </div>
+  <figcaption>Connections found by Astra and reused in all eight devices. The circle orders ports by address.</figcaption>
+  <script type="application/json" is:inline data-wire-records set:html={JSON.stringify({wires: discovery.wires, selected})} />
+</figure>
+<script>
+  const plate = document.querySelector<HTMLElement>('[data-wiring]');
+  if (plate) {
+    const data = JSON.parse(plate.querySelector('[data-wire-records]')!.textContent!) as {wires:number[][];selected:number};
+    let current = data.selected;
+    const next = plate.querySelector<HTMLButtonElement>('[data-next-wire]')!;
+    next.hidden = false;
+    next.addEventListener('click', () => {
+      current = (current + 1) % data.wires.length;
+      const [to,from,invert] = data.wires[current];
+      for (const wire of plate.querySelectorAll<SVGPathElement>('[data-wire]')) {
+        wire.classList.toggle('selected', Number(wire.dataset.wire) === current);
+      }
+      for (const port of plate.querySelectorAll<SVGGElement>('[data-port]')) {
+        const id = Number(port.dataset.port);
+        port.classList.toggle('selected', id === to || id === from);
+      }
+      plate.querySelector('[data-relation]')!.textContent = invert
+        ? `Port ${to} takes the opposite of ${from}.` : `Port ${to} copies port ${from}.`;
+    });
+  }
+</script>
+<style>
+  .wiring-figure {margin:0;min-width:0;background:#122733;color:#edf6f7;border:1px solid #283e48;align-self:center}
+  .plate-head,.wire-key,.reader button {font-family:var(--mono)}
+  .plate-head {display:flex;justify-content:space-between;align-items:center;padding:16px 20px 0;gap:10px}
+  .plate-head span:first-child {font:500 20px/1.2 var(--serif);letter-spacing:-.02em}
+  .plate-head span:last-child {font-size:10px;color:#b7cbd1}
+  svg {display:block;width:100%;height:auto;max-height:298px;margin:5px auto 0}
+  .guides {stroke:#54717c;stroke-width:.7}
+  .wire {stroke:#8ecabf;stroke-width:1.7;fill:none}
+  .wire.invert {stroke:#efb383;stroke-dasharray:4 3}
+  .wire.selected {stroke-width:3.6}
+  .port circle {fill:#5c737f;stroke:#122733;stroke-width:1}
+  .port.used circle {fill:#b6dcd8}.port.selected circle {fill:#fff;stroke:#fff}
+  .port text {fill:#adbec6;font:10px var(--mono)}
+  .port.used text {fill:#d5e4e8}.port.selected text {fill:#fff;font-weight:bold;font-size:12px}
+  .wire-key {display:flex;gap:16px;justify-content:center;font-size:11px;color:#c5d5d9;margin:0 0 10px}
+  .wire-key span {display:inline-flex;align-items:center;gap:6px}
+  .wire-key i {width:18px;border-top:2px solid #8ecabf}
+  .wire-key span:nth-child(2) i {border-color:#efb383;border-top-style:dashed}
+  .reader {display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #455b64;padding:3px 16px}
+  .reader p {margin:0;font:16px/1.3 var(--serif);color:#edf6f7}
+  .reader button {white-space:nowrap;background:transparent;color:#d2eded;font-size:11px;min-height:44px;padding:0 4px;cursor:pointer;border:0;text-decoration:underline;text-underline-offset:4px}
+  .reader button:focus-visible {outline:2px solid #efb383;outline-offset:1px}
+  figcaption {margin:0;padding:0 16px 12px;font:14px/1.35 var(--serif);color:#b5c8d0}
+  @media(max-width:520px){svg{max-height:266px}.plate-head{padding:14px 14px 0}.reader{padding-inline:12px}figcaption{padding-inline:12px}}
+</style>
