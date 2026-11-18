@@ -12,11 +12,11 @@ function inputPixels(bits: string) {
 }
 ---
 <figure class="bench" id="experiment" data-bench data-frames={JSON.stringify(frames)}>
-  <div class="bench-head"><h3>One of Astra’s finished devices</h3><span data-sample>Input sample 1 of {frames.length}</span></div>
+  <div class="bench-head"><h3>One circuit at work</h3><span data-sample>Input sample 1 of {frames.length}</span></div>
   <div class="instrument">
     <div class="field">
       <p>Switch settings chosen by the environment</p>
-      <svg viewBox="0 0 240 48" role="img" aria-label="Binary state of the current Switch settings chosen by the environment">
+      <svg viewBox="0 0 240 48" role="img" aria-label="On/off positions of the 720 switches in this environment">
         <defs><pattern id="bit-base" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="var(--kei)"/></pattern></defs>
         <rect width="240" height="48" fill="url(#bit-base)"/><path data-inputs d={inputPixels(first.input)} fill="var(--wave)"/>
       </svg>
@@ -31,7 +31,7 @@ function inputPixels(bits: string) {
       </div>)}
     </div>
   </div>
-  <div class="bench-bottom"><figcaption>Each square in a row is one light. A filled square means on. Compare each row with the target above it. Change the switches and the circuit keeps all 20 lights on target. These six settings come from the public replay.</figcaption>
+  <div class="bench-bottom"><figcaption>One of the eight circuits on a public copy of the system. A filled square is a light that is on. Change the switches to see which lights the circuit keeps on target.</figcaption>
     <button type="button" data-next-input hidden>Change inputs <span aria-hidden="true">→</span></button></div>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>

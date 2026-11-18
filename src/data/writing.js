@@ -6,7 +6,7 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'How does an AI scientist decide what to study?',
-    description: 'Astra can flip switches on a box and watch which lights come on. Can it learn enough to keep the lights on target when the world moves the switches?',
+    description: 'We wanted to see whether an AI could choose what to measure for itself. In one synthetic world, a group of 32 switches went from Astra’s lab notes into eight working devices.',
     date: '2026-11-17',
     kind: 'Research',
     readingTime: '4 min read',
