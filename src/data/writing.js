@@ -6,10 +6,10 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'How does an AI scientist decide what to study?',
-    description: 'We wanted to see whether an AI could choose what to measure for itself. In one synthetic world, a group of 32 switches went from Astra’s lab notes into eight working devices.',
+    description: 'Who thought to put acceleration in the table? Scientific Worlds gives Astra 6.0 Max a lab of its own and asks what it can build with what it discovers.',
     date: '2026-11-17',
     kind: 'Research',
-    readingTime: '4 min read',
+    readingTime: '3 min read',
     image: { src: '/images/writing/scientific-worlds/cover-v2.png', width: 1200, height: 630 },
   },
   {

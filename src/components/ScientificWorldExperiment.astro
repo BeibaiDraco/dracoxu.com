@@ -3,8 +3,8 @@ import frames from '../data/scientific-worlds/teaching-figure.json';
 const first = frames[0];
 const rows = [
   {key:'target',label:'Target',bits:first.target},
-  {key:'before',label:'No controller',bits:first.before},
-  {key:'after',label:'With controller',bits:first.after}
+  {key:'before',label:'No circuit',bits:first.before},
+  {key:'after',label:'With circuit',bits:first.after}
 ];
 function inputPixels(bits: string) {
   return Array.from(bits, (bit,i) => bit === '1'
@@ -15,7 +15,7 @@ function inputPixels(bits: string) {
   <div class="bench-head"><h3>One circuit at work</h3><span data-sample>Input sample 1 of {frames.length}</span></div>
   <div class="instrument">
     <div class="field">
-      <p>Switch settings chosen by the environment</p>
+      <p>Positions of the 720 switches</p>
       <svg viewBox="0 0 240 48" role="img" aria-label="On/off positions of the 720 switches in this environment">
         <defs><pattern id="bit-base" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="var(--kei)"/></pattern></defs>
         <rect width="240" height="48" fill="url(#bit-base)"/><path data-inputs d={inputPixels(first.input)} fill="var(--wave)"/>
@@ -31,8 +31,8 @@ function inputPixels(bits: string) {
       </div>)}
     </div>
   </div>
-  <div class="bench-bottom"><figcaption>One of the eight circuits on a public copy of the system. A filled square is a light that is on. Change the switches to see which lights the circuit keeps on target.</figcaption>
-    <button type="button" data-next-input hidden>Change inputs <span aria-hidden="true">→</span></button></div>
+  <div class="bench-bottom"><figcaption>One of Astra’s circuits, replayed on a public copy of the box. Filled squares are lights that are on. Compare each row with the target.</figcaption>
+    <button type="button" data-next-input hidden>Flip the switches <span aria-hidden="true">→</span></button></div>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>
 <script>

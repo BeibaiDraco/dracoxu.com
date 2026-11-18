@@ -21,27 +21,29 @@ const { M, N0, F } = score.conditions;
     </header>
 
     <div class="prose">
-      <p class="lead">Give an AI a table with columns for force, mass and acceleration. Ask it to find a law and it might give you <i>F = ma</i>. Who thought to put acceleration in the table?</p>
-      <p>A ball resting on a table and a ball thrown straight up are both still at one instant. One stays there. The other falls. To see the difference, you have to ask how the velocity is changing. Someone had to think of measuring that quantity before anyone could fit an equation to it.</p>
-      <p>The Feynman equation-recovery problems begin with the variables already chosen. DiscoveryWorld gives an agent a lab in which it can choose experiments and act on the results. What interested us was how to recognize a good choice of <em>what to study</em>. In a real lab it can take years to find out where a new idea leads. So we started building small worlds where we could see a question through. In the one we eventually released, an AI can flip switches, watch a row of lights, and build a device to keep them on target when the switches move again.</p>
+      <p class="lead">Give an AI a table of forces, masses and accelerations, and it might recover <i>F = ma</i>. Who thought to put acceleration in the table?</p>
+      <p>Toss a ball straight up. At the top of its flight it has the same velocity as a ball resting on a table. One stays put. The other is already accelerating downward. What distinguishes them at that instant is how their velocities <em>change</em>. When a benchmark supplies a column for acceleration, it gives the model that insight before the test begins.</p>
 
-      <h2>We kept choosing things for the model</h2>
-      <p>In an early world, we built a material that could soak up a chemical and release it later. Experiments told us how much it would carry. Then we tried adding the chemical directly. The system produced more. We had given the agent something interesting to discover and little reason to discover it.</p>
-      <p>Next we tried an existing molecular simulation dataset. Each row already contained 22 quantities that researchers had designed to describe a configuration of molecules. We could ask which column best predicted what happened next. The people who chose the columns had already done much of the work we hoped to watch it do.</p>
-      <p>A later prototype gave us a surprise. We had organized its parts into three families. Astra found a different way to describe how combinations of parts behaved. Its description predicted what would happen in new assemblies, and the devices it built worked. If we had graded the model on recovering our three labels, we would have missed its discovery.</p>
+      <p>Scientific Worlds asks an AI to choose for itself what is worth studying. In a real lab, years can pass before anyone knows what a question was worth. In a simulation, we can follow an idea all the way into a machine and see whether it works.</p>
 
       <h2>A box with 720 switches</h2>
-      <p>Our first public world, B720, behaves like a sealed box with 720 numbered switches and 20 lights. In the lab, Astra sets the switches and 20 auxiliary controls, pays for a reading, and sees which lights come on. Later the environment moves the switches. Astra gets eight copies of the box and must wire each one to keep its lights in an assigned pattern. Every measurement leaves a little less money for parts.</p>
-      <p>In one run, 32 scattered switch numbers appeared in Astra’s research notes as a four-by-eight grid. The model had worked out eight connections that together canceled this group’s effect on the lights. One made switch 201 take the opposite position to switch 677. When we opened the eight finished circuits, <strong>all eight connections were in every one</strong>. After nearly ten hours of experiments and construction, Astra had {discovery.minimum_capital} units of its original 5,200 left.</p>
+      <p>Imagine a sealed box with 720 numbered switches and 20 lights. In the lab you can set the switches, pay for a reading and see which lights come on. Your job is to build a circuit that keeps a particular pattern lit even when someone else flips the switches. Every reading you buy leaves less money for parts.</p>
+      <p>In B720, our first world, Astra 6.0 Max has to do this for eight boxes, each with its own target. In the main test, called M, Astra knows that combinations of four switches can influence a light. The numbers on the switches give no clue which ones belong together.</p>
     </div>
 
     <Experiment/>
 
+    <div class="prose">
+      <h2>Eight wires for 32 switches</h2>
+      <p>In one run, Astra took 32 scattered switch numbers and arranged them in four rows of eight. In its grid, the four corners of each little square were switches that acted together. A list of numbers had become a picture of how part of the box worked.</p>
+      <p>Astra found it could cancel the whole group’s effect on the lights by wiring six pairs of switches to move together and two pairs to move in opposite directions. We found <strong>those same eight connections in every finished circuit</strong>. Astra reached deployment with {discovery.minimum_capital} units of its original 5,200 left.</p>
+    </div>
+
     <section class="prose results" id="results" aria-labelledby="results-title">
       <h2 id="results-title">Could Astra do it again?</h2>
-      <p>We gave Astra 6.0 Max the form of the microscopic law. It knew that switches could act together in groups of four. It had to find out which combinations mattered. With this starting knowledge, which we call M, it built eight working devices in <strong>{M.successes} of {M.sessions} sessions ({M.percent}%)</strong> across development, evaluation and repeat runs. Both wins came on the same world. Each session had a budget of 10–12 active hours, and each device had to hold its target through 100,000 changes of switch settings.</p>
-      <p>With operating instructions alone (N0), Astra succeeded in {N0.successes} of {N0.sessions} sessions. With additional hints about how the switches were organized (F), it succeeded in {F.successes} of {F.sessions}. Astra could use that organization when we described it. Finding it for itself was much harder in these runs.</p>
-      <p>We would eventually like to train an AI scientist this way. A textbook can teach it which questions paid off for people. A world it can experiment on lets it try a question nobody thought to teach. Sometimes we can open the finished device and point to the place where the answer went.</p>
+      <p>Astra 6.0 Max succeeded in <strong>{M.successes} of {M.sessions} M sessions ({M.percent}%)</strong> across development, evaluation and repeat runs, with 10–12 active hours per attempt. Both wins came on the same world. Each time, all eight circuits held every light on target through 100,000 changes of switch settings per box.</p>
+      <p>With operating instructions alone (N0), Astra succeeded in {N0.successes} of {N0.sessions} sessions. When told more about the hidden organization and that an affordable circuit existed (F), it succeeded in {F.successes} of {F.sessions}. Astra could use the structure once given those clues. Finding it for itself proved much harder.</p>
+      <p>In a physics textbook, acceleration already has a name. Our hope is that an AI can learn enough from experiments of its own to enter an unfamiliar world and show us a quantity worth naming.</p>
     </section>
 
     <footer class="endnotes prose">
