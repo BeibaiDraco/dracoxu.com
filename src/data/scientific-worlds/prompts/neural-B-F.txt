@@ -1,0 +1,154 @@
+You are studying a synthetic neural system with 720 idealized binary neural
+units, 20 auxiliary control inputs, and 20 binary readouts. This is an artificial,
+deterministic, memoryless control environment, not a biological simulation.
+Unit indices are interface addresses, not spatial coordinates. In a research
+trial you set all 740 input bits and observe the 20 readout bits. Build eight
+controllers that produce their assigned readout targets despite changing
+external unit states, within the research and hardware budget. The rules below
+define the complete interface and scoring contract.
+
+Terminology: the 720 unit states are the shared inputs; their interface addresses
+are shared ports. The 20 auxiliary control inputs are called private handles in
+the API. Readouts are output bits, distinct from both kinds of input. Each
+controller is installed on a separate copy of the same unknown system.
+
+Operate the persistent campaign through a Python console with NumPy and SciPy. Read the public manual and files in the current directory. Return one fenced Python block, or FINISH to end your attempt. Each block starts a new interpreter with act and np provided; files persist. Pass act explicitly into imported code. Many physical actions may run in one block. Every legal solver and control representation is accepted.
+Budgets: 4800 single-core worker CPU seconds, 1200000 known returned generated tokens, 256 model turns, 43200 active wall seconds, and the separately charged physical capital in the manual. Total wall time includes model/transport waits, execution and referee qualification. A physical action accepted before the deadline is allowed to finish qualification. Token usage is checked at call boundaries; if a returned call exceeds the remaining token budget its program is not executed. A pending call cut off by the deadline can have unknown usage. Failed returned calls count.
+Each worker is sampled every 50 ms and stopped above 2 GiB RSS. Each file has a 2 GiB limit. One worker process; no child processes, network or software installation. A block has wall allowance remaining worker CPU plus 90 seconds, bounded by remaining campaign wall time. Action messages must fit in 8 MiB. The last 12000 bytes of block output are visible; full output is retained for auditing. Saved files and campaign persist after a memory stop. Each action reply includes research_budget, and each turn starts with current remaining resources. World validity and scientific delivery alone determine success; no particular grouping or theory report is required.
+Memory: each turn receives the most recent 160000 UTF-8 bytes of visible interaction and your own NOTES.md, if present (up to 24000 bytes, possibly less after JSON escaping). Earlier interaction is not automatically summarized. Complete interaction records are readable in the directory os.environ['CAMPAIGN_HISTORY'], as turn_000001.json etc. That directory is read-only; your own working files persist. Keep any notes you want to carry forward in NOTES.md. Unsafe links or non-regular notes files are not read. The prompt explicitly marks omitted history and truncated notes.
+
+# Controlling a synthetic neural system
+
+Build eight controllers that compensate for changing external inputs and deliver their
+required functions. You have 5200 capital. All legal experimental
+strategies and all valid Boolean control circuits are accepted. The judge scores
+actual delivered function and capital. No object report, particular grouping,
+theory format or particular control representation is required.
+
+## Research and controller installation
+
+The persistent console accepts JSON-compatible dictionaries through act. A research
+configuration is a list of 740 binary entries (integers or booleans). Measurements
+are deterministic, without drift or noise. Unknown fields are invalid.
+
+- `act({"op":"state"})` is free and returns the current ledger.
+- `act({"op":"observe","x":[...]})` sets all 740 inputs of a research copy of the system
+  and returns its 20 output bits in `reading`. This costs 1 at site A and 4 at site B.
+  Each observation resets the system copy to the requested configuration.
+- `act({"op":"transfer"})` moves once from A to B for free and reveals eight
+  independent uniform 20-bit targets in `targets`, indexed 0 through 7. Targets
+  are sampled independently of the response law and research and stay fixed during deployment.
+- `act({"op":"install","bank":0,"circuit":{...}})` installs or replaces a
+  controller at B. Its fee is `10 + number_of_shared_drives + ceil(number_of_gates/8)`.
+  Each controller pays its own hardware cost. Reusing designs is legal. Replacement
+  pays the full new fee, with no refund for previous hardware.
+- `act({"op":"install","bank":0,"x":[...]})` installs a fully clamped
+  constant configuration using 720 shared drives and two constant gates, for
+  731 capital. Private handles also take their specified constant values.
+- `act({"op":"commission"})` submits all eight controllers to final qualification.
+  Each installed controller is evaluated on its entire precommitted stream of 100000
+  independent uniform external 720-bit inputs. The eight streams are independently
+  seeded and independent of the response law, targets and research. Every output must equal
+  that controller's target on every input. All eight passing starts production, earns
+  net +1 per frame for 100000 frames, and survives. Any failed or missing controller
+  prevents startup, consumes the remaining capital at 1 per frame, and ends the
+  campaign. Commission is terminal; there is no partial credit or early sampling
+  acceptance. Its result reports a pass/fail flag per bank.
+
+Capital is deducted before paid actions execute. Reaching zero ends the campaign,
+including when a proposed installation costs more than the remaining balance.
+An unaffordable action consumes the remaining funds; an installation that reaches
+zero does not replace the installed controller and an observation that reaches zero
+returns no reading. Interface-invalid actions change nothing and spend nothing.
+Installation returns the ledger and quoted fee, without functional performance.
+Before commission you may pay for observations of configurations generated by any
+proposed circuit. Research earns no production income. Only state is available
+after death or survival.
+
+## Circuit format
+
+During deployment a circuit reads original external inputs before any drivers act.
+Drivers then act simultaneously. There is no combinational loop through the system
+and no inter-frame memory. Nodes 0 through 719 are external shared input bits.
+Nodes 720 through 739 are the controller's target bits, in output order.
+A circuit has `gates` and `drives`, and may optionally specify `handles`.
+
+Each gate is a list. Appended gate k (zero based) has node index 740+k.
+Referenced nodes must be nonnegative integers strictly preceding that gate;
+booleans are not valid indices. Supported gates are:
+
+- `["const",0]` or `["const",1]` (boolean constants are also accepted)
+- `["not",a]`
+- `["and",a,b]`, `["or",a,b]`, `["xor",a,b]`
+- `["mux",c,a,b]`, selecting a when c is 1 and b when c is 0.
+
+`drives` is a list of `[shared_port,node]` pairs. Shared ports must be distinct
+integers from 0 through 719; nodes can be any input or submitted gate. A listed
+port takes that circuit node's output. Every other shared port retains its external
+value. Every installed driver counts even when its output equals the external
+value. Wires and fan-out are free. All submitted gates count, including unused gates.
+There are no additional gate-count or driver-count limits beyond distinct valid
+shared ports. Arbitrary multilevel circuits, constants, partial clamping and
+target-specific policies are legal.
+
+`handles`, when supplied, is a list of 20 valid node indices selecting the private
+handle outputs. Its default is the consecutive nodes [720,721,...,739],
+directly connecting target bits. Private-handle drivers are included in the base
+hardware, with no additional per-handle fee.
+
+For example, `{"gates":[["not",5]],"drives":[[8,740]]}` drives shared port 8
+from the inverse of external port 5, leaves all other shared ports external, and
+connects handles to targets. Its installation fee is 12.
+
+## Fixed response law and qualification
+
+Research copies of the system and all eight deployed system copies share the same fixed unknown
+response law. During research, entries 720 through 739 are auxiliary inputs you
+can set freely. During deployment, the circuit selects their values using its
+handles list. The effects of experimental inputs are to be learned through the
+observation interface.
+
+The evaluator executes all qualification frames exactly. Physical-verification CPU
+is recorded separately from researcher worker CPU. Public files and any supplied
+condition-specific assistance contain all instance information provided to you.
+
+
+## Public module family and generation prior
+
+Shared ports 0 through 719 form 30 disjoint periodic rectangular
+square lattices: 10 of size 4 by 4, 10 of size 4 by 6, 10 of size 4 by 8. Port assignment, row-major lattice coordinates and
+independent node polarities sigma_i in {-1,+1} are unknown. Generation uniformly
+shuffles all shared port labels, assigns consecutive blocks to the listed shapes
+(ascending width), independently chooses each polarity with equal probability,
+then uniformly shuffles the module list. Set logical spin r_i=sigma_i*(2*x_i-1).
+For each module, with both indices wrapping periodically,
+
+`q_g = sum_(a,b) r_(a,b)*r_(a+1,b)*r_(a,b+1)*r_(a+1,b+1)`.
+
+Handle j is known port 720+j with positive polarity and acts directly on output j.
+Every output receives 6 distinct modules; every module reaches
+4 distinct outputs. Different modules may have identical
+output neighborhoods. Incidence uses this finite process, with no claim of exact uniform graph sampling.
+Start with edges (g,(4*g+t)%20) for module g=0,...,29 and t=0,...,3.
+Perform exactly 20000 proposals. Each proposal selects a uniformly random ordered
+pair of distinct current edges (g,j),(h,k). If g=h, j=k, or either cross edge
+(g,k),(h,j) already exists, reject the proposal. Otherwise replace the two edges
+by (g,k),(h,j). Finally apply independent uniformly shuffled permutations of the
+30 module labels and the 20 output labels. All proposals, including rejections,
+count toward 20000. This preserves exactly the specified degrees; no graph is
+filtered for controller success. The realized proposal/acceptance counts stay
+in the judge metadata, not in the research observations.
+
+After incidence is sampled, connected coefficients alpha are independently and
+uniformly sampled from {-2,-1,1,2}. The directly reported output is
+
+`z_j = int((2*x_(720+j)-1) + sum_g alpha_jg*q_g > 0)`.
+
+There is no unknown output transformation. Each field is odd, so no threshold tie
+is possible. Module structure and couplings stay fixed across research and all
+eight deployed system copies. External inputs vary independently across copies.
+Every target has a physically affordable controller when suitable structure is known.
+
+The evaluator executes all qualification frames exactly. Physical-verification CPU
+is recorded separately from researcher worker CPU. Public files and any supplied
+condition-specific assistance contain all instance information available to you.

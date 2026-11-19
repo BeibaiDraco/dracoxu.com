@@ -1,0 +1,86 @@
+---
+import n0 from '../data/scientific-worlds/prompts/neural-B-N0.txt?raw';
+import m from '../data/scientific-worlds/prompts/neural-B-M.txt?raw';
+import f from '../data/scientific-worlds/prompts/neural-B-F.txt?raw';
+
+interface Props { release: string }
+const { release } = Astro.props;
+const conditions = [
+  { id:'N0', title:'Operating rules only', text:n0 },
+  { id:'M', title:'The four-switch law', text:m },
+  { id:'F', title:'How the modules are built', text:f }
+];
+const cards = conditions.map(({ id, title, text }) => {
+  if (!text.startsWith(n0)) throw new Error(`The ${id} prompt no longer starts with N0.`);
+  const added = text.slice(n0.length).trimStart();
+  return { id, title, shared: text.slice(0, text.length - added.length), added };
+});
+---
+<section class="prompt-section" id="prompts" data-prompts aria-labelledby="prompt-title">
+  <header class="intro">
+    <h2 id="prompt-title">What was Astra told?</h2>
+    <p>These are the complete starting prompts for the neural version of family B. All three begin with the same operating rules. The blue line marks the instructions added in M and F.</p>
+  </header>
+  <div class="prompt-actions" data-prompt-actions hidden>
+    <button type="button" data-differences>Jump to differences</button>
+    <button type="button" data-start>Read from the start</button>
+  </div>
+  <div class="cards">
+    {cards.map(({id,title,shared,added}) =>
+      <section class="card" data-condition={id} aria-labelledby={`prompt-${id}`}>
+        <h3 id={`prompt-${id}`}><b>{id}</b><span>{title}</span></h3>
+        <pre tabindex="0" aria-label={`Complete ${id} prompt, scroll to read`}><code><span>{shared}</span>{added && <mark data-added>{added}</mark>}</code></pre>
+        <a href={`${release}/benchmark/prompts/neural-B-${id}.txt`} aria-label={`Open the original ${id} prompt`}>Original prompt ↗</a>
+      </section>
+    )}
+  </div>
+</section>
+<script>
+  const panel = document.querySelector<HTMLElement>('[data-prompts]');
+  if (panel) {
+    const panes = panel.querySelectorAll<HTMLPreElement>('pre');
+    function positionPanes(showDifference: boolean) {
+      for (const pane of panes) {
+        const addition = pane.querySelector<HTMLElement>('[data-added]');
+        pane.scrollTop = showDifference && addition ? addition.offsetTop : 0;
+      }
+    }
+    panel.querySelector('[data-differences]')!.addEventListener('click', () => positionPanes(true));
+    panel.querySelector('[data-start]')!.addEventListener('click', () => positionPanes(false));
+    panel.querySelector<HTMLElement>('[data-prompt-actions]')!.hidden = false;
+    positionPanes(true);
+    // Font metrics can change the length of the shared opening after first paint.
+    document.fonts.ready.then(() => {
+      if (!panel.matches(':focus-within')) positionPanes(true);
+    });
+  }
+</script>
+<style>
+  .prompt-section {container-type:inline-size;width:100%;margin:38px auto 24px;scroll-margin-top:20px}
+  @media(min-width:901px) {
+    .prompt-section {width:min(62rem,calc(100vw - 8rem));margin-inline:calc((100% - min(62rem,100vw - 8rem)) / 2)}
+  }
+  .intro {max-width:42rem;margin-inline:auto;color:var(--contour)}
+  .intro h2 {margin:0 0 10px;font:450 clamp(29px,3vw,38px)/1.12 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
+  .intro p {margin:0;font:19px/1.44 var(--serif)}
+  .prompt-actions {display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 9px}
+  .prompt-actions[hidden] {display:none}
+  button {background:var(--paper);color:var(--wave);border:1px solid var(--kei);min-height:36px;padding:5px 10px;font:12px/1.4 var(--mono);cursor:pointer}
+  button:hover {background:var(--shoal);border-color:var(--sea)}
+  .cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .card {min-width:0;border-block:1px solid var(--kei);background:var(--shoal);padding:12px 13px 10px}
+  h3 {display:flex;align-items:baseline;gap:10px;margin:0 0 10px;color:var(--sumi)}
+  h3 b {color:var(--wave);font:600 17px/1.2 var(--mono)}
+  h3 span {font:500 19px/1.15 var(--serif);letter-spacing:-.02em}
+  pre {position:relative;height:21rem;margin:0 0 6px;background:var(--paper);color:var(--contour);overflow:auto;scrollbar-gutter:stable;scroll-padding-block:8px}
+  code {display:block;font:12px/1.52 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+  code span,mark {box-sizing:border-box;display:block;padding:8px 9px}
+  mark {min-height:21rem;border-inline-start:3px solid var(--wave);background:var(--paper);color:var(--sumi)}
+  .card a {font:11px/1.5 var(--mono);text-underline-offset:3px}
+  button:focus-visible,pre:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
+  @container (max-width:48rem) {
+    .cards {grid-template-columns:1fr;gap:14px}
+    pre {height:13rem}
+    mark {min-height:13rem}
+  }
+</style>

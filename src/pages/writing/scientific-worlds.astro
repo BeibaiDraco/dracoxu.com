@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Experiment from '../../components/ScientificWorldExperiment.astro';
+import Prompts from '../../components/ScientificWorldPrompts.astro';
 import score from '../../data/scientific-worlds/scorecard.json';
 import discovery from '../../data/scientific-worlds/discovery.json';
 import { writing } from '../../data/writing.js';
@@ -11,7 +12,7 @@ const release = repo + '/blob/fa0c8028b2b4fe718acba6bd956c9059415fd59e';
 const { M, N0, F } = score.conditions;
 ---
 <Base title={entry.title} description={entry.description} current="Writing" article={true}
-  author="Draco (Yunlong) Xu" publishedTime={entry.date} updated="November 17, 2026"
+  author="Draco (Yunlong) Xu" publishedTime={entry.date} updated="November 19, 2026"
   socialImage={{...entry.image,type:'image/png',alt:'Scientific Worlds. Astra 6.0 Max delivered eight devices in two of 25 M sessions. The figure shows connections it discovered.'}}>
   <article class="bay report"><div class="wide sheet">
     <header class="opening">
@@ -45,6 +46,8 @@ const { M, N0, F } = score.conditions;
       <p>With operating instructions alone (N0), Astra succeeded in {N0.successes} of {N0.sessions} sessions. When told more about the hidden organization and that an affordable circuit existed (F), it succeeded in {F.successes} of {F.sessions}. Astra could use the structure once given those clues. Finding it for itself proved much harder.</p>
       <p>In a physics textbook, acceleration already has a name. Our hope is that an AI can learn enough from experiments of its own to enter an unfamiliar world and show us a quantity worth naming.</p>
     </section>
+
+    <Prompts release={release}/>
 
     <footer class="endnotes prose">
       <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>How the sessions were counted</a></p>
