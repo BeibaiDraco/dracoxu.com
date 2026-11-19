@@ -1,0 +1,94 @@
+---
+// Two measurements on the public teaching material, with all auxiliary inputs off.
+const port = 4;
+const readings = [
+  { label: 'All inputs off', bits: '11001001000001011000' },
+  { label: `Only switch ${port} on`, bits: '11001001000011011000' }
+];
+const experiment = `x = [0] * 740
+q = {"op": "observe", "x": x}
+a = act(q)["reading"]
+x[${port}] = 1
+b = act(q)["reading"]`;
+---
+<figure class="lab" id="laboratory" aria-labelledby="lab-title">
+  <h3 id="lab-title">Inside the model’s lab</h3>
+  <div class="map">
+    <section class="stage supplies">
+      <h4>What the model gets</h4>
+      <ul>
+        <li>The manual and one <a href="#prompts">starting prompt</a>. In M, the prompt gives the four-switch law.</li>
+        <li>A Python console with NumPy and SciPy</li>
+        <li>5,200 credits for measurements and parts</li>
+      </ul>
+    </section>
+    <section class="stage code">
+      <h4>Choose an experiment</h4>
+      <pre aria-label="Python for two observations on the research box"><code>{experiment}</code></pre>
+      <p>The model writes the code. Here it flips one switch and holds everything else fixed.</p>
+    </section>
+    <section class="stage apparatus">
+      <h4>Probe the hidden box</h4>
+      <div class="box" aria-label="The hidden response maps 740 chosen inputs to 20 lights">
+        <span>740 in</span><b aria-hidden="true">?</b><span>20 out</span>
+      </div>
+      <p>Set any of the 720 switches and 20 auxiliary inputs. Each call to <code>observe</code> in the first lab costs one credit.</p>
+    </section>
+    <section class="stage observed">
+      <h4>Read the 20 lights</h4>
+      <div class="strips">
+        {readings.map(({label,bits}, row) => <div>
+          <span class="reading-label">{label}</span>
+          <span class="cells" role="img" aria-label={bits} data-observation={row}>
+            {Array.from(bits, (bit,i) => <i class:list={[bit === '1' && 'on', row === 1 && bit !== readings[0].bits[i] && 'changed']}></i>)}
+          </span>
+        </div>)}
+      </div>
+      <p>In this example from the public box, the thirteenth light turns on.</p>
+    </section>
+    <div class="return"><span>Would that light still turn on if another switch were on? Choose the next experiment.</span></div>
+  </div>
+  <figcaption>When the model moves to the build site, it learns the eight fixed targets. It uses the remaining credits to build a Boolean controller for each one.</figcaption>
+</figure>
+<style>
+  .lab {container-type:inline-size;margin:30px 0 0;padding:18px 0 0;border-top:1px solid var(--kei);color:var(--contour);scroll-margin-top:20px}
+  h3,h4,p,ul,figcaption,pre {margin:0}
+  h3 {font:500 clamp(25px,3vw,32px)/1.15 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
+  h4 {font:500 22px/1.16 var(--serif);color:var(--sumi);letter-spacing:-.02em;margin:0 0 10px}
+  p,li,figcaption {font:16px/1.36 var(--serif)}
+  .map {--gap:clamp(20px,2.6vw,42px);display:grid;grid-template-columns:.92fr 1.25fr 1fr 1fr;gap:0 var(--gap);margin-top:18px}
+  .stage {min-width:0;position:relative}
+  .stage+.stage::before {content:'→';position:absolute;left:calc(-1 * var(--gap));width:var(--gap);top:56px;text-align:center;font:22px/1 var(--serif)}
+  .supplies ul {list-style:disc;padding-left:18px}
+  .supplies li+li {margin-top:5px}
+  pre {padding:8px 10px;background:var(--shoal);border-inline-start:3px solid var(--wave);white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.55 var(--mono)}
+  code,.reading-label,.box {font:12px/1.45 var(--mono);color:var(--sumi)}
+  pre code {font:inherit}
+  .stage p {margin-top:9px}
+  .box {display:flex;align-items:center;justify-content:center;gap:8px;min-height:70px;border:1px dashed var(--contour)}
+  .box b {display:flex;align-items:center;gap:4px;font:500 26px/1 var(--serif)}
+  .box b::before,.box b::after {content:'→';font:16px/1 var(--mono)}
+  .strips {display:grid;gap:8px}
+  .reading-label {display:block;margin-bottom:3px}
+  .cells {display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:2px}
+  .cells i {aspect-ratio:1;background:var(--paper);border:1px solid var(--sea);position:relative}
+  .cells .on {background:var(--wave);border-color:var(--wave)}
+  .cells .changed::after {content:'';position:absolute;inset:auto -1px -4px;border-bottom:2px solid var(--sumi)}
+  .return {grid-column:2 / -1;position:relative;margin:12px 10% 12px 5%;border:1px solid var(--wave);border-top:0;text-align:center;height:18px}
+  .return::before {content:'';position:absolute;left:-4px;top:1px;border-left:1px solid var(--wave);border-top:1px solid var(--wave);width:6px;height:6px;transform:rotate(45deg)}
+  .return span {position:relative;top:8px;display:inline-block;padding:0 8px;background:var(--paper);font:italic 16px/1.3 var(--serif)}
+  figcaption {margin:15px 0 0;color:var(--contour)}
+  @container(max-width:61rem) {
+    .map {grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 30px}
+    .stage+.stage::before {display:none}
+    .return {grid-column:1/-1;margin:0;border:0;height:auto;text-align:left}
+    .return::before {display:none}
+    .return span {top:0;padding:0}.return span::before {content:'↺ ';font-style:normal}
+  }
+  @container(max-width:37rem) {
+    .map {grid-template-columns:1fr;gap:14px}
+    h4 {margin-bottom:6px}
+    .stage+.stage {border-top:1px solid var(--kei);padding-top:10px}
+    .box,.strips {max-width:22rem}
+  }
+</style>
