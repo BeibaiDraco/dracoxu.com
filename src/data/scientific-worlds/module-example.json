@@ -17,5 +17,8 @@
   "otherModules": -4,
   "auxiliarySign": -1,
   "allOffReading": "11001001000001011000",
-  "switchOnReading": "11011001000001011000"
+  "switchOnReading": "11011001000001011000",
+  "partnerNumber": 572,
+  "partnerOnlyReading": "11011001000001011000",
+  "bothOnReading": "11001001000001011000"
 }

@@ -13,18 +13,18 @@ const cards = [
   },
   {
     id: 'M', title: 'Look for groups of four', prompt: m,
-    summary: 'The model also gets a rule. A switch’s effect on a light depends on its three partners. Only a few groups matter. Which four switches belong together, and how much does each group count?'
+    summary: 'The model learns that switches contribute to the lights in groups of four. Most possible groups contribute nothing. It must find the groups that count and decide whether any larger pattern connects them.'
   },
   {
-    id: 'F', title: 'The grids inside the box', prompt: f,
-    summary: 'For this box, the model gets the grid plan. There are 30 grids, ten each of size 4×4, 4×6 and 4×8. It knows how squares feed lights and that a controller is affordable. It still has to place the switches.'
+    id: 'F', title: 'The grid plan', prompt: f,
+    summary: 'The model is told there are 30 grids, ten each of size 4×4, 4×6 and 4×8. It gets the rule connecting their squares to the lights and knows an affordable controller exists. It must still find where each switch goes.'
   }
 ] as const;
 ---
 <section class="prompt-section" id="prompts" aria-labelledby="prompt-title">
   <header class="intro">
     <h2 id="prompt-title">What the model is told</h2>
-    <p>We lead with M because it gives the rule for four switches and leaves a scientific choice open. What larger group, if any, is worth studying? These are the three starting points for the box above.</p>
+    <p>Every attempt has the same engineering goal. M is our headline condition because it gives the small-scale law and leaves the model to discover a useful larger unit. Here is what each prompt reveals for the virtual brain pictured above.</p>
   </header>
   <div class="cards">
     {cards.map(({id,title,summary,prompt}) =>

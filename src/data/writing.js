@@ -5,12 +5,12 @@
 export const writing = [
   {
     href: '/writing/scientific-worlds/',
-    title: 'How does an AI scientist decide what to study?',
-    description: 'Astra 6.0 Max found eight wires that could control a hidden grid of 32 switches. With a four-switch clue, it built eight working controllers in 2 of 25 attempts.',
+    title: 'The Measure of Worlds v1.0 · Virtual Brain',
+    description: 'Can an AI decide what is worth measuring? In a brain made of switches and lights, Astra found a way to control 32 switches with eight wires. It delivered all eight devices in 2 of 25 attempts with the microscopic law.',
     date: '2026-11-17',
     kind: 'Research',
     readingTime: '3 min read',
-    image: { src: '/images/writing/scientific-worlds/cover-v2.png', width: 1200, height: 630 },
+    image: { src: '/images/writing/scientific-worlds/virtual-brain-v1.png', width: 1200, height: 630 },
   },
   {
     href: '/writing/mine-or-yours/',

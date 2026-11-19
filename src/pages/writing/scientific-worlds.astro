@@ -6,40 +6,41 @@ import Lab from '../../components/ScientificWorldLab.astro';
 import Prompts from '../../components/ScientificWorldPrompts.astro';
 import replayFrames from '../../data/scientific-worlds/teaching-figure.json';
 import score from '../../data/scientific-worlds/scorecard.json';
+import bibtex from '../../data/scientific-worlds/citation.bib?raw';
 import { writing } from '../../data/writing.js';
 
 const entry = writing.find(item => item.href === '/writing/scientific-worlds/')!;
 const repo = 'https://github.com/BeibaiDraco/scientific-worlds-benchmark';
 const release = repo + '/blob/fa0c8028b2b4fe718acba6bd956c9059415fd59e';
+const citationUrl = repo + '/tree/v' + score.version;
 // Device zero in the released teaching replay uses relabelled switch addresses.
 const replayWire = { source: 481, destination: 378, inverted: true };
 const { M } = score.conditions;
 ---
 <Base title={entry.title} description={entry.description} current="Writing" article={true}
   author="Draco (Yunlong) Xu" publishedTime={entry.date} updated="November 19, 2026"
-  socialImage={{...entry.image,type:'image/png',alt:'Scientific Worlds. Astra 6.0 Max delivered eight devices in two of 25 M sessions. The figure shows connections it discovered.'}}>
+  socialImage={{...entry.image,type:'image/png',alt:'The Measure of Worlds v1.0 · Virtual Brain. Eight wiring rules in a grid of 32 switches discovered by Astra 6.0 Max.'}}>
+  <link slot="head" rel="alternate" type="application/x-bibtex" href="/writing/scientific-worlds/citation.bib" title="Benchmark citation"/>
   <article class="bay report"><div class="wide sheet">
     <header class="opening">
-      <p class="context"><a href="/writing/">Writing</a> / Scientific Worlds</p>
-      <h1>How does an AI scientist decide <em>what to study?</em></h1>
-      <p class="byline">Draco (Yunlong) Xu · <time datetime={entry.date}>November 17, 2026</time> · <a href="#results">Astra’s results ↓</a></p>
+      <h1><span class="series">The Measure of Worlds <span>v1.0</span></span>Virtual Brain</h1>
+      <p class="byline">Draco (Yunlong) Xu · <time datetime={entry.date}>November 17, 2026</time> · <a href="#results">Astra’s results</a> · <a href="#cite">Cite</a></p>
     </header>
 
     <div class="prose">
-      <p class="lead">Give an AI a table of forces, masses and accelerations, and it might recover <i>F = ma</i>. Who thought to put acceleration in the table?</p>
-      <p>At the top of a toss, a ball is as still as one resting on a table. A moment later the tossed ball is falling. Measuring how velocity changes tells the two apart. By the time someone hands you a column called “acceleration,” they have already made a discovery on your behalf.</p>
-      <p>We built Scientific Worlds to test that earlier step. Give the AI a job in an unfamiliar world. Let it choose its experiments and decide which patterns in the readings are worth tracking. Then see what it can do with what it learned.</p>
+      <p class="lead">A virtual brain has 720 switches and 20 lights. We give an AI eight copies and a pattern of lights to hold steady on each. The switches will flip at random. What could the AI measure now that would let it control the lights later?</p>
+      <p>In the lab, the AI can flip switches together and pay to see which lights change. Then it must build eight controllers. Holding every switch fixed would cost too much. The targets are ours. Which switches to study together, and what to measure about them, are decisions the AI has to make.</p>
 
-      <h2>A box with 720 switches</h2>
-      <p>The AI sets 720 switches and 20 extra inputs on a sealed box, then pays to read 20 lights. Later it must build a controller for each of eight copies, so each holds its assigned light pattern as the switches change at random.</p>
-      <p>Holding every switch fixed on all eight boxes would cost more than the entire budget. Which reading is worth buying? Flip one switch on its own, or flip it together with a suspected partner? Each reading comes out of the same 5,200 credits that buy the parts.</p>
+      <h2>Who chose the variables in <i>F = ma</i>?</h2>
+      <p>Two carts pass you at the same speed. One is rolling steadily. The other is speeding up. To relate their motion to force, you need a quantity that distinguishes them. Measure how their velocity changes and you have acceleration. By the time a textbook gives you force, mass and acceleration, someone has already done enough science to know what belongs in those three columns.</p>
+      <p>AI Feynman asks for an equation that fits the supplied measurements. DiscoveryWorld lets an AI design experiments and checks for discoveries its authors anticipated. Here we leave the useful quantity unnamed. <strong>Can an AI invent a column worth adding to the table?</strong> Our premise is that the ultimate test of a scientific idea is what it lets us change. Anyone can test Astra’s answer by running the machine its discovery made possible.</p>
     </div>
 
     <section class="prose results" id="results" aria-labelledby="results-title">
-      <h2 id="results-title">Eight wires for 32 switches</h2>
-      <p>Astra 6.0 Max was told that switches interact in groups of four. In one run it tried combinations of eight switches, guessed they lay on a grid, and tested which switches fit the next row. One grid gave it a new quantity to work with. The combined effect of 32 switches could be tracked with a single number. Many switch settings gave the same total.</p>
-      <p>That changed what Astra could build. Six wires made pairs move together and two made pairs move oppositely. Together they held the grid’s total at zero. The rest of its switches could flip freely and the grid would contribute nothing to the lights. All eight controllers reused those wires.</p>
-      <p class="finding">With the four-switch clue (M), Astra built all eight working controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 changes of input.</p>
+      <h2 id="results-title">What made 32 switches one thing?</h2>
+      <p>Astra 6.0 Max knew the rule for how four switches interact. It had to decide whether any larger group was worth studying. In one successful attempt it found 32 switches arranged in a grid. Each square of four neighbors contributed +1 or −1. Adding those contributions gave Astra its new variable. Switch patterns with the same total had the same effect on the lights, however different the patterns looked.</p>
+      <p>That gave Astra a cheaper way to build. It wired eight switches so that each copied another switch or did the opposite. With those pairs linked, the pluses and minuses always balanced. The other 24 switches could flip freely without this grid disturbing a single light. The eight connections Astra recorded during research appear in every controller it built. Of its 5,200 credits, it had two left when the machines were ready.</p>
+      <p class="finding">With the four-switch law (M), Astra delivered all eight controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 random inputs.</p>
     </section>
 
     <Experiment frames={replayFrames} exampleWire={replayWire} replayUrl={release+'/docs/method.md#the-replay'}/>
@@ -49,26 +50,49 @@ const { M } = score.conditions;
     <Prompts release={release}/>
 
     <section class="prose" id="why-build" aria-labelledby="why-build-title">
-      <h2 id="why-build-title">Why end with a machine?</h2>
-      <p>In a real lab, years can pass before anyone finds a use for a discovery. Here we can let the inputs change 100,000 times and watch what the machine does. If we awarded points for naming the grid, our own theory would become the answer key. A model that finds a different way to keep all eight devices working earns the same score. That leaves room to discover something we didn’t think to ask for.</p>
+      <h2 id="why-build-title">How do you reward a question nobody assigned?</h2>
+      <p>In a real lab, years can pass before an idea lets anyone do something new. In the meantime, we ask experts which questions look promising. A virtual world shortens that wait. We run the machines. If all eight hold their targets through 100,000 random inputs apiece and there is money left to start them, the score is 1. Otherwise it is 0. A shortcut found by trial and error earns the same point. The research record lets us see which ideas actually went into the design.</p>
+      <p>That distinction matters for training as well. Today the score measures what Astra could do. In reinforcement learning, the same outcome could reward the choices that led to it, across many attempts. A model could learn <em>which questions to ask</em> from the things its discoveries let it do, even when no human has written down the question or its answer.</p>
     </section>
 
     <footer class="endnotes prose">
-      <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>Scoring and results</a></p>
+      <p><a class="run" href={repo}>Run Virtual Brain ↗</a><a href={repo+'/blob/main/docs/method.md'}>Scoring and research records</a></p>
       <p class="sources">The ideas behind the task · <a href="/writing/scientific-understanding/">What counts as understanding?</a> · <a href="/writing/scientific-value/">What makes a discovery valuable?</a></p>
-      <p class="sources">Related work · <a href="https://arxiv.org/abs/1905.11481">AI Feynman</a> · <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering state variables from video</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a></p>
+      <p class="sources">Related work · <a href="https://arxiv.org/abs/1905.11481">AI Feynman</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a> · <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering variables from video</a></p>
     </footer>
+    <section class="citation prose" id="cite" aria-labelledby="cite-title">
+      <h2 id="cite-title">Cite this benchmark</h2>
+      <p>Xu, Y. (2026). <i>The Measure of Worlds: Virtual Brain</i> (Version {score.version}) [Benchmark software]. <a href={citationUrl}>{citationUrl}</a></p>
+      <details><summary>BibTeX</summary><pre tabindex="0"><code>{bibtex.trimEnd()}</code></pre><button hidden type="button" data-copy-bib>Copy BibTeX</button><span role="status" class="copy-status"></span></details>
+      <a class="download" href="/writing/scientific-worlds/citation.bib" download="measure-of-worlds-v1.bib">Download .bib</a>
+    </section>
   </div></article>
 </Base>
+<script>
+  const copy = document.querySelector<HTMLButtonElement>('[data-copy-bib]');
+  if (copy && navigator.clipboard?.writeText) {
+    copy.hidden = false;
+    const cite = copy.closest('details')!;
+    copy.addEventListener('click', async () => {
+      const status = cite.querySelector('[role="status"]')!;
+      try {
+        await navigator.clipboard.writeText(cite.querySelector('code')!.textContent!);
+        status.textContent = 'Copied.';
+      } catch {
+        status.textContent = 'Select the text above to copy it.';
+        cite.querySelector('pre')!.focus();
+      }
+    });
+  }
+</script>
 <style>
   .sheet {--reading-width:54rem;width:100%;margin-inline:auto;padding-inline:clamp(12px,1.4vw,24px)}
   .opening,.prose {max-width:var(--reading-width);margin-inline:auto}
   .opening {padding-top:clamp(36px,5vw,70px)}
-  .context,.byline,.endnotes {font-family:var(--mono)}
-  .context {color:var(--sea);font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin:0 0 17px}
-  .context a {color:inherit}
+  .byline,.endnotes {font-family:var(--mono)}
   h1 {margin:0;color:var(--sumi);font:390 clamp(43px,5.1vw,74px)/1.02 var(--serif);letter-spacing:-.045em;text-wrap:balance}
-  h1 em {color:var(--wave);font-weight:390}
+  .series {display:block;font:450 clamp(22px,2.5vw,32px)/1.2 var(--serif);letter-spacing:-.02em;margin-bottom:8px;color:var(--wave)}
+  .series span {font:14px var(--mono);letter-spacing:0;white-space:nowrap}
   .byline {font-size:11px;line-height:1.6;color:var(--sea);margin:18px 0 29px;padding-bottom:18px;border-bottom:1px solid var(--kei)}
   a {text-underline-offset:.18em}
   .byline a,.lead i {white-space:nowrap}
@@ -82,5 +106,14 @@ const { M } = score.conditions;
   .endnotes p:first-child {display:flex;gap:3px 22px;flex-wrap:wrap;margin-bottom:8px}
   .endnotes p.sources {font:15px/1.5 var(--serif);color:var(--sea)}
   .endnotes .run {color:var(--sumi)}
+  .citation {border-top:1px solid var(--kei);padding:18px 0 22px;scroll-margin-top:20px}
+  .citation h2 {margin:0 0 9px;font-size:26px}.citation p {font-size:17px;margin:0 0 10px}
+  .citation details,.download {font:13px/1.5 var(--mono)}
+  .citation summary {width:fit-content;cursor:pointer;color:var(--wave);padding:5px 0}
+  .citation pre {font:13px/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;padding:12px 15px;background:var(--shoal);margin:4px 0 9px}
+  .citation p a {overflow-wrap:anywhere}
+  .citation button {font:inherit;color:var(--wave);background:var(--paper);border:1px solid var(--wave);padding:4px 8px;cursor:pointer}
+  .copy-status {margin-inline-start:8px}
+  .download {display:inline-block;padding:4px 0}
   @media(max-width:740px){.sheet{padding:0}.opening{padding-top:30px}.prose{font-size:19px;line-height:1.47}.byline{margin:14px 0 20px}.endnotes{font-size:12px}}
 </style>

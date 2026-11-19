@@ -28,7 +28,7 @@ export const projects = [
     },
     links: [
       { label: 'GitHub', href: 'https://github.com/BeibaiDraco/maieusis' },
-      { label: 'Related benchmark: Scientific Worlds', href: '/writing/scientific-worlds/' },
+      { label: 'The Measure of Worlds · Virtual Brain', href: '/writing/scientific-worlds/' },
       { label: 'Question gallery', href: 'https://github.com/BeibaiDraco/maieusis/blob/main/demos/QUESTIONS.md' },
       { label: 'DOI', href: 'https://doi.org/10.5281/zenodo.21388806' },
     ],

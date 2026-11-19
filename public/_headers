@@ -23,3 +23,7 @@
 
 /fonts/*
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/writing/scientific-worlds/citation.bib
+  Content-Type: application/x-bibtex; charset=utf-8
+  Content-Disposition: attachment; filename="measure-of-worlds-v1.bib"
