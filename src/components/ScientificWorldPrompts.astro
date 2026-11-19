@@ -6,9 +6,21 @@ import f from '../data/scientific-worlds/prompts/neural-B-F.txt?raw';
 interface Props { release: string }
 const { release } = Astro.props;
 const conditions = [
-  { id:'N0', title:'Operating rules only', text:n0 },
-  { id:'M', title:'The four-switch law', text:m },
-  { id:'F', title:'How the modules are built', text:f }
+  {
+    id:'N0', title:'The operating manual', text:n0,
+    given:'How to set the switches, measure the lights and buy parts to build a controller.',
+    unknown:'Which switches affect each light and how they work together.'
+  },
+  {
+    id:'M', title:'Four-switch interactions', text:m,
+    given:'The equation for each light adds up effects from groups of four switches. Only a small fraction of the possible groups matter.',
+    unknown:'Which groups of four matter for each light, and how strongly they push it toward on or off.'
+  },
+  {
+    id:'F', title:'30 hidden modules', text:f,
+    given:'The 720 switches form 30 grids, ten each of size 4×4, 4×6 and 4×8. The four corners of each small square act together. Six grids feed each light. Every target has a controller within budget.',
+    unknown:'Which numbered switch sits where, which signals are flipped and how the individual grids connect to the lights.'
+  }
 ];
 const cards = conditions.map(({ id, title, text }) => {
   if (!text.startsWith(n0)) throw new Error(`The ${id} prompt no longer starts with N0.`);
@@ -18,9 +30,22 @@ const cards = conditions.map(({ id, title, text }) => {
 ---
 <section class="prompt-section" id="prompts" data-prompts aria-labelledby="prompt-title">
   <header class="intro">
-    <h2 id="prompt-title">What was Astra told?</h2>
-    <p>These are the complete starting prompts for the neural version of family B. All three begin with the same operating rules. The blue line marks the instructions added in M and F.</p>
+    <h2 id="prompt-title">What does the model know before its first experiment?</h2>
+    <p>All three conditions give the model the operating manual. They differ in what they reveal about the circuit inside the box. Here is the comparison for family B.</p>
   </header>
+  <table class="comparison" aria-label="Starting knowledge in family B">
+    <thead><tr><th scope="col">Condition</th><th scope="col">What the model is told</th><th scope="col">What it still has to discover</th></tr></thead>
+    <tbody>
+      {conditions.map(({id,title,given,unknown}) =>
+        <tr>
+          <th scope="row"><b>{id}</b><span>{title}</span></th>
+          <td><span class="mobile-label" aria-hidden="true">Given</span>{given}</td>
+          <td><span class="mobile-label" aria-hidden="true">Still to discover</span>{unknown}</td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+  <p class="originals">Full prompts in the neural wording. A blue line marks the additional instructions.</p>
   <div class="prompt-actions" data-prompt-actions hidden>
     <button type="button" data-differences>Jump to differences</button>
     <button type="button" data-start>Read from the start</button>
@@ -57,13 +82,21 @@ const cards = conditions.map(({ id, title, text }) => {
 </script>
 <style>
   .prompt-section {container-type:inline-size;width:100%;margin:38px auto 24px;scroll-margin-top:20px}
-  @media(min-width:901px) {
-    .prompt-section {width:min(62rem,calc(100vw - 8rem));margin-inline:calc((100% - min(62rem,100vw - 8rem)) / 2)}
-  }
-  .intro {max-width:42rem;margin-inline:auto;color:var(--contour)}
+  .intro {max-width:var(--reading-width);margin-inline:auto;color:var(--contour)}
   .intro h2 {margin:0 0 10px;font:450 clamp(29px,3vw,38px)/1.12 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
   .intro p {margin:0;font:19px/1.44 var(--serif)}
-  .prompt-actions {display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 9px}
+  .comparison {width:100%;border-collapse:collapse;table-layout:fixed;margin:18px 0 24px;text-align:left;color:var(--contour)}
+  .comparison th,.comparison td {vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid var(--kei)}
+  .comparison thead th,.mobile-label {font:600 13px/1.35 var(--mono);color:var(--sumi)}
+  .comparison thead th:first-child {width:21%}
+  .comparison thead th:nth-child(2) {width:43%}
+  .comparison tbody th,.comparison td,.originals {font:18px/1.4 var(--serif)}
+  .comparison b {display:block;font:600 16px/1.4 var(--mono);color:var(--sumi)}
+  .comparison tbody th span {color:var(--contour)}
+  .comparison td:last-child {padding-right:0}
+  .mobile-label {display:none}
+  .originals {margin:0;color:var(--contour)}
+  .prompt-actions {display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 9px}
   .prompt-actions[hidden] {display:none}
   button {background:var(--paper);color:var(--wave);border:1px solid var(--kei);min-height:36px;padding:5px 10px;font:12px/1.4 var(--mono);cursor:pointer}
   button:hover {background:var(--shoal);border-color:var(--sea)}
@@ -82,5 +115,13 @@ const cards = conditions.map(({ id, title, text }) => {
     .cards {grid-template-columns:1fr;gap:14px}
     pre {height:13rem}
     mark {min-height:13rem}
+  }
+  @container (max-width:37rem) {
+    .comparison,.comparison tbody {display:block}
+    .comparison thead {position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}
+    .comparison tr {display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--kei)}
+    .comparison tbody th,.comparison td {border:0;padding:0}
+    .comparison tbody th {display:flex;align-items:baseline;gap:8px}
+    .mobile-label {display:block;margin-bottom:2px;font-size:12px}
   }
 </style>

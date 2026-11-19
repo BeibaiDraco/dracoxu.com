@@ -1,5 +1,9 @@
 ---
-import frames from '../data/scientific-worlds/teaching-figure.json';
+interface Props {
+  frames: { input: string; controlled: string; target: number[]; before: number[]; after: number[] }[];
+  replayUrl: string;
+}
+const { frames, replayUrl } = Astro.props;
 
 // The public replay supplies the six random inputs. "controlled" is the first
 // 720 bits returned by the benchmark's circuits.evaluate for device zero.
@@ -17,7 +21,11 @@ const samples = frames.map(({ input, controlled, target, before, after }) => ({
 }));
 const first = samples[0];
 const visualBounds = `0 0 ${columns * pitch} ${rows * pitch}`;
-const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).length;
+const readouts = [
+  { key: 'after', label: 'With controller', bits: first.after },
+  { key: 'before', label: 'Without controller', bits: first.before },
+  { key: 'target', label: 'Fixed target', bits: first.target }
+];
 ---
 <figure class="bench" id="experiment" data-bench data-samples={JSON.stringify(samples)} aria-labelledby="bench-title">
   <svg class="symbols" aria-hidden="true" focusable="false" width="0" height="0">
@@ -48,7 +56,7 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
       <p>720 switches, each randomly on or off.</p>
     </li>
     <li>
-      <div class="label"><span>AI builds</span><h4>Controller</h4></div>
+      <div class="label"><span class="model-role">AI builds</span><h4>Controller</h4></div>
       <div class="visual controller">
         <span class="gate-label" data-control-label>Allowed operations</span>
         <span class="gates">WIRE · 0 · 1<br/>NOT · AND · OR<br/>XOR · MUX</span>
@@ -66,7 +74,7 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
       <p><strong data-changes>{first.changes} of 720 bits changed.</strong> Undriven switches pass through. In this device, 20 auxiliary inputs also carry the target bits.</p>
     </li>
     <li>
-      <div class="label"><span>AI investigates</span><h4>Hidden circuit</h4></div>
+      <div class="label"><span class="model-role">AI investigates</span><h4>Hidden circuit</h4></div>
       <div class="visual hidden-box" aria-hidden="true">
         <svg viewBox="0 0 100 48" fill="none">
           <g stroke="currentColor" stroke-width="1.4">
@@ -76,21 +84,23 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
           <text x="50" y="32" text-anchor="middle" fill="currentColor">?</text>
         </svg>
       </div>
-      <p>Its wiring is hidden. Astra runs experiments to discover which switches act together to change the lights.</p>
+      <p>The model can test the box and read the lights. It has to discover which switches act together.</p>
     </li>
     <li>
       <div class="label"><span>Compare</span><h4>20 output bits</h4></div>
       <div class="visual readings">
-        {[{label:'Output',bits:first.after}, {label:'Target',bits:first.target}].map(({label,bits}) =>
-          <div class="bitrow">
-            <span>{label}</span>
-            <span class="cells" data-lights={label.toLowerCase()} role="img" aria-label={bits.join('')}>
-              {bits.map((bit) => <i class:list={[bit === 1 && 'on']}></i>)}
+        {readouts.map(({key,label,bits}) =>
+          <div class="bitrow" data-row={key}>
+            <div class="row-title"><span>{label}</span>
+              {key !== 'target' && <span data-count>{bits.filter((bit, i) => bit === first.target[i]).length}/20</span>}
+            </div>
+            <span class="cells" data-lights={key} role="img" aria-label={bits.join('')}>
+              {bits.map((bit, i) => <i class:list={[bit === 1 && 'on', bit !== first.target[i] && 'miss']}></i>)}
             </span>
           </div>
         )}
       </div>
-      <p><strong data-score>{firstMatches} of 20 match.</strong> All 20 lights must match the fixed target on every draw.</p>
+      <p>Flip the switches to see how the uncontrolled output changes. Underlines mark lights that miss the target.</p>
     </li>
   </ol>
 
@@ -98,7 +108,7 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
     <button type="button" data-next-input>Flip the switches <span aria-hidden="true">→</span></button>
     <button type="button" data-bypass aria-pressed="false">Bypass controller</button>
   </div>
-  <figcaption>One of Astra’s eight devices on the public replay. A filled square is a bit set to 1.</figcaption>
+  <figcaption>Filled squares are 1s. The six input samples are from the same device. <a href={replayUrl}>About this replay</a></figcaption>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>
 
@@ -114,14 +124,11 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
     const samples: Sample[] = JSON.parse(bench.dataset.samples!);
     const next = bench.querySelector<HTMLButtonElement>('[data-next-input]')!;
     const bypass = bench.querySelector<HTMLButtonElement>('[data-bypass]')!;
-    const output = bench.querySelector<HTMLElement>('[data-lights="output"]')!;
     let index = 0;
     let bypassed = false;
 
     const render = () => {
       const sample = samples[index];
-      const bits = bypassed ? sample.before : sample.after;
-      const matches = bits.filter((bit, i) => bit === sample.target[i]).length;
       const label = `Input sample ${index + 1} of ${samples.length}`;
       const state = bypassed ? 'Controller bypassed' : 'Controller connected';
       bench.querySelector('[data-sample]')!.textContent = label;
@@ -129,15 +136,25 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
       bench.querySelector('[data-effective]')!.setAttribute('href', `#sw-${bypassed ? 'input' : 'controlled'}-${index}`);
       bench.querySelector('[data-changes]')!.textContent = `${bypassed ? 0 : sample.changes} of 720 bits changed.`;
       bench.querySelector('[data-control-label]')!.textContent = bypassed ? 'Bypassed' : 'Allowed operations';
-      bench.querySelector('[data-score]')!.textContent = `${matches} of 20 match.`;
-      output.setAttribute('aria-label', bits.join(''));
-      Array.from(output.children).forEach((cell, i) => {
-        cell.classList.toggle('on', bits[i] === 1);
-        cell.classList.toggle('miss', bits[i] !== sample.target[i]);
-      });
+      const summary = [label, state];
+      for (const key of ['after', 'before', 'target'] as const) {
+        const bits = sample[key];
+        const row = bench.querySelector<HTMLElement>(`[data-row="${key}"]`)!;
+        const strip = row.querySelector('[data-lights]')!;
+        strip.setAttribute('aria-label', bits.join(''));
+        Array.from(strip.children).forEach((cell, i) => {
+          cell.classList.toggle('on', bits[i] === 1);
+          cell.classList.toggle('miss', bits[i] !== sample.target[i]);
+        });
+        if (key !== 'target') {
+          const matches = bits.filter((bit, i) => bit === sample.target[i]).length;
+          row.querySelector('[data-count]')!.textContent = `${matches}/20`;
+          summary.push(`${key === 'after' ? 'With' : 'Without'} controller, ${matches} of 20 match`);
+        }
+      }
       bypass.setAttribute('aria-pressed', String(bypassed));
       bench.toggleAttribute('data-bypassed', bypassed);
-      bench.querySelector('[data-feedback]')!.textContent = `${label}. ${state}. ${matches} of 20 output bits match the target.`;
+      bench.querySelector('[data-feedback]')!.textContent = summary.join('. ');
     };
 
     next.addEventListener('click', () => {
@@ -158,31 +175,32 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
     background:var(--paper); color:var(--contour); border-block:1px solid var(--kei);
     margin:30px auto; padding:18px 0 12px; scroll-margin-top:20px;
   }
-  @media(min-width:901px) {
-    .bench { width:min(62rem,calc(100vw - 8rem)); margin-inline:calc((100% - min(62rem,100vw - 8rem)) / 2); }
-  }
   .symbols,.assist {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
   .bench-head,.controls {display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .bench-head {justify-content:space-between}
   h3,h4,p,figcaption {margin:0}
   h3 {font:500 clamp(25px,3vw,32px)/1.15 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
-  .sample,.label span,.gate-label,.gates,.bitrow>span:first-child,button {font:12px/1.4 var(--mono)}
-  .sample,.label span,.gate-label,.bitrow>span:first-child,figcaption {color:var(--sea)}
-  .flow {--gap:30px;display:grid;grid-template-columns:1fr 1.02fr 1fr .95fr 1.26fr;gap:var(--gap);margin:22px 0 16px;padding:0}
+  .sample,.gate-label,.gates,.row-title,button {font:12px/1.4 var(--mono)}
+  .sample,.gate-label,figcaption {color:var(--contour)}
+  .flow {--gap:clamp(16px,2vw,32px);display:grid;grid-template-columns:1fr 1.02fr 1fr 1fr 1.45fr;gap:var(--gap);margin:22px 0 16px;padding:0}
   .flow li {min-width:0;position:relative}
-  .flow li+li::before {content:'→';position:absolute;left:calc(-1 * var(--gap));width:var(--gap);text-align:center;top:76px;font:20px/1 var(--serif);color:var(--wave)}
-  .label span {display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+  .flow li+li::before {content:'→';position:absolute;left:calc(-1 * var(--gap));width:var(--gap);text-align:center;top:107px;font:20px/1 var(--serif);color:var(--contour)}
+  .label span {display:inline-block;padding-block:3px;color:var(--contour);font:600 13px/1.35 var(--mono)}
+  .label .model-role {padding-inline:7px;background:var(--sumi);color:var(--paper)}
   h4 {font:500 clamp(19px,2vw,23px)/1.18 var(--serif);letter-spacing:-.02em;color:var(--sumi);margin-top:3px}
-  .visual {height:80px;margin:10px 0;display:flex;justify-content:center;box-sizing:border-box}
+  .visual {height:112px;margin:12px 0;display:flex;justify-content:center;box-sizing:border-box}
   .matrix svg {display:block;width:100%;height:100%;fill:var(--wave)}
   .controller,.hidden-box {border:1px solid var(--wave);align-items:center;background:var(--shoal)}
   .controller {flex-direction:column;text-align:center;gap:2px}
-  .gate-label {font-size:10px}.gates {font-size:12px;line-height:1.35;color:var(--sumi)}
+  .gate-label {font-size:12px}.gates {font-size:14px;line-height:1.35;color:var(--sumi)}
   [data-bypassed] .controller {border-style:dashed;background:transparent}
   [data-bypassed] .gates {color:var(--sea);text-decoration:line-through}
-  .hidden-box {color:var(--sea);border:1px dashed currentColor;background:transparent}
+  .hidden-box {color:var(--contour);border:1px dashed currentColor;background:transparent}
   .hidden-box svg {width:78%;height:56px;max-width:125px}.hidden-box text {font:25px var(--serif)}
-  .readings {flex-direction:column;gap:6px}.bitrow {display:grid;gap:2px}.bitrow>span:first-child {font-size:10px}
+  .readings {flex-direction:column;gap:6px}.bitrow {display:grid;gap:2px;padding-inline-start:6px;border-inline-start:3px solid transparent}
+  .row-title {display:flex;justify-content:space-between;gap:5px;color:var(--sumi);font-size:13px;line-height:1.3}
+  [data-count] {font-weight:600;font-variant-numeric:tabular-nums}
+  .bench:not([data-bypassed]) [data-row="after"],[data-bypassed] [data-row="before"] {border-inline-start-color:var(--wave)}
   .cells {display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:2px}
   .cells i {aspect-ratio:1;border:1px solid var(--sea);background:var(--paper);position:relative}
   .cells .on {background:var(--wave);border-color:var(--wave)}
@@ -194,22 +212,26 @@ const firstMatches = first.after.filter((bit, i) => bit === first.target[i]).len
   button:hover,button[aria-pressed=true] {color:var(--sumi);background:var(--shoal)}
   button:focus-visible {outline:2px solid var(--wave);outline-offset:3px}
   figcaption {margin-top:10px;font-size:14px}
-  @container(max-width:48rem) {
+  @container(max-width:56rem) {
     .flow {display:flex;flex-direction:column;gap:0;margin:14px 0}
     .flow li {display:grid;grid-template-columns:minmax(94px,.85fr) minmax(0,1.65fr);column-gap:14px;row-gap:4px;align-items:center;padding:10px 0 15px}
     .flow li+li {border-top:1px solid var(--kei)}
     .flow li+li::before {content:'↓';background:var(--paper);width:18px;left:0;top:-10px;font-size:17px}
-    .label {align-self:center}.label span {font-size:10px}
+    .label {align-self:center}
     .flow h4 {font-size:20px}
     .visual {margin:0;width:100%;max-width:220px;height:63px}
     .matrix svg {width:auto;margin-right:auto;max-width:100%}
-    .controller,.hidden-box {max-width:160px}.controller {height:72px}
+    .controller,.hidden-box {max-width:170px}.controller {height:82px}
     .flow p {grid-column:2;font-size:15px}
-    .readings {height:auto;gap:4px}.cells {max-width:210px}
+    .readings {height:auto;gap:7px}.cells {max-width:210px}
   }
-  @container(max-width:23rem) {
-    .flow li {grid-template-columns:minmax(78px,.76fr) minmax(0,1.55fr);column-gap:9px}
-    .sample {font-size:10px}.bench-head {gap:6px}.flow h4 {font-size:18px}
+  @container(max-width:25rem) {
+    .flow li {grid-template-columns:1fr;row-gap:7px;padding:14px 0 18px}
+    .label {display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .flow h4 {margin:0;font-size:20px}
+    .flow p {grid-column:1;font-size:16px}
+    .readings,.cells {max-width:none}
+    .sample {font-size:11px}.bench-head {gap:6px}
     .controls {gap:6px}button {padding:6px 8px;font-size:11px}
   }
 </style>

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Experiment from '../../components/ScientificWorldExperiment.astro';
 import Prompts from '../../components/ScientificWorldPrompts.astro';
+import replayFrames from '../../data/scientific-worlds/teaching-figure.json';
 import score from '../../data/scientific-worlds/scorecard.json';
 import discovery from '../../data/scientific-worlds/discovery.json';
 import { writing } from '../../data/writing.js';
@@ -29,14 +30,14 @@ const { M, N0, F } = score.conditions;
 
       <h2>A box with 720 switches</h2>
       <p>Imagine a sealed box with 720 numbered switches and 20 lights. In the lab you can set the switches, pay for a reading and see which lights come on. Your job is to build a circuit that keeps a particular pattern lit even when someone else flips the switches. Every reading you buy leaves less money for parts.</p>
-      <p>In B720, our first world, Astra 6.0 Max has to do this for eight boxes, each with its own target. In the main test, called M, Astra knows that combinations of four switches can influence a light. The numbers on the switches give no clue which ones belong together.</p>
+      <p>In B720, our first world, the model has to do this for eight boxes, each with its own target. In the main test, called M, it knows that combinations of four switches can influence a light. The numbers on the switches give no clue which ones belong together.</p>
     </div>
 
-    <Experiment/>
+    <Experiment frames={replayFrames} replayUrl={release+'/docs/method.md#the-replay'}/>
 
     <div class="prose">
       <h2>Eight wires for 32 switches</h2>
-      <p>In one run, Astra took 32 scattered switch numbers and arranged them in four rows of eight. In its grid, the four corners of each little square were switches that acted together. A list of numbers had become a picture of how part of the box worked.</p>
+      <p>In one run, Astra 6.0 Max took 32 scattered switch numbers and arranged them in four rows of eight. In its grid, the four corners of each little square were switches that acted together. A list of numbers had become a picture of how part of the box worked.</p>
       <p>Astra found it could cancel the whole group’s effect on the lights by wiring six pairs of switches to move together and two pairs to move in opposite directions. We found <strong>those same eight connections in every finished circuit</strong>. Astra reached deployment with {discovery.minimum_capital} units of its original 5,200 left.</p>
     </div>
 
@@ -56,8 +57,8 @@ const { M, N0, F } = score.conditions;
   </div></article>
 </Base>
 <style>
-  .sheet {max-width:54rem;width:100%;margin-inline:auto;padding-inline:clamp(0px,2vw,24px)}
-  .opening,.prose {max-width:42rem;margin-inline:auto}
+  .sheet {--reading-width:54rem;width:100%;margin-inline:auto;padding-inline:clamp(12px,1.4vw,24px)}
+  .opening,.prose {max-width:var(--reading-width);margin-inline:auto}
   .opening {padding-top:clamp(36px,5vw,70px)}
   .context,.byline,.endnotes {font-family:var(--mono)}
   .context {color:var(--sea);font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin:0 0 17px}
