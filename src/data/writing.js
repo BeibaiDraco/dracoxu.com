@@ -6,7 +6,7 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'The Measure of Worlds v1.0 · Virtual Brain',
-    description: 'Can an AI decide what is worth measuring? In a brain made of switches and lights, Astra found a way to control 32 switches with eight wires. It delivered all eight devices in 2 of 25 attempts with the microscopic law.',
+    description: 'Can an AI discover which neurons to study together? Astra traced 32 artificial neurons to one signal and used eight connections to control it. With the microscopic law, it delivered eight controllers in 2 of 25 attempts.',
     date: '2026-11-17',
     kind: 'Research',
     readingTime: '3 min read',

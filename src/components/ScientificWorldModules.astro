@@ -7,12 +7,12 @@ const baseline = readModule(false);
   <div class="overview">
     <div class="explanation">
       <h3 id="cutaway-title">Inside the hidden circuit</h3>
-      <p>This virtual brain splits its 720 switches into <strong>30 hidden modules</strong>. Ten are 4×4 grids, ten are 4×6, and ten are 4×8.</p>
-      <p>Within each 2×2 square, multiply the four switch values (+1 or −1). The module adds those products over every square, wrapping at the edges. That sum is its output.</p>
+      <p>This virtual brain groups its 720 input neurons into <strong>30 hidden modules</strong>. Ten are 4×4 grids, ten are 4×6, and ten are 4×8.</p>
+      <p>Within each 2×2 square, multiply the four neural states (+1 or −1). The module adds those products over every square, wrapping at the edges. That sum is its output.</p>
     </div>
     <div class="map">
-      <div class="map-label">One 4×8 module <span>Switch numbers</span></div>
-      <div class="board" role="img" data-board aria-label={`Four-by-eight grid. The highlighted square contains switches ${corners.map(i => ports[i]).join(', ')}.`}>
+      <div class="map-label">One 4×8 module <span>Neuron IDs</span></div>
+      <div class="board" role="img" data-board aria-label={`Four-by-eight grid. The highlighted square contains neurons ${corners.map(i => ports[i]).join(', ')}.`}>
         {ports.map((port,i) => <span class:list={['cell', {selected:corners.includes(i)}]} data-cell>
           <span>{port}</span><b class="sign">{signed(baseline.signs[i])}</b>
         </span>)}
@@ -25,14 +25,14 @@ const baseline = readModule(false);
     <div class="workings">
       <div>
         <h4>One square</h4>
-        <p>The wiring gives each switch setting its sign. Move the window one place to see which four switches contribute the next product.</p>
+        <p>The wiring gives each neural state its sign. Move the window one place to see which four neurons contribute the next product.</p>
         <div class="controls"><button type="button" data-next disabled>Next square</button><span>Square <b data-index>{initialWindow + 1}</b> of {ports.length}</span></div>
       </div>
       <div>
-        <h4>One light</h4>
-        <p>Six weighted module outputs feed each light. This module feeds light {lightNumber} with a weight of −2. The remaining inputs add up to −5.</p>
-        <div class="readout">Module output <b data-total>{signed(baseline.total)}</b><span aria-hidden="true">→</span> Light {lightNumber} <b data-light>off ({signed(baseline.lightSum)})</b></div>
-        <div class="controls"><button type="button" role="switch" aria-checked="false" aria-label={`Flip switch ${switchNumber}`} data-flip disabled>Flip switch {switchNumber}</button><span>All other inputs stay off.</span></div>
+        <h4>One readout</h4>
+        <p>Six weighted module outputs feed each readout. This module feeds readout {lightNumber} with a weight of −2. The remaining inputs add up to −5.</p>
+        <div class="readout">Module output <b data-total>{signed(baseline.total)}</b><span aria-hidden="true">→</span> Readout {lightNumber} <b data-light>inactive ({signed(baseline.lightSum)})</b></div>
+        <div class="controls"><button type="button" aria-pressed="false" aria-label={`Stimulate neuron ${switchNumber}`} data-flip disabled>Stimulate neuron {switchNumber}</button><span>All other inputs stay inactive.</span></div>
       </div>
     </div>
     <span class="assist" data-status role="status"></span>
@@ -56,17 +56,17 @@ const baseline = readModule(false);
       cell.querySelector('b')!.textContent = signed(signs[i]);
     });
     const names = corners.map(i => ports[i]).join(', ');
-    figure.querySelector('[data-board]')!.setAttribute('aria-label', 'Four-by-eight grid. Highlighted switches: ' + names + '.');
+    figure.querySelector('[data-board]')!.setAttribute('aria-label', 'Four-by-eight grid. Highlighted neurons: ' + names + '.');
     const equation = figure.querySelector('[data-equation]')!;
     const product = equation.querySelector('b')!;
     equation.replaceChildren(corners.map(i => signed(signs[i])).join(' × ') + ' = ', product);
     product.textContent = signed(products[face]);
-    const lamp = (lightSum > 0 ? 'on' : 'off') + ' (' + signed(lightSum) + ')';
+    const lamp = (lightSum > 0 ? 'active' : 'inactive') + ' (' + signed(lightSum) + ')';
     figure.querySelector('[data-index]')!.textContent = String(face + 1);
     figure.querySelector('[data-total]')!.textContent = signed(total);
     figure.querySelector('[data-light]')!.textContent = lamp;
-    flip.setAttribute('aria-checked', String(on));
-    figure.querySelector('[data-status]')!.textContent = 'Switches ' + names + ' give ' + signed(products[face]) + '. Grid total ' + signed(total) + '. Light ' + lightNumber + ' ' + lamp + '.';
+    flip.setAttribute('aria-pressed', String(on));
+    figure.querySelector('[data-status]')!.textContent = 'Neurons ' + names + ' give ' + signed(products[face]) + '. Grid total ' + signed(total) + '. Readout ' + lightNumber + ' ' + lamp + '.';
   }
   next.addEventListener('click', () => {
     face = (face + 1) % windows.length;
@@ -104,7 +104,7 @@ const baseline = readModule(false);
   .controls {display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap;font-size:13px}
   .workings p + .controls {margin-top:10px}
   button {font-size:13px;border:1px solid var(--sea);border-radius:0;background:var(--paper);color:var(--sumi);padding:7px 10px;cursor:pointer}
-  button[aria-checked=true] {background:var(--wave);color:var(--paper)}
+  button[aria-pressed=true] {background:var(--wave);color:var(--paper)}
   button:focus-visible,summary:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
   .assist {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
   @container (max-width:43rem) {

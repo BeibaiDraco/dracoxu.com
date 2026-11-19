@@ -19,7 +19,7 @@ const { M } = score.conditions;
 ---
 <Base title={entry.title} description={entry.description} current="Writing" article={true}
   author="Draco (Yunlong) Xu" publishedTime={entry.date} updated="November 19, 2026"
-  socialImage={{...entry.image,type:'image/png',alt:'The Measure of Worlds v1.0 · Virtual Brain. Eight wiring rules in a grid of 32 switches discovered by Astra 6.0 Max.'}}>
+  socialImage={{...entry.image,type:'image/png',alt:'The Measure of Worlds v1.0 · Virtual Brain. Eight connections in a module of 32 artificial neurons discovered by Astra 6.0 Max.'}}>
   <link slot="head" rel="alternate" type="application/x-bibtex" href="/writing/scientific-worlds/citation.bib" title="Benchmark citation"/>
   <article class="bay report"><div class="wide sheet">
     <header class="opening">
@@ -28,19 +28,19 @@ const { M } = score.conditions;
     </header>
 
     <div class="prose">
-      <p class="lead">A virtual brain has 720 switches and 20 lights. We give an AI eight copies and a pattern of lights to hold steady on each. The switches will flip at random. What could the AI measure now that would let it control the lights later?</p>
-      <p>In the lab, the AI can flip switches together and pay to see which lights change. Then it must build eight controllers. Holding every switch fixed would cost too much. The targets are ours. Which switches to study together, and what to measure about them, are decisions the AI has to make.</p>
+      <p class="lead">Can an AI steer a virtual brain into a chosen pattern of activity? Each of its 720 input neurons can be active or silent. We give the AI eight copies of the brain and a target pattern for the 20 output signals of each. The inputs will keep changing at random. What should the AI study first?</p>
+      <p>In the lab, the AI can activate any combination of neurons and pay to record the response. Then it must build a control circuit for each brain. Forcing every neuron into a fixed state would cost too much. We choose the targets. The AI decides which neurons to study together and what to measure about their collective activity.</p>
 
       <h2>Who chose the variables in <i>F = ma</i>?</h2>
       <p>Two carts pass you at the same speed. One is rolling steadily. The other is speeding up. To relate their motion to force, you need a quantity that distinguishes them. Measure how their velocity changes and you have acceleration. By the time a textbook gives you force, mass and acceleration, someone has already done enough science to know what belongs in those three columns.</p>
-      <p>AI Feynman asks for an equation that fits the supplied measurements. DiscoveryWorld lets an AI design experiments and checks for discoveries its authors anticipated. Here we leave the useful quantity unnamed. <strong>Can an AI invent a column worth adding to the table?</strong> Our premise is that the ultimate test of a scientific idea is what it lets us change. Anyone can test Astra’s answer by running the machine its discovery made possible.</p>
+      <p>AI Feynman asks for an equation that fits the supplied measurements. DiscoveryWorld lets an AI design experiments and checks for discoveries its authors anticipated. Here we leave the useful quantity unnamed. <strong>Can an AI invent a column worth adding to the table?</strong> Our premise is that the ultimate test of a scientific idea is what it lets us change. Anyone can test Astra’s answer by applying the control circuit it built to the virtual brain.</p>
     </div>
 
     <section class="prose results" id="results" aria-labelledby="results-title">
-      <h2 id="results-title">What made 32 switches one thing?</h2>
-      <p>Astra 6.0 Max knew the rule for how four switches interact. It had to decide whether any larger group was worth studying. In one successful attempt it found 32 switches arranged in a grid. Each square of four neighbors contributed +1 or −1. Adding those contributions gave Astra its new variable. Switch patterns with the same total had the same effect on the lights, however different the patterns looked.</p>
-      <p>That gave Astra a cheaper way to build. It wired eight switches so that each copied another switch or did the opposite. With those pairs linked, the pluses and minuses always balanced. The other 24 switches could flip freely without this grid disturbing a single light. The eight connections Astra recorded during research appear in every controller it built. Of its 5,200 credits, it had two left when the machines were ready.</p>
-      <p class="finding">With the four-switch law (M), Astra delivered all eight controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 random inputs.</p>
+      <h2 id="results-title">When do 32 neurons act as one?</h2>
+      <p>Astra 6.0 Max knew the rule for how four neurons interact. It had to decide whether any larger group was worth studying. In one successful attempt it found 32 neurons arranged in a grid. Each square of four neighbors contributed +1 or −1. Adding those contributions gave Astra its new variable. Two very different patterns of neural activity could produce the same total and have exactly the same effect on the brain’s outputs.</p>
+      <p>That gave Astra a cheaper way to intervene. It connected eight neurons to partners so that each pair was either active together or in opposite states. The positive and negative contributions then canceled. The other 24 neurons could change state freely while this module’s contribution stayed at zero. The eight connections Astra recorded during research appear in every controller it built. Of its 5,200 credits, it had two left when the machines were ready.</p>
+      <p class="finding">Given the four-neuron interaction rule (M), Astra delivered all eight controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 random inputs.</p>
     </section>
 
     <Experiment frames={replayFrames} exampleWire={replayWire} replayUrl={release+'/docs/method.md#the-replay'}/>
@@ -51,7 +51,7 @@ const { M } = score.conditions;
 
     <section class="prose" id="why-build" aria-labelledby="why-build-title">
       <h2 id="why-build-title">How do you reward a question nobody assigned?</h2>
-      <p>In a real lab, years can pass before an idea lets anyone do something new. In the meantime, we ask experts which questions look promising. A virtual world shortens that wait. We run the machines. If all eight hold their targets through 100,000 random inputs apiece and there is money left to start them, the score is 1. Otherwise it is 0. A shortcut found by trial and error earns the same point. The research record lets us see which ideas actually went into the design.</p>
+      <p>In a real lab, years can pass before an idea lets anyone do something new. In the meantime, we ask experts which questions look promising. A virtual world shortens that wait. We replay the intervention. If all eight brains hold their target activity through 100,000 random inputs apiece and there is money left to start the controllers, the score is 1. Otherwise it is 0. A shortcut found by trial and error earns the same point. The research record lets us see which ideas actually went into the design.</p>
       <p>That distinction matters for training as well. Today the score measures what Astra could do. In reinforcement learning, the same outcome could reward the choices that led to it, across many attempts. A model could learn <em>which questions to ask</em> from the things its discoveries let it do, even when no human has written down the question or its answer.</p>
     </section>
 

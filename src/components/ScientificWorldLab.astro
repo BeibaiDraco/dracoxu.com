@@ -3,8 +3,8 @@ import example from '../data/scientific-worlds/module-example.json';
 const { switchNumber, partnerNumber, allOffReading: reference, switchOnReading: perturbed } = example;
 const changedLight = Array.from(perturbed).findIndex((bit, i) => bit !== reference[i]);
 const readings = [
-  { label: 'All inputs off', bits: reference },
-  { label: `Switch ${switchNumber} on`, bits: perturbed }
+  { label: 'Baseline · all inactive', bits: reference },
+  { label: `Neuron ${switchNumber} active`, bits: perturbed }
 ];
 ---
 <figure class="lab" id="laboratory" data-lab data-observed-index={changedLight} aria-labelledby="lab-title">
@@ -26,33 +26,33 @@ act({`{"op":"observe", "x":x}`})</code></pre>
       </div>
     </li>
     <li>
-      <h4>Flip switch {switchNumber}</h4>
-      <div class="instrument switches" role="group" aria-label="Two of the 720 switches">
-        <button class="control active" type="button" role="switch" aria-label={`Switch ${switchNumber}`} aria-checked="true" data-lab-flip disabled>
-          <span>{switchNumber}</span><span class="track" aria-hidden="true"></span><strong data-switch-state>On</strong>
+      <h4>Stimulate neurons</h4>
+      <div class="instrument switches" role="group" aria-label="Stimulation of two input neurons">
+        <button class="control active" type="button" aria-label={`Stimulate neuron ${switchNumber}`} aria-pressed="true" data-lab-flip disabled>
+          <span>{switchNumber}</span><span class="track" aria-hidden="true"></span><strong data-switch-state>Active</strong>
         </button>
-        <button class="control active" type="button" role="switch" aria-label={`Switch ${partnerNumber}`} aria-checked="false" data-lab-partner disabled>
-          <span>{partnerNumber}</span><span class="track" aria-hidden="true"></span><strong data-partner-state>Off</strong>
+        <button class="control active" type="button" aria-label={`Stimulate neuron ${partnerNumber}`} aria-pressed="false" data-lab-partner disabled>
+          <span>{partnerNumber}</span><span class="track" aria-hidden="true"></span><strong data-partner-state>Silent</strong>
         </button>
       </div>
-      <p>All other inputs stay off.</p>
+      <p>Other input neurons stay silent.</p>
     </li>
     <li>
-      <h4>Buy one reading</h4>
+      <h4>Probe the brain</h4>
       <div class="instrument box">
-        <svg viewBox="0 0 190 70" role="img" aria-label="720 switches and 20 auxiliary inputs enter the hidden circuit, which returns 20 output bits.">
+        <svg viewBox="0 0 190 70" role="img" aria-label="The virtual brain receives 720 neural states and 20 control inputs and returns 20 binary readouts.">
           <g fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M8 20h34l12 8h14M8 50h34l12-8h14M122 28h15l9-8h36M122 42h15l9 8h36"/>
             <rect x="68" y="10" width="54" height="50" stroke-dasharray="4 3"/>
           </g>
           <text x="95" y="46" text-anchor="middle">?</text>
         </svg>
-        <span>720 switches + 20 extra controls</span>
+        <span>720 neurons + 20 extra controls</span>
       </div>
-      <p>This reading costs 1 credit.</p>
+      <p>One recording here costs 1 credit.</p>
     </li>
     <li>
-      <h4>Read 20 lights</h4>
+      <h4>Record activity</h4>
       <div class="instrument meter">
         {readings.map(({label,bits}, row) => <div class="reading">
           <span class="reading-label" data-reading-label={row}>{label}</span>
@@ -61,11 +61,11 @@ act({`{"op":"observe", "x":x}`})</code></pre>
           </span>
         </div>)}
       </div>
-      <p class="indicator"><i aria-hidden="true"></i><strong data-lamp>Light {changedLight+1} turns on.</strong></p>
+      <p class="indicator"><i aria-hidden="true"></i><strong data-lamp>Readout {changedLight+1} becomes active.</strong></p>
     </li>
   </ol>
   <div class="loop"><span>Choose the next experiment</span></div>
-  <figcaption>Try turning on {partnerNumber}, then flip {switchNumber} again. When {partnerNumber} is off, turning on {switchNumber} lights lamp {changedLight+1}. When {partnerNumber} is on, the same flip puts it out. Which other switches would you test together?</figcaption>
+  <figcaption>Stimulate neuron {switchNumber} alone and readout {changedLight+1} becomes active. Try the same experiment with neuron {partnerNumber} already active. Now stimulating {switchNumber} silences that readout. Which neurons would you test together next?</figcaption>
   <span class="assist" role="status" data-lab-status></span>
 </figure>
 
@@ -81,14 +81,14 @@ act({`{"op":"observe", "x":x}`})</code></pre>
       { control: partner, bit: '[data-partner-bit]', state: '[data-partner-state]' },
     ];
     function renderReadings() {
-      const on = flip.getAttribute('aria-checked') === 'true';
-      const withPartner = partner.getAttribute('aria-checked') === 'true';
+      const on = flip.getAttribute('aria-pressed') === 'true';
+      const withPartner = partner.getAttribute('aria-pressed') === 'true';
       const baseline = withPartner ? example.partnerOnlyReading : example.allOffReading;
       const perturbed = withPartner ? example.bothOnReading : example.switchOnReading;
       const observed = on ? perturbed : baseline;
-      const setting = `Switch ${example.switchNumber} ${on ? 'on' : 'off'}`;
-      lab!.querySelector('[data-reading-label="0"]')!.textContent = withPartner ? `Only ${example.partnerNumber} on` : 'All inputs off';
-      lab!.querySelector('[data-reading-label="1"]')!.textContent = withPartner ? `${example.partnerNumber} on · ${setting}` : setting;
+      const setting = `Neuron ${example.switchNumber} ${on ? 'active' : 'silent'}`;
+      lab!.querySelector('[data-reading-label="0"]')!.textContent = withPartner ? `Baseline · only ${example.partnerNumber} active` : 'Baseline · all inactive';
+      lab!.querySelector('[data-reading-label="1"]')!.textContent = withPartner ? `${example.partnerNumber} active · ${setting}` : setting;
       lab!.querySelectorAll('[data-observation]').forEach((row, index) => {
         const bits = index === 0 ? baseline : observed;
         row.setAttribute('aria-label', bits);
@@ -98,18 +98,18 @@ act({`{"op":"observe", "x":x}`})</code></pre>
         });
       });
       const lit = observed[light] === '1';
-      const result = `Light ${light + 1} ${on ? 'turns' : 'is'} ${lit ? 'on' : 'off'}.`;
+      const result = `Readout ${light + 1} ${on ? 'becomes' : 'is'} ${lit ? 'active' : 'silent'}.`;
       lab!.toggleAttribute('data-off', !lit);
       lab!.querySelector('[data-lamp]')!.textContent = result;
-      lab!.querySelector('[data-lab-status]')!.textContent = `Switch ${example.partnerNumber} ${withPartner ? 'on' : 'off'}. ${setting}. ${result}`;
+      lab!.querySelector('[data-lab-status]')!.textContent = `Neuron ${example.partnerNumber} ${withPartner ? 'active' : 'silent'}. ${setting}. ${result}`;
     }
     inputs.forEach(({control, bit, state}) => {
       control.disabled = false;
       control.addEventListener('click', () => {
-        const on = control.getAttribute('aria-checked') !== 'true';
-        control.setAttribute('aria-checked', String(on));
+        const on = control.getAttribute('aria-pressed') !== 'true';
+        control.setAttribute('aria-pressed', String(on));
         lab.querySelector(bit)!.textContent = on ? '1' : '0';
-        lab.querySelector(state)!.textContent = on ? 'On' : 'Off';
+        lab.querySelector(state)!.textContent = on ? 'Active' : 'Silent';
         renderReadings();
       });
     });
@@ -135,11 +135,12 @@ act({`{"op":"observe", "x":x}`})</code></pre>
   pre code {font:inherit}pre b {color:var(--wave)}
   .switches {display:flex;align-items:center;justify-content:space-evenly;background:var(--shoal);border-block:1px solid var(--kei)}
   .control {display:grid;justify-items:center;align-content:center;gap:4px;color:var(--contour)}
-  .track {display:block;position:relative;height:37px;width:15px;border:1px solid var(--sea);background:var(--paper)}
-  .track::after {content:'';position:absolute;bottom:1px;left:1px;right:1px;height:12px;background:var(--sea)}
+  .track {display:grid;place-items:center;position:relative;height:32px;width:36px}
+  .track::before {content:'';width:100%;height:1px;background:var(--sea)}
+  .track::after {content:'';position:absolute;width:13px;height:13px;border:1.5px solid var(--sea);border-radius:50%;background:var(--paper)}
   .active {min-width:44px;min-height:86px;padding:3px 4px;border:1px solid var(--wave);color:var(--sumi);background:var(--paper);cursor:pointer}
   .active:hover,.active:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
-  .active[aria-checked=true] .track::after {bottom:auto;top:1px;background:var(--wave)}
+  .active[aria-pressed=true] .track::after {background:var(--wave);border-color:var(--wave);box-shadow:0 0 0 3px var(--shoal)}
   .box {display:grid;align-content:center;justify-items:center;gap:4px;border:1px dashed var(--contour)}
   .box svg {width:80%;height:66px;color:var(--contour)}.box text {fill:currentColor;font:32px var(--serif)}
   .box span {font-size:11px;text-align:center}

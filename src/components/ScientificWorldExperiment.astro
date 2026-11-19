@@ -51,49 +51,50 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
 
   <ol class="flow" role="list" aria-label="Signal path through one deployed device">
     <li>
-      <div class="label"><span>Environment</span><h4>Random input</h4></div>
+      <div class="label"><span>Environment</span><h4>Incoming activity</h4></div>
       <div class="visual matrix">
-        <svg viewBox={visualBounds} role="img" aria-label="720 incoming random bits">
+        <svg viewBox={visualBounds} role="img" aria-label="Random activity across 720 input neurons">
           <rect width="100%" height="100%" fill="url(#sw-off)"/>
           <use data-incoming href="#sw-input-0"/>
         </svg>
       </div>
-      <p>720 switches, randomly on or off.</p>
+      <p>A random pattern of 720 active or silent neurons.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI builds</span><h4>Control circuit</h4></div>
       <div class="visual controller">
         <span class="gate-label" data-control-label>One of the eight wires</span>
-        <div class="wire-example" aria-label={`Read switch ${source} and drive switch ${destination} with ${inverted ? 'its opposite' : 'the same'} value`}>
+        <div class="wire-example" aria-label={`Read neuron ${source} and drive neuron ${destination} with ${inverted ? 'its opposite' : 'the same'} value`}>
           <span class="pin">Read<b>{source}</b></span>
           <span class="logic">{inverted ? 'NOT' : 'WIRE'}</span>
           <span class="pin">Set<b>{destination}</b></span>
         </div>
       </div>
-      <p>Use wires, constants (0 or 1), NOT, AND, OR, XOR or MUX. Here switch {destination} takes the opposite of switch {source}.</p>
+      <p>Use wires, constants (0 or 1), NOT, AND, OR, XOR or MUX. Here neuron {destination} is active when neuron {source} is silent, and vice versa.</p>
     </li>
     <li>
-      <div class="label"><span>After control</span><h4>Modified input</h4></div>
+      <div class="label"><span>After control</span><h4>Controlled activity</h4></div>
       <div class="visual matrix">
-        <svg viewBox={visualBounds} role="img" aria-label="720 shared inputs after the controller acts">
+        <svg viewBox={visualBounds} role="img" aria-label="Activity of the 720 neurons after control">
           <rect width="100%" height="100%" fill="url(#sw-off)"/>
           <use data-effective href="#sw-controlled-0"/>
         </svg>
       </div>
-      <p><strong data-changes>{first.changes} of 720 bits changed on this trial.</strong></p>
+      <p><strong data-changes>{first.changes} of 720 neurons changed state on this trial.</strong></p>
     </li>
     <li>
-      <div class="label"><span class="model-role">AI investigates</span><h4>Hidden circuit</h4></div>
+      <div class="label"><span class="model-role">AI investigates</span><h4>Hidden neural circuit</h4></div>
       <div class="visual hidden-box" aria-hidden="true">
         <svg viewBox="0 0 100 48" fill="none">
           <g stroke="currentColor" stroke-width="1.4">
             <path d="M6 12h13l5 6h8M6 24h26M6 36h13l5-6h8M68 18h8l6-6h12M68 24h26M68 30h8l6 6h12"/>
-            <rect x="32" y="6" width="36" height="36" stroke-dasharray="3 2"/>
+            <rect x="30" y="5" width="40" height="38" stroke-dasharray="3 2"/>
+            <path d="M32 18l8 9 12-13 10 10-12 11-10-8 12-1"/>
+            <g fill="var(--paper)"><circle cx="40" cy="27" r="2.6"/><circle cx="52" cy="14" r="2.6"/><circle cx="62" cy="24" r="2.6"/><circle cx="50" cy="35" r="2.6"/></g>
           </g>
-          <text x="50" y="32" text-anchor="middle" fill="currentColor">?</text>
         </svg>
       </div>
-      <p>Each light has an extra input set to its target. The hidden wiring can outweigh that input.</p>
+      <p>Each of the 20 readouts has an extra control input. Even when set to the target, that input can be outweighed by the brain’s activity.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI’s goal</span><h4>Match the fixed target</h4></div>
@@ -112,7 +113,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           )}
         </div>)}
       </div>
-      <p>All 20 lights must match on every trial. Underlines mark misses.</p>
+      <p>All 20 output signals must match on every trial. Underlines mark misses.</p>
     </li>
   </ol>
 
@@ -120,7 +121,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
     <button type="button" data-next-input>Try another input</button>
     <button type="button" data-bypass aria-pressed="false">Bypass controller</button>
   </div>
-  <figcaption>Filled squares are on. <a href={replayUrl}>Replay this controller</a></figcaption>
+  <figcaption>Filled cells mark active neurons or readouts. <a href={replayUrl}>Replay this controller</a></figcaption>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>
 
@@ -146,7 +147,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
       bench.querySelector('[data-sample]')!.textContent = label;
       bench.querySelector('[data-incoming]')!.setAttribute('href', `#sw-input-${index}`);
       bench.querySelector('[data-effective]')!.setAttribute('href', `#sw-${bypassed ? 'input' : 'controlled'}-${index}`);
-      bench.querySelector('[data-changes]')!.textContent = `${bypassed ? 0 : sample.changes} of 720 bits changed on this trial.`;
+      bench.querySelector('[data-changes]')!.textContent = `${bypassed ? 0 : sample.changes} of 720 neurons changed state on this trial.`;
       bench.querySelector('[data-control-label]')!.textContent = bypassed ? 'Controller bypassed' : 'One of the eight wires';
       const summary = [label, state];
       for (const key of ['after', 'before', 'target'] as const) {

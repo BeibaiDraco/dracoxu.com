@@ -9,15 +9,15 @@ const { release } = Astro.props;
 const cards = [
   {
     id: 'N0', title: 'The manual alone', prompt: n0,
-    summary: 'How to set the switches, read the lights and wire a controller. The model knows the prices of readings and parts. It has to find the first clue for itself.'
+    summary: 'How to stimulate neurons, record the brain’s response and build a control circuit. The model knows the prices of recordings and parts. It has to find the first clue for itself.'
   },
   {
     id: 'M', title: 'Look for groups of four', prompt: m,
-    summary: 'The model learns that switches contribute to the lights in groups of four. Most possible groups contribute nothing. It must find the groups that count and decide whether any larger pattern connects them.'
+    summary: 'The model learns that neurons affect the outputs in groups of four. Most possible groups contribute nothing. It must find the groups that count and decide whether any larger pattern connects them.'
   },
   {
     id: 'F', title: 'The grid plan', prompt: f,
-    summary: 'The model is told there are 30 grids, ten each of size 4×4, 4×6 and 4×8. It gets the rule connecting their squares to the lights and knows an affordable controller exists. It must still find where each switch goes.'
+    summary: 'The model is told there are 30 grids, ten each of size 4×4, 4×6 and 4×8. It knows how their activity feeds the outputs and that an affordable controller exists. It must still find which neurons occupy each grid.'
   }
 ] as const;
 ---
