@@ -5,123 +5,62 @@ import f from '../data/scientific-worlds/prompts/neural-B-F.txt?raw';
 
 interface Props { release: string }
 const { release } = Astro.props;
-const conditions = [
+const cards = [
   {
-    id:'N0', title:'The operating manual', text:n0,
-    given:'How to set the switches, measure the lights and buy parts to build a controller.',
-    unknown:'Which switches affect each light and how they work together.'
+    id: 'N0', title: 'How to use the box', prompt: n0,
+    summary: 'The manual tells the model how to set the switches, read the lights and wire a controller. It knows what each measurement and each part will cost. It can flip switches one at a time or try several together and watch which lights change.'
   },
   {
-    id:'M', title:'Four-switch interactions', text:m,
-    given:'The equation for each light adds up effects from groups of four switches. Only a small fraction of the possible groups matter.',
-    unknown:'Which groups of four matter for each light, and how strongly they push it toward on or off.'
+    id: 'M', title: 'Look for groups of four', prompt: m,
+    summary: 'Each light adds up the effects of groups of four switches. Flipping one switch can help turn a light on or off depending on its three partners. The model gets the rule for adding up those effects. Most groups contribute nothing. Experiments reveal which ones count and by how much.'
   },
   {
-    id:'F', title:'30 hidden modules', text:f,
-    given:'The 720 switches form 30 grids, ten each of size 4×4, 4×6 and 4×8. The four corners of each small square act together. Six grids feed each light. Every target has a controller within budget.',
-    unknown:'Which numbered switch sits where, which signals are flipped and how the individual grids connect to the lights.'
+    id: 'F', title: 'The grids inside the box', prompt: f,
+    summary: 'The 720 switches form 30 hidden grids. Ten are 4×4, ten are 4×6 and ten are 4×8. The four corners of each small square act together, and six grids feed each light. The model knows a working controller is within budget. The switch numbers are shuffled, so it still has to find which switch goes where.'
   }
 ];
-const cards = conditions.map(({ id, title, text }) => {
-  if (!text.startsWith(n0)) throw new Error(`The ${id} prompt no longer starts with N0.`);
-  const added = text.slice(n0.length).trimStart();
-  return { id, title, shared: text.slice(0, text.length - added.length), added };
-});
 ---
-<section class="prompt-section" id="prompts" data-prompts aria-labelledby="prompt-title">
+<section class="prompt-section" id="prompts" aria-labelledby="prompt-title">
   <header class="intro">
-    <h2 id="prompt-title">What does the model know before its first experiment?</h2>
-    <p>All three conditions give the model the operating manual. They differ in what they reveal about the circuit inside the box. Here is the comparison for family B.</p>
+    <h2 id="prompt-title">What the model is told</h2>
+    <p>For the box shown above, all three versions start with the same operating manual.</p>
   </header>
-  <table class="comparison" aria-label="Starting knowledge in family B">
-    <thead><tr><th scope="col">Condition</th><th scope="col">What the model is told</th><th scope="col">What it still has to discover</th></tr></thead>
-    <tbody>
-      {conditions.map(({id,title,given,unknown}) =>
-        <tr>
-          <th scope="row"><b>{id}</b><span>{title}</span></th>
-          <td><span class="mobile-label" aria-hidden="true">Given</span>{given}</td>
-          <td><span class="mobile-label" aria-hidden="true">Still to discover</span>{unknown}</td>
-        </tr>
-      )}
-    </tbody>
-  </table>
-  <p class="originals">Full prompts in the neural wording. A blue line marks the additional instructions.</p>
-  <div class="prompt-actions" data-prompt-actions hidden>
-    <button type="button" data-differences>Jump to differences</button>
-    <button type="button" data-start>Read from the start</button>
-  </div>
   <div class="cards">
-    {cards.map(({id,title,shared,added}) =>
+    {cards.map(({id,title,summary,prompt}) =>
       <section class="card" data-condition={id} aria-labelledby={`prompt-${id}`}>
         <h3 id={`prompt-${id}`}><b>{id}</b><span>{title}</span></h3>
-        <pre tabindex="0" aria-label={`Complete ${id} prompt, scroll to read`}><code><span>{shared}</span>{added && <mark data-added>{added}</mark>}</code></pre>
-        <a href={`${release}/benchmark/prompts/neural-B-${id}.txt`} aria-label={`Open the original ${id} prompt`}>Original prompt ↗</a>
+        <p>{summary}</p>
+        <details>
+          <summary aria-label={`Read the full ${id} prompt`}>Read the full prompt</summary>
+          <pre tabindex="0" aria-label={`Original ${id} prompt`}><code>{prompt}</code></pre>
+          <a href={`${release}/benchmark/prompts/neural-B-${id}.txt`} aria-label={`Open the original ${id} prompt on GitHub`}>View on GitHub ↗</a>
+        </details>
       </section>
     )}
   </div>
 </section>
-<script>
-  const panel = document.querySelector<HTMLElement>('[data-prompts]');
-  if (panel) {
-    const panes = panel.querySelectorAll<HTMLPreElement>('pre');
-    function positionPanes(showDifference: boolean) {
-      for (const pane of panes) {
-        const addition = pane.querySelector<HTMLElement>('[data-added]');
-        pane.scrollTop = showDifference && addition ? addition.offsetTop : 0;
-      }
-    }
-    panel.querySelector('[data-differences]')!.addEventListener('click', () => positionPanes(true));
-    panel.querySelector('[data-start]')!.addEventListener('click', () => positionPanes(false));
-    panel.querySelector<HTMLElement>('[data-prompt-actions]')!.hidden = false;
-    positionPanes(true);
-    // Font metrics can change the length of the shared opening after first paint.
-    document.fonts.ready.then(() => {
-      if (!panel.matches(':focus-within')) positionPanes(true);
-    });
-  }
-</script>
 <style>
-  .prompt-section {container-type:inline-size;width:100%;margin:38px auto 24px;scroll-margin-top:20px}
+  .prompt-section {container-type:inline-size;margin:38px auto 24px;scroll-margin-top:20px}
   .intro {max-width:var(--reading-width);margin-inline:auto;color:var(--contour)}
-  .intro h2 {margin:0 0 10px;font:450 clamp(29px,3vw,38px)/1.12 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
+  .intro h2 {margin:0 0 8px;font:450 clamp(29px,3vw,38px)/1.12 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
   .intro p {margin:0;font:19px/1.44 var(--serif)}
-  .comparison {width:100%;border-collapse:collapse;table-layout:fixed;margin:18px 0 24px;text-align:left;color:var(--contour)}
-  .comparison th,.comparison td {vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid var(--kei)}
-  .comparison thead th,.mobile-label {font:600 13px/1.35 var(--mono);color:var(--sumi)}
-  .comparison thead th:first-child {width:21%}
-  .comparison thead th:nth-child(2) {width:43%}
-  .comparison tbody th,.comparison td,.originals {font:18px/1.4 var(--serif)}
-  .comparison b {display:block;font:600 16px/1.4 var(--mono);color:var(--sumi)}
-  .comparison tbody th span {color:var(--contour)}
-  .comparison td:last-child {padding-right:0}
-  .mobile-label {display:none}
-  .originals {margin:0;color:var(--contour)}
-  .prompt-actions {display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 9px}
-  .prompt-actions[hidden] {display:none}
-  button {background:var(--paper);color:var(--wave);border:1px solid var(--kei);min-height:36px;padding:5px 10px;font:12px/1.4 var(--mono);cursor:pointer}
-  button:hover {background:var(--shoal);border-color:var(--sea)}
-  .cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-  .card {min-width:0;border-block:1px solid var(--kei);background:var(--shoal);padding:12px 13px 10px}
-  h3 {display:flex;align-items:baseline;gap:10px;margin:0 0 10px;color:var(--sumi)}
+  .cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+  .card {display:flex;flex-direction:column;min-width:0;border-block:1px solid var(--kei);background:var(--shoal);padding:17px 18px 12px}
+  .cards:has(details[open]) {align-items:start}
+  h3 {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--sumi)}
   h3 b {color:var(--wave);font:600 17px/1.2 var(--mono)}
-  h3 span {font:500 19px/1.15 var(--serif);letter-spacing:-.02em}
-  pre {position:relative;height:21rem;margin:0 0 6px;background:var(--paper);color:var(--contour);overflow:auto;scrollbar-gutter:stable;scroll-padding-block:8px}
-  code {display:block;font:12px/1.52 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
-  code span,mark {box-sizing:border-box;display:block;padding:8px 9px}
-  mark {min-height:21rem;border-inline-start:3px solid var(--wave);background:var(--paper);color:var(--sumi)}
-  .card a {font:11px/1.5 var(--mono);text-underline-offset:3px}
-  button:focus-visible,pre:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
-  @container (max-width:48rem) {
-    .cards {grid-template-columns:1fr;gap:14px}
-    pre {height:13rem}
-    mark {min-height:13rem}
-  }
-  @container (max-width:37rem) {
-    .comparison,.comparison tbody {display:block}
-    .comparison thead {position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}
-    .comparison tr {display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--kei)}
-    .comparison tbody th,.comparison td {border:0;padding:0}
-    .comparison tbody th {display:flex;align-items:baseline;gap:8px}
-    .mobile-label {display:block;margin-bottom:2px;font-size:12px}
+  h3 span {font:500 23px/1.15 var(--serif);letter-spacing:-.02em}
+  .card p {margin:11px 0 15px;color:var(--contour);font:18px/1.42 var(--serif)}
+  details {margin-top:auto;border-top:1px solid var(--kei);padding-top:6px}
+  summary,.card a {color:var(--wave);font:12px/1.5 var(--mono)}
+  summary {width:fit-content;max-width:100%;padding-block:6px;cursor:pointer}
+  summary:hover {text-decoration:underline;text-underline-offset:3px}
+  pre {max-height:21rem;margin:7px 0;padding:10px;background:var(--paper);color:var(--contour);overflow:auto;scrollbar-gutter:stable;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.55 var(--mono)}
+  code {font:inherit}
+  summary:focus-visible,pre:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
+  @container(max-width:48rem) {
+    .cards {grid-template-columns:1fr;gap:10px}
+    .card {padding:14px 15px 9px}
+    pre {max-height:16rem}
   }
 </style>

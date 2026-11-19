@@ -32,8 +32,8 @@ const { M, N0, F } = score.conditions;
       <p>Scientific Worlds asks an AI to choose for itself what is worth studying. In a real lab, years can pass before anyone knows what a question was worth. In a simulation, we can follow an idea all the way into a machine and see whether it works.</p>
 
       <h2>A box with 720 switches</h2>
-      <p>Imagine a sealed box with 720 numbered switches and 20 lights. In the lab you can set the switches, pay for a reading and see which lights come on. Your job is to build a circuit that keeps a particular pattern lit even when someone else flips the switches. Every reading you buy leaves less money for parts.</p>
-      <p>In B720, our first world, the model has to do this for eight boxes, each with its own target. In the main test, called M, it knows that combinations of four switches can influence a light. The numbers on the switches give no clue which ones belong together.</p>
+      <p>Imagine a sealed box with 720 numbered switches and 20 lights. You can set the switches and pay to see which lights come on. Your job is to build a controller that keeps a particular pattern lit even when someone else flips the switches.</p>
+      <p>The model gets eight copies of the box, each with its own target pattern. Every reading it buys leaves a little less money to build the eight controllers.</p>
     </div>
 
     <Experiment frames={replayFrames} exampleWire={replayWire} replayUrl={release+'/docs/method.md#the-replay'}/>
@@ -41,21 +41,24 @@ const { M, N0, F } = score.conditions;
 
     <div class="prose">
       <h2>Eight wires for 32 switches</h2>
-      <p>In one run, Astra 6.0 Max took 32 scattered switch numbers and arranged them in four rows of eight. In its grid, the four corners of each little square were switches that acted together. A list of numbers had become a picture of how part of the box worked.</p>
-      <p>Astra found it could cancel the whole group’s effect on the lights by wiring six pairs of switches to move together and two pairs to move in opposite directions. We found <strong>those same eight connections in every finished circuit</strong>. Astra reached deployment with {discovery.minimum_capital} units of its original 5,200 left.</p>
+      <p>Astra 6.0 Max was told that switches could act in groups of four. In one run, it arranged 32 scattered switch numbers in four rows of eight. The switches at the corners of each little square acted together. The grid showed how part of the box worked.</p>
+      <p>Astra found it could cancel the whole group’s effect on the lights by wiring six pairs of switches to move together and two pairs to move in opposite directions. We found <strong>those same eight connections in every finished circuit</strong>. When the devices were ready, Astra had {discovery.minimum_capital} credits left.</p>
     </div>
 
     <section class="prose results" id="results" aria-labelledby="results-title">
       <h2 id="results-title">Could Astra do it again?</h2>
-      <p>Astra 6.0 Max succeeded in <strong>{M.successes} of {M.sessions} M sessions ({M.percent}%)</strong> across development, evaluation and repeat runs, with 10–12 active hours per attempt. Both wins came on the same world. Each time, all eight circuits held every light on target through 100,000 changes of switch settings per box.</p>
-      <p>With operating instructions alone (N0), Astra succeeded in {N0.successes} of {N0.sessions} sessions. When told more about the hidden organization and that an affordable circuit existed (F), it succeeded in {F.successes} of {F.sessions}. Astra could use the structure once given those clues. Finding it for itself proved much harder.</p>
-      <p>In a physics textbook, acceleration already has a name. Our hope is that an AI can learn enough from experiments of its own to enter an unfamiliar world and show us a quantity worth naming.</p>
+      <p>With the four-switch rule (M) and a time budget of 10–12 hours per attempt, Astra built eight working controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong>. Both wins came on the same world. Each winning controller held its target through 100,000 changes of switch settings.</p>
+      <p>With just the manual (N0), Astra succeeded in {N0.successes} of {N0.sessions} attempts. When the instructions described how the switches were organized (F), it succeeded in {F.successes} of {F.sessions}.</p>
     </section>
 
     <Prompts release={release}/>
 
+    <div class="prose">
+      <p>In a physics textbook, acceleration already has a name. Our hope is that an AI can learn enough from experiments of its own to enter an unfamiliar world and show us a quantity worth naming.</p>
+    </div>
+
     <footer class="endnotes prose">
-      <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>How the sessions were counted</a></p>
+      <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>Scoring and results</a></p>
       <p class="sources">Related work · <a href="https://arxiv.org/abs/1905.11481">AI Feynman</a> · <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering state variables from video</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a></p>
     </footer>
   </div></article>

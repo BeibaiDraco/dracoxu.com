@@ -67,10 +67,10 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
         <div class="wire-example" aria-label={`Read switch ${source} and drive switch ${destination} with ${inverted ? 'its opposite' : 'the same'} value`}>
           <span class="pin">Read<b>{source}</b></span>
           <span class="logic">{inverted ? 'NOT' : 'WIRE'}</span>
-          <span class="pin">Drive<b>{destination}</b></span>
+          <span class="pin">Set<b>{destination}</b></span>
         </div>
       </div>
-      <p>The model chooses which switches to override. It can wire inputs and target bits directly or use 0, 1, NOT, AND, OR, XOR and MUX (select).</p>
+      <p>The controller can copy a switch or target bit, set a bit to 0 or 1, flip it (NOT), combine two bits (AND, OR, XOR), or choose between them (MUX).</p>
     </li>
     <li>
       <div class="label"><span>After control</span><h4>Modified input</h4></div>
@@ -80,7 +80,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           <use data-effective href="#sw-controlled-0"/>
         </svg>
       </div>
-      <p><strong data-changes>{first.changes} of 720 bits changed on this trial.</strong> Undriven switches pass through. In this device, 20 auxiliary inputs also carry the target bits.</p>
+      <p><strong data-changes>{first.changes} of 720 bits changed on this trial.</strong> This controller also sends the target pattern to 20 extra inputs.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI investigates</span><h4>Hidden circuit</h4></div>
@@ -93,7 +93,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           <text x="50" y="32" text-anchor="middle" fill="currentColor">?</text>
         </svg>
       </div>
-      <p>The same hidden wiring the model probed in the lab now turns these inputs into 20 output bits.</p>
+      <p>The wiring inside the box determines which lights come on.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI’s goal</span><h4>Match the fixed target</h4></div>
@@ -120,7 +120,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
     <button type="button" data-next-input>Flip the switches <span aria-hidden="true">→</span></button>
     <button type="button" data-bypass aria-pressed="false">Bypass controller</button>
   </div>
-  <figcaption>Filled squares are 1s. These six trials use the same device and target. <a href={replayUrl}>About this replay</a></figcaption>
+  <figcaption>A filled square means on. <a href={replayUrl}>How this example was made</a></figcaption>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>
 
