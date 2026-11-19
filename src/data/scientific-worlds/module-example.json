@@ -1,0 +1,39 @@
+{
+  "switch": 4,
+  "light": 13,
+  "width": 8,
+  "height": 4,
+  "row": 2,
+  "column": 3,
+  "moduleInput": 3,
+  "trials": [
+    {
+      "setting": 0,
+      "corners": [
+        1,
+        1,
+        -1,
+        1
+      ],
+      "product": -1,
+      "positive": 16,
+      "negative": 16,
+      "moduleSum": 0,
+      "lightSum": -1
+    },
+    {
+      "setting": 1,
+      "corners": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "product": 1,
+      "positive": 18,
+      "negative": 14,
+      "moduleSum": 4,
+      "lightSum": 3
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Experiment from '../../components/ScientificWorldExperiment.astro';
+import Modules from '../../components/ScientificWorldModules.astro';
 import Lab from '../../components/ScientificWorldLab.astro';
 import Prompts from '../../components/ScientificWorldPrompts.astro';
 import replayFrames from '../../data/scientific-worlds/teaching-figure.json';
@@ -37,6 +38,7 @@ const { M, N0, F } = score.conditions;
     </div>
 
     <Experiment frames={replayFrames} exampleWire={replayWire} replayUrl={release+'/docs/method.md#the-replay'}/>
+    <Modules/>
     <Lab/>
 
     <div class="prose">

@@ -1,0 +1,125 @@
+---
+import specimen from '../data/scientific-worlds/module-example.json';
+const { switch: port, light, width, height, row, column, moduleInput, trials } = specimen;
+const step = 26;
+const x = (c: number) => 18 + c * step;
+const y = (r: number) => 15 + r * step;
+const rows = Array.from({ length: height }, (_, i) => i);
+const cols = Array.from({ length: width }, (_, i) => i);
+const signed = (value: number) => value < 0 ? `−${-value}` : value > 0 ? `+${value}` : '0';
+---
+<figure class="cutaway" id="hidden-modules" aria-labelledby="cutaway-title">
+  <h3 id="cutaway-title">Inside the hidden circuit</h3>
+  <p class="lead">Each hidden module is a grid of switches. Start with every input off and flip switch {port}. Why does light {light} turn on?</p>
+  <ol class="flow" role="list" aria-label="From a switch to a light in the public example">
+    <li>
+      <h4>Find the switch</h4>
+      <div class="drawing">
+        <svg viewBox="0 0 218 110" role="img" aria-label={`A ${height} by ${width} grid. Switch ${port} touches four shaded squares. The outlined square is enlarged next.`}>
+          {rows.map(r => <path class="mesh" d={`M${x(0)} ${y(r)}H${x(width-1)}`}/>)}
+          {cols.map(c => <path class="mesh" d={`M${x(c)} ${y(0)}V${y(height-1)}`}/>)}
+          {[row-1,row].map(r => [column-1,column].map(c => <rect class="neighbor" x={x(c)} y={y(r)} width={step} height={step}/>))}
+          <rect class="chosen" x={x(column-1)} y={y(row-1)} width={step} height={step}/>
+          {rows.map(r => cols.map(c => <circle class="switch" cx={x(c)} cy={y(r)} r="2.5"/>))}
+          <circle class="selected" cx={x(column)} cy={y(row)} r="9"/>
+          <text class="switch-number" x={x(column)} y={y(row)+4} text-anchor="middle">{port}</text>
+        </svg>
+      </div>
+      <p>The 720 switches form 30 grids, ten each of size 4×4, 4×6 and 4×8. Opposite edges join. On this grid, switch {port} sits at the corner of four squares.</p>
+    </li>
+    <li>
+      <h4>Multiply four corners</h4>
+      <div class="drawing squares">
+        {trials.map(trial => <div class="square-state">
+          <span class="tag">Switch {port} {trial.setting ? 'on' : 'off'}</span>
+          <svg viewBox="0 0 90 61" role="img" aria-label={`The four signs are ${trial.corners.map(signed).join(', ')}, giving ${signed(trial.product)}.`}>
+            <rect class="chosen" x="23" y="11" width="45" height="38"/>
+            {trial.corners.map((v, i) => <g>
+              <circle class:list={['corner',i === 3 && 'flipped']} cx={23 + (i%2)*45} cy={11 + Math.floor(i/2)*38} r="10"/>
+              <text class:list={['sign',i === 3 && 'switch-number']} x={23 + (i%2)*45} y={15 + Math.floor(i/2)*38} text-anchor="middle">{v > 0 ? '+' : '−'}</text>
+            </g>)}
+          </svg>
+          <b>{signed(trial.product)}</b>
+        </div>)}
+      </div>
+      <p>The wiring decides which position of each switch counts as +1 and which as −1. Multiplying the four corners gives the square’s signal.</p>
+    </li>
+    <li>
+      <h4>Add the squares</h4>
+      <div class="drawing totals">
+        {trials.map(trial => <div class="count-row">
+          <div class="count-label"><span class="tag">Switch {port} {trial.setting ? 'on' : 'off'}</span><b>{trial.positive} − {trial.negative} = {signed(trial.moduleSum)}</b></div>
+          <span class="bar" role="img" aria-label={`${trial.positive} positive squares and ${trial.negative} negative squares`}>
+            {Array.from({length:width*height},(_,i)=><i class:list={[i<trial.positive && 'positive']}></i>)}
+          </span>
+        </div>)}
+      </div>
+      <p>Count the positive squares and subtract the negative ones. Four squares change sign here, moving the module total from 0 to +4.</p>
+    </li>
+    <li>
+      <h4>Combine six modules</h4>
+      <div class="drawing output">
+        <svg viewBox="-22 0 242 87" role="img" aria-label={`Six weighted module signals and one extra input combine to drive light ${light}.`}>
+          {Array.from({length:6},(_,i) => <g class:list={[i === moduleInput && 'trace']}>
+            {i === moduleInput && <text class="diagram-label" x="42" y={11+i*11} text-anchor="end">this grid</text>}
+            <rect class="module" x="46" y={4+i*11} width="12" height="7"/>
+            <path class="connection" d={`M58 ${7.5+i*11}H66L88 35H96`}/>
+          </g>)}
+          <path class="connection" d="M113 70V51 M131 35H160"/>
+          <circle class="sum" cx="113" cy="35" r="17"/>
+          <text class="sum-symbol" x="113" y="40" text-anchor="middle">Σ</text>
+          <text class="diagram-label" x="113" y="82" text-anchor="middle">extra input</text>
+          <circle class="lit" cx="177" cy="35" r="12"/>
+          <text class="diagram-label" x="177" y="62" text-anchor="middle">Light {light}</text>
+        </svg>
+        <b class="light-result">{signed(trials[0].lightSum)} · off <span aria-hidden="true">→</span> {signed(trials[1].lightSum)} · on</b>
+      </div>
+      <p>Six modules feed this light, each with its own weight. Here the other five cancel and the extra input adds −1. A positive total turns the light on.</p>
+    </li>
+  </ol>
+  <figcaption>Which switches share a square? Which lights does that grid feed? The model can try different combinations of switches and watch the lights for clues.</figcaption>
+</figure>
+<style>
+  .cutaway {container-type:inline-size;border-block:1px solid var(--kei);padding:18px 0 12px;margin:28px 0;scroll-margin-top:20px;color:var(--contour)}
+  h3,h4,p,ol,figcaption {margin:0}
+  h3 {font:500 clamp(25px,3vw,32px)/1.15 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
+  .lead {font:18px/1.4 var(--serif);margin-top:5px}
+  .flow {--gap:clamp(20px,2.3vw,36px);display:grid;grid-template-columns:1fr .95fr 1.04fr 1fr;gap:var(--gap);list-style:none;padding:0;margin:20px 0 12px}
+  .flow li {min-width:0;position:relative}
+  .flow li+li::before {content:'→';width:var(--gap);position:absolute;left:calc(-1 * var(--gap));top:78px;text-align:center;color:var(--contour);font:22px/1 var(--serif)}
+  h4 {font:500 22px/1.2 var(--serif);letter-spacing:-.02em;color:var(--sumi);margin-bottom:8px}
+  .drawing {display:flex;align-items:center;justify-content:center;height:116px;border-block:1px solid var(--kei);background:var(--shoal);padding:5px 9px;box-sizing:border-box;color:var(--sumi)}
+  .drawing>svg {width:100%;height:100%;display:block}
+  .mesh,.connection,.module {stroke:var(--sea);fill:none;stroke-width:1.2}
+  .neighbor {fill:var(--wave);fill-opacity:.19;stroke:var(--wave);stroke-width:1}
+  .chosen {fill:none;stroke:var(--sumi);stroke-width:2.5}
+  .switch,.lit {fill:var(--wave)}.selected,.flipped,.trace .module {fill:var(--sumi)}
+  svg {fill:var(--sumi);font-family:var(--mono)}
+  .switch-number {fill:var(--paper);font-weight:600;font-size:11px}
+  .squares {justify-content:space-evenly;gap:6px}.square-state {display:grid;justify-items:center}
+  .square-state svg {height:58px;width:90px}
+  .tag {font:12px/1.4 var(--mono);color:var(--contour)}
+  .square-state b,.count-label b,.light-result {font:600 14px/1.5 var(--mono)}
+  .corner {stroke:var(--sumi);fill:var(--paper);stroke-width:1.4}
+  .corner.flipped {fill:var(--sumi)}.sign {font-size:14px;font-weight:600}
+  .totals {flex-direction:column;align-items:stretch;gap:14px}
+  .count-label {display:flex;justify-content:space-between;align-items:baseline;gap:5px}
+  .bar {display:grid;grid-template-columns:repeat(32,minmax(0,1fr));gap:1px;margin-top:2px}
+  .bar i {height:10px;border:1px solid var(--sea);background:var(--paper)}.bar .positive {background:var(--wave);border-color:var(--wave)}
+  .output {flex-direction:column;gap:2px}
+  .output svg {min-height:0}.trace .module,.trace .connection {stroke:var(--sumi);stroke-width:2}
+  .sum {fill:var(--paper);stroke:var(--sumi);stroke-width:1.5}
+  .sum-symbol {font-size:17px}.diagram-label {font-size:12px}
+  .flow p,figcaption {font:16px/1.37 var(--serif)}.flow p {margin-top:9px}
+  figcaption {font-size:15px}
+  @container(max-width:59rem) {
+    .flow {grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 30px}
+    .flow li:nth-child(3)::before {display:none}
+  }
+  @container(max-width:36rem) {
+    .flow {grid-template-columns:1fr;gap:15px;margin-top:15px}
+    .flow li+li::before {display:none}
+    .drawing {height:110px}.flow h4 {margin-bottom:5px}
+    .flow p {margin-top:5px}
+  }
+</style>
