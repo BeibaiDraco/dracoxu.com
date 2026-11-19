@@ -27,15 +27,18 @@ const { M } = score.conditions;
 
     <div class="prose">
       <p class="lead">Give an AI a table of forces, masses and accelerations, and it might recover <i>F = ma</i>. Who thought to put acceleration in the table?</p>
-      <p>At the top of a toss, a ball is as still as one resting on a table. Only the tossed ball is accelerating. Choosing a quantity that reveals a difference like this is part of doing science. Scientific Worlds asks an AI to find one and use it to build a machine.</p>
+      <p>At the top of a toss, a ball is as still as one resting on a table. A moment later the tossed ball is falling. Measuring how velocity changes tells the two apart. By the time someone hands you a column called “acceleration,” they have already made a discovery on your behalf.</p>
+      <p>We built Scientific Worlds to test that earlier step. Give the AI a job in an unfamiliar world. Let it choose its experiments and decide which patterns in the readings are worth tracking. Then see what it can do with what it learned.</p>
 
       <h2>A box with 720 switches</h2>
-      <p>For each experiment, the AI sets 720 switches and 20 extra inputs on a sealed box, then pays to read 20 lights. Later it gets eight copies, each with its own target light pattern. The same 5,200 credits must cover experiments and eight controllers that hold those patterns as the switches change at random.</p>
+      <p>The AI sets 720 switches and 20 extra inputs on a sealed box, then pays to read 20 lights. Later it must build a controller for each of eight copies, so each holds its assigned light pattern as the switches change at random.</p>
+      <p>Holding every switch fixed on all eight boxes would cost more than the entire budget. Which reading is worth buying? Flip one switch on its own, or flip it together with a suspected partner? Each reading comes out of the same 5,200 credits that buy the parts.</p>
     </div>
 
     <section class="prose results" id="results" aria-labelledby="results-title">
       <h2 id="results-title">Eight wires for 32 switches</h2>
-      <p>Astra 6.0 Max was told that switches interact in groups of four. In one run it tried combinations of eight switches, guessed they lay on a grid, and tested which switches fit the next row. On one 32-switch grid it found a shortcut. Six wires made pairs move together and two made pairs move oppositely. Every controller used those eight wires to cancel that grid’s effect, with other connections handling the rest of the box.</p>
+      <p>Astra 6.0 Max was told that switches interact in groups of four. In one run it tried combinations of eight switches, guessed they lay on a grid, and tested which switches fit the next row. One grid gave it a new quantity to work with. The combined effect of 32 switches could be tracked with a single number. Many switch settings gave the same total.</p>
+      <p>That changed what Astra could build. Six wires made pairs move together and two made pairs move oppositely. Together they held the grid’s total at zero. The rest of its switches could flip freely and the grid would contribute nothing to the lights. All eight controllers reused those wires.</p>
       <p class="finding">With the four-switch clue (M), Astra built all eight working controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 changes of input.</p>
     </section>
 
@@ -45,8 +48,14 @@ const { M } = score.conditions;
 
     <Prompts release={release}/>
 
+    <section class="prose" id="why-build" aria-labelledby="why-build-title">
+      <h2 id="why-build-title">Why end with a machine?</h2>
+      <p>In a real lab, years can pass before anyone finds a use for a discovery. Here we can let the inputs change 100,000 times and watch what the machine does. If we awarded points for naming the grid, our own theory would become the answer key. A model that finds a different way to keep all eight devices working earns the same score. That leaves room to discover something we didn’t think to ask for.</p>
+    </section>
+
     <footer class="endnotes prose">
       <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>Scoring and results</a></p>
+      <p class="sources">The ideas behind the task · <a href="/writing/scientific-understanding/">What counts as understanding?</a> · <a href="/writing/scientific-value/">What makes a discovery valuable?</a></p>
       <p class="sources">Related work · <a href="https://arxiv.org/abs/1905.11481">AI Feynman</a> · <a href="https://www.cs.columbia.edu/~bchen/neural-state-variables/">Discovering state variables from video</a> · <a href="https://allenai.github.io/discoveryworld/">DiscoveryWorld</a></p>
     </footer>
   </div></article>
