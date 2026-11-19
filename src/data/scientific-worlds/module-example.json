@@ -1,39 +1,19 @@
 {
-  "switch": 4,
-  "light": 13,
-  "width": 8,
-  "height": 4,
-  "row": 2,
-  "column": 3,
-  "moduleInput": 3,
-  "trials": [
-    {
-      "setting": 0,
-      "corners": [
-        1,
-        1,
-        -1,
-        1
-      ],
-      "product": -1,
-      "positive": 16,
-      "negative": 16,
-      "moduleSum": 0,
-      "lightSum": -1
-    },
-    {
-      "setting": 1,
-      "corners": [
-        1,
-        1,
-        -1,
-        -1
-      ],
-      "product": 1,
-      "positive": 18,
-      "negative": 14,
-      "moduleSum": 4,
-      "lightSum": 3
-    }
-  ]
+  "switchNumber": 4,
+  "lightNumber": 13,
+  "ports": [
+    [629, 341, 716, 30, 433, 38, 145, 102],
+    [586, 714, 309, 139, 326, 427, 317, 59],
+    [255, 372, 337, 4, 448, 345, 620, 197],
+    [384, 570, 357, 653, 535, 698, 414, 177]
+  ],
+  "signsWhenOff": [
+    [-1, -1, 1, 1, 1, -1, 1, -1],
+    [1, -1, 1, 1, -1, 1, 1, 1],
+    [-1, -1, -1, 1, 1, 1, 1, -1],
+    [1, 1, 1, 1, 1, 1, 1, -1]
+  ],
+  "weight": 1,
+  "otherModules": 0,
+  "auxiliarySign": -1
 }
