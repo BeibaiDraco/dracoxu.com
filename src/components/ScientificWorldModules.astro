@@ -1,190 +1,110 @@
 ---
-import { ports, initialWindow, lightNumber, readModule, signed, switchNumber, windows } from '../data/scientific-worlds/module-rule';
-
-const start = readModule(false);
+import { initialWindow, lightNumber, ports, readModule, signed, switchNumber, windows } from '../data/scientific-worlds/module-rule';
 const corners = windows[initialWindow];
-const positive = start.products.filter(p => p > 0).length;
+const baseline = readModule(false);
 ---
-<figure class="cutaway" id="hidden-modules" aria-labelledby="cutaway-title">
-  <h3 id="cutaway-title">Inside the hidden circuit</h3>
-  <p class="lead">On the panel, 4, 139, 309 and 337 are just switch numbers. Inside the box they sit at the corners of a square. The model can try them together and watch the lights for clues.</p>
-  <div class="module-demo">
-    <div class="explorer">
-      <div class="map">
-        <h4>One hidden module <span>4 × 8 switches</span></h4>
-        <p>Each cell shows a switch number and the sign its wiring gives it. All switches start off.</p>
-        <div class="board" role="img" aria-label="A hidden four-by-eight grid. The highlighted switches are 309, 139, 337 and 4." data-board>
-          {ports.map((port, i) =>
-            <span class:list={['cell', {selected: corners.includes(i)}]} data-cell>
-              <small>#{port}</small><b>{signed(start.signs[i])}</b>
-            </span>
-          )}
-        </div>
-        <div class="scan">
-          <button type="button" data-prev aria-label="Inspect previous square" disabled>Previous</button>
-          <button type="button" data-next aria-label="Inspect next square" disabled>Next square</button>
-          <span>Square <b data-index>{initialWindow + 1}</b> of {ports.length}</span>
-        </div>
-      </div>
-      <div class="square-rule">
-        <h4>One square <span>2 × 2 switches</span></h4>
-        <p>Multiply the four highlighted signs. Moving one place across picks a new group of four.</p>
-        <div class="equation" aria-label="Four signed switch values and their product">
-          {corners.map((idx, i) => <>
-            {i > 0 && <span class="operator">×</span>}
-            <span class="factor" data-factor><small>#{ports[idx]}</small><b>{signed(start.signs[idx])}</b></span>
-          </>)}
-          <span class="operator">=</span><b class="product" data-product>{signed(start.products[initialWindow])}</b>
-        </div>
-        <h5>Add all {ports.length} squares</h5>
-        <div class="addition">
-          <div class="terms" role="img" data-terms aria-label="One sign per square, laid out in grid order.">
-            {start.products.map((term,i) => <span class:list={['term', {picked:i === initialWindow}]} data-term>{term > 0 ? '+' : '−'}</span>)}
-          </div>
-          <div class="sum"><span class="count" data-count>{positive} − {ports.length - positive} =</span><b data-total>{signed(start.total)}</b><span>Module total</span></div>
-        </div>
-        <p class="edge">The edges wrap around, so a square can start at any switch.</p>
-      </div>
+<figure id="hidden-modules" aria-labelledby="cutaway-title">
+  <div class="overview">
+    <div class="explanation">
+      <h3 id="cutaway-title">Inside the hidden circuit</h3>
+      <p>Switches that look unrelated on the panel are neighbors inside the box. In this grid, the four highlighted switches act together. Their signs multiply. Adding up all the squares gives one number for the whole grid. Six weighted grid totals help decide each light.</p>
     </div>
-    <div class="signal">
-      <div class="intervention">
-        <button type="button" class="flip" role="switch" aria-checked="false" aria-label="Flip switch 4" data-flip disabled>
-          <i class="track" aria-hidden="true"></i>Flip switch {switchNumber}<b data-setting>Off</b>
-        </button>
-        <span>One flip changes the four squares that touch it.</span>
-      </div>
-      <div class="reading">
-        <span>Light {lightNumber}</span>
-        <span><span data-source-total>{signed(start.total)}</span> − 1 = <b data-light-sum>{signed(start.lightSum)}</b></span>
-        <strong class="lamp" data-lamp><i aria-hidden="true"></i><span data-lamp-state>Off</span></strong>
+    <div class="map">
+      <div class="map-label">One hidden grid <span>4 × 8 switches</span></div>
+      <div class="board" role="img" data-board aria-label={`Four-by-eight grid. The highlighted square contains switches ${corners.map(i => ports[i]).join(', ')}.`}>
+        {ports.map((port,i) => <span class:list={['cell', {selected:corners.includes(i)}]} data-cell>
+          <span>{port}</span><b class="sign">{signed(baseline.signs[i])}</b>
+        </span>)}
       </div>
     </div>
   </div>
-  <figcaption>The 720 switches form 30 grids, ten each of size 4×4, 4×6 and 4×8. Each light combines six weighted grid totals with one extra input and turns on above zero. Here the other five grids cancel and the extra input contributes −1.</figcaption>
-  <noscript><p>Flipping switch 4 raises the module total from 0 to +4. Light 13 goes from −1 to +3 and turns on.</p></noscript>
-  <span class="assist" role="status" data-status></span>
+  <details>
+    <summary>Explore the square rule</summary>
+    <div class="workings">
+      <div>
+        <h4>One square</h4>
+        <p>Each switch has a fixed way of turning off and on into −1 and +1. The four highlighted signs give this product.</p>
+        <div class="equation" data-equation>{corners.map(i => signed(baseline.signs[i])).join(' × ')} = <b>{signed(baseline.products[initialWindow])}</b></div>
+        <div class="controls"><button type="button" data-next disabled>Next square</button><span>Square <b data-index>{initialWindow + 1}</b> of {ports.length}</span></div>
+      </div>
+      <div>
+        <h4>One light</h4>
+        <p>Count one product per square, wrapping at the edges. This grid feeds light {lightNumber} with a weight of −2. The remaining inputs add up to −5.</p>
+        <div class="readout">Grid total <b data-total>{signed(baseline.total)}</b><span aria-hidden="true">→</span> Light {lightNumber} <b data-light>off ({signed(baseline.lightSum)})</b></div>
+        <div class="controls"><button type="button" role="switch" aria-checked="false" aria-label={`Flip switch ${switchNumber}`} data-flip disabled>Flip switch {switchNumber}</button><span>All other inputs stay off.</span></div>
+      </div>
+    </div>
+    <span class="assist" data-status role="status"></span>
+  </details>
 </figure>
 <script>
-  import { initialWindow, lightNumber, ports, readModule, signed, switchNumber, windows } from '../data/scientific-worlds/module-rule';
-
+  import { initialWindow, lightNumber, ports, readModule, signed, windows } from '../data/scientific-worlds/module-rule';
   const figure = document.getElementById('hidden-modules')!;
-  const get = <T extends HTMLElement = HTMLElement>(selector: string) => figure.querySelector<T>(selector)!;
+  const details = figure.querySelector('details')!;
   const cells = figure.querySelectorAll<HTMLElement>('[data-cell]');
-  const terms = figure.querySelectorAll<HTMLElement>('[data-term]');
-  const factors = figure.querySelectorAll<HTMLElement>('[data-factor]');
-  const previous = get<HTMLButtonElement>('[data-prev]');
-  const next = get<HTMLButtonElement>('[data-next]');
-  const flip = get<HTMLButtonElement>('[data-flip]');
+  const next = figure.querySelector<HTMLButtonElement>('[data-next]')!;
+  const flip = figure.querySelector<HTMLButtonElement>('[data-flip]')!;
   let face = initialWindow;
   let on = false;
-  const baseline = readModule(false);
 
   function render() {
-    const { signs, products, total, lightSum } = on ? readModule(true) : baseline;
+    const { signs, products, total, lightSum } = readModule(on);
     const corners = windows[face];
     cells.forEach((cell,i) => {
       cell.classList.toggle('selected', corners.includes(i));
-      cell.classList.toggle('changed', signs[i] !== baseline.signs[i]);
       cell.querySelector('b')!.textContent = signed(signs[i]);
     });
-    factors.forEach((factor,i) => {
-      const idx = corners[i];
-      factor.querySelector('small')!.textContent = '#' + ports[idx];
-      factor.querySelector('b')!.textContent = signed(signs[idx]);
-    });
-    terms.forEach((term,i) => {
-      term.classList.toggle('picked', i === face);
-      term.classList.toggle('changed', products[i] !== baseline.products[i]);
-      term.textContent = products[i] > 0 ? '+' : '−';
-    });
-    const positive = products.filter(product => product > 0).length;
-    const addresses = corners.map(i => ports[i]).join(', ');
-    get('[data-board]').setAttribute('aria-label', 'A hidden four-by-eight grid. Highlighted switches: ' + addresses + '.');
-    get('[data-terms]').setAttribute('aria-label', positive + ' positive and ' + (ports.length - positive) + ' negative squares.');
-    get('[data-index]').textContent = String(face + 1);
-    get('[data-product]').textContent = signed(products[face]);
-    get('[data-count]').textContent = positive + ' − ' + (ports.length - positive) + ' =';
-    get('[data-total]').textContent = signed(total);
-    get('[data-source-total]').textContent = signed(total);
-    get('[data-light-sum]').textContent = signed(lightSum);
-    get('[data-lamp-state]').textContent = lightSum > 0 ? 'On' : 'Off';
-    get('[data-lamp]').classList.toggle('lit', lightSum > 0);
+    const names = corners.map(i => ports[i]).join(', ');
+    figure.querySelector('[data-board]')!.setAttribute('aria-label', 'Four-by-eight grid. Highlighted switches: ' + names + '.');
+    const equation = figure.querySelector('[data-equation]')!;
+    const product = equation.querySelector('b')!;
+    equation.replaceChildren(corners.map(i => signed(signs[i])).join(' × ') + ' = ', product);
+    product.textContent = signed(products[face]);
+    const lamp = (lightSum > 0 ? 'on' : 'off') + ' (' + signed(lightSum) + ')';
+    figure.querySelector('[data-index]')!.textContent = String(face + 1);
+    figure.querySelector('[data-total]')!.textContent = signed(total);
+    figure.querySelector('[data-light]')!.textContent = lamp;
     flip.setAttribute('aria-checked', String(on));
-    get('[data-setting]').textContent = on ? 'On' : 'Off';
-    get('[data-status]').textContent = 'Square ' + (face + 1) + ', switches ' + addresses + ', product ' + signed(products[face]) + '. Module total ' + signed(total) + '. Light ' + lightNumber + (lightSum > 0 ? ' on.' : ' off.') + ' Switch ' + switchNumber + (on ? ' on.' : ' off.');
+    figure.querySelector('[data-status]')!.textContent = 'Switches ' + names + ' give ' + signed(products[face]) + '. Grid total ' + signed(total) + '. Light ' + lightNumber + ' ' + lamp + '.';
   }
-  function step(offset: number) {
-    face = (face + offset + windows.length) % windows.length;
+  next.addEventListener('click', () => {
+    face = (face + 1) % windows.length;
     render();
-  }
-  previous.addEventListener('click', () => step(-1));
-  next.addEventListener('click', () => step(1));
+  });
   flip.addEventListener('click', () => { on = !on; render(); });
-  for (const button of [previous,next,flip]) button.disabled = false;
+  details.addEventListener('toggle', () => {
+    if (!details.open) { face = initialWindow; on = false; render(); }
+  });
+  next.disabled = flip.disabled = false;
 </script>
 <style>
-  .cutaway {container-type:inline-size;margin:30px 0;padding:18px 0 12px;border-block:1px solid var(--kei);scroll-margin-top:20px;color:var(--contour)}
-  h3,h4,h5,p,figcaption {margin:0}
+  figure {container-type:inline-size;position:relative;color:var(--contour);border-block:1px solid var(--kei);margin:26px 0;padding:16px 0 11px;scroll-margin-top:20px}
+  h3,h4,p {margin:0}
+  .overview {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,1fr);align-items:center;gap:clamp(24px,5vw,78px)}
   h3 {font:500 clamp(25px,3vw,32px)/1.15 var(--serif);letter-spacing:-.025em;color:var(--sumi)}
-  .lead {max-width:52em;font:19px/1.4 var(--serif);margin:7px 0 16px}
-  .module-demo {border:1px solid var(--kei);background:var(--shoal)}
-  .explorer {display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(26px,4vw,64px);padding:clamp(14px,2.1vw,30px)}
-  h4,h5 {color:var(--sumi);font:500 24px/1.15 var(--serif);letter-spacing:-.025em}
-  h4 span {margin-left:8px;color:var(--sea);font:13px var(--mono);letter-spacing:0;white-space:nowrap}
-  .explorer p,figcaption,noscript p {font:16px/1.35 var(--serif)}
-  .explorer p {margin:6px 0 12px}
-  .board,.terms {display:grid;grid-template-columns:repeat(8,minmax(0,1fr));font-family:var(--mono);text-align:center}
-  .board {border:1px solid var(--kei);gap:1px;background:var(--kei)}
-  .cell,.factor {display:grid;place-content:center;justify-items:center}
-  .cell {height:45px;background:var(--paper);color:var(--contour);line-height:1.1}
-  .cell small,.factor small {font:12px/1.3 var(--mono)}
-  .cell small {color:var(--sea)}
-  .cell b {font:500 17px/1.2 var(--mono)}
-  .selected,.factor {color:var(--paper);background:var(--wave)}
-  .selected small {color:inherit}
-  .cell.changed b {border-bottom:2px solid currentColor}
-  .scan,.intervention,.reading {display:flex;align-items:center;gap:10px}
-  .scan {margin-top:12px;gap:6px;flex-wrap:wrap}
-  button {font:14px var(--mono);border:1px solid var(--sea);background:var(--paper);color:var(--sumi);cursor:pointer;border-radius:0;padding:7px 10px}
-  button:hover:enabled {border-color:var(--wave);box-shadow:inset 0 0 0 1px var(--wave)}
-  button:focus-visible {outline:2px solid var(--wave);outline-offset:3px}
-  button:disabled {cursor:default}
-  .scan span {font:13px var(--mono);margin-left:5px;color:var(--contour)}
-  .equation {display:flex;align-items:center;gap:clamp(3px,.65vw,10px);flex-wrap:nowrap}
-  .factor {min-width:0;flex:1;max-width:72px;height:50px;font:500 21px/1.1 var(--mono)}
-  .operator {font:19px/1 var(--serif)}.product,.sum b {font:500 clamp(26px,2.4vw,34px)/1 var(--mono);color:var(--sumi)}
-  h5 {margin-top:15px;font-size:20px}
-  .addition {display:flex;align-items:center;gap:clamp(14px,2.5vw,36px);margin-top:6px}
-  .terms {width:min(55%,224px);gap:1px}
-  .term {font:14px/1.12 var(--mono);color:var(--contour);background:var(--paper);border:1px solid var(--kei)}
-  .term.changed {border-bottom:2px solid var(--wave);background:color-mix(in srgb,var(--wave) 19%,var(--paper))}
-  .term.picked {background:var(--wave);color:var(--paper);border-color:var(--wave)}
-  .sum {display:grid;grid-template-columns:auto auto;gap:3px 6px;align-items:center;font:13px var(--mono)}
-  .sum span:last-child {grid-column:1/-1;color:var(--sea)}
-  .explorer .edge {margin:6px 0 0;font-size:15px}
-  .signal {border-top:1px solid var(--kei);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px;padding:12px clamp(14px,2.1vw,30px);background:var(--paper)}
-  .intervention {flex-wrap:wrap;gap:8px 14px}.intervention>span {font:16px/1.25 var(--serif)}
-  .flip {display:inline-flex;align-items:center;gap:8px}
-  .track {display:inline-block;position:relative;width:25px;height:14px;border:1px solid var(--sea);border-radius:10px}
-  .track::after {content:'';position:absolute;top:2px;left:3px;width:8px;height:8px;border-radius:50%;background:var(--sea)}
-  .flip[aria-checked=true] .track {background:var(--wave);border-color:var(--wave)}
-  .flip[aria-checked=true] .track::after {left:13px;background:var(--paper)}
-  .reading {font:15px/1.5 var(--mono);gap:12px;flex-wrap:wrap}
-  .lamp {display:inline-flex;align-items:center;gap:6px;min-width:3.3em}.lamp i {width:15px;height:15px;border:2px solid var(--sea);border-radius:50%}
-  .lamp.lit i {background:var(--wave);border-color:var(--wave);outline:1px solid var(--wave);outline-offset:2px}
-  figcaption {max-width:71em;margin:9px 0 0}.assist {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-  @container(max-width:49rem) {
-    .explorer {grid-template-columns:1fr;gap:18px}
-    .square-rule {border-top:1px solid var(--kei);padding-top:14px}
-    .signal {align-items:flex-start;flex-direction:column}
-    .cell {height:41px}
-  }
-  @container(max-width:25rem) {
-    .explorer,.signal {padding:12px 8px}
-    h4 {font-size:22px}h4 span {font-size:12px;margin-left:5px}
-    .cell small,.factor small {font-size:11px}
-    .equation {gap:4px}.terms {width:52%}
-    .cell b {font-size:15px}.scan {gap:4px}.scan button {font-size:13px;padding:8px}
-    .scan span {font-size:12px;margin-left:2px}
+  p {font:17px/1.38 var(--serif);margin-top:7px;max-width:52ch}
+  .map-label,.controls,.readout,.equation,button,summary,.board {font-family:var(--mono)}
+  .map-label {display:flex;justify-content:space-between;align-items:center;margin:0 0 4px;font-size:13px}
+  .map-label span {color:var(--sea)}
+  .board {display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:1px;background:var(--kei);border:1px solid var(--kei)}
+  .cell {display:grid;place-items:center;padding:3px 0;background:var(--paper);color:var(--contour);font-size:13px;line-height:1.15}
+  .cell.selected {background:var(--wave);color:var(--paper)}
+  .sign {display:none}.overview:has(+ details[open]) .sign {display:block;font-size:15px}
+  details {margin-top:7px}
+  summary {width:fit-content;color:var(--wave);font-size:13px;cursor:pointer;padding:7px 2px}
+  summary:hover {text-decoration:underline}
+  .workings {display:grid;grid-template-columns:1fr 1fr;gap:22px 5%;background:var(--shoal);padding:15px 18px}
+  h4 {font:500 21px/1.2 var(--serif);color:var(--sumi)}
+  .workings p {font-size:16px}
+  .equation,.readout {font-size:15px;line-height:1.45;color:var(--sumi);margin:10px 0}
+  .readout span {padding-inline:8px}
+  .controls {display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap;font-size:13px}
+  button {font-size:13px;border:1px solid var(--sea);border-radius:0;background:var(--paper);color:var(--sumi);padding:7px 10px;cursor:pointer}
+  button[aria-checked=true] {background:var(--wave);color:var(--paper)}
+  button:focus-visible,summary:focus-visible {outline:2px solid var(--wave);outline-offset:2px}
+  .assist {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  @container (max-width:43rem) {
+    .overview,.workings {grid-template-columns:1fr;gap:12px}
+    .workings {gap:18px}.cell {padding:4px 0}
   }
 </style>

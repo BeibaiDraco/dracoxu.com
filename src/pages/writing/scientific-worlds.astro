@@ -6,7 +6,6 @@ import Lab from '../../components/ScientificWorldLab.astro';
 import Prompts from '../../components/ScientificWorldPrompts.astro';
 import replayFrames from '../../data/scientific-worlds/teaching-figure.json';
 import score from '../../data/scientific-worlds/scorecard.json';
-import discovery from '../../data/scientific-worlds/discovery.json';
 import { writing } from '../../data/writing.js';
 
 const entry = writing.find(item => item.href === '/writing/scientific-worlds/')!;
@@ -14,7 +13,7 @@ const repo = 'https://github.com/BeibaiDraco/scientific-worlds-benchmark';
 const release = repo + '/blob/fa0c8028b2b4fe718acba6bd956c9059415fd59e';
 // Device zero in the released teaching replay uses relabelled switch addresses.
 const replayWire = { source: 481, destination: 378, inverted: true };
-const { M, N0, F } = score.conditions;
+const { M } = score.conditions;
 ---
 <Base title={entry.title} description={entry.description} current="Writing" article={true}
   author="Draco (Yunlong) Xu" publishedTime={entry.date} updated="November 19, 2026"
@@ -28,36 +27,23 @@ const { M, N0, F } = score.conditions;
 
     <div class="prose">
       <p class="lead">Give an AI a table of forces, masses and accelerations, and it might recover <i>F = ma</i>. Who thought to put acceleration in the table?</p>
-      <p>Toss a ball straight up. At the top of its flight it has the same velocity as a ball resting on a table. One stays put. The other is already accelerating downward. What distinguishes them at that instant is how their velocities <em>change</em>. When a benchmark supplies a column for acceleration, it gives the model that insight before the test begins.</p>
-
-      <p>Scientific Worlds asks an AI to choose for itself what is worth studying. In a real lab, years can pass before anyone knows what a question was worth. In a simulation, we can follow an idea all the way into a machine and see whether it works.</p>
+      <p>At the top of a toss, a ball is as still as one resting on a table. Only the tossed ball is accelerating. Choosing a quantity that reveals a difference like this is part of doing science. Scientific Worlds asks an AI to find one and use it to build a machine.</p>
 
       <h2>A box with 720 switches</h2>
-      <p>Imagine a sealed box with 720 numbered switches and 20 lights. You can set the switches and pay to see which lights come on. Your job is to build a controller that keeps a particular pattern lit even when someone else flips the switches.</p>
-      <p>The model gets eight copies of the box, each with its own target pattern. Every reading it buys leaves a little less money to build the eight controllers.</p>
+      <p>For each experiment, the AI sets 720 switches and 20 extra inputs on a sealed box, then pays to read 20 lights. Later it gets eight copies, each with its own target light pattern. The same 5,200 credits must cover experiments and eight controllers that hold those patterns as the switches change at random.</p>
     </div>
+
+    <section class="prose results" id="results" aria-labelledby="results-title">
+      <h2 id="results-title">Eight wires for 32 switches</h2>
+      <p>Astra 6.0 Max was told that switches interact in groups of four. In one run it tried combinations of eight switches, guessed they lay on a grid, and tested which switches fit the next row. On one 32-switch grid it found a shortcut. Six wires made pairs move together and two made pairs move oppositely. Every controller used those eight wires to cancel that grid’s effect, with other connections handling the rest of the box.</p>
+      <p class="finding">With the four-switch clue (M), Astra built all eight working controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong> across 19 worlds. Both wins came on the same world, tried seven times. Each winning controller held its target through 100,000 changes of input.</p>
+    </section>
 
     <Experiment frames={replayFrames} exampleWire={replayWire} replayUrl={release+'/docs/method.md#the-replay'}/>
     <Modules/>
     <Lab/>
 
-    <div class="prose">
-      <h2>Eight wires for 32 switches</h2>
-      <p>Astra 6.0 Max was told that switches could act in groups of four. In one run, it arranged 32 scattered switch numbers in four rows of eight. The switches at the corners of each little square acted together. The grid showed how part of the box worked.</p>
-      <p>Astra found it could cancel the whole group’s effect on the lights by wiring six pairs of switches to move together and two pairs to move in opposite directions. We found <strong>those same eight connections in every finished circuit</strong>. When the devices were ready, Astra had {discovery.minimum_capital} credits left.</p>
-    </div>
-
-    <section class="prose results" id="results" aria-labelledby="results-title">
-      <h2 id="results-title">Could Astra do it again?</h2>
-      <p>With the four-switch rule (M) and a time budget of 10–12 hours per attempt, Astra built eight working controllers in <strong>{M.successes} of {M.sessions} attempts ({M.percent}%)</strong>. Both wins came on the same world. Each winning controller held its target through 100,000 changes of switch settings.</p>
-      <p>With just the manual (N0), Astra succeeded in {N0.successes} of {N0.sessions} attempts. When the instructions described how the switches were organized (F), it succeeded in {F.successes} of {F.sessions}.</p>
-    </section>
-
     <Prompts release={release}/>
-
-    <div class="prose">
-      <p>In a physics textbook, acceleration already has a name. Our hope is that an AI can learn enough from experiments of its own to enter an unfamiliar world and show us a quantity worth naming.</p>
-    </div>
 
     <footer class="endnotes prose">
       <p><a class="run" href={release+'/docs/run.md'}>Run Scientific Worlds ↗</a><a href={release+'/docs/method.md'}>Scoring and results</a></p>
@@ -82,6 +68,7 @@ const { M, N0, F } = score.conditions;
   .prose .lead {font:400 clamp(23px,2.35vw,31px)/1.30 var(--serif);color:var(--sumi);letter-spacing:-.015em}
   h2 {font:450 clamp(29px,3vw,38px)/1.12 var(--serif);letter-spacing:-.025em;color:var(--sumi);margin:33px 0 12px;text-wrap:balance}
   .results {scroll-margin-top:18px}
+  .prose .finding {padding-left:15px;border-left:3px solid var(--wave)}
   .endnotes {border-top:1px solid var(--kei);padding:17px 0 10px;margin-top:28px;font:12px/1.65 var(--mono)}
   .endnotes p:first-child {display:flex;gap:3px 22px;flex-wrap:wrap;margin-bottom:8px}
   .endnotes p.sources {font:15px/1.5 var(--serif);color:var(--sea)}

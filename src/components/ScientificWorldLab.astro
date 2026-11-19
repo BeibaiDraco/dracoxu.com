@@ -1,19 +1,17 @@
 ---
-// Observations from the released teaching box with the 20 auxiliary inputs off.
-const reference = '11001001000001011000';
-const perturbed = '11001001000011011000';
+import example from '../data/scientific-worlds/module-example.json';
+const { switchNumber, allOffReading: reference, switchOnReading: perturbed } = example;
 const changedLight = Array.from(perturbed).findIndex((bit, i) => bit !== reference[i]);
 const readings = [
   { label: 'All inputs off', bits: reference },
-  { label: 'Switch 4 on', bits: perturbed }
+  { label: `Switch ${switchNumber} on`, bits: perturbed }
 ];
 ---
-<figure class="lab" id="laboratory" data-lab data-reference={reference} data-perturbed={perturbed} data-observed-index={changedLight} aria-labelledby="lab-title">
+<figure class="lab" id="laboratory" data-lab data-switch-number={switchNumber} data-reference={reference} data-perturbed={perturbed} data-observed-index={changedLight} aria-labelledby="lab-title">
   <header class="lab-head">
     <h3 id="lab-title">Inside the model’s lab</h3>
     <div class="kit">
-      <a href="#prompts">Manual &amp; starting prompt</a>
-      <span>5,200 credits for tests and parts</span>
+      <a href="#prompts">Starting instructions</a>
     </div>
   </header>
   <ol class="flow" role="list" aria-label="Experiments in the research lab">
@@ -22,25 +20,25 @@ const readings = [
       <div class="instrument console">
         <div class="terminal-bar"><span aria-hidden="true">&gt;_</span> Lab console</div>
         <pre><code>x = [0] * 740
-x[4] = <b data-code-bit>1</b>
+x[{switchNumber}] = <b data-code-bit>1</b>
 act({`{"op":"observe", "x":x}`})</code></pre>
       </div>
     </li>
     <li>
-      <h4>Flip switch 4</h4>
+      <h4>Flip switch {switchNumber}</h4>
       <div class="instrument switches" role="group" aria-label="Magnified view of three of the 720 switches">
         <span class="ellipsis" aria-hidden="true">…</span>
-        <div class="control"><span>3</span><span class="track" aria-hidden="true"></span><span>Off</span></div>
-        <button class="control active" type="button" role="switch" aria-label="Switch 4" aria-checked="true" data-lab-flip disabled>
-          <span>4</span><span class="track" aria-hidden="true"></span><strong data-switch-state>On</strong>
+        <div class="control"><span>{switchNumber-1}</span><span class="track" aria-hidden="true"></span><span>Off</span></div>
+        <button class="control active" type="button" role="switch" aria-label={`Switch ${switchNumber}`} aria-checked="true" data-lab-flip disabled>
+          <span>{switchNumber}</span><span class="track" aria-hidden="true"></span><strong data-switch-state>On</strong>
         </button>
-        <div class="control"><span>5</span><span class="track" aria-hidden="true"></span><span>Off</span></div>
+        <div class="control"><span>{switchNumber+1}</span><span class="track" aria-hidden="true"></span><span>Off</span></div>
         <span class="ellipsis" aria-hidden="true">…</span>
       </div>
       <p>All other inputs stay off.</p>
     </li>
     <li>
-      <h4>Probe the hidden box</h4>
+      <h4>Buy one reading</h4>
       <div class="instrument box">
         <svg viewBox="0 0 190 70" role="img" aria-label="720 switches and 20 auxiliary inputs enter the hidden circuit. The box returns 20 output bits.">
           <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -51,7 +49,7 @@ act({`{"op":"observe", "x":x}`})</code></pre>
         </svg>
         <span>720 switches + 20 extra controls</span>
       </div>
-      <p>A reading here costs 1 credit.</p>
+      <p>Cost per reading · 1 credit</p>
     </li>
     <li>
       <h4>Read 20 lights</h4>
@@ -67,7 +65,6 @@ act({`{"op":"observe", "x":x}`})</code></pre>
     </li>
   </ol>
   <div class="loop"><span>Choose the next experiment</span></div>
-  <figcaption>The model learns its target patterns when it moves on to build the controllers.</figcaption>
   <span class="assist" role="status" data-lab-status></span>
 </figure>
 
@@ -85,7 +82,7 @@ act({`{"op":"observe", "x":x}`})</code></pre>
       lab.toggleAttribute('data-off', !on);
       lab.querySelector('[data-code-bit]')!.textContent = on ? '1' : '0';
       lab.querySelector('[data-switch-state]')!.textContent = on ? 'On' : 'Off';
-      const setting = `Switch 4 ${on ? 'on' : 'off'}`;
+      const setting = `Switch ${lab.dataset.switchNumber} ${on ? 'on' : 'off'}`;
       lab.querySelector('[data-reading-label="1"]')!.textContent = setting;
       reading.setAttribute('aria-label', bits);
       Array.from(reading.children).forEach((cell, i) => {

@@ -58,19 +58,19 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           <use data-incoming href="#sw-input-0"/>
         </svg>
       </div>
-      <p>720 switches, each randomly on or off.</p>
+      <p>720 switches, randomly on or off.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI builds</span><h4>Control circuit</h4></div>
       <div class="visual controller">
-        <span class="gate-label" data-control-label>One installed wire</span>
+        <span class="gate-label" data-control-label>One of the eight wires</span>
         <div class="wire-example" aria-label={`Read switch ${source} and drive switch ${destination} with ${inverted ? 'its opposite' : 'the same'} value`}>
           <span class="pin">Read<b>{source}</b></span>
           <span class="logic">{inverted ? 'NOT' : 'WIRE'}</span>
           <span class="pin">Set<b>{destination}</b></span>
         </div>
       </div>
-      <p>The controller can copy a switch or target bit, set a bit to 0 or 1, flip it (NOT), combine two bits (AND, OR, XOR), or choose between them (MUX).</p>
+      <p>Use wires, constants (0 or 1), NOT, AND, OR, XOR or MUX. Here switch {destination} takes the opposite of switch {source}.</p>
     </li>
     <li>
       <div class="label"><span>After control</span><h4>Modified input</h4></div>
@@ -80,7 +80,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           <use data-effective href="#sw-controlled-0"/>
         </svg>
       </div>
-      <p><strong data-changes>{first.changes} of 720 bits changed on this trial.</strong> This controller also sends the target pattern to 20 extra inputs.</p>
+      <p><strong data-changes>{first.changes} of 720 bits changed on this trial.</strong></p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI investigates</span><h4>Hidden circuit</h4></div>
@@ -93,7 +93,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           <text x="50" y="32" text-anchor="middle" fill="currentColor">?</text>
         </svg>
       </div>
-      <p>The wiring inside the box determines which lights come on.</p>
+      <p>Each light has an extra input set to its target. The hidden wiring can outweigh that input.</p>
     </li>
     <li>
       <div class="label"><span class="model-role">AI’s goal</span><h4>Match the fixed target</h4></div>
@@ -112,15 +112,15 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
           )}
         </div>)}
       </div>
-      <p>With the controller connected, all 20 lights must match the target on every trial. Underlines mark misses.</p>
+      <p>All 20 lights must match on every trial. Underlines mark misses.</p>
     </li>
   </ol>
 
   <div class="controls" data-controls hidden>
-    <button type="button" data-next-input>Flip the switches <span aria-hidden="true">→</span></button>
+    <button type="button" data-next-input>Try another input</button>
     <button type="button" data-bypass aria-pressed="false">Bypass controller</button>
   </div>
-  <figcaption>A filled square means on. <a href={replayUrl}>How this example was made</a></figcaption>
+  <figcaption>Filled squares are on. <a href={replayUrl}>Replay this controller</a></figcaption>
   <span class="assist" aria-live="polite" data-feedback></span>
 </figure>
 
@@ -147,7 +147,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
       bench.querySelector('[data-incoming]')!.setAttribute('href', `#sw-input-${index}`);
       bench.querySelector('[data-effective]')!.setAttribute('href', `#sw-${bypassed ? 'input' : 'controlled'}-${index}`);
       bench.querySelector('[data-changes]')!.textContent = `${bypassed ? 0 : sample.changes} of 720 bits changed on this trial.`;
-      bench.querySelector('[data-control-label]')!.textContent = bypassed ? 'Controller bypassed' : 'One installed wire';
+      bench.querySelector('[data-control-label]')!.textContent = bypassed ? 'Controller bypassed' : 'One of the eight wires';
       const summary = [label, state];
       for (const key of ['after', 'before', 'target'] as const) {
         const bits = sample[key];
@@ -252,7 +252,7 @@ const firstMatches = first.after.every((bit, i) => bit === first.target[i]);
     .flow p {grid-column:2;font-size:15px}
     .readings {height:auto;gap:7px}.cells {max-width:210px}
   }
-  @container(max-width:25rem) {
+  @container(max-width:20rem) {
     .flow li {grid-template-columns:1fr;row-gap:7px;padding:14px 0 18px}
     .label {display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .flow h4 {margin:0;font-size:20px}

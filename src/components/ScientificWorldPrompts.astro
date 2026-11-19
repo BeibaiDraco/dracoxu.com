@@ -2,34 +2,36 @@
 import n0 from '../data/scientific-worlds/prompts/neural-B-N0.txt?raw';
 import m from '../data/scientific-worlds/prompts/neural-B-M.txt?raw';
 import f from '../data/scientific-worlds/prompts/neural-B-F.txt?raw';
+import score from '../data/scientific-worlds/scorecard.json';
 
 interface Props { release: string }
 const { release } = Astro.props;
 const cards = [
   {
-    id: 'N0', title: 'How to use the box', prompt: n0,
-    summary: 'The manual tells the model how to set the switches, read the lights and wire a controller. It knows what each measurement and each part will cost. It can flip switches one at a time or try several together and watch which lights change.'
+    id: 'N0', title: 'The manual alone', prompt: n0,
+    summary: 'How to set the switches, read the lights and wire a controller. The model knows the prices of readings and parts. It has to find the first clue for itself.'
   },
   {
     id: 'M', title: 'Look for groups of four', prompt: m,
-    summary: 'Each light adds up the effects of groups of four switches. Flipping one switch can help turn a light on or off depending on its three partners. The model gets the rule for adding up those effects. Most groups contribute nothing. Experiments reveal which ones count and by how much.'
+    summary: 'The model also gets a rule. A switch’s effect on a light depends on its three partners. Only a few groups matter. Which four switches belong together, and how much does each group count?'
   },
   {
     id: 'F', title: 'The grids inside the box', prompt: f,
-    summary: 'The 720 switches form 30 hidden grids. Ten are 4×4, ten are 4×6 and ten are 4×8. The four corners of each small square act together, and six grids feed each light. The model knows a working controller is within budget. The switch numbers are shuffled, so it still has to find which switch goes where.'
+    summary: 'For this box, the model gets the grid plan. There are 30 grids, ten each of size 4×4, 4×6 and 4×8. It knows how squares feed lights and that a controller is affordable. It still has to place the switches.'
   }
-];
+] as const;
 ---
 <section class="prompt-section" id="prompts" aria-labelledby="prompt-title">
   <header class="intro">
     <h2 id="prompt-title">What the model is told</h2>
-    <p>For the box shown above, all three versions start with the same operating manual.</p>
+    <p>All three conditions share a manual. Here is what changes for the box shown above.</p>
   </header>
   <div class="cards">
     {cards.map(({id,title,summary,prompt}) =>
       <section class="card" data-condition={id} aria-labelledby={`prompt-${id}`}>
         <h3 id={`prompt-${id}`}><b>{id}</b><span>{title}</span></h3>
         <p>{summary}</p>
+        <div class="score"><strong>{score.conditions[id].successes} of {score.conditions[id].sessions}</strong> successful attempts</div>
         <details>
           <summary aria-label={`Read the full ${id} prompt`}>Read the full prompt</summary>
           <pre tabindex="0" aria-label={`Original ${id} prompt`}><code>{prompt}</code></pre>
@@ -38,6 +40,7 @@ const cards = [
       </section>
     )}
   </div>
+  <p class="scope">Each attempt allowed 10–12 hours. N0 and F used the same 11 worlds.</p>
 </section>
 <style>
   .prompt-section {container-type:inline-size;margin:38px auto 24px;scroll-margin-top:20px}
@@ -50,8 +53,12 @@ const cards = [
   h3 {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--sumi)}
   h3 b {color:var(--wave);font:600 17px/1.2 var(--mono)}
   h3 span {font:500 23px/1.15 var(--serif);letter-spacing:-.02em}
-  .card p {margin:11px 0 15px;color:var(--contour);font:18px/1.42 var(--serif)}
-  details {margin-top:auto;border-top:1px solid var(--kei);padding-top:6px}
+  .card p {margin:10px 0 12px;color:var(--contour);font:18px/1.35 var(--serif)}
+  .score {margin-top:auto;padding-bottom:8px;color:var(--contour);font:14px/1.4 var(--serif)}
+  .score strong {font:600 16px/1.2 var(--mono);color:var(--sumi)}
+  .card[data-condition="M"] {border-top:3px solid var(--wave);padding-top:15px}
+  .scope {margin:9px 0 0;color:var(--contour);font:15px/1.4 var(--serif)}
+  details {border-top:1px solid var(--kei);padding-top:3px}
   summary,.card a {color:var(--wave);font:12px/1.5 var(--mono)}
   summary {width:fit-content;max-width:100%;padding-block:6px;cursor:pointer}
   summary:hover {text-decoration:underline;text-underline-offset:3px}

@@ -14,7 +14,7 @@ export const windows = ports.map((_, index) => {
   return [index, row * width + right, below * width + col, below * width + right];
 });
 
-export const initialWindow = windows.findIndex(corners => ports[corners[3]] === switchNumber);
+export const initialWindow = ports.indexOf(switchNumber);
 export const signed = (value: number) => value > 0 ? '+' + value : String(value).replace('-', '−');
 
 export function readModule(switchOn: boolean) {

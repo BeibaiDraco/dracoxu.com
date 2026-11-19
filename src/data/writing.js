@@ -6,7 +6,7 @@ export const writing = [
   {
     href: '/writing/scientific-worlds/',
     title: 'How does an AI scientist decide what to study?',
-    description: 'Who thought to put acceleration in the table? Scientific Worlds gives Astra 6.0 Max a lab of its own and asks what it can build with what it discovers.',
+    description: 'Astra 6.0 Max found eight wires that could control a hidden grid of 32 switches. With a four-switch clue, it built eight working controllers in 2 of 25 attempts.',
     date: '2026-11-17',
     kind: 'Research',
     readingTime: '3 min read',
